@@ -1,10 +1,10 @@
 # Randhu DevBrain - Full Runtime Loader
 
-DevBrain root: `C:\Users\MyBook Hype AMD\Documents\DevBrain`
+DevBrain root: `<DEVBRAIN_ROOT>` (resolved by the installer for the current device)
 
 At the start of each new coding session, before substantial analysis or implementation, read the complete operational profile:
 
-`C:\Users\MyBook Hype AMD\Documents\DevBrain\runtime\full-context.md`
+`<DEVBRAIN_ROOT>\runtime\full-context.md`
 
 Also read the active repository's `AGENTS.md` files. The full DevBrain profile defines Randhu's global developer identity, engineering/UI/UX principles, collaboration style, safety, workflow, and command contracts. Project instructions define repository-specific stack, product, visual identity, API, business rules, and validation commands.
 

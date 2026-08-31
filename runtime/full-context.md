@@ -2,7 +2,7 @@
 
 Generated from the canonical operational modules listed below. This runtime intentionally excludes source DOCX, adapter documentation, project templates, architecture/maintenance documentation, and changelog because they are not coding-session decision rules.
 
-DevBrain root: `C:\Users\MyBook Hype AMD\Documents\DevBrain`
+DevBrain root: `<DEVBRAIN_ROOT>` (resolved by the active loader)
 
 ## Cross-device bootstrap
 

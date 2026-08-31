@@ -1,1 +1,1 @@
-@C:/Users/MyBook Hype AMD/Documents/DevBrain/runtime/full-context.md
+@<DEVBRAIN_ROOT>/runtime/full-context.md

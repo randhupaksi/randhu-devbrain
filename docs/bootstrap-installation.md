@@ -1,9 +1,9 @@
 # Bootstrap Installation
 
-Installed target files on the primary device:
+Installed target files on the active device:
 
-- Codex: `C:\Users\MyBook Hype AMD\.codex\AGENTS.md`
-- Claude Code: `C:\Users\MyBook Hype AMD\.claude\CLAUDE.md`
+- Codex: `<USER_HOME>\.codex\AGENTS.md`
+- Claude Code: `<USER_HOME>\.claude\CLAUDE.md`
 
 ## Device-portable installation
 

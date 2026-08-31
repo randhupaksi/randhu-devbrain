@@ -43,6 +43,6 @@ DevBrain aktif menggunakan Markdown dan YAML sebagai canonical operational sourc
 
 Lokasi canonical personal:
 
-`C:\Users\MyBook Hype AMD\Documents\DevBrain`
+`<DEVBRAIN_ROOT>`
 
-Path tersebut adalah lokasi device utama saat ini, bukan path yang boleh di-hardcode pada template.
+Path canonical ditentukan oleh lokasi repository pada device aktif. Jangan hardcode username, drive letter, atau folder laptop tertentu pada template maupun runtime.

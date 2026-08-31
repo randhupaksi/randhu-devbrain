@@ -1,6 +1,6 @@
 # Randhu DevBrain - Compact Runtime
 
-DevBrain root: `C:\Users\MyBook Hype AMD\Documents\DevBrain`
+DevBrain root: `<DEVBRAIN_ROOT>` (resolved by the active loader)
 
 DevBrain adalah personal developer context layer. Ia menetapkan cara berpikir dan standar kualitas global; `AGENTS.md`/`CLAUDE.md` project menetapkan stack, brand, target user, UI direction, API, business rules, dan command khusus repository.
 
