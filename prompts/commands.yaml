@@ -1,0 +1,159 @@
+commands:
+  project-scan:
+    intent: Pahami project, stack, instructions, scripts, structure, dan risiko utama.
+    mode: read_only
+    approval: none
+    output: Temuan, context gaps, risk map, dan suggested next step.
+
+  safe-fix:
+    intent: Perbaiki bug dengan solusi terkecil yang lengkap, behavior preservation yang disengaja, dan validation proporsional.
+    mode: implement_if_low_risk
+    approval: high_risk_boundary_only
+    output: Root cause, fix, files changed, dan validation.
+
+  premium-ui:
+    intent: Tingkatkan kematangan UI sesuai Visual DNA dan design system project; gunakan/reuse atau perkuat foundation secara proporsional tanpa mengubah business logic atau API yang tidak diminta.
+    mode: analyze_then_implement
+    approval: high_risk_boundary_only
+    modules: [core/ui-ux-principles.md, core/design-system-intelligence.md, workflows/ui-task.md]
+
+  design-system-scan:
+    intent: Audit Visual DNA, token/theme source, component library, shared primitive/pattern, duplicate UI, state UX, dan gap foundation project tanpa mengubah file.
+    mode: read_only
+    approval: none
+    modules: [core/design-system-intelligence.md, workflows/ui-foundation-pass.md]
+    output: Visual-system map, reusable component inventory, gaps, risk, dan recommended foundation pass.
+
+  visual-dna-init:
+    intent: Buat draft Project Visual DNA dari evidence project, existing screen, product goal, dan design system; jangan menganggap draft sebagai brand final tanpa context yang cukup.
+    mode: draft_first
+    approval: none_if_command_requested
+    modules: [core/design-system-intelligence.md]
+
+  ui-foundation:
+    intent: Bangun atau rapikan foundation UI kecil yang diperlukan oleh feature aktif: token semantic, primitive/pattern reusable, states, dan composition yang konsisten.
+    mode: analyze_then_implement
+    approval: high_risk_boundary_only
+    modules: [core/design-system-intelligence.md, workflows/ui-foundation-pass.md]
+
+  componentize-ui:
+    intent: Temukan repeated UI nyata dan ubah menjadi primitive/pattern shared yang compatible, tanpa fragmentasi atau abstraction spekulatif.
+    mode: analyze_then_implement
+    approval: high_risk_boundary_only
+    modules: [core/design-system-intelligence.md, workflows/safe-refactor.md]
+
+  premium-feature-ui:
+    intent: Implementasikan feature UI lengkap yang project-anchored, design-system-first, responsive, state-aware, accessible, dan siap berkembang tanpa mengubah data/API di luar scope.
+    mode: analyze_then_implement
+    approval: high_risk_boundary_only
+    modules: [core/design-system-intelligence.md, workflows/ui-foundation-pass.md, workflows/ui-task.md]
+
+  dashboard-review:
+    intent: Audit hierarchy, KPI, table, filter, states, responsiveness, dan usability dashboard.
+    mode: read_only_by_default
+    approval: none_if_implementation_requested
+
+  responsive-pass:
+    intent: Audit dan perbaiki desktop/tablet/mobile, overflow, touch target, table, modal, navigation, dan safe area.
+    mode: analyze_then_implement
+    approval: high_risk_boundary_only
+
+  perf-check:
+    intent: Cari evidence untuk lag, render berulang, fetching, bundle, lazy loading, dan cache.
+    mode: read_only_by_default
+    approval: high_risk_boundary_only
+    modules: [core/performance.md]
+
+  api-contract-check:
+    intent: Baca dan petakan endpoint, method, payload, response/error, auth, tenant scope, types, consumer, compatibility, dan frontend mapping tanpa mengubah file.
+    mode: read_only
+    approval: required_only_for_client_or_production_risk
+    modules: [core/api-backend-intelligence.md, safety/data-and-api-protection.md]
+    output: Contract map, consumer impact, risk/data boundary, compatibility note, dan recommended next step.
+
+  api-feature:
+    intent: Implementasikan endpoint, service, schema/DTO, integration, validation, error behavior, test, dan supporting contract secara lengkap serta compatible untuk outcome aktif.
+    mode: analyze_then_implement
+    approval: high_risk_boundary_only
+    modules: [core/api-backend-intelligence.md, workflows/api-feature.md, safety/data-and-api-protection.md]
+
+  backend-module:
+    intent: Bangun atau rapikan module backend sesuai architecture project dengan boundary yang nyata, business invariant, validation, data access, error handling, dan tests yang relevan.
+    mode: analyze_then_implement
+    approval: high_risk_boundary_only
+    modules: [core/api-backend-intelligence.md, workflows/api-feature.md]
+
+  contract-impact-check:
+    intent: Audit dampak perubahan API terhadap consumer, compatibility, error semantics, auth/tenant scope, migration, dan data risk tanpa mengubah file.
+    mode: read_only
+    approval: none
+    modules: [core/api-backend-intelligence.md, safety/data-and-api-protection.md]
+
+  api-hardening:
+    intent: Audit dan perbaiki validation, authorization, tenant isolation, error exposure, idempotency, rate/timeout handling, dan privacy sesuai threat model serta convention project.
+    mode: analyze_then_implement
+    approval: high_risk_boundary_only
+    modules: [core/api-backend-intelligence.md, safety/data-and-api-protection.md]
+
+  data-safety-audit:
+    intent: Audit read-only terhadap data classification, secret/PII exposure, authorization, tenant isolation, mutation risk, logging, migration, dan protected boundary.
+    mode: read_only
+    approval: none
+    modules: [safety/data-and-api-protection.md, safety/risk-model.md]
+
+  migration-plan:
+    intent: Rencanakan schema/data migration, compatibility, rollback, dry-run, validation, environment/data boundary tanpa menjalankan mutasi.
+    mode: read_only
+    approval: none
+    modules: [workflows/safe-data-migration.md, safety/data-and-api-protection.md]
+
+  integration-test:
+    intent: Audit atau tambahkan validasi integration/contract untuk API sesuai risk dan test infrastructure project.
+    mode: analyze_then_implement
+    approval: high_risk_boundary_only
+    modules: [core/api-backend-intelligence.md, workflows/api-feature.md]
+
+  crud-modal-review:
+    intent: Audit modal/form CRUD untuk layout, validation, defaults, submit, loading, error, dan consistency.
+    mode: read_only_by_default
+    approval: high_risk_boundary_only
+
+  refactor-plan:
+    intent: Buat rencana refactor, behavior invariant, files, risks, dan validation tanpa implementasi.
+    mode: read_only
+    approval: required_only_when_switching_from_plan_to_implementation_without_user_request
+    modules: [workflows/safe-refactor.md]
+
+  explain-diff:
+    intent: Jelaskan perubahan dari diff tanpa mengubah file.
+    mode: read_only
+    approval: none
+
+  commit-msg:
+    intent: Berikan rekomendasi Conventional Commit bahasa Inggris yang spesifik untuk satu perubahan logis; jangan menjalankan Git.
+    mode: text_only
+    approval: none
+    forbidden: [git_add, git_commit, git_push]
+
+  git-command-list:
+    intent: Inspeksi Git secara read-only lalu buat daftar command text-only yang dipecah per feature/perubahan logis: git add file spesifik, commit message Conventional Commit bahasa Inggris yang detail, dan satu git push di akhir.
+    mode: text_only_after_read_only_inspection
+    approval: none
+    modules: [workflows/git-command-listing.md, safety/policy.md]
+    forbidden: [git_add, git_commit, git_push]
+    output: Kelompok feature, ringkasan outcome, git add -- path spesifik, commit message detail, satu git push text-only, dan catatan scope/upstream bila perlu.
+
+  agents-init:
+    intent: Buat draft project instructions dari template melalui inspeksi project dan input user.
+    mode: draft_first
+    approval: none_if_command_requested
+
+  devbrain-sync:
+    intent: Bandingkan source specification atau pengalaman baru dengan DevBrain dan usulkan perubahan.
+    mode: apply_if_user_requested_update
+    approval: required_only_for_ambiguous_or_high_risk_safety_change
+
+  notify-done:
+    intent: Notifikasi lokal setelah task.
+    mode: disabled
+    reason: Notification system ditunda pada fondasi awal.

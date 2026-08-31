@@ -1,0 +1,19 @@
+# Local and generated machine artifacts
+*.bak.*
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Secrets and environment-specific configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+
+# Local task logs or private overrides
+logs/
+local/
+private/
