@@ -1,0 +1,7 @@
+interface:
+  display_name: "Architecture Refactor"
+  short_description: "Refactor frontend and API architecture safely"
+  default_prompt: "Use $architecture-refactor to map and safely refactor this project's architecture."
+
+policy:
+  allow_implicit_invocation: true

@@ -20,9 +20,20 @@ Clone repository tidak otomatis memasang loader ke Codex atau Claude. Pada devic
 .\install\install-bootstrap.ps1
 ```
 
-Installer mendeteksi lokasi repository dan `$HOME` device aktif, membuat backup loader lama, serta hanya mengelola managed block DevBrain pada konfigurasi global Codex dan Claude. Setelah update repository, jalankan `install\update-bootstrap.ps1`. AI boleh mendeteksi bootstrap yang belum terpasang dan menawarkan setup, tetapi tidak boleh mengubah konfigurasi global secara diam-diam.
+Installer mendeteksi lokasi repository dan `$HOME` device aktif, membuat backup loader lama, memasang skill custom dari folder `skills/`, serta hanya mengelola managed block DevBrain pada konfigurasi global Codex dan Claude. Setelah update repository, jalankan `install\update-bootstrap.ps1`. AI boleh mendeteksi bootstrap yang belum terpasang dan menawarkan setup, tetapi tidak boleh mengubah konfigurasi global secara diam-diam.
 
 Full operational context mencakup seluruh core, safety, workflow, precedence, dan prompt command. Folder `source/`, DOCX, adapter documentation, project templates, serta maintenance docs tidak dimuat karena bukan aturan keputusan coding runtime.
+
+## Skills
+
+Source skill custom yang version-controlled berada di `skills/`:
+
+- `enterprise-ui-ux`: dashboard, admin, CRUD, dan aplikasi enterprise;
+- `marketing-portfolio-ui-ux`: landing page, portfolio, dan marketing surface;
+- `design-system-architect`: design system, token, dan shared component;
+- `architecture-refactor`: refactor struktur frontend dan backend/API.
+
+Jangan menyalin isi skill ke `runtime/full-context.md`. Bootstrap hanya mengarahkan agent ke runtime global; skill dipakai secara selektif agar context tetap efisien.
 
 ## Prinsip inti
 

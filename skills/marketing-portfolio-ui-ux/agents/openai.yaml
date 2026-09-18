@@ -1,0 +1,7 @@
+interface:
+  display_name: "Marketing & Portfolio UI/UX"
+  short_description: "Build polished marketing sites and portfolios"
+  default_prompt: "Use $marketing-portfolio-ui-ux to design or review a clean, premium marketing or portfolio page."
+
+policy:
+  allow_implicit_invocation: true

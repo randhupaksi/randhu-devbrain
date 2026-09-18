@@ -1,0 +1,7 @@
+interface:
+  display_name: "Enterprise UI/UX"
+  short_description: "Design and review polished enterprise application UI"
+  default_prompt: "Use $enterprise-ui-ux to design or review a polished enterprise application interface."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,6 +1,6 @@
 # DevBrain bootstrap installer
 
-Installer ini dipakai satu kali pada setiap device untuk menghubungkan repository DevBrain dengan Codex dan/atau Claude Code. Installer bersifat Windows/PowerShell-native, mendeteksi `$HOME` device aktif, membuat backup loader yang sudah ada, dan hanya mengelola blok bertanda `DEVBRAIN-BOOTSTRAP`.
+Installer ini dipakai satu kali pada setiap device untuk menghubungkan repository DevBrain dengan Codex dan/atau Claude Code. Installer bersifat Windows/PowerShell-native, mendeteksi `$HOME` device aktif, membuat backup loader dan skill yang sudah ada, memasang skill custom dari `skills/`, dan hanya mengelola blok bertanda `DEVBRAIN-BOOTSTRAP`.
 
 ## Instalasi device baru
 
@@ -8,6 +8,12 @@ Setelah repository berada di device tersebut, jalankan dari folder repository:
 
 ```powershell
 .\install\install-bootstrap.ps1
+```
+
+Perintah tersebut memasang bootstrap dan skill custom DevBrain ke kedua agent secara default. Gunakan `-SkipSkills` jika hanya ingin memperbarui bootstrap:
+
+```powershell
+.\install\install-bootstrap.ps1 -SkipSkills
 ```
 
 Pilih satu tool bila perlu:
@@ -18,6 +24,8 @@ Pilih satu tool bila perlu:
 ```
 
 Gunakan `-WhatIf` untuk preview tanpa menulis file. Installer tidak membutuhkan hak administrator, tidak mengubah registry, dan tidak menjalankan Git add/commit/push.
+
+Skill disalin dari `DevBrain\skills\` ke `$HOME\.codex\skills\` dan `$HOME\.claude\skills\`. Folder source tidak dimuat otomatis oleh runtime; skill hanya dibaca saat task relevan atau dipanggil secara eksplisit. Backup skill lama disimpan di folder `devbrain-backups` agar tidak muncul sebagai skill aktif.
 
 ## Update
 

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Design System Architect"
+  short_description: "Build clean reusable frontend foundations"
+  default_prompt: "Use $design-system-architect to audit or refactor this frontend design system and its shared components."
+
+policy:
+  allow_implicit_invocation: true
