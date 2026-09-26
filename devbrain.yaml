@@ -1,125 +1,51 @@
 schema: devbrain-manifest
+version: 2.0.0
 owner: Randhu Paksi
 status: operational
-updated_on: 2026-08-31
-language: id
-purpose: Personal developer context layer untuk AI coding assistants
-
-principles:
-  - context_first
-  - safety_first
-  - quality_first
-  - project_identity_over_global_visual_style
-  - project_design_system_first
-  - visual_dna_before_generic_ui
-  - reusable_component_by_evidence
-  - frontend_foundation_before_page_sprawl
-  - api_contract_before_implementation
-  - consumer_aware_compatibility
-  - backend_architecture_by_evidence
-  - server_side_authorization_and_tenant_safety
-  - data_integrity_before_mutation
-  - safe_migration_preparation_before_execution
-  - feature_based_git_command_grouping
-  - git_command_listing_is_text_only
-  - explicit_per_operation_git_authorization
-  - complete_proportional_solution
-  - autonomous_by_default
-  - approval_only_for_high_risk_boundaries
-  - active_user_prompt_overrides_devbrain_defaults
-  - evidence_first_ambiguity_resolution
-  - controlled_overdelivery_without_speculative_scope
-  - high_autonomy_for_low_and_medium_risk
-  - project_anchored_creative_freedom
-  - maximum_ui_creativity_with_contract_boundaries
-  - api_contract_first_caution
-  - expansive_relevant_feature_autonomy
-  - strict_only_at_high_risk_client_data_boundary
-  - environment_and_data_aware_risk
-  - diminishing_value_stop_rule
-  - effective_scope_includes_relevant_adjacent_expansion
-  - latest_explicit_user_decision_is_authoritative
-  - visual_quality_verified_beyond_static_checks
+updated_on: 2026-09-26
+language: en
+purpose: Personal developer knowledge layer for AI coding assistants
 
 always_load:
-  - runtime/full-context.md
+  - runtime/session-baseline.md
+task_router: runtime/task-map.md
+loading_policy:
+  session_load: once_per_coding_session
+  reuse_active_context: true
+  reload_on: [explicit_request, material_context_loss, devbrain_update, repository_change, uncertain_active_rules]
+  full_tree_scan: forbidden_during_normal_coding
+  skill_directory_scan: forbidden_at_startup
+  skill_references: only_when_needed
+  excluded_from_normal_coding: [source, adapters, project-templates, docs, evaluation, CHANGELOG.md]
+  maintenance_exception: explicit_audit_or_update_request
 
 bootstrap:
   installer: install/install-bootstrap.ps1
   updater: install/update-bootstrap.ps1
   supported_tools: [codex, claude]
-  install_scope: per_device_once
-  path_strategy: detect_repository_root_and_user_home
-  preserve_existing_loaders: true
+  path_strategy: repository_root_and_user_home_detection
+  preserve_outside_managed_block: true
   backup_before_update: true
-  requires_explicit_user_approval: true
+  execution: explicit_install_request_only
+  codex_template: adapters/codex/AGENTS.global.template.md
+  claude_template: adapters/claude-code/CLAUDE.global.template.md
 
-load_when:
-  engineering_or_refactor:
-    - core/engineering-principles.md
-    - workflows/safe-refactor.md
-  ui_or_ux:
-    - core/ui-ux-principles.md
-    - core/design-system-intelligence.md
-    - workflows/ui-task.md
-    - workflows/ui-foundation-pass.md
-  frontend_or_fullstack:
-    - core/frontend-and-fullstack.md
-  api_or_backend:
-    - core/api-backend-intelligence.md
-    - workflows/api-feature.md
-    - safety/data-and-api-protection.md
-  data_or_migration:
-    - workflows/safe-data-migration.md
-    - safety/data-and-api-protection.md
-  git_command_listing:
-    - workflows/git-command-listing.md
-    - safety/policy.md
-  protected_api_data_auth_or_production:
-    - safety/policy.md
-    - safety/risk-model.md
-  performance:
-    - core/performance.md
-  any_implementation:
-    - workflows/standard-task.md
-    - workflows/verification-reporting.md
-  compressed_command:
-    - prompts/commands.yaml
+skills:
+  - enterprise-ui-ux
+  - marketing-portfolio-ui-ux
+  - design-system-architect
+  - architecture-refactor
 
-loading_policy:
-  default: full_operational_context_plus_project_instructions
-  session_load: once_per_coding_session
-  reuse_active_context: true
-  reload_on:
-    - explicit_user_request
-    - context_compaction_or_material_context_loss
-    - devbrain_update
-    - project_or_repository_boundary
-    - active_rules_uncertain
-  full_tree_scan: forbidden_during_normal_coding
-  source_docx: load_only_for_devbrain_sync
-  operational_modules: included_in_full_context
-  excluded_from_runtime:
-    - source_docx
-    - adapter_documentation
-    - project_templates
-    - architecture_and_maintenance_docs
+project_context_candidates: [AGENTS.md, CLAUDE.md, PROJECT-CONTEXT.md, README.md]
+evaluation:
+  scenarios: evaluation/scenarios.yaml
+  guide: evaluation/README.md
+  static_validator: evaluation/validate-repository.ps1
+  installer_tests: evaluation/test-installer.ps1
 
-project_context_candidates:
-  - AGENTS.md
-  - CLAUDE.md
-  - PROJECT-CONTEXT.md
-  - README.md
-  - package.json
-
-deferred_capabilities:
-  - cli
-  - notification_system
-  - task_logs
-  - daily_summary
-  - gui
-
+deferred_capabilities: [cli, exe, daemon, database, notification_system, task_logs, daily_summary, gui]
 source_specification:
   file: source/Randhu_Developer_Specification_DevBrain_v0.1.docx
+  role: historical_conceptual_source_not_active_policy
   imported_on: 2026-07-01
   sha256: 17c4ac23e06324e328b4edd359e1fd12e8cd8bdc9569d394ef472f1a00fd4b54
