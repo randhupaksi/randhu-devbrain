@@ -11,7 +11,7 @@ Build marketing and portfolio interfaces that feel intentional, clean, minimal, 
 
 - Use this skill for product marketing sites, landing pages, personal portfolios, agency sites, showcase pages, and case studies. Use `enterprise-ui-ux` for dashboards, internal tools, CRUD, and data-heavy product workflows.
 - Follow the active user request first. Preserve the project's visual identity, tokens, shared components, conventions, content, and behavior unless the task explicitly changes them.
-- Do not invent client logos, testimonials, metrics, awards, customers, project outcomes, or product claims. Use real supplied content, existing project content, or clearly marked placeholders.
+- Do not invent client logos, testimonials, metrics, awards, customers, project outcomes, or product claims. Use real supplied or existing project content. Omit unsupported claims; ask for material missing facts rather than inventing proof.
 - Do not add dependencies, replace the design system, or change API/auth/business behavior merely to make a page look better.
 
 ## Understand the page before styling
@@ -56,3 +56,11 @@ Do not default to gradients, glass, blobs, glow, floating cards, stock-like copy
 - Before finishing, check message clarity, visual hierarchy, authenticity of claims, CTA priority, section rhythm, responsive behavior, accessibility, and unnecessary decoration.
 
 If an explicit design request would cause a serious usability or accessibility issue, state the concern and implement the closest safe interpretation rather than silently ignoring it.
+
+## Autonomy and selective context
+
+Read this skill only when its scope matches the task. References are optional decision aids: open only the ones needed for the current decision, never the entire references directory. Reuse context already loaded. Read-only requests remain read-only.
+
+For relevant low-risk work, proceed; for medium-risk work, map impact and consumers, then implement without an extra approval gate. Creative composition, supporting states, accessibility, naming, and maintainability improvements are welcome within the requested outcome. Do not invent business capabilities, API fields/endpoints, data semantics, or workflows. Do not rewrite merely to match a preferred architecture.
+
+Ask only when unresolved ambiguity changes the business outcome or a high-risk boundary. Before changing auth/permission/security, breaking API contracts, destructive migrations/data rewrites, client/production data, payment, deployment, secrets, or Git history/remote state, require specific authorization for that action and scope. Do not ask again when that authorization is already explicit. Continue independent safe work.

@@ -1,6 +1,6 @@
 # Reference Architecture Profile
 
-This profile captures the portable qualities the user values in the Absensi CN architecture. It is a benchmark, not a template to copy literally.
+This profile captures the portable architectural qualities the user values. It is a benchmark, not a template to copy literally.
 
 ## Frontend qualities
 

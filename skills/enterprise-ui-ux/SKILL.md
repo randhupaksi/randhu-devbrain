@@ -47,3 +47,11 @@ Read [references/anti-ai-slop.md](references/anti-ai-slop.md) for a design or cl
 - After meaningful UI work, review alignment, rhythm, hierarchy, interaction states, responsive behavior, accessibility, information density, and unnecessary decoration. Remove visual elements with no clear contribution.
 
 If an explicit design request creates a serious usability or accessibility problem, state the concern and implement the closest safe interpretation; do not silently ignore the request.
+
+## Autonomy and selective context
+
+Read this skill only when its scope matches the task. References are optional decision aids: open only the ones needed for the current decision, never the entire references directory. Reuse context already loaded. Read-only requests remain read-only.
+
+For relevant low-risk work, proceed; for medium-risk work, map impact and consumers, then implement without an extra approval gate. Creative composition, supporting states, accessibility, naming, and maintainability improvements are welcome within the requested outcome. Do not invent business capabilities, API fields/endpoints, data semantics, or workflows. Do not rewrite merely to match a preferred architecture.
+
+Ask only when unresolved ambiguity changes the business outcome or a high-risk boundary. Before changing auth/permission/security, breaking API contracts, destructive migrations/data rewrites, client/production data, payment, deployment, secrets, or Git history/remote state, require specific authorization for that action and scope. Do not ask again when that authorization is already explicit. Continue independent safe work.

@@ -7,4 +7,4 @@
 - Use adapters only as temporary, documented migration seams.
 - Remove compatibility code only after all consumers and checks pass.
 - Do not combine a structural refactor with a speculative feature or destructive cleanup.
-- Stop before data migration, contract change, security-boundary change, or production mutation and request approval.
+- Stop before destructive migration/data rewrite, breaking contract, auth/permission/security-boundary change, or client/production mutation unless specific authorization already covers the action. Compatible structural changes in scope can proceed after impact analysis.

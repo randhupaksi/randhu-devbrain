@@ -16,4 +16,4 @@ A good portfolio makes capability credible. It does not need every pattern below
 
 ## Portfolio integrity
 
-When role, metrics, team size, client name, or project outcome is not known, do not infer it. Use neutral framing, existing copy, or a clearly labeled placeholder. A restrained, accurate portfolio creates more trust than an impressive-sounding fictional one.
+When role, metrics, team size, client name, or project outcome is not known, do not infer it. Use neutral framing or existing copy; omit unsupported claims and flag missing evidence. A restrained, accurate portfolio creates more trust than an impressive-sounding fictional one.

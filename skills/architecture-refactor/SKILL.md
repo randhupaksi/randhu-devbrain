@@ -11,12 +11,12 @@ Use this skill when the requested outcome is structural clarity: decomposing gia
 
 ## Reference standard
 
-The quality benchmark is a distilled architecture profile inspired by the user's Absensi CN project. Read [references/reference-architecture-profile.md](references/reference-architecture-profile.md) when choosing boundaries. It contains portable principles only; never assume its paths, domain names, stack, endpoints, colors, or business rules apply to the active project.
+The quality benchmark is a distilled, portable architecture profile. Read [references/reference-architecture-profile.md](references/reference-architecture-profile.md) when choosing boundaries. It contains portable principles only; never assume its paths, domain names, stack, endpoints, colors, or business rules apply to the active project.
 
 ## Operating contract
 
 - Read the active repository's `AGENTS.md`/`CLAUDE.md`, README, entry points, and relevant local conventions before editing.
-- The active user request overrides default preferences; platform and repository safety rules remain authoritative.
+- System/platform instructions and permissions remain highest; the latest explicit user request overrides global preferences and earlier choices. Project instructions supply constraints and facts. High-risk actions still require specific authorization.
 - Preserve observable behavior, API contracts, authorization, data semantics, loading/error states, accessibility, and performance characteristics unless a change is explicitly in scope.
 - Prefer incremental, reviewable extraction over a speculative rewrite.
 - Be proactive with relevant, low-risk improvements to readability, reuse, testability, and maintainability. Do not invent product features, fields, endpoints, or business rules.
@@ -26,7 +26,7 @@ The quality benchmark is a distilled architecture profile inspired by the user's
 
 ### 1. Discover
 
-Map the project before changing it: entry points, routes, feature/domain folders, shared components, hooks/state, API client/services, handlers, use-cases, repositories/data access, models/DTOs, tests, and configuration. Inspect consumers and import/dependency direction, not just the target file.
+Map the affected area and its consumers proportionally before changing it; do not inventory unrelated modules. Relevant evidence may include entry points, routes, feature/domain folders, shared components, hooks/state, API client/services, handlers, use-cases, repositories/data access, models/DTOs, tests, and configuration. Inspect consumers and import/dependency direction, not just the target file.
 
 ### 2. Diagnose
 
@@ -50,8 +50,16 @@ Extract cohesive units with intent-based APIs. Migrate consumers in small groups
 
 ### 5. Verify and report
 
-Run the repository's proportional formatting, typecheck, lint, tests, build, and focused runtime checks. Review the final diff and affected consumers. Use [references/verification-checklist.md](references/verification-checklist.md) for the report. State what was changed, what behavior/contracts were preserved, what was intentionally deferred, validation results, and remaining risks.
+Run the repository's proportional formatting, typecheck, lint, tests, build, and focused runtime checks. Review the final diff and affected consumers. Use [references/verification-checklist.md](references/verification-checklist.md) when a broad extraction needs a detailed regression checklist. State what was changed, what behavior/contracts were preserved, what was intentionally deferred, validation results, and remaining risks.
 
-## Stop and ask
+## Contract boundary
 
-Pause for explicit approval before destructive database/schema work, data rewrites, API contract changes, auth/permission changes, production configuration, secret handling, deployment, or Git history/remote operations. For ambiguous business behavior, make the smallest safe structural change and surface the ambiguity instead of guessing.
+Preserve contracts by default. A compatible integration change required by the task may proceed after impact analysis. A breaking contract, auth/security change, or destructive data operation requires specific authorization; local implementation is not an exemption. Surface unresolved business ambiguity while continuing safe structural work.
+
+## Autonomy and selective context
+
+Read this skill only when its scope matches the task. References are optional decision aids: open only the ones needed for the current decision, never the entire references directory. Reuse context already loaded. Read-only requests remain read-only.
+
+For relevant low-risk work, proceed; for medium-risk work, map impact and consumers, then implement without an extra approval gate. Creative composition, supporting states, accessibility, naming, and maintainability improvements are welcome within the requested outcome. Do not invent business capabilities, API fields/endpoints, data semantics, or workflows. Do not rewrite merely to match a preferred architecture.
+
+Ask only when unresolved ambiguity changes the business outcome or a high-risk boundary. Before changing auth/permission/security, breaking API contracts, destructive migrations/data rewrites, client/production data, payment, deployment, secrets, or Git history/remote state, require specific authorization for that action and scope. Do not ask again when that authorization is already explicit. Continue independent safe work.
