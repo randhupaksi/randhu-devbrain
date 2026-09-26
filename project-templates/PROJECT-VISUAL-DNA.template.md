@@ -1,19 +1,19 @@
 # Project Visual DNA
 
-> Isi fakta dan keputusan visual project ini. File ini melengkapi `AGENTS.md`; jangan menyalin DevBrain global. Hapus placeholder yang belum diketahui atau tandai `Unknown`.
+> Record this project's visual facts and decisions here. This file supplements `AGENTS.md`; do not copy global DevBrain rules into it. Remove unknown placeholders or mark them `Unknown`.
 
-## Product feeling
+## Product feel
 
-- Target users dan konteks penggunaan:
-- Primary task yang harus terasa paling mudah:
-- Product personality (contoh: tenang, cepat, formal, hangat, technical, data-dense):
-- Visual anti-pattern yang harus dihindari:
-- Screens/features yang menjadi visual precedent:
+- Target users and usage context:
+- Primary task that should feel easiest:
+- Product personality (e.g., calm, fast, formal, warm, technical, data-dense):
+- Visual anti-patterns to avoid:
+- Screens/features that provide visual precedent:
 
 ## Foundations
 
-- Theme mode dan brand direction:
-- Typography source dan hierarchy:
+- Theme mode and brand direction:
+- Typography source and hierarchy:
 - Color/token source of truth:
 - Spacing/density rules:
 - Radius, border, and elevation rules:
@@ -30,13 +30,13 @@
 - Table/list/filter/toolbar pattern:
 - Card/stat/summary pattern:
 - Modal/drawer/confirmation pattern:
-- Empty/loading/error/permission state pattern:
-- Components or APIs that must not be changed without impact review:
+- Empty/loading/error/permission-state pattern:
+- Components or APIs that must not change without impact review:
 
 ## Implementation rules
 
 - Allowed styling approach:
 - Token policy (including whether arbitrary values are forbidden):
 - When to create a shared primitive or pattern:
-- When a component should stay feature-local:
+- When a component should remain feature-local:
 - Required visual verification:

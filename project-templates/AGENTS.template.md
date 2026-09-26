@@ -1,4 +1,4 @@
-# Project Instructions for Codex
+# Project Instructions
 
 This repository uses Randhu's DevBrain global principles. This file contains only project-specific facts and constraints.
 
