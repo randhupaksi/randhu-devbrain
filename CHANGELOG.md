@@ -3,6 +3,7 @@
 ## Source specification revision — 2026-09-26
 
 - Replaced the current-tree personal v0.1 DOCX with a generalized English v2 conceptual specification in third-person language.
+- Expanded the v2 specification with session examples, module routing, risk decisions, frontend and API guidance, installation flow, and evaluation limits.
 - Updated the source manifest, hash, mapping, and documentation; the original file remains in earlier Git history.
 - Kept Markdown/YAML as the operational source and the DOCX outside normal startup context.
 
