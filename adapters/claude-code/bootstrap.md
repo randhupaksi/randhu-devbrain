@@ -1,3 +1,3 @@
-# Adapter note
+# Bootstrap Note
 
-Claude Code global instructions import `runtime/full-context.md` through `CLAUDE.global.template.md`. `runtime/core-compact.md` is fallback/legacy material and is not the active default.
+The installer renders [CLAUDE.global.template.md](CLAUDE.global.template.md). The template instructs the host to read the [baseline](../../runtime/session-baseline.md) once and load details selectively. V2 does not eagerly import the full operational monolith.

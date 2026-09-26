@@ -1,14 +1,9 @@
 # Codex Adapter
 
-Codex membaca global instructions dari `%USERPROFILE%\.codex\AGENTS.md` dan project instructions dari `AGENTS.md` repository. File yang lebih dekat ke working directory dapat memberi aturan yang lebih spesifik.
+The default loader is `UserHome/.codex/AGENTS.md`. The installer also accepts `CodexHome`; when `UserHome` is not overridden, it uses configured `CODEX_HOME` if present. No DevBrain-specific environment variable is required.
 
-## Instalasi lintas-device
+The bootstrap requests a one-time read of `session-baseline.md`, followed by selective modules. Project/scoped `AGENTS.md` files are still read. `AGENTS.override.md` may affect discovery; the installer does not change it. After installation, start a new session and inspect the instruction sources actually loaded. See the [official instruction-discovery documentation](https://learn.chatgpt.com/docs/agent-configuration/agents-md).
 
-1. Jalankan `install/install-bootstrap.ps1 -Tool Codex` dari repository DevBrain.
-2. Installer mendeteksi `$HOME`, membuat backup, dan menggabungkan managed block ke global `AGENTS.md` tanpa menimpa instruksi lain.
-3. Pada project, gunakan `project-templates/AGENTS.template.md` untuk fakta khusus repository.
-4. Mulai sesi baru dan minta Codex menyebutkan instruction sources serta DevBrain modules yang aktif.
+New skill installs use `UserHome/.agents/skills` according to the [official skill locations](https://learn.chatgpt.com/docs/build-skills). For legacy DevBrain installs with custom skills under `CodexHome/skills`, the updater preserves that location rather than creating a second discovery copy. `CodexSkillsPath` can specify a location when the host differs. The legacy location was verified in this audit; support is not guaranteed for every host version.
 
-Jika bootstrap belum ada, Codex boleh melaporkan status dan menawarkan installer. Ia tidak boleh menulis `$HOME\.codex\AGENTS.md` tanpa instruksi atau persetujuan pengguna.
-
-Codex global bootstrap tetap kecil agar project `AGENTS.md` tidak terdorong keluar dari instruction discovery limit. Bootstrap kemudian meminta Codex membaca `runtime/full-context.md` sebagai file eksternal sebelum pekerjaan substansial. Ini memberi full operational understanding tanpa menyalin file 30 KB ke global `AGENTS.md`.
+The installer does not disable other skills or edit `config.toml`. If both discovery locations already contain the custom skills, review duplicates separately; do not silently remove user instructions or skills.

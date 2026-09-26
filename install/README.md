@@ -1,46 +1,44 @@
-# DevBrain bootstrap installer
+# DevBrain v2 Installer
 
-Installer ini dipakai satu kali pada setiap device untuk menghubungkan repository DevBrain dengan Codex dan/atau Claude Code. Installer bersifat Windows/PowerShell-native, mendeteksi `$HOME` device aktif, membuat backup loader dan skill yang sudah ada, memasang skill custom dari `skills/`, dan hanya mengelola blok bertanda `DEVBRAIN-BOOTSTRAP`.
-
-## Instalasi device baru
-
-Setelah repository berada di device tersebut, jalankan dari folder repository:
+Run from the repository with PowerShell 5.1+ or PowerShell 7 as a regular user. Installation does not require Python, Node.js, or a YAML package.
 
 ```powershell
+.\install\install-bootstrap.ps1 -WhatIf
 .\install\install-bootstrap.ps1
-```
-
-Perintah tersebut memasang bootstrap dan skill custom DevBrain ke kedua agent secara default. Gunakan `-SkipSkills` jika hanya ingin memperbarui bootstrap:
-
-```powershell
-.\install\install-bootstrap.ps1 -SkipSkills
-```
-
-Pilih satu tool bila perlu:
-
-```powershell
-.\install\install-bootstrap.ps1 -Tool Codex
-.\install\install-bootstrap.ps1 -Tool Claude
-```
-
-Gunakan `-WhatIf` untuk preview tanpa menulis file. Installer tidak membutuhkan hak administrator, tidak mengubah registry, dan tidak menjalankan Git add/commit/push.
-
-Skill disalin dari `DevBrain\skills\` ke `$HOME\.codex\skills\` dan `$HOME\.claude\skills\`. Folder source tidak dimuat otomatis oleh runtime; skill hanya dibaca saat task relevan atau dipanggil secara eksplisit. Backup skill lama disimpan di folder `devbrain-backups` agar tidak muncul sebagai skill aktif.
-
-## Update
-
-Setelah `git pull` pada repository DevBrain, jalankan:
-
-```powershell
+.\install\update-bootstrap.ps1 -WhatIf
 .\install\update-bootstrap.ps1
 ```
 
-Update hanya mengganti managed block milik DevBrain. Instruksi pribadi di luar block dipertahankan. Jika loader sebelumnya ada, backup bertimestamp dibuat sebelum perubahan.
+The installer runs only when explicitly requested by the user. An agent editing DevBrain does not install it to the real home automatically.
 
-## Batas keamanan
+## Parameters and targets
 
-README atau instruksi repository tidak boleh diam-diam mengubah `$HOME\.codex\AGENTS.md` atau `$HOME\.claude\CLAUDE.md`. AI boleh mendeteksi bootstrap belum ada dan menawarkan installer, tetapi eksekusi instalasi harus diminta atau disetujui pengguna karena dampaknya global untuk semua project pada device tersebut.
+- `DevBrainRoot`: defaults to the parent of `PSScriptRoot`.
+- `UserHome`: defaults to `HOME`; can point to a test fixture home.
+- `Tool`: Codex, Claude, or Both (default).
+- `SkipSkills`: install/update only the bootstrap; also supported by the updater.
+- `CodexHome`: explicit Codex profile; defaults to configured `CODEX_HOME` when present and `UserHome` is not overridden, otherwise `UserHome/.codex`.
+- `CodexSkillsPath`: explicit skill location. New installs default to `UserHome/.agents/skills`; an existing DevBrain legacy install under `CodexHome/skills` is updated there.
+- `WhatIf`/`Confirm`: PowerShell `ShouldProcess` for each change; `WhatIf` creates no folders or backups.
 
-## Device portability
+Claude loaders/skills use `UserHome/.claude`. Concrete paths appear only in local installed output, not repository source. Account name, drive, and clone location are unrestricted; no DevBrain-specific environment variable is required.
 
-Jangan hardcode username atau path device ke template. Installer mengisi path runtime berdasarkan lokasi repository dan `$HOME` device aktif. Untuk repository private, pastikan autentikasi GitHub sudah tersedia sebelum melakukan clone atau pull.
+## Update guarantees
+
+Preflight checks source, markers, and linked/reparse paths before writing. Only the four named DevBrain skills are managed. Adapter templates are the loader source, preventing template/installer drift. Text outside a managed block is preserved exactly; loader backups retain original bytes.
+
+Skills are copied to staging and verified by hash/tree, then the old directory is moved to `devbrain-backups` and staging becomes active. This fixes the v1 nested-copy bug and removes stale discovered references without losing customization: the complete old tree remains in backup. If moving staging fails, the installer attempts to restore the old directory. Backups use a timestamp and unique suffix. An identical update makes no writes and creates no backup.
+
+The installer shows targets through `ShouldProcess`/operation results. It does not change Git, registry, PATH, services, startup, `settings.json`, `config.toml`, `AGENTS.override.md`, or another project. Duplicate/damaged markers and symlinks are rejected rather than guessed or overwritten.
+
+## Limits and recovery
+
+Backup/swap operations are per file/skill, not one transaction for the full installation. If I/O fails partway through, earlier parts may already be updated; inspect operation results and backups, then rerun after resolving the cause.
+
+An old loader that places DevBrain text outside the managed block remains intact. V2 provides a compatibility entry so legacy instructions to `full-context.md` still reach the baseline. Review cleanup of text outside the block separately to avoid deleting personal instructions.
+
+If old skills exist in two discovery locations, the installer does not silently delete either. Select a location explicitly and review duplicates/backups separately.
+
+To roll back, restore a selected loader backup after checking for newer personal instructions, or remove only the managed block. For skills, move the active version into a new backup and restore the selected old directory. Do not empty the whole loader or delete other skill folders.
+
+Test installation, update, alternate clone, simulated username, backup, parity, and `WhatIf` using the [evaluation guide](../evaluation/README.md).

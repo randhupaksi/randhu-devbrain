@@ -1,9 +1,7 @@
 # Adapters
 
-Adapter menghubungkan core AI-agnostic dengan discovery mechanism tiap tool. Adapter tidak boleh mengubah arti core atau menambahkan project-specific visual/technical rules.
+Adapters connect AI-agnostic context to each tool's instruction discovery. Both use the same baseline, task routing, and Markdown skills; loader/discovery locations differ.
 
-- `codex/`: bootstrap dan petunjuk global `AGENTS.md`.
-- `claude-code/`: bootstrap dan petunjuk user-level `CLAUDE.md`.
+Codex and Claude templates are intentionally identical. The installer reads the template directly, injects the local root, and changes only the managed block. Adapter policy never overrides the active user prompt or project instructions.
 
-Template adapter belum dipasang ke home configuration secara otomatis. Instalasi menyentuh konfigurasi tool di luar folder DevBrain dan harus dilakukan secara eksplisit setelah review.
-
+See [Codex](codex/README.md), [Claude](claude-code/README.md), and the [installer](../install/README.md). A user home is touched only when the user runs or explicitly requests the installer.
