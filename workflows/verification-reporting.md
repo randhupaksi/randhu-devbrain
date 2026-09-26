@@ -2,52 +2,44 @@
 
 ## Verification
 
-Pilih validasi berdasarkan risiko dan project:
+Choose checks based on project and risk:
 
-- review diff untuk setiap perubahan;
-- lint/typecheck untuk static correctness;
-- unit/integration/e2e test untuk behavior;
-- build untuk integration/bundling;
-- browser/runtime/console/network check untuk UI dan API;
-- performance evidence untuk klaim optimasi;
-- manual check untuk visual feel atau flow yang tidak terotomasi.
+- Review the diff for every change.
+- Use lint/typecheck for static correctness.
+- Use unit/integration/end-to-end tests for behavior.
+- Build to check integration/bundling.
+- Use browser/runtime/console/network checks for UI and APIs.
+- Require performance evidence for optimization claims.
+- Manually check visual feel or flows that cannot be automated.
 
-Audit setiap added/changed line terhadap aturan project yang aktif. Compliance harus diperiksa per property/contract, bukan disimpulkan dari komponen atau file secara umum. Jika hanya sebagian perubahan mengikuti aturan, laporkan sebagai partial compliance dan sebutkan residual violation.
+Audit every added/changed line against active project rules. Check compliance per property/contract; do not infer it for an entire component/file. If only part of a change follows the rules, report partial compliance and identify remaining violations.
 
-Untuk frontend/UI, audit juga source of truth visual, hardcoded values, repeated markup, component boundary, shared-consumer impact, state UX, responsive behavior, accessibility, dan kecocokan dengan Project Visual DNA. Jangan mengklaim hasil premium atau design-system compliant hanya dari lint/typecheck; lakukan visual/runtime verification bila tersedia.
+For frontend/UI, also check the visual source of truth, hardcoded values, repeated markup, component boundaries, shared-consumer impact, UX states, responsive behavior, accessibility, and Project Visual DNA fit. Lint/typecheck alone does not prove polish or design-system compliance; perform visual/runtime verification when available.
 
-Untuk backend/API, audit contract per request/response/error, validation, auth/permission/tenant scope, consumer compatibility, data invariant, transaction/idempotency/concurrency yang relevan, secret/privacy exposure, migration boundary, dan test coverage. Jangan menyebut endpoint aman hanya karena menerima happy-path request; gunakan negative and integration evidence yang proporsional.
+For backend/API, check each request/response/error contract, validation, authentication/permissions/tenant scope, consumer compatibility, data invariants, relevant transactions/idempotency/concurrency, secret/privacy exposure, migration boundaries, and test coverage. A happy-path request alone does not prove an endpoint is safe; use proportionate negative and integration evidence.
 
-Audit juga requirement coverage:
+Audit requirement coverage:
 
-- tandai setiap requirement eksplisit sebagai implemented, partially implemented, blocked, atau intentionally unchanged;
-- verifikasi detail tersirat terhadap precedent yang digunakan;
-- sebutkan assumption yang memengaruhi output;
-- pisahkan quality improvement tambahan dari requirement utama;
-- pastikan tidak ada capability bisnis baru yang masuk tanpa dasar.
-- pisahkan foundation shared (token/primitive/pattern) dari komposisi feature-local dalam laporan UI.
-- pisahkan code/migration yang disiapkan dari side effect data yang benar-benar dieksekusi dalam laporan backend.
+- Mark every explicit requirement implemented, partially implemented, blocked, or intentionally unchanged.
+- Check implied details against the precedent used.
+- State assumptions that affect the result.
+- Separate additional quality improvements from the main requirement.
+- Ensure no unsupported business capability was introduced.
+- In UI reports, distinguish shared foundations (tokens/primitives/patterns) from feature-local composition.
+- In backend reports, distinguish prepared code/migrations from data side effects actually executed.
 
-Jangan memperbaiki masalah existing di luar scope hanya agar validation terlihat lulus. Jika cleanup lokal benar-benar diperlukan agar perubahan dapat divalidasi, pisahkan secara konseptual dan laporkan sebagai prerequisite cleanup. Bedakan failure existing dari regression akibat perubahan.
+Do not fix existing out-of-scope issues merely to make validation appear successful. When local cleanup is truly needed to validate the change, treat it as prerequisite cleanup and report it separately. Distinguish existing failures from regressions caused by the change.
 
-Read-only berarti tanpa mutasi. Diagnostic read-only seperti membaca file, search, `git status`, `git diff`, lint non-mutating, dan inspection command tetap diperbolehkan jika relevan.
+Read-only means no mutation. Relevant diagnostic inspection—reading files, search, `git status`, `git diff`, non-mutating lint, and inspection commands—is still allowed.
 
-Jangan mengklaim sukses untuk validasi yang tidak dijalankan. Catat command gagal dan bedakan failure existing dari regression akibat perubahan.
+Do not claim a validation that was not run. Record failed commands and distinguish existing failures from regressions.
 
 ## Final report
 
-Gunakan reporting yang adaptif. Task kecil cukup dengan outcome, file berubah, dan validation. Task kompleks/high-risk harus menyertakan behavior, evidence, assumption, risk, serta manual check. Jangan membuat laporan panjang hanya untuk terlihat lengkap.
+Adapt reporting to the task. A small task needs only the outcome, changed files, and validation. A complex/high-risk task should include behavior, evidence, assumptions, risk, and remaining manual checks. Do not make a report long just to appear thorough.
 
-Field yang tersedia sesuai kebutuhan:
+Use these fields as needed: outcome; changed files and summary by file/group; behavior changes or what was preserved; validation commands/checks and results; risks, assumptions, and remaining manual checks; evidence/precedent used to resolve material ambiguity; commit message only if requested.
 
-- Outcome.
-- Files changed dan ringkasan per file/kelompok.
-- Behavior changes atau pernyataan behavior dipertahankan.
-- Validation commands/checks dan hasil.
-- Risks, assumptions, dan manual checks tersisa.
-- Evidence/precedent yang digunakan untuk menyelesaikan ambiguity material.
-- Commit message hanya jika diminta.
+For a Git command listing, separate each feature/logical change, list exact files to stage, and use a Conventional Commit message that names the domain and outcome. State that commands are text-only and never claim a commit/push occurred.
 
-Jika user meminta list command Git, pisahkan setiap feature/perubahan logis, tampilkan file yang akan di-stage secara spesifik, dan gunakan commit message Conventional Commit yang menjelaskan domain serta outcome. Nyatakan bahwa command adalah text-only dan jangan mengklaim commit/push telah dilakukan.
-
-Bedakan file yang diubah, file yang hanya dibaca, dan rekomendasi lanjutan bila informasi itu membantu review.
+Distinguish changed files from files only read and follow-up recommendations when it helps review.

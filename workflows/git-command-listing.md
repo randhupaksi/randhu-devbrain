@@ -1,39 +1,39 @@
 # Git Command Listing Workflow
 
-Gunakan workflow ini ketika Randhu meminta “list command Git”, “kasih command Git”, “buat command add commit push”, atau permintaan sejenis. Permintaan tersebut berarti **buat daftar command sebagai teks**, bukan izin untuk menjalankan `git add`, `git commit`, `git push`, atau mutasi Git lain.
+Use this workflow when Randhu asks to “list Git commands,” “give me Git commands,” “write add/commit/push commands,” or something similar. This means **produce a text command list**, not permission to run `git add`, `git commit`, `git push`, or other Git mutations.
 
 ## 1. Inspect read-only
 
-- Periksa repository, branch, `git status`, diff, dan perubahan staged bila relevan.
-- Bedakan perubahan milik task aktif dari perubahan pengguna yang tidak terkait atau belum dapat dipahami.
-- Jangan mengubah staging area atau file saat menyiapkan daftar command.
+- Check the repository, branch, `git status`, diff, and staged changes when relevant.
+- Distinguish active-task changes from unrelated user changes or changes you cannot identify.
+- Do not alter the index/staging area or files while preparing the command list.
 
 ## 2. Group by logical change
 
-Pecah command berdasarkan feature, bug fix, refactor, test, documentation, atau perubahan logis yang independen. Satu kelompok commit harus dapat dijelaskan sebagai satu perubahan yang coherent dan dapat direview sendiri.
+Separate commands by feature, bug fix, refactor, test, documentation, or independent logical change. Each commit group should be explainable and reviewable as one coherent change.
 
-Gunakan domain/feature sebagai pengelompokan, bukan nama halaman atau section teknis. Contoh yang baik:
+Group by domain/feature rather than page name or technical section. Good examples:
 
-- `attendance` untuk alur check-in/check-out;
-- `attendance-report` untuk export laporan absensi;
-- `outlet-export` untuk export data outlet;
-- `auth` untuk perubahan login/registration;
-- `payment` untuk flow pembayaran.
+- `attendance` for check-in/check-out flow;
+- `attendance-report` for attendance report export;
+- `outlet-export` for outlet data export;
+- `auth` for login/registration changes;
+- `payment` for payment flow.
 
-Jangan memakai label terlalu umum seperti `dashboard`, `page`, `section`, `misc`, `update`, atau nama file kecuali memang domain produknya hanya itu. Jika satu perubahan tidak dapat dipisah tanpa membuat code rusak, letakkan seluruh file pendukung dalam satu commit feature yang sama dan jelaskan alasannya secara singkat.
+Avoid overly broad labels such as `dashboard`, `page`, `section`, `misc`, `update`, or a file name unless that is truly the product domain. If splitting would break the code, put all supporting files in one feature commit and briefly explain why.
 
-## 3. Build command list
+## 3. Build the command list
 
-Untuk setiap kelompok, output harus memuat:
+For each group, include:
 
-1. nomor dan nama feature/perubahan dalam bahasa yang mudah dibaca;
-2. ringkasan satu kalimat tentang behavior/outcome yang berubah;
-3. `git add --` dengan **path file spesifik** yang hanya milik kelompok tersebut;
-4. `git commit -m` dengan Conventional Commit berbahasa Inggris yang spesifik.
+1. A number and readable feature/change name.
+2. One sentence summarizing the behavior/outcome that changes.
+3. `git add --` with **specific file paths** belonging only to that group.
+4. `git commit -m` with a specific English Conventional Commit message.
 
-Gunakan `git add -- <file...>`, bukan `git add .`, `git add -A`, atau wildcard luas. Jangan memasukkan file tidak terkait hanya agar seluruh worktree menjadi bersih.
+Use `git add -- <file...>`, not `git add .`, `git add -A`, or a broad wildcard. Do not include unrelated files just to make the whole working tree clean.
 
-Commit subject harus menyebut tipe, domain/feature, dan outcome. Gunakan bentuk imperative dan spesifik, misalnya:
+Commit subjects should name the type, domain/feature, and outcome. Use specific imperative wording, for example:
 
 ```powershell
 git commit -m "feat(attendance): add employee check-in and check-out flow"
@@ -42,22 +42,22 @@ git commit -m "feat(outlet-export): export filtered outlet records"
 git commit -m "refactor(payment): isolate invoice status mapping"
 ```
 
-Pilih tipe commit yang tepat: `feat`, `fix`, `refactor`, `test`, `docs`, `perf`, `chore`, atau tipe yang sudah ditetapkan project. Jangan memakai pesan seperti `update dashboard`, `fix page`, `changes`, atau `final update`.
+Choose the appropriate commit type: `feat`, `fix`, `refactor`, `test`, `docs`, `perf`, `chore`, or a project-defined type. Avoid subjects such as `update dashboard`, `fix page`, `changes`, or `final update`.
 
-Setelah semua kelompok commit, tampilkan satu `git push` sebagai command teks. Satu push di akhir biasanya cukup karena akan mengirim seluruh commit yang baru dibuat. Jika branch/upstream belum dapat dipastikan, nyatakan kondisi itu; jangan menebak remote atau branch.
+After all commit groups, show one `git push` as text. One push at the end usually sends all new commits. If the branch/upstream is uncertain, state that; do not guess the remote or branch.
 
 ## 4. Execution semantics
 
-- “List command Git” selalu text-only, walaupun daftar tersebut berisi `git add`, `git commit`, dan `git push`.
-- “Buat commit message” atau `commit-msg` juga text-only.
-- Izin untuk satu operasi tidak otomatis mengizinkan operasi berikutnya. Izin menjalankan `git add` tidak mengizinkan commit atau push; izin commit tidak mengizinkan push.
-- AI hanya menjalankan Git mutating command bila prompt aktif memakai kata kerja eksekusi yang jelas dan menyebut operasi yang diizinkan, misalnya “jalankan git add dan commit”, atau “jalankan git add, commit, lalu push”.
-- Bahkan saat ada izin eksekusi, periksa status, target repository, branch, staged files, dan scope sebelum bertindak. Jangan menambahkan perubahan pengguna yang tidak terkait.
-- `git push`, remote/history changes, force push, merge, rebase, amend, reset, dan operasi destruktif tetap memerlukan instruksi eksplisit yang sesuai. Jangan menganggap permintaan coding, “selesaikan task”, atau “list command” sebagai izin.
+- “List Git commands” is always text-only, even if the list contains `git add`, `git commit`, and `git push`.
+- “Write a commit message” or `commit-msg` is also text-only.
+- Permission for one operation does not permit the next. Permission to run `git add` does not permit commit or push; commit permission does not permit push.
+- Run a mutating Git command only when the active prompt clearly uses an execution verb and names the authorized operation, such as “run git add and commit” or “run git add, commit, then push.”
+- Even when execution is authorized, check status, repository, branch, staged files, and scope first. Do not add unrelated user changes.
+- `git push`, remote/history changes, force push, merge, rebase, amend, reset, and destructive operations still require corresponding explicit instructions. A coding request, “finish the task,” or “list commands” is not permission.
 
 ## 5. Output format
 
-Gunakan format berikut saat diminta listing:
+Use this format when asked for a listing:
 
 ```powershell
 # 1. Attendance — employee check-in and check-out flow
@@ -72,4 +72,4 @@ git commit -m "fix(attendance): prevent duplicate daily check-ins"
 git push
 ```
 
-Tambahkan catatan singkat bila ada file tidak dapat dikelompokkan dengan aman, perubahan pengguna yang tidak terkait, validation yang belum dilakukan, atau upstream yang belum dikonfigurasi. Jangan menjalankan command tersebut.
+Briefly note files that could not be safely grouped, unrelated user changes, missing validation, or an unconfigured upstream. Do not run the listed commands.
