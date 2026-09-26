@@ -2,33 +2,33 @@
 
 ## Clean code
 
-Clean code harus jelas, sederhana, konsisten, dan maintainable. Hindari kode yang terlihat pintar tetapi sulit dipahami. Gunakan nama yang bermakna, tanggung jawab yang jelas, dan satu sumber kebenaran jika memang ada logic yang sama.
+Code should be clear, simple, consistent, and maintainable. Avoid clever code that is hard to understand. Use meaningful names, clear responsibilities, and a single source of truth when logic is genuinely shared.
 
-## Existing patterns first
+## Follow existing patterns first
 
-Sebelum membuat pattern, abstraction, helper, hook, service, store, atau component baru, periksa convention yang sudah ada. Ikuti pola project kecuali ada alasan konkret untuk memperbaikinya.
+Before adding a pattern, abstraction, helper, hook, service, store, or component, inspect the project's conventions. Follow them unless there is a concrete reason to improve them.
 
-## Refactor
+## Refactoring
 
-- Default: refactor kecil dan bertahap.
-- Pertahankan observable behavior kecuali perubahan behavior diminta.
-- Jangan rewrite hanya karena struktur lama tidak ideal.
-- Rewrite besar diperbolehkan jika diminta atau disetujui setelah scope, risiko, compatibility, dan verification plan jelas.
+- Prefer small, incremental refactors.
+- Preserve observable behavior unless a behavior change is requested.
+- Do not rewrite code merely because its structure is imperfect.
+- A large rewrite is appropriate when requested or approved after its scope, risks, compatibility, and verification plan are clear.
 
 ## Abstraction
 
-Buat abstraction ketika menyelesaikan masalah nyata: duplikasi, tanggung jawab bercampur, logic tersebar, atau kebutuhan reuse yang terbukti. Jangan over-abstract. Implementasi sederhana lebih baik daripada abstraction spekulatif.
+Add an abstraction to solve a real problem: duplication, mixed responsibilities, scattered logic, or demonstrated reuse. Avoid over-abstraction; a simple implementation is better than a speculative abstraction.
 
 ## Scope control
 
-Jangan menyentuh kode stabil yang tidak diperlukan oleh task. Sebelum mengubah shared/global code, telusuri consumers dan dampaknya. Jika perubahan shared/global memang diminta dan tidak melewati high-risk boundary, lanjutkan tanpa approval tambahan setelah impact analysis.
+Do not touch stable code that the task does not need. Trace consumers and impact before changing shared or global code. When a shared change is requested and stays within the high-risk boundary, proceed after impact analysis without additional approval.
 
-Scope efektif mencakup requirement eksplisit, detail tersirat, dan adjacent feature/improvement berbukti yang mendukung outcome atau tujuan project. Scope tidak mencakup perubahan acak, cleanup tidak terkait, eksperimen tanpa nilai jelas, atau workstream terpisah. “Jangan keluar scope” berarti jangan kehilangan hubungan dengan outcome—bukan larangan mengembangkan A/B/C menjadi D/E yang relevan.
+Effective scope includes explicit requirements, implied details needed to fulfill them, and relevant reversible quality improvements. Do not invent business features, endpoints, API fields, flows, schemas, or data semantics just because they seem useful. Refactoring and architecture improvements must directly serve the outcome rather than become separate workstreams.
 
-## Delivery versus maintainability
+## Delivery and maintainability
 
-Pilih solusi pragmatis yang cukup cepat tetapi tidak membuat codebase rapuh. Pada deadline ketat, trade-off sementara boleh digunakan jika dijelaskan dan dicatat. Jangan memperluas scope hanya untuk mengejar kesempurnaan.
+Choose a pragmatic solution that ships promptly without making the codebase fragile. Under a tight deadline, a temporary trade-off is acceptable when explained and recorded. Do not expand scope in pursuit of perfection.
 
-## Error dan edge case
+## Errors and edge cases
 
-Pertimbangkan kondisi berhasil, gagal, loading, kosong, invalid, timeout, permission denial, dan response tak terduga sesuai relevansi task. Fallback harus menjaga aplikasi stabil tanpa menyembunyikan error penting atau mengubah business rule diam-diam.
+Consider success, failure, loading, empty, invalid, timeout, permission denial, and unexpected responses as relevant to the task. A fallback should keep the application stable without hiding important errors or silently changing business rules.

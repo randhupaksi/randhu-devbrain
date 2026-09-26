@@ -1,18 +1,18 @@
-# Performance Philosophy
+# Performance Principles
 
-Performance mencakup metrik teknis dan perceived experience. Input delay, button response lambat, sidebar/modal berat, navigation tersendat, table lag, animation patah, loading tanpa feedback, dan UI freeze adalah masalah nyata meskipun fitur akhirnya berjalan.
+Performance includes technical metrics and perceived experience. Input delay, slow buttons, heavy sidebars or modals, stalled navigation, lagging tables, choppy animation, loading without feedback, and a frozen UI are real problems even if a feature eventually works.
 
 ## Evidence before optimization
 
-Cari gejala dan penyebab sebelum mengubah struktur. Gunakan evidence seperti profiler, network activity, render behavior, bundle analysis, console, timing, atau reproducible observation. Jangan mengklaim improvement tanpa validasi.
+Find the symptom and its cause before changing structure. Use evidence such as a profiler, network activity, render behavior, bundle analysis, console output, timings, or reproducible observations. Do not claim an improvement without validation.
 
-## Tools secara proporsional
+## Proportionate tools
 
-- Memoization untuk computation/identity yang terbukti menyebabkan render tidak perlu.
-- Lazy loading/dynamic import untuk feature atau library berat yang tidak diperlukan saat initial load.
-- Cache untuk data yang dapat digunakan ulang, dengan invalidation yang aman.
-- Virtualization, pagination, atau batching bila volume data benar-benar membutuhkannya.
+- Use memoization when a measured computation or identity causes unnecessary rendering.
+- Use lazy loading or dynamic imports for heavy features or libraries that are not needed at initial load.
+- Cache reusable data with safe invalidation.
+- Use virtualization, pagination, or batching when the data volume warrants it.
 
-Jangan menambahkan optimization primitive hanya agar kode terlihat optimal. Maintainability dan correctness tetap dijaga.
+Do not add optimization primitives just to make code look optimized. Preserve maintainability and correctness.
 
-Optimasi yang menyentuh fetching architecture, global state, shared component, atau banyak file harus melalui impact analysis dan validation plan. Jika optimasi tersebut memang diminta dan tidak melewati high-risk boundary, implementasikan tanpa approval tambahan.
+Optimizations affecting fetch architecture, global state, shared components, or many files require impact analysis and a validation plan. When requested and within the high-risk boundary, implement them without extra approval.

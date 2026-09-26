@@ -1,70 +1,63 @@
 # UI/UX Principles
 
-## Prinsip global
+## Global quality
 
-UI harus clean, matang, profesional, context-aware, mudah dipahami, dan tidak terasa seperti template generik. Ini adalah standar kualitas, bukan satu visual style universal.
+UI should be clean, polished, professional, context-aware, easy to understand, and unlike a generic template. These are quality standards, not one universal visual style.
 
-"Premium" berarti keputusan desain terasa disengaja: hierarchy kuat, spacing nyaman, typography rapi, warna terkendali, komponen konsisten, dan interaction halus. Premium tidak berarti ramai, banyak gradient, shadow kuat, glassmorphism, atau animation berlebihan.
+“Premium” means considered design decisions: strong hierarchy, comfortable spacing, refined typography, controlled color, consistent components, and subtle interaction. It does not mean visual noise, abundant gradients, heavy shadows, glassmorphism, or excessive animation.
 
-"Clean" berarti rendah visual noise tetapi tidak kosong. Setiap elemen memiliki fungsi, informasi mudah discan, dan action penting mudah ditemukan.
+“Clean” means low visual noise without emptiness. Every element has a purpose, information is easy to scan, and important actions are easy to find.
 
 ## Project identity
 
-AI wajib memperoleh arah visual spesifik dari project context dan existing product. Jangan menentukan secara global:
+Derive the visual direction from project context and the existing product. Do not globally prescribe a dark/light theme, brand colors or fonts, spacing/radius/shadow/density, a dashboard layout, an icon/component library, or an enterprise, playful, friendly, brutalist, or other style.
 
-- dark/light theme;
-- brand color atau font;
-- spacing, radius, shadow, atau density tertentu;
-- layout dashboard tertentu;
-- icon library atau component library;
-- gaya enterprise, playful, friendly, brutalist, atau gaya visual lain sebagai default universal.
-
-Enterprise, consumer, sekolah, kesehatan, POS, SaaS, dan portfolio dapat memiliki hasil berbeda. Yang konsisten adalah kematangan, clarity, usability, dan context awareness.
+Enterprise, consumer, school, healthcare, point-of-sale, SaaS, and portfolio products can look different. What stays consistent is polish, clarity, usability, and awareness of context.
 
 ## Design-system-first
 
-Sebelum mengubah UI secara bermakna, AI harus menemukan visual source of truth project: theme/token, component library, shared component, pattern existing, dan Product Visual DNA bila tersedia. Gunakan foundation tersebut untuk membangun feature baru; jangan menghasilkan page cantik yang hidup di luar bahasa UI project.
+Before meaningful UI changes, find the project's visual source of truth: theme/tokens, component library, shared components, existing patterns, and Project Visual DNA when available. Build new features on that foundation; do not create a beautiful page outside the product's visual language.
 
-Jika foundation belum ada atau tidak konsisten, AI boleh membangun dasar ringan yang relevan dengan outcome aktif: token semantic yang diperlukan, primitive/pattern reusable, dan state UX penting. Ini bukan izin membuat design system besar atau mengganti seluruh UI project tanpa kebutuhan nyata. Detail operasional ada di `design-system-intelligence.md` dan `workflows/ui-foundation-pass.md`.
+When the foundation is absent or inconsistent, build only what the active outcome needs: necessary semantic tokens, reusable primitives/patterns, and important UX states. This is not permission to create a large design system or replace the whole product UI without a real need. See `design-system-intelligence.md` and `workflows/ui-foundation-pass.md` for implementation guidance.
 
 ## Decision framework
 
-Sebelum redesign atau perubahan UI besar:
+Before a substantial redesign or UI change:
 
-1. Pahami tujuan halaman, target user, role, data, action utama, dan flow existing.
-2. Baca component structure, shared dependencies, state, API usage, permission, dan responsive behavior.
-3. Temukan masalah nyata pada hierarchy, density, spacing, typography, CTA, navigation, table/form/modal, feedback state, atau responsiveness.
-4. Tentukan arah desain dari konteks project, bukan kebiasaan AI.
-5. Jelaskan scope visual, behavior yang dipertahankan, trade-off, dan risiko.
-6. Jika redesign besar atau shared layout memang diminta, lanjutkan setelah impact analysis; approval tambahan hanya diperlukan bila high-risk boundary ikut terdampak.
+1. Understand the page goal, target user, role, data, primary action, and existing flow.
+2. Inspect component structure, shared dependencies, state, API usage, permissions, and responsive behavior.
+3. Find real issues in hierarchy, density, spacing, typography, calls to action, navigation, tables/forms/modals, feedback states, or responsiveness.
+4. Choose a direction from project context rather than AI habits.
+5. Explain visual scope, preserved behavior, trade-offs, and risks.
+6. When a requested major redesign or shared-layout change is involved, proceed after impact analysis; extra approval is needed only if a high-risk boundary is affected.
 
-Jika target user atau kebutuhan bisnis tidak dapat ditemukan, jalankan evidence-first review. Untuk low/medium-risk, gunakan reasonable assumption dan lanjutkan redesign dengan asumsi yang dinyatakan. Tanyakan hanya jika ambiguity yang tersisa dapat menghasilkan outcome bisnis material yang tidak dapat dipilih secara defensible atau menyentuh high-risk boundary.
+When target users or business needs are undocumented, review the available evidence first. For low- and medium-risk work, use and state a reasonable assumption, then proceed. Ask only when unresolved ambiguity could cause a material business outcome that cannot be chosen defensibly or affects a high-risk boundary.
 
 ## Visual tools
 
-- Warna memperjelas brand, hierarchy, dan status; jaga kontras dan hindari noise.
-- Icon harus membantu pemahaman; jaga style, ukuran, stroke, alignment, label, atau tooltip.
-- Radius mengikuti karakter project dan harus terasa satu keluarga.
-- Shadow digunakan untuk depth/separation yang bermakna, bukan pada semua komponen.
-- Animation memberi feedback atau continuity; harus ringan, natural, dan tidak mengganggu.
-- Spacing mengikuti density, hubungan konten, form factor, target device, dan tujuan halaman—not angka global.
+- Use color to clarify brand, hierarchy, and status; maintain contrast and avoid noise.
+- Icons should aid understanding; keep style, size, stroke, alignment, labels, and tooltips coherent.
+- Let radius follow the project's character and remain consistent.
+- Use shadows for meaningful depth/separation, not on every component.
+- Animation should provide feedback or continuity; keep it light, natural, and unobtrusive.
+- Set spacing based on density, content relationships, form factor, target device, and page goal—not a universal number.
 
 ## Required experience states
 
-Untuk surface yang relevan, pikirkan normal, loading, empty, error, incomplete data, disabled, success, dan permission-limited state. Kualitas UI tidak dinilai hanya dari happy path atau screenshot data penuh.
+For relevant surfaces, consider normal, loading, empty, error, incomplete-data, disabled, success, and permission-limited states. Judge quality beyond the happy path or a full-data screenshot.
 
 ## Creative freedom
 
-Untuk task UI/UX low/medium-risk, AI memiliki creative freedom yang tinggi pada composition, hierarchy, layout, responsive adaptation, component presentation, interaction feedback, micro-interaction, dan supporting states. Kreativitas harus tetap anchored pada tujuan halaman, target user, tema project, design system, token, component pattern, dan behavior existing.
+For low- and medium-risk UI/UX tasks, use substantial creative freedom in composition, hierarchy, layout, responsive adaptation, component presentation, interaction feedback, micro-interactions, and supporting states. Anchor creativity in the page goal, target user, project theme, design system, tokens, component patterns, and existing behavior.
 
-AI boleh melakukan perubahan visual besar tanpa approval tambahan ketika redesign diminta atau jelas tercakup dalam outcome. Jangan mengganti identitas project dengan selera generik AI, mencampur visual language yang tidak konsisten, atau mengubah business behavior hanya demi desain.
+Make substantial visual changes without extra approval when the redesign is requested or clearly part of the outcome. Do not replace project identity with generic AI taste, mix incompatible visual languages, or change business behavior for design reasons.
 
-Default Randhu adalah maximum project-anchored creative authority. AI tidak perlu mempertahankan composition atau layout existing hanya karena sudah ada. AI boleh merestrukturisasi section, information hierarchy, navigation presentation, card/table/form/modal composition, responsive behavior, feedback state, dan interaction pattern apabila hasilnya lebih matang dan tetap sesuai konteks produk.
+Randhu's default is maximum project-anchored creative authority within the low/medium-risk scope and boundaries above. Do not preserve a composition or layout merely because it already exists. Restructure sections, information hierarchy, navigation presentation, card/table/form/modal composition, responsive behavior, feedback states, and interaction patterns when that produces a more mature result that fits the product.
 
-AI juga boleh menambahkan elemen UI pendukung yang relevan—seperti summary, contextual action, status treatment, helper content, progressive disclosure, skeleton/empty/error state, accessibility affordance, atau micro-interaction—tanpa menunggu instruksi satu per satu. Kebebasan ini tidak mengizinkan perubahan API contract, data semantics, auth, permission, atau business rule secara diam-diam.
+Add relevant supporting UI when useful: summaries, contextual actions, status treatments, helper content, progressive disclosure, skeleton/empty/error states, accessibility affordances, or micro-interactions. This freedom does not permit silent changes to API contracts, data semantics, authentication, permissions, or business rules.
 
-Untuk feature atau redesign frontend, kreativitas juga mencakup merapikan composition dan component architecture. AI boleh mengubah markup berulang menjadi primitive/pattern bersama jika reuse atau konsistensinya nyata; jangan membuat abstraction spekulatif untuk elemen satu kali pakai.
+Frontend creativity also includes improving composition and component architecture. Turn repeated markup into a shared primitive/pattern when reuse or consistency is real; do not invent abstractions for one-off elements.
 
-Pertimbangkan loading, empty, error, incomplete data, disabled, and submit state. Gunakan skeleton ketika struktur konten awal perlu dipertahankan. Spinner lokal dapat digunakan untuk refresh/filter pada area yang sudah memiliki data. Jangan mengganti seluruh halaman dengan loading section jika hanya satu region yang sedang memperbarui data.
+Consider loading, empty, error, incomplete-data, disabled, and submit states. Use skeletons when the initial content structure should remain visible. A local spinner can suit a refresh/filter operation on an already populated area. Do not replace the whole page with a loading screen when only one region is updating.
 
-Responsive behavior dipikirkan sejak awal. Periksa overflow, table, modal, navigation, touch target, safe area, readability, dan action accessibility pada ukuran layar yang relevan.
+Consider responsive behavior from the start. Check overflow, tables, modals, navigation, touch targets, safe areas, readability, and action accessibility at relevant screen sizes.

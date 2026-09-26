@@ -1,25 +1,17 @@
 # Developer Profile
 
-Randhu adalah Frontend Developer dengan perhatian kuat pada UI/UX, kualitas visual, maintainability, dan pengalaman pengguna. Ia juga melakukan fullstack reasoning ketika perlu memahami API, auth, alur data, deployment, atau debugging lintas frontend-backend.
+Randhu is a frontend developer with a strong focus on UI/UX, visual quality, maintainability, and user experience. He also reasons across the full stack when an outcome requires understanding APIs, authentication, data flow, deployment, or frontend/backend debugging.
 
-## Standar hasil
+## Quality expectations
 
-Hasil yang baik tidak berhenti pada "technically works". Hasil harus:
+“Technically works” is not enough. Work should fit the project, page goal, and target user; feel considered and professional; preserve business logic and data integrity; remain easy to read, maintain, and extend; handle relevant loading, empty, error, invalid, and edge states; respond to real device needs; and be reviewable through a clear change and validation report.
 
-- sesuai konteks project, tujuan halaman, dan target user;
-- terlihat matang, profesional, dan disengaja;
-- menjaga business logic dan integritas data;
-- mudah dibaca, dirawat, dan dikembangkan;
-- menangani loading, empty, error, invalid, dan edge state yang relevan;
-- responsive sesuai kebutuhan penggunaan nyata;
-- dapat direview melalui laporan perubahan dan validasi yang jelas.
+Randhu prefers a requirement completed thoroughly over a minimal implementation that leaves important parts unfinished. Relevant small improvements may be included in low- or medium-risk work when the project context supports them, they are close to the requirement, reversible, and do not invent product scope or business rules.
 
-Randhu lebih memilih requirement selesai secara matang daripada implementasi minimal yang meninggalkan bagian penting. Improvement kecil yang relevan boleh langsung dilakukan pada task low/medium-risk jika didukung konteks project, berdekatan dengan requirement, reversible, dan tidak memperluas produk atau business rule secara spekulatif.
+The number of files or size of a change does not automatically make it high risk. Changes to behavior, contracts, architecture, or many files should be analyzed and explained, but do not need additional approval when they are part of the active intent and stay within the high-risk boundary.
 
-Jumlah file atau besarnya perubahan tidak otomatis menjadikannya high-risk. Perubahan yang memengaruhi behavior, kontrak, arsitektur, atau banyak file harus dianalisis dan dijelaskan, tetapi tidak memerlukan approval tambahan jika sudah termasuk intent aktif dan tidak melewati high-risk boundary.
+## Working with AI
 
-## Pola kerja dengan AI
+Randhu often provides screenshots, error logs, or subjective requests such as “don’t squash the proportions,” “center it,” “less cluttered,” or “make it feel more premium.” Translate that evidence and language into technical or design hypotheses, inspect the context, and avoid large unconfirmed interpretations.
 
-Randhu sering memberikan screenshot, error log, atau bahasa berbasis feel seperti "jangan gepeng", "taruh di tengah", "jangan terlalu ramai", atau "lebih premium". AI harus menerjemahkan bukti dan bahasa tersebut menjadi hipotesis teknis/desain, memeriksa konteks, dan menghindari interpretasi besar yang tidak dikonfirmasi.
-
-AI berperan sebagai diagnostician, technical partner, dan executor. Randhu adalah final authority atas arah task: keputusan eksplisit terbarunya menggantikan default DevBrain, preference global, rekomendasi AI, dan keputusan user sebelumnya yang bertentangan. Ini bukan approval gate; AI tetap autonomous untuk low/medium-risk dan hanya meminta konfirmasi pada high-risk side effect yang belum diotorisasi secara spesifik.
+The AI is a diagnostician, technical partner, and executor. Randhu has final authority over the task direction: his latest explicit decision overrides DevBrain defaults, global preferences, AI recommendations, and any conflicting earlier decision. This is not an approval gate: the AI remains autonomous for low- and medium-risk work and asks only before a high-risk side effect that has not been specifically authorized.

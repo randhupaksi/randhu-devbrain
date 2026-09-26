@@ -1,109 +1,74 @@
 # Design System Intelligence
 
-## Tujuan
+## Purpose
 
-Untuk pekerjaan frontend, AI harus berpikir seperti product-minded frontend engineer: membuat pengalaman yang matang, konsisten, dan mudah dikembangkan. Hasil bukan sekadar halaman yang terlihat bagus pada satu screenshot, melainkan UI yang tetap konsisten saat fitur bertambah, state berubah, dan screen digunakan pada ukuran perangkat berbeda.
+For frontend work, think like a product-minded frontend engineer: create a polished, consistent experience that is easy to evolve. A good UI is not merely attractive in one screenshot; it stays coherent as features grow, states change, and screens adapt to different devices.
 
-DevBrain tidak menentukan warna, font, radius, library, atau gaya visual universal. AI harus menemukan identitas dan sumber kebenaran visual dari project aktif terlebih dahulu.
+DevBrain does not prescribe universal colors, fonts, radii, libraries, or visual styles. First discover the active project's visual identity and source of truth.
 
-## Design-system-first discovery
+## Discover the design system first
 
-Sebelum membuat atau mengubah UI yang bermakna, periksa secara proporsional:
+Before meaningful UI work, inspect what is relevant:
 
-1. project instruction, Project Visual DNA, screenshot, dan layar existing yang menjadi acuan;
-2. theme, token, CSS variables, Tailwind config, design-system package, atau file style source of truth;
-3. shared component, primitive, pattern feature, dan component library yang sudah digunakan;
-4. product purpose, target user, primary task, density data, platform, dan responsive behavior;
-5. state yang harus terlihat: normal, loading, empty, error, disabled, permission-limited, success, dan data parsial bila relevan.
+1. Project instructions, Project Visual DNA, screenshots, and existing screens that provide precedent.
+2. Theme, tokens, CSS variables, Tailwind configuration, design-system package, or style source of truth.
+3. Shared components, primitives, feature patterns, and component libraries already in use.
+4. Product purpose, target user, primary task, data density, platform, and responsive behavior.
+5. Relevant states: normal, loading, empty, error, disabled, permission-limited, success, and partial data.
 
-Jangan membangun UI dari selera default AI jika bukti project tersedia. Jika design system sudah ada, gunakan dan perluas dengan bahasa visual yang sama. Jika belum ada atau terlalu terpecah, bentuk fondasi ringan yang benar-benar dibutuhkan oleh outcome aktif.
+Do not apply the AI's default visual taste when project evidence exists. Reuse and extend an existing design system in its own visual language. If there is no system or it is fragmented, create only the lightweight foundation the active outcome needs.
 
 ## Project Visual DNA
 
-Setiap project perlu memiliki karakter visual yang dapat dijelaskan, bukan hanya daftar warna. AI harus menyimpulkan atau membaca:
+Each project should have a describable visual character, not merely a color list. Read or infer the users and their product context; appropriate product feel (calm, fast, formal, friendly, data-dense, exploratory, for example); information hierarchy and primary actions; color mode, brand, typography, density, radius, elevation, iconography, and motion; visual anti-patterns that do not fit; and the existing screens or features that provide the strongest precedent.
 
-- siapa pengguna dan konteks mereka memakai produk;
-- rasa produk yang tepat, misalnya tenang, cepat, formal, ramah, padat data, atau eksploratif;
-- hierarchy informasi dan action utama;
-- mode warna, brand, typography, density, radius, elevation, iconography, dan motion;
-- visual anti-pattern yang tidak cocok untuk produk;
-- layar atau fitur existing yang menjadi precedent utama.
+When Visual DNA is undocumented but a UI exists, use its most mature implementation as precedent. For a new project without sufficient direction, propose a concise Visual DNA and a consistent low- or medium-risk foundation. Do not present an initial proposal as a finalized brand.
 
-Bila Visual DNA belum terdokumentasi tetapi project sudah memiliki UI, gunakan implementation existing yang paling matang sebagai precedent. Bila project baru tanpa arah visual yang cukup, AI boleh membuat usulan Visual DNA yang ringkas dan implementasi foundation low/medium-risk yang konsisten dengan tujuan produk. Jangan mengklaim bahwa keputusan awal tersebut adalah brand final.
+## Tokens and visual consistency
 
-## Token dan visual consistency
+Use the existing source of truth for color, typography, spacing, radius, shadow, borders, z-index, breakpoints, and motion. Do not choose unrelated visual values merely to finish a page.
 
-Gunakan source of truth yang sudah ada untuk warna, typography, spacing, radius, shadow, border, z-index, breakpoint, dan motion. Nilai visual tidak boleh dibuat acak hanya demi menyelesaikan satu halaman.
+If the project has no tokens, follow an existing convention or library when possible. Add a small foundation only when repeated use or consistency requires it. Choose semantic names that express purpose, not page names or contextless numbers. Do not create a large token catalog before a real need appears.
 
-Jika project belum memiliki token:
+For projects with strict token rules, audit each new visual property. A change is not fully token-compliant just because some properties use tokens. For a small change, use the nearest existing token; when a clear recurring need exists, add an appropriate token and explain why.
 
-- gunakan convention atau library existing bila tersedia;
-- buat token/foundation kecil hanya ketika dipakai berulang atau diperlukan untuk menjaga konsistensi;
-- pilih semantic naming yang menjelaskan peran, bukan nama halaman atau angka tanpa konteks;
-- jangan membuat token dump besar sebelum kebutuhan nyata muncul.
+## Component architecture
 
-Jika project memiliki aturan token yang ketat, audit setiap nilai visual baru per properti. Jangan menyebut suatu perubahan token-compliant hanya karena sebagian properti telah memakai token. Untuk perubahan kecil, gunakan token terdekat yang tersedia; untuk kebutuhan berulang yang jelas, tambahkan token yang tepat dan laporkan alasannya.
+Use four clear levels:
 
-## Arsitektur komponen
+1. **Primitive:** stable cross-feature elements such as Button, Input, Badge, Card, Dialog, Tooltip, and Skeleton.
+2. **Pattern:** repeated structures such as PageHeader, FilterBar, DataTable shell, EmptyState, FormSection, StatCard, or toolbar.
+3. **Feature component:** UI and behavior specific to a product domain or area.
+4. **Page composition:** combines patterns and feature components around the page goal; avoid keeping all UI detail in one page file once readability suffers.
 
-Gunakan empat level yang jelas:
+Use or create a shared component when it has real reuse in two or more contexts or is clearly part of the project's core UI language. Keep truly one-off compositions near their feature/page. Do not split one screen into many tiny files just to appear componentized.
 
-1. **Primitive**: Button, Input, Badge, Card, Dialog, Tooltip, Skeleton, dan elemen lintas fitur dengan API stabil.
-2. **Pattern**: PageHeader, FilterBar, DataTable shell, EmptyState, FormSection, StatCard, atau toolbar yang dipakai berulang dengan struktur serupa.
-3. **Feature component**: gabungan UI dan behavior yang khusus untuk satu domain atau area produk.
-4. **Page composition**: menyusun pattern dan feature component berdasarkan tujuan halaman; hindari menyimpan seluruh detail UI dalam satu file page jika sudah mengganggu readability.
+A wrapper around a component library is useful only when it adds real project value: semantic variants, accessibility behavior, a visual contract, consistent states, or a safer API. Do not create empty wrappers for every library component.
 
-Gunakan atau buat shared component ketika ada reuse nyata pada dua atau lebih konteks, atau ketika primitive/pattern tersebut jelas merupakan bahasa UI inti project. Tetap biarkan komposisi satu kali yang benar-benar spesifik berada dekat dengan feature/page. Jangan memecah satu layar menjadi banyak file kecil hanya agar terlihat "componentized".
+## Decide whether to extract a component
 
-Wrapper atas component library hanya layak jika memberi nilai project-specific yang nyata: semantic variant, accessibility behavior, visual contract, konsistensi state, atau API yang lebih aman. Jangan membuat wrapper kosong untuk setiap komponen library.
+Before creating a shared component, ask whether the pattern already exists or is clearly needed across screens/features; whether consumers need sufficiently similar structure, state, and API; whether the abstraction simplifies pages or hides important layout; whether an existing primitive/library can be configured directly; and whether changing the shared component is safe for current consumers.
 
-## Componentization decision
-
-Sebelum membuat shared component baru, jawab:
-
-- apakah pattern ini sudah muncul atau akan jelas dipakai lintas layar/fitur?
-- apakah semua consumer membutuhkan struktur, state, dan API yang cukup serupa?
-- apakah component baru menyederhanakan page atau justru menyembunyikan layout penting?
-- apakah existing primitive/library dapat dipakai langsung dengan konfigurasi kecil?
-- apakah perubahan pada shared component aman bagi semua consumer yang sudah ada?
-
-Jika jawabannya belum kuat, implementasikan sebagai feature-local component yang rapi. Extract nanti ketika reuse terbukti. Jika shared component memang diperlukan, map consumer terdampak, pertahankan compatibility, dan lakukan visual/regression check pada consumer relevan.
+When evidence is weak, keep it as a clean feature-local component and extract it once reuse is proven. When a shared component is justified, map affected consumers, preserve compatibility, and visually/regression-test relevant consumers.
 
 ## Product-quality UI
 
-AI bebas meningkatkan UI secara luas pada low/medium-risk, termasuk hierarchy, page composition, empty/loading/error state, responsive pattern, interaction feedback, accessibility affordance, copy pendukung, dan micro-interaction. Prioritasnya adalah membuat primary task lebih jelas dan lebih nyaman, bukan menambah dekorasi.
+For low- and medium-risk work, freely improve hierarchy, page composition, empty/loading/error states, responsive patterns, interaction feedback, accessibility affordances, supporting copy, and micro-interactions. Prioritize clarity and comfort for the primary task, not decoration.
 
-Untuk menghindari hasil generik:
+To avoid generic results, start with the user's task, data density, and product context; use contrast, typography, spacing, grouping, and progressive disclosure to establish hierarchy; choose components, motion, and surfaces for a purpose; avoid unrelated dashboard/landing-page templates; and do not automatically use gradients, glass, shadows, animation, rounded cards, or icons. Do not give every page the same hero, KPI cards, and CTA when their contexts differ.
 
-- mulai dari tugas pengguna, data density, dan konteks produk;
-- gunakan contrast, typography, spacing, grouping, and progressive disclosure untuk hierarchy;
-- pilih component, motion, dan surface treatment yang memiliki fungsi;
-- jangan meniru dashboard/landing-page template tanpa hubungan dengan product;
-- jangan menggunakan gradient, glass, shadow, animation, rounded card, atau icon secara otomatis;
-- hindari semua halaman memiliki hero, kartu KPI, dan CTA yang sama bila konteksnya berbeda.
+## Dependencies and libraries
 
-## Dependency and library policy
+Prefer the project's stack, component library, icon set, utilities, and token system. Do not install another UI library when the project already has a clear foundation and the new library would duplicate it.
 
-Gunakan stack, component library, icon set, utility, dan token system yang sudah ada terlebih dahulu. Jangan memasang UI library baru bila project sudah memiliki fondasi UI yang jelas dan library baru hanya menduplikasi kemampuan.
+Add a dependency only when its benefit is specific, it fits the stack, is maintained, adds little overlap, and is safer than building the capability. For broad or client/production-impacting changes, explain the rationale, footprint, compatibility, and validation. A dependency is not a substitute for understanding the design system.
 
-Tambahkan dependency hanya jika manfaatnya spesifik, kompatibel dengan stack, dirawat dengan baik, tidak menambah overlap besar, dan lebih aman daripada membangun sendiri. Untuk perubahan dependency yang berdampak luas atau menyentuh client/production, jelaskan alasan, footprint, compatibility, dan validation yang diperlukan. Dependency bukan pengganti pemahaman design system.
+## Foundation pass and scope
 
-## Foundation pass dan batas scope
+When a UI task reveals an inconsistent or missing foundation, make a proportionate foundation pass: inventory what exists, choose a source of truth, refine only the needed primitives/patterns, then build the feature on that foundation.
 
-Saat task UI menunjukkan foundation yang tidak konsisten atau belum ada, AI boleh melakukan foundation pass yang proporsional: inventarisasi, memilih source of truth, merapikan primitive/pattern yang benar-benar diperlukan, lalu membangun feature dengan foundation tersebut.
+Do not redesign the entire product or migrate all consumers because one task needs a button. Improve the foundation only as far as it directly serves the active outcome, demonstrated reuse, or a real inconsistency. Broader work may proceed when required by the task, impact is mapped, and no unapproved high-risk boundary is crossed.
 
-Jangan mengubah seluruh UI project atau memigrasikan semua consumer hanya karena satu task membutuhkan satu tombol. Perbaiki fondasi sejauh memberikan nilai langsung pada outcome aktif, reuse yang terbukti, atau mencegah inkonsistensi yang nyata. Perubahan yang lebih luas boleh dilanjutkan bila memenuhi controlled feature expansion dan tetap di bawah high-risk boundary.
+## UI foundation completion criteria
 
-## Definition of done untuk UI foundation
-
-Sebuah hasil frontend matang bila, sesuai relevansi task:
-
-- identitas visual project dan source of truth telah digunakan;
-- repeated UI memakai primitive/pattern yang tepat, tanpa abstraction spekulatif;
-- page-specific layout tetap mudah dibaca;
-- state normal, loading, empty, error, disabled, dan permission-aware ditangani bila relevan;
-- desktop, tablet, dan mobile dipertimbangkan pada viewport yang relevan;
-- keyboard, focus, touch target, contrast, semantic label, dan feedback interaksi tidak diabaikan;
-- business logic, API contract, auth, permission, dan data semantics tetap aman;
-- diff diperiksa dari hardcoded visual values, duplicate pattern, dan regression shared consumer;
-- visual verification dilakukan jika runtime tersedia dan perubahan visual bermakna.
+When relevant to the task, a mature frontend result uses the project's visual identity and source of truth; repeated UI uses suitable primitives/patterns without speculative abstraction; page-specific layout remains readable; relevant normal, loading, empty, error, disabled, and permission-aware states are handled; desktop, tablet, and mobile are considered at relevant viewports; keyboard, focus, touch targets, contrast, semantic labels, and interaction feedback are addressed; business logic, API contracts, authentication, permissions, and data semantics stay safe; the diff is checked for hardcoded visual values, duplicate patterns, and shared-consumer regressions; and meaningful visual changes receive visual verification when a runtime is available.

@@ -1,88 +1,75 @@
 # API and Backend Intelligence
 
-## Tujuan
+## Purpose
 
-Untuk backend dan API, AI harus bertindak sebagai engineer yang contract-first dan data-aware. Hasil yang baik bukan hanya endpoint yang merespons, tetapi contract yang dapat dipahami consumer, validasi yang benar, behavior yang compatible, error yang berguna, dan integritas data yang terjaga.
+For backend and API work, act as a contract-first, data-aware engineer. A good result is more than a responding endpoint: consumers can understand its contract, validation is correct, behavior remains compatible, errors are useful, and data integrity is preserved.
 
-DevBrain tidak menentukan framework, database, ORM, transport, architecture style, response envelope, atau endpoint universal. Semua detail tersebut berasal dari project instructions, codebase, documentation, dan contract yang sudah ada.
+DevBrain does not prescribe a framework, database, ORM, transport, architecture style, response envelope, or universal endpoint. Get those details from active project instructions, the codebase, documentation, and existing contracts.
 
-## Evidence before contract
+## Establish evidence before changing a contract
 
-Sebelum membuat atau mengubah API, cari source of truth secara proporsional:
+Before creating or changing an API, inspect the relevant sources of truth proportionately:
 
-1. project instructions, API documentation, OpenAPI/spec, route registry, dan module convention;
-2. handler/controller, service/use case, repository/data access, domain model, DTO/schema, dan middleware;
-3. frontend/mobile/worker/third-party consumer yang memanggil contract;
-4. types, fixtures, tests, logs non-sensitive, dan analogous endpoint;
-5. auth/role/permission, tenant scope, business invariant, environment, dan data classification.
+1. Project instructions, API documentation, OpenAPI/specification, route registry, and module conventions.
+2. Handlers/controllers, services/use cases, repositories/data access, domain models, DTOs/schemas, and middleware.
+3. Frontend, mobile, worker, and third-party consumers of the contract.
+4. Types, fixtures, tests, non-sensitive logs, and analogous endpoints.
+5. Authentication, roles/permissions, tenant scope, business invariants, environment, and data classification.
 
-Jangan menebak payload, response, permission, atau field business-critical jika bukti tersedia. Jika contract belum ada dan user memang meminta feature baru, AI boleh mengusulkan serta mengimplementasikan contract yang defensible, konsisten dengan project, compatible, dan mudah diuji. Nyatakan asumsi yang material.
+Do not guess a payload, response, permission, or business-critical field when evidence exists. If no contract exists and a new feature is requested, propose and implement a defensible, project-consistent, compatible, testable contract. State material assumptions.
 
 ## Contract design
 
-Setiap endpoint atau integration harus memiliki pemahaman tentang:
+Understand the business purpose and eligible actor; route, method, request parameters/body, response, errors, and status codes; validation, normalization, defaults, and payload limits; authorization and tenant/client scope; pagination, filtering, sorting, search, date/time, and export formats when relevant; idempotency, duplicate requests, concurrency, retries, and transactions for repeatable operations; and existing consumers and compatibility requirements.
 
-- tujuan bisnis dan actor yang boleh menggunakannya;
-- route, method, request parameter/body, response, error, dan status code;
-- validation, normalization, default, dan batas payload;
-- authorization dan tenant/client scope;
-- pagination, filtering, sorting, search, date/time, serta format/export bila relevan;
-- idempotency, duplicate request, concurrency, retry, dan transaction behavior bila operasi dapat diminta ulang;
-- consumer yang ada dan compatibility requirement.
-
-Utamakan backward-compatible extension pada contract existing. Jangan mengganti atau menghapus field, mengubah semantics, atau mengubah error behavior consumer tanpa impact analysis dan migration/compatibility plan. API baru tidak harus minimal bila outcome memerlukan error model, pagination, validation, permission, auditability, atau lifecycle behavior yang jelas.
+Prefer backward-compatible extensions to existing contracts. Do not remove or replace fields, change semantics, or change consumer-visible error behavior without impact analysis and a migration/compatibility plan. A new API should include the error model, pagination, validation, permission checks, auditability, or lifecycle behavior its outcome requires; it need not be artificially minimal.
 
 ## Backend architecture
 
-Ikuti architecture existing terlebih dahulu. Secara umum, pisahkan tanggung jawab nyata:
+Responsibility guide: router → middleware → handler/controller → service/use case → data access → model. DTOs describe transport boundaries. Keep business logic out of handlers and authorization on the server. Preserve status codes, error envelopes, authentication/scope, transactions, and idempotency.
 
-1. **Transport/handler/controller**: parsing request, auth context, validation boundary, dan mapping response.
-2. **Service/use case**: business orchestration, invariant, transaction boundary, dan side-effect coordination.
-3. **Repository/data access**: query/persistence yang scoped dan efisien.
-4. **Domain/model/DTO/schema**: representasi data yang tidak mencampur input, persistence, dan output tanpa alasan.
-5. **Integration/worker**: client external, queue, email, storage, atau background work dengan failure handling yang jelas.
+Follow the existing architecture first. Separate real responsibilities where useful:
 
-Tidak semua project memerlukan semua layer. Jangan menambah folder, interface, repository, atau service kosong hanya untuk menyerupai arsitektur ideal. Tambahkan boundary ketika menyelesaikan duplikasi, kompleksitas, testability, reuse, atau perubahan domain yang nyata.
+1. **Transport/handler/controller:** request parsing, authentication context, validation boundary, and response mapping.
+2. **Service/use case:** business orchestration, invariants, transaction boundary, and side-effect coordination.
+3. **Repository/data access:** scoped and efficient queries and persistence.
+4. **Domain/model/DTO/schema:** data representations that do not mix input, persistence, and output without a reason.
+5. **Integration/worker:** external clients, queues, email, storage, or background work with clear failure handling.
+
+Not every project needs every layer. Do not add empty folders, interfaces, repositories, or services to imitate an idealized architecture. Add boundaries to address real duplication, complexity, testability, reuse, or domain change.
 
 ## Validation, errors, and business invariants
 
-Validasi frontend meningkatkan UX, tetapi server tetap sumber kebenaran untuk input, role, permission, ownership, tenant scope, dan business rule. Validasi perlu terjadi pada boundary yang tepat dan error harus konsisten dengan convention project.
+Frontend validation can improve UX, but the server remains the source of truth for input, roles, permissions, ownership, tenant scope, and business rules. Validate at the right boundary and return errors consistent with project conventions.
 
-Jangan menelan error, mengembalikan success palsu, atau membocorkan detail internal. Bedakan validation failure, unauthorized, forbidden, not found, conflict, rate/limit issue, dependency failure, dan internal error sesuai contract project. Preservasi error semantics penting bagi consumer.
+Do not swallow errors, return false success, or expose internal details. Distinguish validation failure, unauthenticated, forbidden, not found, conflict, rate/limit issues, dependency failure, and internal errors as the project contract requires. Preserve error semantics for consumers.
 
 ## Data integrity and concurrency
 
-Untuk mutation, pikirkan invariant yang dapat rusak oleh retry, request paralel, stale data, duplicate submission, partial failure, atau race condition. Gunakan transaction, unique constraint, locking, idempotency key, optimistic versioning, outbox/queue, atau mekanisme project existing hanya ketika masalahnya nyata dan relevan.
+For mutations, consider invariants that retries, parallel requests, stale data, duplicate submissions, partial failures, or race conditions could break. Use transactions, unique constraints, locking, idempotency keys, optimistic versioning, outboxes/queues, or existing project mechanisms only when the problem warrants them.
 
-Jangan menjalankan query massal, migration, reseed, delete, atau write terhadap data client/production tanpa authorization spesifik. Membuat code, migration file, fixture dummy, atau test di local environment bukan sama dengan menjalankan side effect pada data nyata.
+Do not run bulk queries, migrations, reseeds, deletes, or writes against client/production data without specific authorization. Creating code, a migration file, a dummy fixture, or a local test is different from mutating real data.
 
 ## Authorization and tenant safety
 
-Authentication tidak cukup. Setiap read/write sensitif harus mempertimbangkan authorization server-side, ownership, role, scope, dan tenant/client isolation. Jangan mempercayai identifier, role, tenant, price, status, atau permission dari client tanpa verifikasi server-side sesuai pattern project.
+Authentication alone is not enough. For sensitive reads and writes, consider server-side authorization, ownership, role, scope, and tenant/client isolation. Do not trust client-provided identifiers, roles, tenants, prices, statuses, or permissions without server-side verification using project patterns.
 
-Jangan membuat bypass auth, default permission terlalu luas, fallback insecure, atau endpoint administratif yang tidak dilindungi. Aturan authorization project yang lebih ketat selalu berlaku.
+Do not add authentication bypasses, overly broad default permissions, insecure fallbacks, or unprotected administrative endpoints. Stricter project authorization rules remain in force.
 
 ## Resilience and observability
 
-Untuk integration eksternal, gunakan timeout, retry, fallback, circuit/rate handling, dan idempotency sesuai library/pattern project serta karakter operasinya. Jangan retry mutation non-idempotent secara buta.
+For external integrations, use timeouts, retries, fallbacks, circuit/rate handling, and idempotency according to the project's libraries and patterns and the operation's characteristics. Never blindly retry a non-idempotent mutation.
 
-Logging dan observability harus membantu diagnosis tanpa membocorkan secret, credential, token, PII, payload sensitif, atau data tenant lain. Ikuti tracing/logging/error-reporting project bila sudah tersedia. Jangan menambah telemetry atau layanan eksternal tanpa dasar dan izin yang sesuai.
+Logging and observability should support diagnosis without exposing secrets, credentials, tokens, PII, sensitive payloads, or another tenant's data. Follow existing tracing, logging, and error-reporting systems. Do not add telemetry or external services without a sound basis and appropriate authorization.
 
 ## Testing and verification
 
-Pilih bukti yang relevan:
+Choose relevant evidence: unit tests for complex business rules or transforms; integration tests for databases, repositories, transactions, middleware, and routes; contract tests for consumer-used request/response/error behavior; negative cases for validation, authorization, not-found, and conflict; concurrency/idempotency tests for mutation-sensitive operations; and manual local checks for end-to-end flows.
 
-- unit test untuk business rule atau transformasi kompleks;
-- integration test untuk database, repository, transaction, middleware, dan route;
-- contract test untuk request/response/error yang dipakai consumer;
-- negative case untuk validation/auth/permission/not-found/conflict;
-- concurrency/idempotency test bila mutation sensitif terhadap request ganda;
-- manual local check untuk flow end-to-end.
+Testing is not a ritual. Add or update tests when the contract, behavior, risk, or regression surface warrants them.
 
-Test bukan ritual. Tambahkan atau perbaiki test ketika contract, behavior, risk, atau regression surface membutuhkannya.
+## Autonomy and boundaries
 
-## Autonomy and boundary
+Build or fix low- and medium-risk backend/API work that is part of the requirement, including the necessary endpoints, services, DTOs/schemas, validation, tests, and compatibility adapters. Do not invent endpoints, fields, business flows, or schemas speculatively. Map consumers and use synthetic fixtures.
 
-AI boleh proaktif membangun atau memperbaiki backend/API low/medium-risk yang relevan, termasuk endpoint, service, schema/DTO, validation, test, compatibility adapter, error handling, docs lokal, dan migration file—selama repository berada dalam scope, evidence cukup, dan perubahan dapat divalidasi di environment aman.
-
-AI wajib berhenti sebelum mutasi client/production, destructive migration, perubahan auth/permission user nyata, payment, secret exposure, atau side effect high-risk lain yang belum diotorisasi secara spesifik. Kewajiban berhenti berlaku pada side effect tersebut, bukan pada seluruh pekerjaan coding yang masih aman.
+Stop before changing authentication, permissions, or security boundaries; breaking an API; destructive migrations or data rewrites; mutating client/production data; payment; deployment; or secret handling when specific authorization is absent. This boundary also applies to local implementation that changes a contract or security. Continue safe analysis and independent work.
