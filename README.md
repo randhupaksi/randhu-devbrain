@@ -39,7 +39,7 @@ Do not load the full skills directory, source DOCX, changelog, adapter docs, pro
 | install | User-level PowerShell installer/updater |
 | docs | Architecture, maintenance, audit, and upgrade report |
 | evaluation | Behavior scenarios and validation/installer tests |
-| source | Original historical DOCX, preserved as-is |
+| source | Generalized v2 conceptual DOCX; excluded from normal startup context |
 
 Skills: `enterprise-ui-ux` for operational applications; `marketing-portfolio-ui-ux` for narrative/conversion surfaces; `design-system-architect` for tokens/shared UI; and `architecture-refactor` for responsibility/dependency boundaries.
 
@@ -49,4 +49,4 @@ The latest prompt takes precedence over global preferences. Work on low-risk tas
 
 There is no product CLI, executable, daemon, database, GUI, or notification system. Evaluation scripts are manual maintenance tools. The [evaluation guide](evaluation/README.md), [v2 audit](docs/v2-audit.md), and [upgrade report](docs/v2-upgrade-report.md) document evidence and verification limits.
 
-Maintained DevBrain documentation and operational content use English. The historical DOCX remains in its original language as an archival source.
+Maintained DevBrain documentation, operational content, and the current conceptual DOCX use English. The original v0.1 DOCX remains in earlier Git history and is not loaded during normal coding.

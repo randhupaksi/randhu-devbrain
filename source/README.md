@@ -1,13 +1,13 @@
-# Historical Source Specification
+# Conceptual Source Specification
 
-This folder stores the Developer Specification snapshot that records the original human intent used to create or update DevBrain.
+This folder holds a generalized, English-language description of DevBrain v2's design. It contains no personal biography, client facts, credentials, or machine-specific paths.
 
-Active snapshot:
+Current conceptual reference:
 
-- `Randhu_Developer_Specification_DevBrain_v0.1.docx`
-- Imported: 2026-07-01
-- SHA-256: `17c4ac23e06324e328b4edd359e1fd12e8cd8bdc9569d394ef472f1a00fd4b54`
+- `DevBrain_v2_Developer_Context_Specification.docx`
+- Revised: 2026-09-26
+- SHA-256: `12767cb370c6741365580e1fbdc9e77bc4428baf913c31cb164cba88535d27cb`
 
-The DOCX is not read during each coding session. DevBrain's Markdown/YAML files are the operational knowledge. When the DOCX changes, use `docs/maintenance.md` and the `devbrain-sync` command to compare it and propose changes before replacing core guidance.
+The DOCX is not read during normal coding sessions. Maintained Markdown/YAML files are the operational source of truth. When the DOCX changes, compare it with the canonical modules and update only the relevant owners after review.
 
-The source DOCX remains in its original language as a historical archive; maintained repository guidance is written in English.
+The original v0.1 document remains accessible in earlier Git commits. Replacing it in the current tree does not remove it from Git history.

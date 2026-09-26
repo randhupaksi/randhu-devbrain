@@ -45,7 +45,7 @@ evaluation:
 
 deferred_capabilities: [cli, exe, daemon, database, notification_system, task_logs, daily_summary, gui]
 source_specification:
-  file: source/Randhu_Developer_Specification_DevBrain_v0.1.docx
-  role: historical_conceptual_source_not_active_policy
-  imported_on: 2026-07-01
-  sha256: 17c4ac23e06324e328b4edd359e1fd12e8cd8bdc9569d394ef472f1a00fd4b54
+  file: source/DevBrain_v2_Developer_Context_Specification.docx
+  role: generalized_conceptual_reference_not_active_policy
+  revised_on: 2026-09-26
+  sha256: 12767cb370c6741365580e1fbdc9e77bc4428baf913c31cb164cba88535d27cb

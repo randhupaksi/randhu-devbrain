@@ -1,6 +1,6 @@
 # DevBrain v2 — Git Commands (Text Only)
 
-The commands below have not been run. Use them after reviewing the diff and validation. Files are selected explicitly; ignored `local/` content and the unchanged source DOCX are not staged.
+These commands describe the original v2 upgrade snapshot and have not been run here. The conceptual DOCX was revised later, so regenerate any staging list for the current worktree. Ignored `local/` content must not be staged.
 
 One release commit is proposed because the baseline, manifest, adapters, installer, evaluation, and docs reference one another. The branch at report time was `main`, tracking `origin/main`; recheck if conditions change. Ensure the index contains no unrelated work.
 

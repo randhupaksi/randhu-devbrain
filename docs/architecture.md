@@ -21,7 +21,7 @@ Project instructions are the source of technical, business, and visual facts. Co
 | Portable skills | Each skill under `skills/` |
 | Installed bootstrap | Adapter templates rendered by the installer |
 | Project facts | The project's `AGENTS.md`/`CLAUDE.md` |
-| Conceptual history | Source DOCX and `docs/source-mapping.md` |
+| Conceptual reference and provenance | Generalized v2 source DOCX and `docs/source-mapping.md` |
 | Acceptance and regression | `evaluation/` |
 
 The baseline carries safety rules that must always be available; safety modules provide case-specific detail. Minimal repetition of boundaries in standalone skills is intentional because each skill is installed independently. Do not copy all principles into skills, loaders, or projects.

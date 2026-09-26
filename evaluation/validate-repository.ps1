@@ -5,6 +5,7 @@ if (-not $DevBrainRoot) { $DevBrainRoot = Split-Path -Parent $PSScriptRoot }
 $root = (Resolve-Path -LiteralPath $DevBrainRoot).Path
 $paths = @(& git -C $root ls-files --cached --others --exclude-standard)
 if ($LASTEXITCODE -ne 0) { throw 'Unable to enumerate repository files' }
+$paths = @($paths | Where-Object { Test-Path -LiteralPath (Join-Path $root $_) -PathType Leaf } | Select-Object -Unique)
 $parseCount = 0
 foreach ($relative in $paths | Where-Object { $_ -like '*.ps1' }) {
     $tokens = $null

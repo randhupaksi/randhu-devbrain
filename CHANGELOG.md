@@ -1,5 +1,11 @@
 # Changelog
 
+## Source specification revision — 2026-09-26
+
+- Replaced the current-tree personal v0.1 DOCX with a generalized English v2 conceptual specification in third-person language.
+- Updated the source manifest, hash, mapping, and documentation; the original file remains in earlier Git history.
+- Kept Markdown/YAML as the operational source and the DOCX outside normal startup context.
+
 ## 2.0.0 — 2026-09-26
 
 - Replaced monolithic startup context with a session baseline and selective task routing while keeping legacy entry points compatible.
