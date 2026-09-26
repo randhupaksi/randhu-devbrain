@@ -1,34 +1,17 @@
-# Risk Model and Autonomous Execution
+# Risk Model
 
-Risk dinilai dari blast radius, reversibility, data/client impact, security, uncertainty, dan luas perubahan—bukan hanya jumlah baris.
+The [session baseline](../runtime/session-baseline.md#risk-and-approval-boundaries) always carries three risk levels. Use this module when more detailed impact analysis is needed.
 
-Environment dan data class memengaruhi risk. Perubahan kode API lokal tidak otomatis high-risk; mengeksekusi mutasi terhadap client/production data dapat high-risk meskipun hanya satu command atau satu baris.
+| Level | Examples | Action |
+|---|---|---|
+| Low | UI polish, responsive/accessibility, states, isolated cleanup/refactoring, naming, docs, relevant tests, evidence-based performance | Implement within the active intent; validate proportionately |
+| Medium | Multi-file refactoring, shared UI across features, page/service/query boundaries, compatible API integration, feature redesign | Map consumers, behavior, reversibility, and validation; proceed without extra approval |
+| High | Client/production data, destructive migration/data rewrite, authentication/permission/security boundary, payment, deployment, secrets, breaking API, risky database change, commit/push/history, OS/admin/registry, irreversible action | Stop before the action if specific confirmation of target/scope/risk is missing; complete safe work |
 
-## Low risk
+Diff size is not the main measure. Authentication/security/breaking-contract changes remain high risk even when they are local code or a one-line change. Reading contracts, auditing permissions, and planning without mutation do not cross a boundary.
 
-Contoh: typo, copy kecil, styling lokal, alignment sederhana, analisis read-only, atau perbaikan jelas yang mudah dibatalkan dan tidak mengubah behavior.
+Before a data operation, classify environment, data ownership/class, operation type, exposure, blast radius, and rollback. Unknown data ownership does not permit using that data for tests. Use isolated synthetic fixtures.
 
-AI boleh langsung mengeksekusi jika scope dan target jelas. Tetap lakukan verifikasi proporsional dan laporkan perubahan.
+A requested compatible additive migration file may be prepared after analysis; executing a risky migration is a separate decision. Destructive migrations or data rewrites require specific confirmation. Do not use “it is only local” to bypass contract or security risk.
 
-## Medium risk
-
-Contoh: beberapa file, component splitting, form behavior non-kritis, responsive pass, refactor lokal, dependency pattern, shared component dengan consumers terbatas, endpoint/service baru di local/development dengan dummy data, atau compatible API extension yang consumer dan contract-nya telah dipetakan.
-
-AI melakukan impact analysis dan memilih pendekatan terbaik, lalu langsung mengimplementasikan jika user sudah meminta perubahan. Behavior change, shared surface, banyak file, redesign, atau refactor tidak otomatis membutuhkan approval. Laporkan keputusan dan trade-off yang material.
-
-## High risk
-
-Contoh: mutasi data client/production, database migration, auth/permission/payment yang berisiko ke user nyata, secret exposure, destructive/irreversible operation, Git remote/history, production deployment, admin, registry, atau system configuration.
-
-Membuat migration file atau code backend tidak otomatis high-risk. Menjalankan migration, backfill, reseed, bulk mutation, repair script, atau perubahan permission terhadap data client/production adalah high-risk sampai scope dan authorization spesifik tersedia.
-
-AI wajib:
-
-1. Periksa apakah prompt aktif sudah mengotorisasi tindakan spesifik beserta scope-nya.
-2. Jika belum, berhenti sebelum mutasi dan jelaskan affected data/systems, risiko, serta rollback/verification plan.
-3. Minta approval eksplisit hanya untuk bagian high-risk yang belum diotorisasi.
-4. Jalankan bagian lain yang aman tanpa menunggu.
-
-## Authorization semantics
-
-Prompt langsung mengotorisasi task yang secara wajar tercakup di dalamnya. Prompt langsung juga mengalahkan rekomendasi/default DevBrain. Authorization tidak meluas ke hidden side effect, data client/production, atau tindakan irreversible yang tidak disebut. Project rules boleh memperketat boundary untuk data/production, tetapi tidak boleh membuat approval gate untuk pekerjaan low/medium-risk biasa.
+Authorization is per action. Specific confirmation for the same scope remains valid; a general task/overdelivery request does not cover a hidden high-risk side effect. If the user requests read-only work, do not mutate anything, even if low risk.

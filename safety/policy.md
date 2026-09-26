@@ -2,60 +2,60 @@
 
 ## Scope
 
-- Hanya ubah file yang diperlukan untuk task.
-- Jangan menyentuh workspace/project lain karena nama atau strukturnya mirip.
-- Hormati perubahan pengguna dan dirty working tree.
-- Perubahan tambahan harus memiliki hubungan yang jelas dengan outcome dan dilaporkan. Approval tambahan hanya diperlukan jika perubahan melewati high-risk boundary; materialitas, banyak file, atau luas refactor saja bukan approval gate.
+- Change only files needed for the task.
+- Do not touch another workspace/project because its name or structure looks similar.
+- Respect user changes and a dirty working tree.
+- Keep additional changes clearly connected to the outcome and report them. Extra approval is needed only when a change crosses an unapproved high-risk boundary; materiality, file count, or refactor breadth alone is not an approval gate.
 
-## Protected areas
+## Sensitive areas
 
-Area berikut sensitif. Periksa kebutuhan dan dampaknya; approval tambahan hanya diperlukan ketika tindakan high-risk belum diotorisasi secara spesifik oleh prompt aktif:
+These areas need careful impact analysis. Extra approval is needed only for a high-risk action not specifically authorized by the active prompt:
 
-- API contract, endpoint, payload, response mapping penting;
-- database, migration, query, data model, dan tenant isolation;
-- auth, permission, role access, session, payment, dan business logic;
-- environment variable, credential, deployment, dan production configuration;
-- shared/global component atau infrastructure dengan blast radius luas;
-- Git history dan remote repository;
+- API contracts, endpoints, payloads, and important response mapping;
+- databases, migrations, queries, data models, and tenant isolation;
+- authentication, permissions, role access, sessions, payments, and business logic;
+- environment variables, credentials, deployment, and production configuration;
+- shared/global components or infrastructure with broad blast radius;
+- Git history and remote repositories;
 - operating-system configuration.
 
-Jika task dinyatakan presentation-only, pertahankan behavior, API, data flow, validation bisnis, auth, dan permission. Jika user meminta produk/fitur secara umum atau improvement relevan membutuhkan backend/API, area tersebut boleh disentuh setelah contract, environment, data class, consumers, dan risiko dianalisis.
+For presentation-only work, preserve business behavior, contracts, validation, authentication, permissions, and data semantics. Change APIs/backends only when they are part of the requirement; contract/environment/consumer analysis does not itself authorize a new capability.
 
-## Data dan privacy
+## Data and privacy
 
-- Jangan tampilkan, salin, log, atau commit secret, token, private key, credential, atau env value sensitif.
-- Gunakan placeholder pada contoh.
-- Gunakan dummy/anonymized data; jangan memakai data client/user asli sebagai fixture atau dokumentasi.
-- Jaga isolasi tenant/client dan integritas data.
-- Jangan melakukan migration, bulk update/delete, atau production data operation tanpa instruksi yang eksplisit dan spesifik. Karena berdampak pada data client/production, general request tidak cukup sebagai authorization.
-- Untuk endpoint dan query sensitif, periksa authorization server-side, ownership, role, tenant/client isolation, payload validation, dan response minimization sesuai pattern project.
-- Jangan memperluas access, membuat bypass auth, membocorkan internal error, atau memakai hardcoded secret demi mempercepat testing. Detail operasional ada di `data-and-api-protection.md`.
+- Do not display, copy, log, or commit secrets, tokens, private keys, credentials, or sensitive environment values.
+- Use placeholders in examples.
+- Use dummy/anonymized data; never use real client/user data in fixtures or documentation.
+- Preserve tenant/client isolation and data integrity.
+- Do not run migrations, bulk updates/deletes, or production data operations without explicit, specific instructions. Because these affect client/production data, a general request is not sufficient authorization.
+- For sensitive endpoints and queries, check server-side authorization, ownership, role, tenant/client isolation, payload validation, and response minimization according to project patterns.
+- Do not broaden access, add authentication bypasses, expose internal errors, or hardcode secrets to speed up testing. See `data-and-api-protection.md` for operational detail.
 
 ## File deletion
 
-Jangan menghapus file hanya karena terlihat tidak digunakan. Periksa references dan jelaskan alasan serta dampaknya. Jika penghapusan diminta secara eksplisit dan reversible, lanjutkan. Minta konfirmasi tambahan untuk migration, data, secret/config production, atau penghapusan high-risk/irreversible.
+Do not delete a file merely because it appears unused. Check references and explain the reason and impact. Proceed with explicitly requested, reversible deletion. Seek specific confirmation for migrations, data, production secret/configuration, or high-risk/irreversible deletion.
 
 ## Git
 
-Read-only Git seperti `status`, `diff`, dan log yang relevan boleh digunakan. Jangan menjalankan `git add`, commit, push, force-push, merge, rebase, amend, reset, atau mengubah history tanpa perintah eksplisit yang menyebut operasi tersebut. Permintaan commit message atau “list command Git” hanya menghasilkan teks, termasuk ketika output memuat `git add`, `git commit`, dan `git push`.
+Read-only Git operations such as `status`, `diff`, and relevant logs are allowed. Do not run `git add`, commit, push, force-push, merge, rebase, amend, reset, or change history without an explicit instruction naming that operation. Requests for a commit message or to “list Git commands” produce text only, even if the output includes `git add`, `git commit`, and `git push`.
 
-Untuk list command Git, pecah command per feature/perubahan logis, gunakan `git add --` dengan file spesifik, dan buat commit message Conventional Commit bahasa Inggris yang menyebut domain/feature serta outcome. Jangan memakai `git add .`, grouping berdasarkan section halaman, atau pesan generik seperti `update dashboard`. Satu `git push` sebagai teks ditampilkan setelah seluruh kelompok commit. Detail workflow ada di `workflows/git-command-listing.md`.
+For Git command listings, group commands by feature/logical change, use `git add --` with specific files, and write English Conventional Commit messages naming the domain/feature and outcome. Do not use `git add .`, group by page section, or use generic messages such as `update dashboard`. Show one `git push` as text after all commit groups. See `workflows/git-command-listing.md`.
 
-Authorization bersifat per operasi: izin `git add` tidak memberi izin commit atau push; izin commit tidak memberi izin push. Sebelum eksekusi yang memang diotorisasi, periksa repository, branch, status, staged changes, dan file scope untuk melindungi perubahan pengguna yang tidak terkait.
+Authorization is per operation: permission to `git add` does not grant permission to commit or push; permission to commit does not grant permission to push. Before executing an authorized operation, inspect the repository, branch, status, staged changes, and file scope to protect unrelated user work.
 
 ## System boundary
 
-Jangan menjalankan command admin, menaikkan privilege, mengubah Windows Registry, PATH global, service, startup, firewall, security setting, atau konfigurasi OS tanpa izin eksplisit. Gunakan solusi local/user-level yang reversible bila diperlukan.
+Do not run administrator commands, elevate privileges, or change Windows Registry, global PATH, services, startup, firewall, security settings, or OS configuration without explicit permission. Prefer local/user-level reversible solutions when needed.
 
 ## Stop conditions
 
-Berhenti dan laporkan jika:
+Stop and report if:
 
-- repository, branch, halaman, atau file target salah;
-- perubahan kehilangan hubungan defensible dengan requirement, outcome, atau tujuan project;
-- protected area perlu disentuh tanpa authorization spesifik;
-- ditemukan konflik instruksi material;
-- perubahan menimbulkan error/regression yang tidak terkendali;
-- data client, production behavior, atau security berisiko.
+- the repository, branch, page, or target file is wrong;
+- the change no longer has a defensible connection to the requirement, outcome, or project goal;
+- a high-risk action is required without specific confirmation (reviewing a sensitive area or making an in-scope low/medium-risk change is not itself an approval gate);
+- ambiguity remains after evidence review and changes business outcome, contract, data, security, or an irreversible side effect; decide low-risk details using a defensible assumption;
+- a change causes an uncontrolled error/regression;
+- client data, production behavior, or security is at risk.
 
-Jangan menggunakan destructive rollback seperti hard reset. Pisahkan perubahan sendiri dari perubahan pengguna dan minta arahan jika rollback aman tidak jelas.
+Do not use destructive rollback such as hard reset. Separate your own changes from user changes and ask for direction when safe rollback is unclear.

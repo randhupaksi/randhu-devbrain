@@ -1,41 +1,41 @@
 # Data and API Protection
 
-## Prinsip
+## Principles
 
-Keamanan backend bukan alasan untuk membuat AI pasif. AI harus mengembangkan feature secara aman dengan membaca trust boundary, menjaga data, dan memvalidasi behavior. Strict confirmation hanya diperlukan sebelum side effect high-risk yang belum diotorisasi, terutama pada data client/production dan security-sensitive operation.
+Backend security is not a reason to make the AI passive. Build requested features safely by understanding trust boundaries, protecting data, and validating behavior. Specific confirmation is required before an unauthorized high-risk change or execution, including authentication/permission/security-boundary changes, breaking APIs, destructive migrations, and client/production data operations.
 
 ## Trust boundaries
 
-Anggap input dari client, query string, header, webhook, file upload, external API, queue payload, dan environment external sebagai data yang perlu divalidasi sesuai contract. Jangan mempercayai role, tenant ID, price, status, ownership, atau permission yang datang dari client tanpa server-side verification.
+Treat client input, query strings, headers, webhooks, file uploads, external APIs, queue payloads, and external environment values as data that must be validated against the contract. Do not trust a client-supplied role, tenant ID, price, status, ownership, or permission without server-side verification.
 
 ## Privacy and secrets
 
-- Jangan menampilkan, log, fixture-kan, dokumentasikan, atau commit secret, access token, password, private key, cookie, credential, atau connection string nyata.
-- Jangan memakai data client/user nyata sebagai contoh, test fixture, atau seed default.
-- Minimalkan data sensitif pada response dan error; kembalikan hanya field yang diperlukan actor tersebut.
-- Hindari log request/response mentah bila dapat membawa PII, token, atau payload sensitif.
+- Never display, log, fixture, document, or commit real secrets, access tokens, passwords, private keys, cookies, credentials, or connection strings.
+- Never use real client/user data as examples, test fixtures, or default seeds.
+- Minimize sensitive fields in responses and errors; return only fields needed by that actor.
+- Avoid raw request/response logs that may contain PII, tokens, or sensitive payloads.
 
 ## Authorization and isolation
 
-- Terapkan auth dan authorization di server-side sesuai middleware/pattern project.
-- Periksa role, ownership, tenant/client scope, dan permission pada read maupun write yang sensitif.
-- Jangan membuat fallback yang memperluas akses atau bypass sementara demi testing.
-- Periksa query dan mutation agar tenant/client tidak dapat mengakses data lain melalui identifier yang dimanipulasi.
+- Enforce authentication and authorization server-side using project middleware/patterns.
+- Check role, ownership, tenant/client scope, and permission on sensitive reads and writes.
+- Do not add fallbacks that broaden access or temporary authentication bypasses for testing.
+- Check queries and mutations to prevent one tenant/client from accessing another's data through a manipulated identifier.
 
 ## Mutation and migration safety
 
-- Klasifikasikan environment, ownership data, blast radius, reversibility, dan rollback sebelum mutasi.
-- Local/test/development dengan dummy/anonymized data boleh dipakai untuk validasi proporsional.
-- Staging/shared environment memerlukan awareness terhadap pengguna lain dan prosedur project.
-- Production/client data, bulk mutation, destructive delete, irreversible migration, reseed, dan repair script adalah high-risk sampai terbukti sebaliknya.
-- Migration file, rollback plan, dry-run, dan test dapat dibuat tanpa menjalankan migration pada data nyata.
+- Classify environment, data ownership, blast radius, reversibility, and rollback before mutation.
+- Local/test/development with dummy/anonymized data may be used for proportionate validation.
+- Staging/shared environments require awareness of other users and project procedures.
+- Treat production/client data, bulk mutations, destructive deletion, irreversible migrations, reseeds, and repair scripts as high risk unless established otherwise.
+- Safely prepare a required additive migration file, rollback plan, and synthetic tests. Destructive migrations/data rewrites require specific confirmation. Do not assume a dry-run tool is safe before checking its side effects.
 
 ## Secure implementation baseline
 
-- Gunakan validation, parameterized query/ORM pattern, escaping, upload limits, dan error handling dari stack project.
-- Jangan menambah crypto buatan sendiri, insecure random, hardcoded secret, open redirect, permissive CORS, atau debug endpoint tanpa bukti kebutuhan dan review keamanan yang proporsional.
-- Rate limiting, webhook signature validation, CSRF, file scanning, encryption, dan audit logging diterapkan sesuai threat model serta stack project; jangan ditambahkan secara ritual tanpa kebutuhan yang jelas.
+- Use the project stack's validation, parameterized queries/ORM patterns, escaping, upload limits, and error handling.
+- Do not add custom cryptography, insecure randomness, hardcoded secrets, open redirects, permissive CORS, or debug endpoints without evidence of need and proportionate security review.
+- Apply rate limiting, webhook signature validation, CSRF protection, file scanning, encryption, and audit logging according to the threat model and project stack; do not add them as ritual without a clear need.
 
-## Security finding handling
+## Handling security findings
 
-Jika AI menemukan indikasi secret terekspos, authorization bypass, cross-tenant leak, destructive operation target yang tidak jelas, atau production data risk, jangan memperluas exposure. Hentikan action berisiko, jelaskan fakta minimum yang aman, dan minta arahan hanya untuk remediation atau side effect high-risk yang belum diotorisasi.
+If you find a likely exposed secret, authorization bypass, cross-tenant leak, unclear destructive-operation target, or production data risk, do not increase exposure. Stop the risky action, explain the minimum safe facts, and ask only for remediation direction or an unauthorized high-risk side effect.
