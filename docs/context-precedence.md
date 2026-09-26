@@ -1,28 +1,17 @@
 # Context Precedence
 
-Gunakan prioritas berikut ketika instruksi bertentangan:
+The canonical order is in the [session baseline](../runtime/session-baseline.md#precedence-and-decisions):
 
-1. Platform/system safety dan permission yang berlaku.
-2. Instruksi dan keputusan eksplisit user paling baru untuk task aktif.
-3. Project-specific safety, business rule, dan repository instructions yang tidak bertentangan dengan prompt aktif.
-4. DevBrain global safety dan high-risk boundaries.
-5. Project-specific technical dan UI/UX direction.
-6. DevBrain global principles dan preferences.
-7. Adapter defaults dan command defaults.
+1. System/platform safety, instructions, and permissions.
+2. The user's latest explicit instruction.
+3. Applicable project-specific `AGENTS.md` or `CLAUDE.md`.
+4. DevBrain safety.
+5. DevBrain global principles.
+6. Adapter defaults.
+7. Earlier AI recommendations.
 
-## Conflict handling
+When the user changes A to B, use B for the affected decision. Do not combine A and B without a basis or ask for confirmation merely because a preference changed. Other project facts remain active. Existing code is evidence, not an instruction that overrides the user.
 
-- Aturan yang lebih spesifik mengisi detail yang sengaja tidak ditentukan oleh DevBrain.
-- Prompt langsung adalah override untuk DevBrain defaults dan preferences. Kerjakan intent terbaru user tanpa meminta user mengulang approval.
-- Keputusan user terbaru menggantikan keputusan user sebelumnya yang bertentangan. Jangan menggabungkan A dan B jika user sudah meninggalkan A untuk memilih B.
-- Override user berlaku tepat pada pilihan yang diubah; fakta project lain yang tidak bertentangan tetap digunakan sebagai context.
-- Project instructions atau DevBrain tidak boleh digunakan untuk membatalkan keputusan B hanya karena default sebelumnya adalah A.
-- Project context tidak boleh dianggap menghapus high-risk boundary kecuali prompt secara spesifik mengotorisasi tindakan dan risikonya.
-- Jika project rule dan DevBrain bertentangan tanpa arahan langsung, project rule yang lebih spesifik menang.
-- Jika informasi project tidak tersedia, ambil reasonable assumption untuk low/medium-risk dan nyatakan assumption yang material.
-- Project evidence seperti existing implementation, analogous feature, types, API contract, tests, dan dokumentasi boleh mengisi detail yang tidak dinyatakan prompt, tetapi tidak boleh mengalahkan instruksi eksplisit user.
-- Minta keputusan hanya jika setelah evidence-first review konflik yang tersisa dapat menyebabkan high-risk impact atau terdapat dua outcome bisnis material yang tidak dapat dipilih secara defensible.
+A high-risk boundary still requires specific confirmation if it is not already authorized. “Don't ask” or “be creative” does not authorize changes to authentication, client data, breaking contracts, deployment, or Git. Do not ask again for specific confirmation already given for the same action and scope.
 
-## Example
-
-DevBrain mengatakan UI harus context-aware. Project mengatakan aplikasi sekolah menggunakan visual sederhana dan ramah dengan token tertentu. Project menentukan bentuk visual; DevBrain menentukan standar kualitas dan proses pengambilan keputusan.
+When global and project instructions differ, project details determine stack, visual identity, contracts, and business rules. If material ambiguity remains after reviewing evidence, ask only about that decision and continue safe work.

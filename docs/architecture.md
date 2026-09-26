@@ -1,36 +1,35 @@
-# Architecture
+# DevBrain v2 Architecture
 
-DevBrain menggunakan empat context layers:
+DevBrain is a file-based knowledge system with three loading levels:
 
-1. **Global core**: identitas, engineering, UI/UX, design-system intelligence, API/backend intelligence, performance, dan collaboration principles.
-2. **Operational policy**: safety, risk, approval, workflow, dan reporting.
-3. **Tool adapter**: discovery/bootstrap untuk Codex atau Claude Code.
-4. **Project context**: fakta, constraints, visual direction, dan business rules repository aktif.
+1. **Session baseline:** concise identity, precedence, global/project boundary, risk/approval, safety, autonomy, context lifecycle, and basic workflow. Read once per session.
+2. **Task modules:** the task map selects core, detailed safety, or workflow content that affects the active decision. Do not load every module when the decision is already clear.
+3. **Skill/reference:** select a skill by outcome and read its references only when needed. Skills are self-contained so Codex/Claude copies work without repository-relative links.
 
-## Runtime model
+Project instructions are the source of technical, business, and visual facts. Core contains no client identity, universal theme, endpoint, schema, single-project stack, or laptop path.
 
-DevBrain tidak memiliki daemon atau background process. Laptop menyimpan file; AI coding assistant membacanya satu kali ketika coding session dimulai, lalu memakai active context untuk turn berikutnya. Pemuatan ulang hanya terjadi pada trigger eksplisit atau lifecycle boundary yang ditentukan manifest.
+## Canonical ownership
 
-Bootstrap lintas-device menggunakan installer PowerShell sederhana di `install/`. Installer dijalankan satu kali pada device baru atau setelah update DevBrain; ia membuat loader dengan path runtime aktual, backup, dan managed block. README tidak dapat memasang loader dengan sendirinya. AI hanya boleh mendeteksi kebutuhan dan meminta persetujuan sebelum menjalankan installer.
+| Concern | Source |
+|---|---|
+| Cross-task rules and precedence | `runtime/session-baseline.md` |
+| Selective routing | `runtime/task-map.md` |
+| Domain principles | `core/` |
+| Deeper risk analysis | `safety/` |
+| Task procedures | `workflows/` |
+| Short command intent | `prompts/commands.yaml` |
+| Portable skills | Each skill under `skills/` |
+| Installed bootstrap | Adapter templates rendered by the installer |
+| Project facts | The project's `AGENTS.md`/`CLAUDE.md` |
+| Conceptual history | Source DOCX and `docs/source-mapping.md` |
+| Acceptance and regression | `evaluation/` |
 
-## Progressive loading
+The baseline carries safety rules that must always be available; safety modules provide case-specific detail. Minimal repetition of boundaries in standalone skills is intentional because each skill is installed independently. Do not copy all principles into skills, loaders, or projects.
 
-`runtime/full-context.md` adalah operational profile yang dimuat sekali pada awal session. File ini menggabungkan seluruh core, safety, workflow, context precedence, dan command contracts agar nuance developer tidak hilang selama session. AI tidak perlu membaca ulang file ini di setiap turn. Source DOCX, adapter docs, project templates, architecture/maintenance docs, dan changelog tetap dikecualikan karena tidak dibutuhkan untuk keputusan coding harian.
+## Compatibility and portability
 
-Project instructions tetap dibaca oleh tool melalui mekanisme native. DevBrain tidak boleh disalin ke setiap project karena akan menduplikasi context. Mode full operational context menggunakan context lebih besar sebagai trade-off untuk pemahaman developer profile yang lebih lengkap.
+`runtime/full-context.md` and `runtime/core-compact.md` point to the baseline so legacy loaders remain usable. There is no generated monolith to rebuild. The installer uses the same template for both tools and injects a concrete local root only into the installed result.
 
-`core/design-system-intelligence.md` memberi AI cara berpikir frontend lintas project: menemukan Visual DNA, source of truth token/theme, component architecture, dan batas componentization. Visual DNA, warna brand, typography, stack/library, serta token konkret tetap berada di project context. `workflows/ui-foundation-pass.md` mengarahkan kapan foundation kecil perlu dibuat atau diperluas tanpa mengubah setiap task menjadi redesign sistem penuh.
+The installer stages and verifies skills before replacing the destination directory. It backs up the previous version, including nested copies or customization, so only one active tree remains without stale references. An identical update does not write files or create another backup. Loaders are managed only inside markers; invalid markers are rejected before mutation.
 
-`core/api-backend-intelligence.md` memberi AI cara berpikir contract-first: menemukan source of truth API, consumer, layer backend, validation, authorization, integrity data, resilience, dan test. `safety/data-and-api-protection.md` menjaga secret, PII, tenant isolation, serta boundary mutation. Detail route, framework, schema, error envelope, dan aturan bisnis tetap berada di project context. `workflows/api-feature.md` dan `workflows/safe-data-migration.md` memisahkan coding/preparation aman dari eksekusi side effect data berisiko.
-
-`workflows/git-command-listing.md` memisahkan listing command dari eksekusi Git. Permintaan list command menghasilkan teks yang dikelompokkan per feature dengan file staging spesifik dan commit message yang meaningful; operasi Git tetap membutuhkan instruksi eksekusi eksplisit per operasi.
-
-Session context lifecycle sengaja menukar pembacaan berulang dengan retensi active context. Jika context terkena compaction, DevBrain berubah, project berganti, atau user meminta reload, AI memuat ulang full runtime atau modul domain yang diperlukan.
-
-## Non-goals saat ini
-
-- Tidak ada model AI baru.
-- Tidak ada CLI, executable, server, registry, atau admin setup. Installer PowerShell sederhana untuk bootstrap lintas-device adalah pengecualian terkontrol.
-- Tidak ada automatic mutation dari DOCX ke core.
-- Tidak ada universal UI theme atau universal technical stack.
-- Tidak ada notification, logs, daily summary, atau GUI pada fondasi awal.
+There is no daemon, model binding, database, or product CLI. Validators are manually run maintenance scripts, not assistant runtime dependencies.
