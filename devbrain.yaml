@@ -1,8 +1,8 @@
 schema: devbrain-manifest
-version: 2.0.0
+version: 2.1.0
 owner: Randhu Paksi
 status: operational
-updated_on: 2026-09-26
+updated_on: 2026-09-27
 language: en
 purpose: Personal developer knowledge layer for AI coding assistants
 
@@ -35,6 +35,9 @@ skills:
   - marketing-portfolio-ui-ux
   - design-system-architect
   - architecture-refactor
+  - frontend-performance
+  - accessibility-audit
+  - testing-strategy
 
 project_context_candidates: [AGENTS.md, CLAUDE.md, PROJECT-CONTEXT.md, README.md]
 evaluation:
@@ -47,5 +50,5 @@ deferred_capabilities: [cli, exe, daemon, database, notification_system, task_lo
 source_specification:
   file: source/DevBrain_v2_Developer_Context_Specification.docx
   role: generalized_conceptual_reference_not_active_policy
-  revised_on: 2026-09-26
-  sha256: 7fa6d719ad5cc0eb70cd5eb926c141429c33f96f4e171e385f654f8b384ca97f
+  revised_on: 2026-09-27
+  sha256: 2d6ad09cce04ca898b1df5aa6f8665e0c559de5b8cada060bd9c26956642c470

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.0 — 2026-09-27
+
+- Added focused frontend performance, accessibility, and testing skills that can audit or implement according to the active request.
+- Routed the skills selectively, extended the installer and evaluation suite, and updated installation and conceptual documentation.
+
 ## Source specification revision — 2026-09-26
 
 - Replaced the current-tree personal v0.1 DOCX with a generalized English v2 conceptual specification in third-person language.

@@ -11,6 +11,8 @@ Run from the repository with PowerShell 5.1+ or PowerShell 7 as a regular user. 
 
 The installer runs only when explicitly requested by the user. An agent editing DevBrain does not install it to the real home automatically.
 
+For an existing installation, run the updater with `-WhatIf` first, then run it without `-WhatIf` when the targets are correct. With the default `-Tool Both`, Codex and Claude receive the same seven source skill folders. Start a new coding session afterward so each host can discover the new skill names. The new skills have focused purposes: `frontend-performance` measures and improves slow browser behavior; `accessibility-audit` reviews and fixes interface barriers; `testing-strategy` chooses and implements meaningful tests. A review-only request stays read-only, while a fix request includes implementation.
+
 ## Parameters and targets
 
 - `DevBrainRoot`: defaults to the parent of `PSScriptRoot`.
@@ -25,7 +27,7 @@ Claude loaders/skills use `UserHome/.claude`. Concrete paths appear only in loca
 
 ## Update guarantees
 
-Preflight checks source, markers, and linked/reparse paths before writing. Only the four named DevBrain skills are managed. Adapter templates are the loader source, preventing template/installer drift. Text outside a managed block is preserved exactly; loader backups retain original bytes.
+Preflight checks source, markers, and linked/reparse paths before writing. Only the seven named DevBrain skills are managed: `enterprise-ui-ux`, `marketing-portfolio-ui-ux`, `design-system-architect`, `architecture-refactor`, `frontend-performance`, `accessibility-audit`, and `testing-strategy`. Adapter templates are the loader source, preventing template/installer drift. Text outside a managed block is preserved exactly; loader backups retain original bytes.
 
 Skills are copied to staging and verified by hash/tree, then the old directory is moved to `devbrain-backups` and staging becomes active. This fixes the v1 nested-copy bug and removes stale discovered references without losing customization: the complete old tree remains in backup. If moving staging fails, the installer attempts to restore the old directory. Backups use a timestamp and unique suffix. An identical update makes no writes and creates no backup.
 
@@ -42,3 +44,5 @@ If old skills exist in two discovery locations, the installer does not silently 
 To roll back, restore a selected loader backup after checking for newer personal instructions, or remove only the managed block. For skills, move the active version into a new backup and restore the selected old directory. Do not empty the whole loader or delete other skill folders.
 
 Test installation, update, alternate clone, simulated username, backup, parity, and `WhatIf` using the [evaluation guide](../evaluation/README.md).
+
+To check an existing installation without running the updater again, compare each managed skill folder's files with the corresponding `skills/<name>/` folder in the repository. The installer uses exact source copies and skips an identical update. Check the Codex and Claude loader files separately: their managed blocks point to the same DevBrain baseline, while personal text outside the blocks is preserved.

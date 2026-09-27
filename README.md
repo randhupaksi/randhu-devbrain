@@ -13,7 +13,9 @@ Clone the repository wherever you choose, then run PowerShell as a regular user:
 .\install\install-bootstrap.ps1
 ```
 
-One installer sets up the Codex/Claude loader and four custom skills. It detects the repository and user home. Review the preview before applying changes; personal instructions outside the managed block are preserved. Update with `install/update-bootstrap.ps1`. Options include `-Tool Codex|Claude|Both`, `-SkipSkills`, and path parameters for a custom profile. See the [installation guide](install/README.md) for backups, legacy skills, and rollback.
+One installer sets up the Codex/Claude loader and seven custom skills. It detects the repository and user home. Review the preview before applying changes; personal instructions outside the managed block are preserved. Update with `install/update-bootstrap.ps1`. Options include `-Tool Codex|Claude|Both`, `-SkipSkills`, and path parameters for a custom profile. See the [installation guide](install/README.md) for backups, legacy skills, and rollback.
+
+For an existing installation, run `./install/update-bootstrap.ps1 -WhatIf` and then `./install/update-bootstrap.ps1` to install the new skill set for both hosts. A new session is needed for Codex or Claude to discover newly installed skills.
 
 ## Context strategy
 
@@ -33,7 +35,7 @@ Do not load the full skills directory, source DOCX, changelog, adapter docs, pro
 | safety | Policy and deeper risk/data/security analysis |
 | workflows | Task procedures loaded when relevant |
 | prompts | Short commands with intent, mode, routing, and approval boundaries |
-| skills | Four portable skills with progressive disclosure |
+| skills | Seven portable, task-specific skills with progressive disclosure |
 | adapters | Codex/Claude bootstrap templates and discovery notes |
 | project-templates | Project facts, Visual DNA, and API contracts |
 | install | User-level PowerShell installer/updater |
@@ -41,7 +43,7 @@ Do not load the full skills directory, source DOCX, changelog, adapter docs, pro
 | evaluation | Behavior scenarios and validation/installer tests |
 | source | Generalized v2 conceptual DOCX; excluded from normal startup context |
 
-Skills: `enterprise-ui-ux` for operational applications; `marketing-portfolio-ui-ux` for narrative/conversion surfaces; `design-system-architect` for tokens/shared UI; and `architecture-refactor` for responsibility/dependency boundaries.
+Skills: `enterprise-ui-ux` for operational applications; `marketing-portfolio-ui-ux` for narrative/conversion surfaces; `design-system-architect` for tokens/shared UI; `architecture-refactor` for responsibility/dependency boundaries; `frontend-performance` for measured speed improvements; `accessibility-audit` for accessibility reviews and fixes; and `testing-strategy` for focused test planning and implementation. Each skill activates only when its outcome is relevant; an audit-only request remains read-only.
 
 ## Key boundaries
 
