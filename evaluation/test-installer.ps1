@@ -31,7 +31,7 @@ function Assert-Fails([scriptblock]$Action, [string]$Message) {
     try { & $Action } catch { $failed = $true }
     Assert $failed $Message
 }
-$names = @('enterprise-ui-ux','marketing-portfolio-ui-ux','design-system-architect','architecture-refactor')
+$names = @('enterprise-ui-ux','marketing-portfolio-ui-ux','design-system-architect','architecture-refactor','frontend-performance','accessibility-audit','testing-strategy')
 $fakeHome = Join-Path $testRoot 'Different User'
 & $installer -UserHome $fakeHome -WhatIf 6>$null
 Assert (-not (Test-Path -LiteralPath $fakeHome)) 'WhatIf must not create even the home directory'

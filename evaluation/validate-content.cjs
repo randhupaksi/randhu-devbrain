@@ -31,7 +31,7 @@ for(const[f,t]of docs){
 for(const f of files)check(!/(^|\/)(?:\.env(?:\..+)?|credentials\.json|id_rsa|[^/]+\.(?:pem|pfx|p12|key|dump|sql))$/i.test(f)||f.endsWith('.env.example'),'Secret/data-like file '+f);
 const manifest=parsed.get('devbrain.yaml');
 if(manifest){
- check(manifest.version==='2.0.0','Manifest version');
+ check(manifest.version==='2.1.0','Manifest version');
  check(JSON.stringify(manifest.always_load)==='["runtime/session-baseline.md"]','Canonical always_load');
  for(const ref of [manifest.task_router,...manifest.always_load,...Object.values(manifest.evaluation),manifest.bootstrap.installer,manifest.bootstrap.updater,manifest.bootstrap.codex_template,manifest.bootstrap.claude_template,manifest.source_specification.file])check(fs.existsSync(path.join(root,ref)),'Missing manifest ref '+ref);
  for(const n of manifest.skills){
