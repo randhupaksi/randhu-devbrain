@@ -1,0 +1,7 @@
+interface:
+  display_name: "Frontend Performance"
+  short_description: "Diagnose and improve slow frontend behavior"
+  default_prompt: "Use $frontend-performance to investigate and improve this frontend performance issue."
+
+policy:
+  allow_implicit_invocation: true

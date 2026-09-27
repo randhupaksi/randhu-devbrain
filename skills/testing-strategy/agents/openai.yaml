@@ -1,0 +1,7 @@
+interface:
+  display_name: "Testing Strategy"
+  short_description: "Plan and add focused behavioral tests"
+  default_prompt: "Use $testing-strategy to choose and implement meaningful tests for this change."
+
+policy:
+  allow_implicit_invocation: true
