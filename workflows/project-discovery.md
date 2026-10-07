@@ -9,7 +9,7 @@ Discovery itself is read-only. A project-scan request ends with findings; discov
 ## Follow the task outward
 
 1. Confirm the workspace, requested outcome, read-only versus implementation intent, and working-tree/staged state. Preserve user changes.
-2. Read applicable project and scoped instructions. Inspect the relevant manifest and scripts; distinguish documented facts, implementation evidence, and unknowns.
+2. Read applicable project and scoped instructions. Inspect the relevant manifest and scripts; distinguish documented facts, implementation evidence, and unknowns. Use [context reconciliation](context-reconciliation.md) only when material disagreement or possible staleness affects the next decision.
 3. Trace the target's entry point to its direct dependencies and consumers. Find one or two useful precedents before inventing structure. For UI, locate Visual DNA, tokens, states, and shared components; for APIs, locate contracts, validation, authorization, data ownership, and consumers.
 4. Identify the commands and prerequisites needed to validate this task. Inspect command definitions before execution: tests, builds, setup scripts, and dev servers can write files, contact services, or mutate data. A read-only request permits only non-mutating diagnostics; use synthetic isolated fixtures for later authorized verification.
 5. Identify material uncertainty and protected boundaries. Resolve routine details from project evidence; ask only when the unresolved choice affects business outcome, contracts, client data, security, or irreversible effects.

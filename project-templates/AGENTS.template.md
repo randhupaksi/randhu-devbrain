@@ -14,6 +14,8 @@ This repository uses Randhu's DevBrain global principles. This file contains onl
 - Package manager:
 - Important directories:
 - Existing architecture/patterns:
+- Designated source of truth when instructions, docs, contracts, and code disagree:
+- Known stale or conflicting context:
 
 ## Commands
 
@@ -41,6 +43,7 @@ This repository uses Randhu's DevBrain global principles. This file contains onl
 
 - Contract locations:
 - Project API/Backend Contract file/reference:
+- Canonical source for public API compatibility when documentation and implementation differ:
 - Route/module/layering convention:
 - Request validation, DTO/schema, and error-response convention:
 - Pagination/filter/sort/date-time/idempotency convention:

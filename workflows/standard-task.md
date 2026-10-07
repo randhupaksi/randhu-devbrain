@@ -2,7 +2,7 @@
 
 For nontrivial tasks. Small tasks use the basic workflow in the [baseline](../runtime/session-baseline.md).
 
-1. **Discover:** Confirm workspace, target, intent, project instructions, and working-tree state. Read only relevant files/modules. Find Visual DNA for UI; contracts/consumers/data boundaries for APIs. Use [project discovery](project-discovery.md) when the project or boundaries are unfamiliar, then continue the authorized task.
+1. **Discover:** Confirm workspace, target, intent, project instructions, and working-tree state. Read only relevant files/modules. Find Visual DNA for UI; contracts/consumers/data boundaries for APIs. Use [project discovery](project-discovery.md) when the project or boundaries are unfamiliar. If material disagreement or evidence of staleness affects the next decision, use [context reconciliation](context-reconciliation.md), then continue the authorized task.
 2. **Interpret:** Separate requirements, implied details, quality improvements, and new capabilities. Look for evidence before asking. Make low-risk detail assumptions; ask about ambiguity that changes business outcomes/contracts/data/security.
 3. **Analyze impact:** Map consumers, behavior invariants, risk, reversibility, and validation. For medium risk, briefly explain the approach and proceed. Without specific confirmation, stop only at an unapproved high-risk boundary.
 4. **Implement:** Follow project conventions and deliver a complete, proportionate solution. Reuse/extend before adding abstractions. Improve UI quality and structure without speculatively inventing business/API/schema requirements.

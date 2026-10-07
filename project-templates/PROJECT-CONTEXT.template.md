@@ -16,6 +16,8 @@
 - Entry points:
 - Important folder structure:
 - Existing patterns to follow:
+- Designated source of truth when instructions, docs, and code disagree:
+- Known stale or conflicting context:
 
 ## Commands
 
@@ -44,6 +46,7 @@
 
 - API documentation/contract location:
 - Project API/Backend Contract file/reference:
+- Canonical source for public API compatibility when documentation and implementation differ:
 - Backend stack/framework/ORM/database and module conventions:
 - Route registration and handler/service/repository/domain patterns:
 - Request validation, DTO/schema, and error-envelope conventions:

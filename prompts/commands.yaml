@@ -6,6 +6,13 @@ commands:
     modules: [workflows/project-discovery.md]
     output: "Findings, context gaps, risk map, and suggested next step."
 
+  context-check:
+    intent: "Reconcile material disagreement or possible staleness among the latest request, project instructions, canonical project artifacts, implementation, contracts, tests, and documentation without silently rewriting sources."
+    mode: read_only
+    approval: none
+    modules: [workflows/context-reconciliation.md]
+    output: "Conflict map, authority decision, evidence, material uncertainty, and the next authorized action."
+
   safe-fix:
     intent: "Fix the bug with the smallest complete solution, intentional behavior preservation, and proportionate validation."
     mode: analyze_then_implement
