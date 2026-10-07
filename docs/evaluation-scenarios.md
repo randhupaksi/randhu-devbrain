@@ -5,3 +5,5 @@ The canonical v2 suite is in [evaluation/scenarios.yaml](../evaluation/scenarios
 The v1 scenario that allowed additional features/APIs based only on relevance has been replaced: overdelivery now improves the requested requirement without inventing speculative business requirements. Safety, user override, and low/medium-risk autonomy are tested separately.
 
 Six additional cases distinguish read-only audits from authorized implementation for `frontend-performance`, `accessibility-audit`, and `testing-strategy`. They also check that a focused task does not load unrelated skills. Structural validation checks suite shape; live Codex and Claude runs are needed to assess behavior.
+
+V2.2 adds eight cases for scoped discovery, a small task that needs no broad discovery, implementation continuity, debugging intent and evidence, security-boundary fixes, and read-only completion review. The maintained suite now contains 38 scenarios. This count records intended behavior, not observed passes.

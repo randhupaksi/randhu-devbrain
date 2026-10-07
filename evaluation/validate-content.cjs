@@ -31,7 +31,7 @@ for(const[f,t]of docs){
 for(const f of files)check(!/(^|\/)(?:\.env(?:\..+)?|credentials\.json|id_rsa|[^/]+\.(?:pem|pfx|p12|key|dump|sql))$/i.test(f)||f.endsWith('.env.example'),'Secret/data-like file '+f);
 const manifest=parsed.get('devbrain.yaml');
 if(manifest){
- check(manifest.version==='2.1.0','Manifest version');
+ check(manifest.version==='2.2.0','Manifest version');
  check(JSON.stringify(manifest.always_load)==='["runtime/session-baseline.md"]','Canonical always_load');
  for(const ref of [manifest.task_router,...manifest.always_load,...Object.values(manifest.evaluation),manifest.bootstrap.installer,manifest.bootstrap.updater,manifest.bootstrap.codex_template,manifest.bootstrap.claude_template,manifest.source_specification.file])check(fs.existsSync(path.join(root,ref)),'Missing manifest ref '+ref);
  for(const n of manifest.skills){
@@ -61,5 +61,5 @@ if(suite){
 const paras=new Map();
 for(const[f,t]of docs)if(f.endsWith('.md')&&!/^(docs|evaluation|adapters)\//.test(f))for(const p of t.split(/\r?\n\s*\r?\n/).map(x=>x.trim()).filter(x=>x.length>=200)){if(!paras.has(p))paras.set(p,new Set());paras.get(p).add(f)}
 function metrics(t){return{bytes:Buffer.byteLength(t),characters:t.length,words:(t.match(/\S+/g)||[]).length,estimated_tokens:Math.ceil(t.length/4)}}
-console.log(JSON.stringify({checks,files_scanned:files.length,yaml_files:parsed.size,scenarios:suite?.scenarios?.length,runtime_before:metrics(git(['show','HEAD:runtime/full-context.md'])),runtime_after:metrics(docs.get('runtime/session-baseline.md')),duplicate_candidates:[...paras.values()].filter(s=>s.size>1).map(s=>[...s]),errors},null,2));
+console.log(JSON.stringify({checks,files_scanned:files.length,yaml_files:parsed.size,scenarios:suite?.scenarios?.length,runtime_comparison_basis:'HEAD baseline versus working-tree baseline',runtime_before:metrics(git(['show','HEAD:runtime/session-baseline.md'])),runtime_after:metrics(docs.get('runtime/session-baseline.md')),duplicate_candidates:[...paras.values()].filter(s=>s.size>1).map(s=>[...s]),errors},null,2));
 if(errors.length)process.exit(1);
