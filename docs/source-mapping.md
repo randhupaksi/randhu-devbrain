@@ -1,6 +1,6 @@
 # Source Mapping
 
-The current `source/DevBrain_v2_Developer_Context_Specification.docx` is a generalized English conceptual reference for v2. Markdown/YAML modules remain authoritative for operational behavior. The earlier personal v0.1 DOCX was read during the original v2 audit and is retained only in earlier Git history; its historical audit findings below explain the design decisions made at that time. Source documents are not loaded during normal coding.
+The current `source/DevBrain_v2_Developer_Context_Specification.docx` is a generalized English conceptual reference aligned with v2.2. The filename remains stable across v2 minor releases; the internal version and manifest hash identify the revision. Markdown/YAML modules remain authoritative for operational behavior. The earlier personal v0.1 DOCX was read during the original v2 audit and is retained only in earlier Git history; its historical audit findings below explain the design decisions made at that time. Source documents are not loaded during normal coding.
 
 | Concept | V2 owner |
 |---|---|
@@ -17,6 +17,9 @@ The current `source/DevBrain_v2_Developer_Context_Specification.docx` is a gener
 | Project facts/Visual DNA/contracts | `project-templates/` |
 | AI-agnostic modularity and adapters | `runtime/task-map.md`; `adapters/`; `install/` |
 | Review/evolution | `docs/maintenance.md`; `evaluation/` |
+| Scoped project discovery | `workflows/project-discovery.md` |
+| Evidence-based diagnosis and correction | `workflows/debugging.md` |
+| Adaptive completion and verification honesty | `workflows/definition-of-done.md`; `workflows/verification-reporting.md` |
 
 ## V2 decisions on gaps in the original source
 
