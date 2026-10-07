@@ -4,6 +4,9 @@ Paths are relative to the DevBrain root. Read only relevant rows, then only the 
 
 | Task / need | Modules to select | Primary skill when relevant |
 |---|---|---|
+| Unfamiliar project or unclear task boundaries | `workflows/project-discovery.md` | Match the outcome only if needed |
+| Bug diagnosis or correction | `workflows/debugging.md` | No extra skill for routine debugging |
+| Substantial task completion/coverage review | `workflows/definition-of-done.md`, `workflows/verification-reporting.md` | None unless a specialized subtask requires it |
 | Deeper identity/requirement interpretation | `core/developer-profile.md`, `core/ai-collaboration.md` | None needed |
 | Engineering, abstraction, maintainability | `core/engineering-principles.md` | Not needed for small cleanup |
 | Product UI, dashboard, CRUD | `core/ui-ux-principles.md`, `workflows/ui-task.md` | `enterprise-ui-ux` |

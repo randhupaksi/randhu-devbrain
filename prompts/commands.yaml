@@ -3,13 +3,22 @@ commands:
     intent: "Understand the project, stack, instructions, scripts, structure, and key risks."
     mode: read_only
     approval: none
+    modules: [workflows/project-discovery.md]
     output: "Findings, context gaps, risk map, and suggested next step."
 
   safe-fix:
     intent: "Fix the bug with the smallest complete solution, intentional behavior preservation, and proportionate validation."
     mode: analyze_then_implement
     approval: high_risk_boundary_only
+    modules: [workflows/debugging.md]
     output: "Root cause, fix, changed files, and validation."
+
+  done-check:
+    intent: "Review the active task's completion against requirements and proportionate evidence without editing files or running mutating checks."
+    mode: read_only
+    approval: none
+    modules: [workflows/definition-of-done.md, workflows/verification-reporting.md]
+    output: "Satisfied requirements, unverified or incomplete areas, supporting evidence, and next steps."
 
   premium-ui:
     intent: "Improve UI polish according to project Visual DNA and design system; reuse or proportionately strengthen the foundation without changing unrequested business logic or APIs."
