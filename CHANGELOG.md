@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.0 — 2026-10-07
+
+- Added selective context reconciliation for material disagreement or stale context, with fact-specific evidence and the existing baseline precedence.
+- Connected `context-check`, task routing, discovery, and standard work without expanding the baseline or installing new skills.
+- Extended project templates with source-of-truth/conflict fields and the suite with eight scenarios, totaling 46.
+- Covered command wrappers, active UI sources, latest-user choices, public contracts, authorization, equal-scope instructions, authorized context repair, and untrusted diagnostic content.
+- Kept the source DOCX as a v2.2 conceptual reference; current Markdown/YAML defines v2.3 behavior.
+
 ## 2.2.0 — 2026-09-28
 
 - Added selective project discovery, evidence-based debugging, and adaptive definition-of-done workflows.

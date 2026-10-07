@@ -1,4 +1,4 @@
-# DevBrain v2.2
+# DevBrain v2.3
 
 DevBrain is Randhu's personal context and developer knowledge layer for Codex and Claude Code. It provides principles, safety, workflows, prompt compression, skills, and bootstrap instructions. It is not an AI model, a new agent, an assistant replacement, a background application, or one large prompt.
 
@@ -19,9 +19,9 @@ For an existing installation, run `./install/update-bootstrap.ps1 -WhatIf` and t
 
 ## Context strategy
 
-V2.2 adds three selective workflows: [project discovery](workflows/project-discovery.md) for unfamiliar repositories or unclear task boundaries, [debugging](workflows/debugging.md) for evidence-based diagnosis and fixes, and [definition of done](workflows/definition-of-done.md) for proportionate completion reviews. They extend the task map and existing workflow; no additional skill is installed. See [the adoption guide](docs/v2.2-workflows.md) for examples and boundaries.
+V2.3 adds [context reconciliation](workflows/context-reconciliation.md) when material disagreement or evidence of staleness affects an active decision. It follows baseline precedence and selects evidence for the fact being decided, distinguishes intended rules from current implementation, and asks only when an unresolved conflict can change business outcome, contract, client data, security, or an irreversible side effect. It extends the task map and commands without expanding the baseline or installing a skill. See [the adoption guide](docs/v2.3-context-reconciliation.md).
 
-The [documentation index](docs/README.md) identifies current guides and historical records. See [the validation report](docs/v2.2-validation.md) for checks actually executed and remaining live-host evaluation.
+The [documentation index](docs/README.md) identifies current guides and historical records. See [the validation report](docs/v2.3-validation.md) for checks actually executed and remaining live-host evaluation.
 
 1. Read the [session baseline](runtime/session-baseline.md) once at the start of a coding session.
 2. Read the active project's instructions and only relevant evidence.
