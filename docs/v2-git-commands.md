@@ -1,5 +1,7 @@
 # DevBrain v2 — Git Commands (Text Only)
 
+Historical command snapshot, not a staging plan for v2.2 or the current worktree. Inspect current Git state before proposing commands. See [the documentation index](README.md) for maintained guidance.
+
 These commands describe the original v2 upgrade snapshot and have not been run here. The conceptual DOCX was revised later, so regenerate any staging list for the current worktree. Ignored `local/` content must not be staged.
 
 One release commit is proposed because the baseline, manifest, adapters, installer, evaluation, and docs reference one another. The branch at report time was `main`, tracking `origin/main`; recheck if conditions change. Ensure the index contains no unrelated work.

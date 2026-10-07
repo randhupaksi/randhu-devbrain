@@ -1,5 +1,7 @@
 # DevBrain v2 — Upgrade Report
 
+Historical record of the original v2 upgrade and later semantic repairs. Its inventories, counts and test results describe those snapshots. For the current v2.2 release, use the [documentation index](README.md), [adoption guide](v2.2-workflows.md) and [validation report](v2.2-validation.md).
+
 Status: the repository upgrade is complete. No commit, push, reset, rebase, amend, registry/admin operation, database/production access, other-project change, or real-home reinstallation was performed. Test fixtures, clones, logs, and validation dependencies remain under ignored `local/`.
 
 ## 1. Condition before the upgrade

@@ -1,5 +1,7 @@
 # English Translation Semantic Audit
 
+Historical record of the earlier v2 English-normalization audit. The comparison snapshot and validation counts below remain historical evidence. Current v2.2 behavior and documentation are indexed in [the documentation guide](README.md).
+
 Date: 2026-09-26
 
 ## Result
