@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.2.0 — 2026-09-28
+
+- Added selective project discovery, evidence-based debugging, and adaptive definition-of-done workflows.
+- Connected task routing, standard verification, and compressed commands without expanding the session baseline or installing new skills.
+- Extended behavioral scenarios for discovery scope, diagnosis/fix intent, uncertain evidence, high-risk fixes, and completion reviews; documented adoption and evaluation limits.
+- Aligned current documentation and the conceptual specification with v2.2, indexed historical records, and recorded observed validation separately from independent host behavior.
+
 ## 2.1.0 — 2026-09-27
 
 - Added focused frontend performance, accessibility, and testing skills that can audit or implement according to the active request.

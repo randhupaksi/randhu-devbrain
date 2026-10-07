@@ -1,4 +1,4 @@
-# DevBrain v2
+# DevBrain v2.2
 
 DevBrain is Randhu's personal context and developer knowledge layer for Codex and Claude Code. It provides principles, safety, workflows, prompt compression, skills, and bootstrap instructions. It is not an AI model, a new agent, an assistant replacement, a background application, or one large prompt.
 
@@ -18,6 +18,10 @@ One installer sets up the Codex/Claude loader and seven custom skills. It detect
 For an existing installation, run `./install/update-bootstrap.ps1 -WhatIf` and then `./install/update-bootstrap.ps1` to install the new skill set for both hosts. A new session is needed for Codex or Claude to discover newly installed skills.
 
 ## Context strategy
+
+V2.2 adds three selective workflows: [project discovery](workflows/project-discovery.md) for unfamiliar repositories or unclear task boundaries, [debugging](workflows/debugging.md) for evidence-based diagnosis and fixes, and [definition of done](workflows/definition-of-done.md) for proportionate completion reviews. They extend the task map and existing workflow; no additional skill is installed. See [the adoption guide](docs/v2.2-workflows.md) for examples and boundaries.
+
+The [documentation index](docs/README.md) identifies current guides and historical records. See [the validation report](docs/v2.2-validation.md) for checks actually executed and remaining live-host evaluation.
 
 1. Read the [session baseline](runtime/session-baseline.md) once at the start of a coding session.
 2. Read the active project's instructions and only relevant evidence.

@@ -28,6 +28,8 @@ The baseline carries safety rules that must always be available; safety modules 
 
 ## Compatibility and portability
 
+V2.2 adds task procedures for discovery, debugging, and completion without changing the always-loaded baseline. These are selected through the task map or compressed commands. Existing global loaders read repository modules in place; the seven installed standalone skills retain their existing scope. The conceptual DOCX is aligned with v2.2; maintained Markdown/YAML governs operational behavior.
+
 `runtime/full-context.md` and `runtime/core-compact.md` point to the baseline so legacy loaders remain usable. There is no generated monolith to rebuild. The installer uses the same template for both tools and injects a concrete local root only into the installed result.
 
 The installer stages and verifies skills before replacing the destination directory. It backs up the previous version, including nested copies or customization, so only one active tree remains without stale references. An identical update does not write files or create another backup. Loaders are managed only inside markers; invalid markers are rejected before mutation.
