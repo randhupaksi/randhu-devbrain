@@ -14,3 +14,5 @@ The DOCX is not read during normal coding sessions. Maintained Markdown/YAML fil
 The stable v2 filename covers minor releases. This revision describes project discovery, evidence-based debugging, adaptive completion and the 38-scenario suite. See [source mapping](../docs/source-mapping.md) for canonical module ownership and [observed validation](../docs/v2.2-validation.md) for evidence limits.
 
 The original v0.1 document remains accessible in earlier Git commits. Replacing it in the current tree does not remove it from Git history.
+
+Operational DevBrain is now v2.3. This source document retains the v2.2 revision and hash above. [The v2.3 guide](../docs/v2.3-context-reconciliation.md) describes context reconciliation and the 46-scenario suite; Markdown/YAML remains authoritative. A source-document revision requires an explicit request.

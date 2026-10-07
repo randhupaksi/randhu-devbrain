@@ -1,6 +1,6 @@
 # DevBrain v2 Read-only Audit
 
-Historical record of the original v2 audit. Counts and findings below describe that snapshot. For maintained v2.2 guidance and observed validation, use the [current documentation index](README.md).
+Historical record of the original v2 audit. Counts and findings below describe that snapshot. For maintained guidance and observed validation, use the [current documentation index](README.md).
 
 This audit was completed before implementation with a clean initial working tree. Scope included the README/manifest, operational folders, all four skills with references/metadata, installer/updater, adapters, templates, docs/changelog, and historical DOCX. No repository `AGENTS.md` existed at the time of the initial audit; global bootstrap guidance was provided by the session. Existing home loaders/skills were inspected read-only. No other benchmark repository was opened.
 

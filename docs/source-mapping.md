@@ -20,6 +20,9 @@ The current `source/DevBrain_v2_Developer_Context_Specification.docx` is a gener
 | Scoped project discovery | `workflows/project-discovery.md` |
 | Evidence-based diagnosis and correction | `workflows/debugging.md` |
 | Adaptive completion and verification honesty | `workflows/definition-of-done.md`; `workflows/verification-reporting.md` |
+| V2.3 context reconciliation (operational extension beyond this DOCX revision) | `workflows/context-reconciliation.md` |
+
+The operational release is v2.3. The source DOCX retains its v2.2 revision/date/hash; no source-document revision was explicitly requested for this upgrade. Reconciliation and the 46-scenario suite are documented in the maintained [v2.3 guide](v2.3-context-reconciliation.md).
 
 ## V2 decisions on gaps in the original source
 
