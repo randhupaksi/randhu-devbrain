@@ -2,6 +2,8 @@
 
 ## Verification
 
+For substantial tasks with uncertain completion criteria, select relevant checks from [definition of done](definition-of-done.md). For reported defects, use [debugging](debugging.md) to distinguish hypotheses from confirmed causes. Reuse active modules; do not load these for every small change.
+
 Choose checks based on project and risk:
 
 - Review the diff for every change.
