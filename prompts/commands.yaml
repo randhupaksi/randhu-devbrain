@@ -1,4 +1,20 @@
 commands:
+  handoff:
+    intent: "Summarize the active task, latest decisions, current or last-observed worktree state, actual validation, pending work, and next authorized step in the conversation."
+    mode: read_only
+    approval: none
+    modules: [workflows/session-continuity.md]
+    forbidden: [automatic_context_file, secret_or_client_data_copy, pending_work_execution]
+    output: "Compact task handoff with evidence freshness, unknowns, and protected boundaries."
+
+  resume-task:
+    intent: "Verify the handoff against current workspace, project instructions, state, and latest user intent, then continue only the authorized active task."
+    mode: reconcile_then_continue_authorized_task
+    approval: high_risk_boundary_only
+    modules: [workflows/session-continuity.md]
+    forbidden: [invented_task, unverified_approval_transfer, automatic_context_file]
+    output: "Current task action/result, differences from handoff, actual validation, and remaining limits."
+
   project-scan:
     intent: "Understand the project, stack, instructions, scripts, structure, and key risks."
     mode: read_only
