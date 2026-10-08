@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.4.0 — 2026-10-08
+
+- Added selective session continuity for requested conversational handoffs and substantial interrupted work with missing context.
+- Added `handoff` and `resume-task` contracts, current-state checks, latest-intent precedence, evidence freshness and authorization verification without growing the baseline or creating automatic task logs.
+- Extended the evaluation suite with eight continuity cases, totaling 54, and added clone-isolated negative contract tests plus a two-phase host evaluation guide.
+- Kept model switches with sufficient active context lightweight; source DOCX remains the v2.2 conceptual reference.
+
 ## 2.3.0 — 2026-10-07
 
 - Added selective context reconciliation for material disagreement or stale context, with fact-specific evidence and the existing baseline precedence.

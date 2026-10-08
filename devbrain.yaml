@@ -1,8 +1,8 @@
 schema: devbrain-manifest
-version: 2.3.0
+version: 2.4.0
 owner: Randhu Paksi
 status: operational
-updated_on: 2026-10-07
+updated_on: 2026-10-08
 language: en
 purpose: Personal developer knowledge layer for AI coding assistants
 
@@ -45,6 +45,7 @@ evaluation:
   guide: evaluation/README.md
   static_validator: evaluation/validate-repository.ps1
   installer_tests: evaluation/test-installer.ps1
+  content_regressions: evaluation/test-content-regressions.cjs
 
 deferred_capabilities: [cli, exe, daemon, database, notification_system, task_logs, daily_summary, gui]
 source_specification:
