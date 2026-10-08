@@ -31,7 +31,7 @@ for(const[f,t]of docs){
 for(const f of files)check(!/(^|\/)(?:\.env(?:\..+)?|credentials\.json|id_rsa|[^/]+\.(?:pem|pfx|p12|key|dump|sql))$/i.test(f)||f.endsWith('.env.example'),'Secret/data-like file '+f);
 const manifest=parsed.get('devbrain.yaml');
 if(manifest){
- check(manifest.version==='2.3.0','Manifest version');
+ check(manifest.version==='2.4.0','Manifest version');
  check(JSON.stringify(manifest.always_load)==='["runtime/session-baseline.md"]','Canonical always_load');
  for(const ref of [manifest.task_router,...manifest.always_load,...Object.values(manifest.evaluation),manifest.bootstrap.installer,manifest.bootstrap.updater,manifest.bootstrap.codex_template,manifest.bootstrap.claude_template,manifest.source_specification.file])check(fs.existsSync(path.join(root,ref)),'Missing manifest ref '+ref);
  for(const n of manifest.skills){
@@ -46,6 +46,11 @@ for(const[n,c]of Object.entries(parsed.get('prompts/commands.yaml')?.commands||{
  for(const ref of c.modules||[])check(fs.existsSync(path.join(root,ref)),'Command module '+ref);
 }
 const contextWorkflow=docs.get('workflows/context-reconciliation.md')||'';
+const commands=parsed.get('prompts/commands.yaml')?.commands||{};
+check(!!docs.get('workflows/session-continuity.md'),'Session continuity workflow exists');
+check((docs.get('runtime/task-map.md')||'').includes('workflows/session-continuity.md'),'Session continuity task route');
+check(commands.handoff?.mode==='read_only'&&commands.handoff?.approval==='none'&&JSON.stringify(commands.handoff?.modules)==='["workflows/session-continuity.md"]','Handoff remains read-only and selective');
+check(commands['resume-task']?.mode==='reconcile_then_continue_authorized_task'&&commands['resume-task']?.approval==='high_risk_boundary_only'&&JSON.stringify(commands['resume-task']?.modules)==='["workflows/session-continuity.md"]','Resume preserves task authorization and selective routing');
 check(contextWorkflow.length>0,'Context reconciliation workflow exists');
 check((docs.get('runtime/task-map.md')||'').includes('workflows/context-reconciliation.md'),'Context reconciliation task route');
 const contextCommand=parsed.get('prompts/commands.yaml')?.commands?.['context-check'];
@@ -54,7 +59,7 @@ for(const m of(docs.get('runtime/task-map.md')||'').matchAll(/\x60((?:core|workf
 check(docs.get('adapters/codex/AGENTS.global.template.md')===docs.get('adapters/claude-code/CLAUDE.global.template.md'),'Bootstrap parity');
 const suite=parsed.get('evaluation/scenarios.yaml');
 if(suite){
- check(suite.scenarios.length>=46,'Minimum v2.3 scenarios');const ids=new Set();
+ check(suite.scenarios.length>=54,'Minimum v2.4 scenarios');const ids=new Set();
  for(const s of suite.scenarios){
   for(const f of ['id','prompt','context_to_read','skills_active','skills_unnecessary','expected_autonomy','expected_approval','expected_files_touched','expected_validation','forbidden_behavior'])check(s[f]!==undefined&&(Array.isArray(s[f])||String(s[f]).length>0),'Scenario field '+s.id+': '+f);
   check(!ids.has(s.id),'Duplicate ID '+s.id);ids.add(s.id);
@@ -68,6 +73,11 @@ if(suite){
  }
  const resolvedChoice=suite.scenarios.find(s=>s.id==='41-context-latest-user-decision');
  check(!!resolvedChoice&&!resolvedChoice.context_to_read.includes('workflows/context-reconciliation.md'),'Resolved user choice uses baseline precedence directly');
+ for(const id of ['47-handoff-read-only','48-resume-authorized-task','49-resume-stale-state','50-resume-latest-intent','51-resume-unsupported-approval','52-handoff-validation-honesty','54-resume-missing-goal']){
+  check(suite.scenarios.find(s=>s.id===id)?.context_to_read?.includes('workflows/session-continuity.md'),'Session continuity scenario routing '+id);
+ }
+ const smallTask=suite.scenarios.find(s=>s.id==='53-model-switch-small-task');
+ check(!!smallTask&&!smallTask.context_to_read.includes('workflows/session-continuity.md'),'Model switch with sufficient context stays minimal');
 }
 const paras=new Map();
 for(const[f,t]of docs)if(f.endsWith('.md')&&!/^(docs|evaluation|adapters)\//.test(f))for(const p of t.split(/\r?\n\s*\r?\n/).map(x=>x.trim()).filter(x=>x.length>=200)){if(!paras.has(p))paras.set(p,new Set());paras.get(p).add(f)}
