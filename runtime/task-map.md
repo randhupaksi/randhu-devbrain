@@ -6,6 +6,7 @@ Paths are relative to the DevBrain root. Read only relevant rows, then only the 
 |---|---|---|
 | Unfamiliar project or unclear task boundaries | `workflows/project-discovery.md` | Match the outcome only if needed |
 | Material context disagreement or staleness affecting the active decision | `workflows/context-reconciliation.md` | Match the outcome only if needed |
+| Requested handoff or substantial interrupted task with missing context | `workflows/session-continuity.md` | Match the resumed outcome only if needed |
 | Bug diagnosis or correction | `workflows/debugging.md` | No extra skill for routine debugging |
 | Substantial task completion/coverage review | `workflows/definition-of-done.md`, `workflows/verification-reporting.md` | None unless a specialized subtask requires it |
 | Deeper identity/requirement interpretation | `core/developer-profile.md`, `core/ai-collaboration.md` | None needed |
