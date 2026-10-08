@@ -8,4 +8,4 @@ The original v2 upgrade audit inspected existing home loaders and skills read-on
 
 After updating a host, start a new session and ask the assistant to identify the baseline, project instructions, and relevant skills it actually read. Successful file copying alone does not prove native host discovery or behavior.
 
-For v2.3, the existing bootstrap selects context reconciliation through the updated task map. Refresh session context after updating the checkout; reinstall only when the location or installed bootstrap/skill payload changes. See [adoption](v2.3-context-reconciliation.md) and [observed validation](v2.3-validation.md).
+For v2.4, the existing bootstrap selects session continuity through the updated task map. Refresh session context after updating the checkout; reinstall only when the location or installed bootstrap/skill payload changes. See [adoption](v2.4-session-continuity.md) and [observed validation](v2.4-validation.md). A host/model switch alone does not require reloading still-active context.

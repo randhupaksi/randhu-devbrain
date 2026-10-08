@@ -1,4 +1,4 @@
-# DevBrain v2.3 Installation
+# DevBrain v2.4 Installation
 
 Run from the repository with PowerShell 5.1+ or PowerShell 7 as a regular user. Installation does not require Python, Node.js, or a YAML package.
 
@@ -11,7 +11,7 @@ Run from the repository with PowerShell 5.1+ or PowerShell 7 as a regular user. 
 
 The installer runs only when explicitly requested by the user. An agent editing DevBrain does not install it to the real home automatically.
 
-V2.3 adds context reconciliation to the existing discovery, debugging, and completion workflows. Existing managed loaders reference this checkout's baseline and task map, so updating the checkout makes the workflows available without reinstalling skills. Start a new session or explicitly reload DevBrain after updating to refresh active context. A moved/new checkout or changes to bootstrap/skill files still require the appropriate installer/update procedure. See [the v2.3 adoption guide](../docs/v2.3-context-reconciliation.md).
+V2.4 adds session continuity to the existing selective workflows. Managed loaders reference this checkout's baseline/task map, so updating it makes the workflow available without reinstalling skills. Start a new session or explicitly reload DevBrain after updating to refresh active context. A moved/new checkout or changes to bootstrap/skill files still require the installer/update procedure. See [the v2.4 adoption guide](../docs/v2.4-session-continuity.md).
 
 For an existing installation, run the updater with `-WhatIf` first, then run it without `-WhatIf` when the targets are correct. With the default `-Tool Both`, Codex and Claude receive the same seven source skill folders. Start a new coding session afterward so each host can discover the new skill names. The new skills have focused purposes: `frontend-performance` measures and improves slow browser behavior; `accessibility-audit` reviews and fixes interface barriers; `testing-strategy` chooses and implements meaningful tests. A review-only request stays read-only, while a fix request includes implementation.
 

@@ -28,7 +28,7 @@ The baseline carries safety rules that must always be available; safety modules 
 
 ## Compatibility and portability
 
-V2.2 adds discovery, debugging, and completion procedures; v2.3 adds context reconciliation when material disagreement or staleness affects the active decision. These are selected through the task map or compressed commands without changing the baseline. Existing global loaders read repository modules in place; the seven installed standalone skills retain their scope. The conceptual DOCX remains a v2.2 reference; maintained Markdown/YAML governs v2.3 operational behavior.
+V2.2 adds discovery, debugging, and completion; v2.3 adds context reconciliation; v2.4 adds conversational handoff and current-state resume through session continuity. The task map/commands select them only when relevant without changing the baseline. Existing loaders read repository modules in place, and the seven standalone skills retain their scope. The conceptual DOCX remains a v2.2 reference; maintained Markdown/YAML governs current operational behavior. Handoffs remain task context rather than automatic global/project memory.
 
 `runtime/full-context.md` and `runtime/core-compact.md` point to the baseline so legacy loaders remain usable. There is no generated monolith to rebuild. The installer uses the same template for both tools and injects a concrete local root only into the installed result.
 
