@@ -22,8 +22,9 @@ The current `source/DevBrain_v2_Developer_Context_Specification.docx` is a gener
 | Adaptive completion and verification honesty | `workflows/definition-of-done.md`; `workflows/verification-reporting.md` |
 | V2.3 context reconciliation (operational extension beyond this DOCX revision) | `workflows/context-reconciliation.md` |
 | V2.4 task handoff and recovery (operational extension beyond this DOCX revision) | `workflows/session-continuity.md` |
+| V2.5 repeatable behavioral evaluation (maintenance extension beyond this DOCX revision) | `evaluation/smoke-suite.yaml`; `evaluation/scorecard-contract.yaml`; `evaluation/README.md` |
 
-The operational release is v2.4. The source DOCX retains its v2.2 revision/date/hash; no source-document revision was explicitly requested for this upgrade. Session continuity and the 54-scenario suite are documented in the maintained [v2.4 guide](v2.4-session-continuity.md). Earlier operational extensions remain described by their own guides.
+The operational release is v2.5. The source DOCX retains its v2.2 revision/date/hash; no source-document revision was explicitly requested for this upgrade. The 12-case evaluation pack and evidence limits are documented in the maintained [v2.5 guide](v2.5-behavioral-reliability.md). The full suite remains at 54 scenarios. Earlier operational extensions remain described by their own guides.
 
 ## V2 decisions on gaps in the original source
 
