@@ -61,6 +61,9 @@ mutateYaml('prompts/commands.yaml', v => { v.commands.handoff.modules.push('work
 mutateYaml('evaluation/scenarios.yaml', v => { const s = v.scenarios.find(s => s.id === '47-handoff-read-only'); s.context_to_read = s.context_to_read.filter(p => p !== 'workflows/session-continuity.md'); }, 'Session continuity scenario routing 47-handoff-read-only');
 mutateYaml('evaluation/scenarios.yaml', v => { v.scenarios.find(s => s.id === '53-model-switch-small-task').context_to_read.push('workflows/session-continuity.md'); }, 'Model switch with sufficient context stays minimal');
 mutateYaml('devbrain.yaml', v => { v.always_load.push('workflows/session-continuity.md'); }, 'Canonical always_load');
+mutateYaml('evaluation/smoke-suite.yaml', v => { v.cases[0].scenario_id = 'missing'; }, 'Smoke scenario reference: missing');
+mutateYaml('evaluation/smoke-suite.yaml', v => { v.hosts = ['codex']; }, 'Smoke host targets');
+mutateYaml('evaluation/scorecard-contract.yaml', v => { v.dimensions.pop(); }, 'Canonical scoring dimensions');
 validate();
-console.log('PASS: ' + assertions + ' content regression assertions; six intentional regressions rejected.');
+console.log('PASS: ' + assertions + ' content regression assertions; nine intentional regressions rejected.');
 console.log('All fixture writes stayed in local/. Clone retained; no Git history or real host configuration changed.');
