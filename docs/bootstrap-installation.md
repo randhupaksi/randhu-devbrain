@@ -8,4 +8,4 @@ The original v2 upgrade audit inspected existing home loaders and skills read-on
 
 After updating a host, start a new session and ask the assistant to identify the baseline, project instructions, and relevant skills it actually read. Successful file copying alone does not prove native host discovery or behavior.
 
-For v2.4, the existing bootstrap selects session continuity through the updated task map. Refresh session context after updating the checkout; reinstall only when the location or installed bootstrap/skill payload changes. See [adoption](v2.4-session-continuity.md) and [observed validation](v2.4-validation.md). A host/model switch alone does not require reloading still-active context.
+For v2.5, the existing bootstrap continues selecting task workflows through the task map. Behavioral evaluation is maintenance-only and adds no loader or skill payload. Refresh session context after updating the checkout; reinstall only when the location or installed bootstrap/skill payload changes. See [adoption](v2.5-behavioral-reliability.md) and [observed validation](v2.5-validation.md). A host/model switch alone does not require reloading still-active context.

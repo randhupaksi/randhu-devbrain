@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.5.0 — 2026-10-08
+
+- Selected 12 core behavior cases from the existing 54 scenarios and added paired synthetic fixtures for Codex/Claude evaluation.
+- Added six-dimensional evidence scorecards, explicit PASS/FAIL/BLOCKED/NOT_RUN contracts, initial input fingerprints and conservative native comparison.
+- Added repository-local fixture preparation, read-only result validation and focused evidence/privacy/isolation regression tests; no host session starts automatically.
+- Kept the baseline, seven skill payloads, bootstrap and installer implementation unchanged; conceptual source DOCX remains v2.2.
+
 ## 2.4.0 — 2026-10-08
 
 - Added selective session continuity for requested conversational handoffs and substantial interrupted work with missing context.

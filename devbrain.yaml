@@ -1,5 +1,5 @@
 schema: devbrain-manifest
-version: 2.4.0
+version: 2.5.0
 owner: Randhu Paksi
 status: operational
 updated_on: 2026-10-08
@@ -46,6 +46,11 @@ evaluation:
   static_validator: evaluation/validate-repository.ps1
   installer_tests: evaluation/test-installer.ps1
   content_regressions: evaluation/test-content-regressions.cjs
+  smoke_suite: evaluation/smoke-suite.yaml
+  scorecard_contract: evaluation/scorecard-contract.yaml
+  smoke_preparation: evaluation/prepare-smoke.cjs
+  result_validator: evaluation/validate-results.cjs
+  result_tests: evaluation/test-behavior-results.cjs
 
 deferred_capabilities: [cli, exe, daemon, database, notification_system, task_logs, daily_summary, gui]
 source_specification:

@@ -1,4 +1,4 @@
-# DevBrain v2.4
+# DevBrain v2.5
 
 DevBrain is Randhu's personal context and developer knowledge layer for Codex and Claude Code. It provides principles, safety, workflows, prompt compression, skills, and bootstrap instructions. It is not an AI model, a new agent, an assistant replacement, a background application, or one large prompt.
 
@@ -15,13 +15,15 @@ Clone the repository wherever you choose, then run PowerShell as a regular user:
 
 One installer sets up the Codex/Claude loader and seven custom skills. It detects the repository and user home. Review the preview before applying changes; personal instructions outside the managed block are preserved. Update with `install/update-bootstrap.ps1`. Options include `-Tool Codex|Claude|Both`, `-SkipSkills`, and path parameters for a custom profile. See the [installation guide](install/README.md) for backups, legacy skills, and rollback.
 
-For an existing installation, run `./install/update-bootstrap.ps1 -WhatIf` and then `./install/update-bootstrap.ps1` to install the new skill set for both hosts. A new session is needed for Codex or Claude to discover newly installed skills.
+For an existing installation, use the updater when the checkout location or installed bootstrap/skill payload changes. Preview with `-WhatIf` first. A new session is needed for either host to discover newly installed skills. V2.5 changes maintenance evaluation, so existing installed payload needs no update solely for this release.
 
 ## Context strategy
 
+V2.5 adds [behavioral reliability evaluation](docs/v2.5-behavioral-reliability.md): 12 representative cases from the existing 54-scenario suite, identical synthetic fixture pairs, six-dimensional scorecards and evidence/input checks. Evaluations run only on request; they add no normal startup context. A structured scorecard does not prove the truth of its evidence or universal Codex/Claude parity.
+
 V2.4 adds [session continuity](workflows/session-continuity.md): conversational handoff and evidence-based resume for substantial interrupted work or missing task context. `handoff` summarizes the goal, decisions, file state, actual checks, pending boundaries and next step. `resume-task` reconciles the summary with current instructions, workspace and latest intent, then continues the authorized task. A model switch with sufficient active context needs no extra workflow. See [the adoption guide](docs/v2.4-session-continuity.md). V2.3 [context reconciliation](workflows/context-reconciliation.md) remains available for material contradictions.
 
-The [documentation index](docs/README.md) identifies current guides and historical records. See [the validation report](docs/v2.4-validation.md) for executed checks and remaining live-host evidence.
+The [documentation index](docs/README.md) identifies current guides and historical records. See [the validation report](docs/v2.5-validation.md) for executed checks and remaining live-host evidence.
 
 1. Read the [session baseline](runtime/session-baseline.md) once at the start of a coding session.
 2. Read the active project's instructions and only relevant evidence.
