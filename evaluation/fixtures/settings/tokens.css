@@ -1,0 +1,3 @@
+:root { --canvas: #f8f9fb; --surface: #fff; --ink: #25344a; --line: #c8d0da; --gap: 1rem; }
+body { background: var(--canvas); color: var(--ink); font: 1rem/1.5 system-ui; }
+.cards { display: flex; gap: var(--gap); } section { background: var(--surface); padding: var(--gap); }

@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Operations</title><link rel="stylesheet" href="tokens.css">
+<main><h1>Operations</h1><label>State <select id="state"><option value="all">All</option><option value="open">Open</option><option value="closed">Closed</option></select></label><p id="feedback" role="status">0 selected</p>
+<table><caption>Current records</caption><thead><tr><th scope="col">Select</th><th scope="col">Record</th><th scope="col">State</th></tr></thead><tbody><tr data-state="open"><td><input type="checkbox" aria-label="Select Draft review"></td><td>Draft review</td><td>Open</td></tr><tr data-state="closed"><td><input type="checkbox" aria-label="Select Asset check"></td><td>Asset check</td><td>Closed</td></tr></tbody></table></main>
+<script>
+const rows = [...document.querySelectorAll('tbody tr')];
+document.querySelector('#state').addEventListener('change', event => rows.forEach(row => { row.hidden = event.target.value !== 'all' && row.dataset.state !== event.target.value; }));
+document.querySelectorAll('input[type=checkbox]').forEach(input => input.addEventListener('change', () => { document.querySelector('#feedback').textContent = `${document.querySelectorAll('input:checked').length} selected`; }));
+</script></html>

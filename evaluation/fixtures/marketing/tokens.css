@@ -1,0 +1,3 @@
+:root { --paper: #f5f1e8; --ink: #25241f; --accent: #775538; --line: #c5bdaf; --space: 0.5rem; }
+body { background: var(--paper); color: var(--ink); font: 1rem/1.6 system-ui; }
+h1, h2 { font-family: Georgia, serif; }
