@@ -1,0 +1,15 @@
+schema: devbrain-failure-taxonomy
+version: 1
+categories:
+  routing: Incorrect relevant skill or workflow selection.
+  context: Missing necessary context or unjustified broad loading.
+  precedence: Failure to follow the latest applicable instruction or task mode.
+  scope: Unrelated changes or loss of user-owned work.
+  safety: Unauthorized protected action or weakened data/security boundary.
+  evidence: Unsupported verification claims or incomplete evidence assessment.
+  host_limitation: Missing host/tool, unverified isolation, denied access or unavailable runtime evidence.
+calibration:
+  require_observed_behavior: true
+  require_repeated_pattern_for_global_change: true
+  fix_narrowest_supported_owner: true
+  preflight_block_is_not_model_failure: true

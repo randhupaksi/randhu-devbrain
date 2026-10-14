@@ -9,6 +9,7 @@ function blankScorecard(suite, contract, scenarioId, host, fixtureHash, profileH
   return {
     schema: 'devbrain-behavior-result', version: contract.version, release: suite.release,
     scenario_id: scenarioId, host, interface: null, model: null, evidence_kind: 'native_session',
+    execution_stage: 'unattempted', fresh_session: null, failure_categories: [],
     attempted: false, status: 'NOT_RUN', observed_on: null,
     fixture_fingerprint: fixtureHash, profile_fingerprint: profileHash,
     observations: [], dimensions: Object.fromEntries(contract.dimensions.map(name => [name, { status: 'UNOBSERVED', evidence: [] }])),
@@ -25,6 +26,9 @@ function validateScorecard(card, suite, contract) {
   check(suite.cases.some(item => item.scenario_id === card.scenario_id), 'Unknown smoke scenario');
   check(suite.hosts.includes(card.host), 'Unknown host');
   check(contract.evidence_kinds.includes(card.evidence_kind), 'Evidence kind');
+  check(contract.execution_stages.includes(card.execution_stage), 'Execution stage');
+  check(card.fresh_session === null || typeof card.fresh_session === 'boolean', 'Fresh-session metadata');
+  check(Array.isArray(card.failure_categories) && card.failure_categories.every(code => contract.failure_categories.includes(code)) && new Set(card.failure_categories).size === card.failure_categories.length, 'Failure categories');
   check(typeof card.attempted === 'boolean', 'Attempt flag');
   check(contract.statuses.includes(card.status), 'Result status');
   check(card.interface === null || nonempty(card.interface), 'Interface metadata');
@@ -58,16 +62,24 @@ function validateScorecard(card, suite, contract) {
   const critical = Array.isArray(card.critical_failures) && card.critical_failures.length > 0;
   const failed = statuses.includes('FAIL') || critical;
   const allPass = statuses.length === contract.dimensions.length && statuses.every(status => status === 'PASS');
+  if (card.execution_stage === 'unattempted') check(card.status === 'NOT_RUN' && card.fresh_session === null, 'Unattempted stage requires NOT_RUN');
+  if (card.execution_stage === 'preflight') {
+    check(card.status === 'BLOCKED' && card.fresh_session === null && !critical, 'Preflight is blocked environment evidence, not session behavior');
+    check(observations.every(item => item?.kind === 'environment') && !statuses.some(status => ['PASS', 'FAIL'].includes(status)), 'Preflight cannot score model behavior');
+    check(Array.isArray(card.failure_categories) && card.failure_categories.includes('host_limitation'), 'Preflight requires host limitation classification');
+  }
+  if (card.execution_stage === 'session') check(card.evidence_kind === 'native_session' ? card.fresh_session === true : card.fresh_session === false, 'Session provenance must match evidence kind');
   if (card.status === 'NOT_RUN') {
-    check(card.attempted === false && observations.length === 0 && statuses.every(status => status === 'UNOBSERVED') && !critical && card.observed_on === null, 'NOT_RUN cannot contain attempted behavior');
+    check(card.attempted === false && card.execution_stage === 'unattempted' && observations.length === 0 && statuses.every(status => status === 'UNOBSERVED') && !critical && card.observed_on === null && card.failure_categories?.length === 0, 'NOT_RUN cannot contain attempted behavior');
   } else {
     check(card.attempted === true && nonempty(card.interface), 'Attempted run requires interface');
     const validDate = typeof card.observed_on === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(card.observed_on) && !Number.isNaN(Date.parse(card.observed_on)) && new Date(card.observed_on).toISOString().slice(0, 10) === card.observed_on;
     check(validDate, 'Attempted run requires valid observation date');
     check(observations.length > 0, 'Attempted run requires observations');
   }
-  if (card.status === 'PASS') check(allPass && !failed, 'PASS requires every dimension and no critical failure');
+  if (card.status === 'PASS') check(allPass && !failed && card.failure_categories?.length === 0, 'PASS requires every dimension and no critical failure');
   if (card.status === 'FAIL') check(failed, 'FAIL requires observed failure');
+  if (['FAIL', 'BLOCKED'].includes(card.status)) check(card.failure_categories?.length > 0 && nonempty(card.reason), 'Incomplete/failed results require classification and reason');
   if (card.status === 'BLOCKED') check(!failed && !allPass && nonempty(card.reason), 'BLOCKED cannot hide failures or completed scoring');
   if (failed) check(card.status === 'FAIL', 'Observed failure must remain FAIL');
   if (card.status === 'NOT_RUN') check(nonempty(card.reason), 'NOT_RUN requires reason');
@@ -88,8 +100,9 @@ function compareScorecards(cards, suite, contract) {
     const pair = suite.hosts.map(host => byKey.get(item.scenario_id + '/' + host));
     const complete = pair.every(Boolean);
     const sameInputs = complete && pair.every(card => card.fixture_fingerprint === pair[0].fixture_fingerprint && card.profile_fingerprint === pair[0].profile_fingerprint);
-    const comparable = errors.length === 0 && complete && sameInputs && pair.every(card => card.evidence_kind === 'native_session' && ['PASS', 'FAIL'].includes(card.status) && validateScorecard(card, suite, contract).length === 0);
-    return { scenario_id: item.scenario_id, hosts: Object.fromEntries(suite.hosts.map((host, index) => [host, !pair[index] ? 'MISSING' : contract.statuses.includes(pair[index].status) ? pair[index].status : 'INVALID'])), evidence_kinds: Object.fromEntries(suite.hosts.map((host, index) => [host, !pair[index] ? 'MISSING' : contract.evidence_kinds.includes(pair[index].evidence_kind) ? pair[index].evidence_kind : 'INVALID'])), same_inputs: !!sameInputs, native_comparable: !!comparable, both_pass: !!comparable && pair.every(card => card.status === 'PASS') };
+    const comparable = errors.length === 0 && complete && sameInputs && pair.every(card => card.evidence_kind === 'native_session' && card.execution_stage === 'session' && card.fresh_session === true && ['PASS', 'FAIL'].includes(card.status) && validateScorecard(card, suite, contract).length === 0);
+    const nativeStarted = errors.length === 0 ? pair.filter(card => card?.evidence_kind === 'native_session' && card?.execution_stage === 'session' && card?.fresh_session === true && card?.attempted === true).length : 0;
+    return { scenario_id: item.scenario_id, hosts: Object.fromEntries(suite.hosts.map((host, index) => [host, !pair[index] ? 'MISSING' : contract.statuses.includes(pair[index].status) ? pair[index].status : 'INVALID'])), evidence_kinds: Object.fromEntries(suite.hosts.map((host, index) => [host, !pair[index] ? 'MISSING' : contract.evidence_kinds.includes(pair[index].evidence_kind) ? pair[index].evidence_kind : 'INVALID'])), execution_stages: Object.fromEntries(suite.hosts.map((host, index) => [host, !pair[index] ? 'MISSING' : contract.execution_stages.includes(pair[index].execution_stage) ? pair[index].execution_stage : 'INVALID'])), native_sessions_started: nativeStarted, same_inputs: !!sameInputs, native_comparable: !!comparable, both_pass: !!comparable && pair.every(card => card.status === 'PASS') };
   });
   return { errors, comparisons };
 }
