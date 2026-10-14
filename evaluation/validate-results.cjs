@@ -37,8 +37,8 @@ function inspectResults(directory, inputs) {
       else if (privateText(fs.readFileSync(target, 'utf8'))) report.errors.push('Sensitive path/key candidate in evidence artifact');
     }
   }
-  if (report.errors.length) for (const item of report.comparisons) { item.native_comparable = false; item.both_pass = false; }
-  return { ...report, scorecards: cards.length, native_comparable_cases: report.comparisons.filter(item => item.native_comparable).length, native_both_pass_cases: report.comparisons.filter(item => item.both_pass).length };
+  if (report.errors.length) for (const item of report.comparisons) { item.native_comparable = false; item.both_pass = false; item.native_sessions_started = 0; }
+  return { ...report, scorecards: cards.length, native_sessions_started: report.comparisons.reduce((total, item) => total + item.native_sessions_started, 0), preflight_blocked: report.errors.length ? 0 : cards.filter(card => card.execution_stage === 'preflight' && card.status === 'BLOCKED').length, native_comparable_cases: report.comparisons.filter(item => item.native_comparable).length, native_both_pass_cases: report.comparisons.filter(item => item.both_pass).length };
 }
 if (require.main === module) {
   if (!process.argv[2]) { console.error('Supply the prepared batch evaluator directory. See evaluation/README.md.'); process.exit(2); }

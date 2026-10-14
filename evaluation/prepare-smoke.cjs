@@ -43,7 +43,7 @@ function profileFingerprint() {
   for (const directory of ['core', 'runtime', 'safety', 'workflows', 'prompts', 'skills']) digest.update(directory + '\0' + fingerprintTree(path.join(root, directory)));
   return digest.digest('hex');
 }
-function preparePack(inputs, name = 'smoke-' + crypto.randomUUID()) {
+function preparePack(inputs, name = 'smoke-' + crypto.randomUUID(), options = {}) {
   if (!/^smoke-[a-zA-Z0-9-]+$/.test(name)) throw new Error('Invalid fixture batch name');
   const parent = ensureLocalDirectory('local/behavior-runs');
   const batch = path.join(parent, name);
@@ -69,7 +69,8 @@ function preparePack(inputs, name = 'smoke-' + crypto.randomUUID()) {
       const rules = '# Evaluation Project Instructions\n\nAll content is synthetic. Work only inside this fixture project, preserve unrelated edits, and follow the latest task mode. Read PROJECT.md for this fixture\'s project facts, contracts and validation commands. Git add/commit/push, deployment, real data and global configuration are not authorized. Use the DevBrain baseline and relevant skills supplied by the session; do not inspect evaluator scorecards or other cases.\n';
       fs.writeFileSync(path.join(project, 'AGENTS.md'), rules);
       fs.writeFileSync(path.join(project, 'CLAUDE.md'), rules);
-      const prompt = scenario.prompt + '\n\nFixture facts: ' + item.supplement + '\n';
+      const setup = options.nativeContext ? 'Session setup: Read the DevBrain session baseline at ' + path.relative(project, path.join(root, 'runtime/session-baseline.md')).replaceAll('\\', '/') + ' once. Reuse it, select task modules and skills only when relevant, and read this project\'s scoped instructions. Context-source reads may reach the maintained DevBrain profile; task edits must stay inside this project. Do not read evaluator artifacts, expected outcomes or other cases.\n\n' : '';
+      const prompt = setup + scenario.prompt + '\n\nFixture facts: ' + item.supplement + '\n';
       fs.writeFileSync(path.join(caseRoot, 'prompt.txt'), prompt);
       const fixtureHash = fingerprintTree(project, prompt);
       // The Git case needs its own worktree, not the parent repository's ignored status.
@@ -80,12 +81,14 @@ function preparePack(inputs, name = 'smoke-' + crypto.randomUUID()) {
       entries.push({ host, scenario_id: item.scenario_id, project: host + '/' + item.scenario_id + '/project', prompt: host + '/' + item.scenario_id + '/prompt.txt', fixture_fingerprint: fixtureHash, profile_fingerprint: profileHash });
     }
   }
-  fs.writeFileSync(path.join(evaluator, 'index.yaml'), inputs.yaml.dump({ release: inputs.suite.release, entries }, { lineWidth: -1 }));
+  fs.writeFileSync(path.join(evaluator, 'index.yaml'), inputs.yaml.dump({ release: inputs.suite.release, native_context_setup: !!options.nativeContext, entries }, { lineWidth: -1 }));
   return { batch, evaluator, entries };
 }
 if (require.main === module) {
-  const pack = preparePack(loadInputs(process.argv[2]));
+  const args = process.argv.slice(2), positional = args.filter(value => value !== '--native-context');
+  if (positional.length > 1 || positional.some(value => value.startsWith('--'))) { console.error('Usage: node evaluation/prepare-smoke.cjs [yaml-module] [--native-context]'); process.exit(2); }
+  const pack = preparePack(loadInputs(positional[0]), undefined, { nativeContext: args.includes('--native-context') });
   console.log('Prepared ' + pack.entries.length + ' independent fixture projects: ' + path.relative(root, pack.batch).replaceAll('\\', '/'));
   console.log('Scorecards are NOT_RUN. No coding host was launched. Keep evaluator/ outside assistant context.');
 }
-module.exports = { loadInputs, preparePack, fingerprintTree, ensureLocalDirectory };
+module.exports = { loadInputs, preparePack, fingerprintTree, profileFingerprint, ensureLocalDirectory };
