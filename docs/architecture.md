@@ -32,6 +32,8 @@ V2.2 adds discovery, debugging, and completion; v2.3 adds context reconciliation
 
 `runtime/full-context.md` and `runtime/core-compact.md` point to the baseline so legacy loaders remain usable. There is no generated monolith to rebuild. The installer uses the same template for both tools and injects a concrete local root only into the installed result.
 
+The v2.6 candidate extends maintenance evaluation with explicit preflight/session stages, fresh provenance and failure classification. Preparation, preflight and validators never launch a model; the separate manual Codex capture requires explicit runtime authorization and launch flags. Observed handoff failures justify a small baseline routing clarification; UI verification/cleanup boundaries stay in the selective UI workflow. Stable promotion remains pending the required host evidence and unresolved scope checks.
+
 The installer stages and verifies skills before replacing the destination directory. It backs up the previous version, including nested copies or customization, so only one active tree remains without stale references. An identical update does not write files or create another backup. Loaders are managed only inside markers; invalid markers are rejected before mutation.
 
 There is no daemon, model binding, database, or product CLI. Validators are manually run maintenance scripts, not assistant runtime dependencies.
