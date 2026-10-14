@@ -2,11 +2,12 @@ const test = require('node:test'), assert = require('node:assert/strict'), fs = 
 const { loadInputs, preparePack, fingerprintTree, ensureLocalDirectory } = require('./prepare-smoke.cjs');
 const { blankScorecard, validateScorecard, compareScorecards } = require('./results-contract.cjs');
 const { inspectResults } = require('./validate-results.cjs');
+const { assessHost, recordPreflight } = require('./host-preflight.cjs');
 const inputs = loadInputs(), { suite, contract } = inputs, id = suite.cases[0].scenario_id;
 const blank = host => blankScorecard(suite, contract, id, host, 'a'.repeat(64), 'b'.repeat(64));
 function passed(host) {
   const card = blank(host);
-  Object.assign(card, { attempted: true, status: 'PASS', interface: 'Synthetic test interface', observed_on: '2026-10-08', reason: null });
+  Object.assign(card, { execution_stage: 'session', fresh_session: true, attempted: true, status: 'PASS', interface: 'Synthetic test interface', observed_on: '2026-10-08', reason: null });
   card.observations = contract.dimensions.map((name, index) => ({ id: 'e' + index, kind: 'response', summary: 'Synthetic evidence for contract testing: ' + name }));
   contract.dimensions.forEach((name, index) => { card.dimensions[name] = { status: 'PASS', evidence: ['e' + index] }; });
   return card;
@@ -25,11 +26,11 @@ test('critical failures cannot be hidden by PASS or BLOCKED', () => {
 });
 test('FAIL needs observed failure and accepts a documented critical failure', () => {
   const card = passed('codex'); card.status = 'FAIL'; assert.ok(validateScorecard(card, suite, contract).length);
-  card.critical_failures = ['unauthorized_mutation']; assert.deepEqual(validateScorecard(card, suite, contract), []);
+  card.critical_failures = ['unauthorized_mutation']; card.failure_categories = ['safety']; card.reason = 'Synthetic unauthorized mutation observed.'; assert.deepEqual(validateScorecard(card, suite, contract), []);
 });
 test('NOT_RUN cannot contain attempted evidence; partial attempts can be BLOCKED', () => {
   const card = blank('codex'); card.observations = [{ id: 'e1', kind: 'response', summary: 'Observed response' }]; assert.ok(validateScorecard(card, suite, contract).length);
-  Object.assign(card, { attempted: true, status: 'BLOCKED', interface: 'Synthetic test interface', observed_on: '2026-10-08', reason: 'Source-read telemetry unavailable' });
+  Object.assign(card, { execution_stage: 'session', fresh_session: true, failure_categories: ['evidence'], attempted: true, status: 'BLOCKED', interface: 'Synthetic test interface', observed_on: '2026-10-08', reason: 'Source-read telemetry unavailable' });
   card.dimensions.routing_context = { status: 'BLOCKED', evidence: ['e1'] }; assert.deepEqual(validateScorecard(card, suite, contract), []);
 });
 test('unknown host, case, malformed date and private path are rejected', () => {
@@ -54,8 +55,39 @@ test('native comparison needs equal fixture and profile inputs', () => {
   b.fixture_fingerprint = a.fixture_fingerprint; b.profile_fingerprint = 'd'.repeat(64); assert.equal(compareScorecards([a, b], suite, contract).comparisons[0].native_comparable, false);
 });
 test('existing-session evidence and duplicates cannot establish native comparison', () => {
-  const a = passed('codex'), b = passed('claude'); b.evidence_kind = 'existing_session'; assert.equal(compareScorecards([a, b], suite, contract).comparisons[0].both_pass, false);
-  b.evidence_kind = 'native_session'; const report = compareScorecards([a, b, a], suite, contract); assert.ok(report.errors.length); assert.equal(report.comparisons[0].both_pass, false);
+  const a = passed('codex'), b = passed('claude'); b.evidence_kind = 'existing_session'; b.fresh_session = false; assert.equal(compareScorecards([a, b], suite, contract).comparisons[0].both_pass, false);
+  b.evidence_kind = 'native_session'; b.fresh_session = true; const report = compareScorecards([a, b, a], suite, contract); assert.ok(report.errors.length); assert.equal(report.comparisons[0].both_pass, false);
+});
+test('resumed or unknown session provenance cannot count as fresh native behavior', () => {
+  for (const fresh of [false, null]) { const card = passed('codex'); card.fresh_session = fresh; assert.ok(validateScorecard(card, suite, contract).length); }
+  const card = passed('codex'); card.execution_stage = 'preflight'; card.fresh_session = null;
+  assert.ok(validateScorecard(card, suite, contract).some(error => error.includes('Preflight cannot score')));
+});
+test('command discovery alone cannot authorize a native start', () => {
+  assert.equal(assessHost({ command_available: true, workspace_boundary_verified: null, fresh_session_setup_verified: null }).ready, false);
+  assert.equal(assessHost({ command_available: true, workspace_boundary_verified: true, fresh_session_setup_verified: true }).ready, true);
+  assert.throws(() => assessHost({ command_available: true }), /explicit boolean/);
+});
+test('blocked preflight records 24 prerequisites and zero model sessions without overwriting prior attempts', () => {
+  const pack = preparePack(inputs), evidenceDirectory = path.join(pack.evaluator, 'evidence'); fs.mkdirSync(evidenceDirectory);
+  fs.writeFileSync(path.join(evidenceDirectory, 'preflight.md'), 'Synthetic environment receipt for harness tests.\n');
+  const receipt = { schema: 'devbrain-host-preflight', release: suite.release, observed_on: '2026-10-13', hosts: suite.hosts.map(host => ({ host, command_available: host === 'codex', workspace_boundary_verified: false, fresh_session_setup_verified: false, interface: 'Synthetic preflight', summary: 'Synthetic unavailable isolation prerequisite.', artifact: 'evidence/preflight.md' })) };
+  const result = recordPreflight(pack.evaluator, inputs, receipt); assert.equal(result.native_sessions_started, 0); assert.equal(result.scorecards, 24);
+  const report = inspectResults(pack.evaluator, inputs); assert.deepEqual(report.errors, []); assert.equal(report.preflight_blocked, 24); assert.equal(report.native_sessions_started, 0); assert.equal(report.native_both_pass_cases, 0);
+  assert.throws(() => recordPreflight(pack.evaluator, inputs, receipt), /overwrite/);
+  const card = inputs.yaml.load(fs.readFileSync(path.join(pack.evaluator, 'cards', 'codex-' + id + '.yaml'), 'utf8'));
+  card.dimensions.authorization = { status: 'PASS', evidence: ['host-preflight'] };
+  assert.ok(validateScorecard(card, suite, contract).some(error => error.includes('Preflight cannot score')));
+  card.failure_categories = ['missing']; assert.ok(validateScorecard(card, suite, contract).some(error => error.includes('Failure categories')));
+});
+test('ready preflight leaves every case NOT_RUN and rejects invalid receipt metadata before writes', () => {
+  const pack = preparePack(inputs), evidence = path.join(pack.evaluator, 'evidence'); fs.mkdirSync(evidence); fs.writeFileSync(path.join(evidence, 'ready.md'), 'Synthetic prerequisite observations only.\n');
+  const receipt = { schema: 'devbrain-host-preflight', release: suite.release, observed_on: '2026-10-13', hosts: suite.hosts.map(host => ({ host, command_available: true, workspace_boundary_verified: true, fresh_session_setup_verified: true, interface: 'Synthetic ready preflight', summary: 'Synthetic fixture prerequisites checked; no model executed.', artifact: 'evidence/ready.md' })) };
+  const invalid = { ...receipt, observed_on: '2026-02-30' }; assert.throws(() => recordPreflight(pack.evaluator, inputs, invalid), /Invalid date/);
+  const privateReceipt = JSON.parse(JSON.stringify(receipt)); privateReceipt.hosts[0].summary = ['C', ':', '/Users/', 'Synthetic', '/private'].join('');
+  assert.throws(() => recordPreflight(pack.evaluator, inputs, privateReceipt), /sensitive preflight/);
+  const result = recordPreflight(pack.evaluator, inputs, receipt); assert.ok(result.hosts.every(host => host.ready));
+  const report = inspectResults(pack.evaluator, inputs); assert.deepEqual(report.errors, []); assert.equal(report.native_sessions_started, 0); assert.equal(report.preflight_blocked, 0); assert.ok(report.comparisons.every(pair => Object.values(pair.hosts).every(status => status === 'NOT_RUN')));
 });
 test('fixture output rejects external/traversing targets', () => {
   for (const value of ['outside/run', 'local/../run', '/tmp/run']) assert.throws(() => ensureLocalDirectory(value));

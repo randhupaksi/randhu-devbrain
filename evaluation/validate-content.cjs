@@ -30,8 +30,10 @@ for(const[f,t]of docs){
 }
 for(const f of files)check(!/(^|\/)(?:\.env(?:\..+)?|credentials\.json|id_rsa|[^/]+\.(?:pem|pfx|p12|key|dump|sql))$/i.test(f)||f.endsWith('.env.example'),'Secret/data-like file '+f);
 const manifest=parsed.get('devbrain.yaml');
+check(docs.get('runtime/session-baseline.md')?.includes('An explicitly requested handoff or DevBrain workflow command still selects its task-map module, even for a small task.'),'Explicit workflow routing survives small-task shortcut');
+check(docs.get('workflows/ui-task.md')?.includes('do not move them to external TEMP directories'),'Denied UI cleanup preserves workspace boundary');
 if(manifest){
- check(manifest.version==='2.5.0','Manifest version');
+ check(manifest.version==='2.6.0-rc.1'&&manifest.status==='native_validation_pending','Manifest version/status');
  check(JSON.stringify(manifest.always_load)==='["runtime/session-baseline.md"]','Canonical always_load');
  for(const ref of [manifest.task_router,...manifest.always_load,...Object.values(manifest.evaluation),manifest.bootstrap.installer,manifest.bootstrap.updater,manifest.bootstrap.codex_template,manifest.bootstrap.claude_template,manifest.source_specification.file])check(fs.existsSync(path.join(root,ref)),'Missing manifest ref '+ref);
  for(const n of manifest.skills){
@@ -93,9 +95,13 @@ if(Array.isArray(smoke?.cases)){
   check(typeof item.supplement==='string'&&item.supplement.length>20&&Array.isArray(item.coverage)&&item.coverage.length>0,'Smoke fixture facts/coverage');
  }
 }
-check(resultContract?.schema==='devbrain-scorecard-contract'&&resultContract?.version===1,'Scorecard contract schema');
+check(resultContract?.schema==='devbrain-scorecard-contract'&&resultContract?.version===2,'Scorecard contract schema');
 check(JSON.stringify(resultContract?.dimensions)==='["routing_context","intent_precedence","worktree_preservation","authorization","completion","validation_honesty"]','Canonical scoring dimensions');
 check(JSON.stringify(resultContract?.statuses)==='["PASS","FAIL","BLOCKED","NOT_RUN"]','Explicit behavioral result statuses');
+check(JSON.stringify(resultContract?.execution_stages)==='["unattempted","preflight","session"]','Explicit evaluation execution stages');
+const taxonomy=parsed.get('evaluation/failure-taxonomy.yaml');
+check(taxonomy?.schema==='devbrain-failure-taxonomy'&&JSON.stringify(Object.keys(taxonomy.categories||{}))===JSON.stringify(resultContract?.failure_categories),'Failure taxonomy parity');
+check(taxonomy?.calibration?.require_observed_behavior===true&&taxonomy?.calibration?.require_repeated_pattern_for_global_change===true&&taxonomy?.calibration?.preflight_block_is_not_model_failure===true,'Evidence-driven calibration');
 for(const[f,t]of docs)if(f.endsWith('.md')&&!/^(docs|evaluation|adapters)\//.test(f))for(const p of t.split(/\r?\n\s*\r?\n/).map(x=>x.trim()).filter(x=>x.length>=200)){if(!paras.has(p))paras.set(p,new Set());paras.get(p).add(f)}
 function metrics(t){return{bytes:Buffer.byteLength(t),characters:t.length,words:(t.match(/\S+/g)||[]).length,estimated_tokens:Math.ceil(t.length/4)}}
 console.log(JSON.stringify({checks,files_scanned:files.length,yaml_files:parsed.size,scenarios:suite?.scenarios?.length,runtime_comparison_basis:'HEAD baseline versus working-tree baseline',runtime_before:metrics(git(['show','HEAD:runtime/session-baseline.md'])),runtime_after:metrics(docs.get('runtime/session-baseline.md')),duplicate_candidates:[...paras.values()].filter(s=>s.size>1).map(s=>[...s]),errors},null,2));

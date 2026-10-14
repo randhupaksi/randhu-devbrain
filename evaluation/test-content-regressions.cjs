@@ -54,7 +54,15 @@ function mutateYaml(file, change, finding) {
     validate(finding);
   } finally { fs.writeFileSync(target, original); }
 }
+function removeText(file, text, finding) {
+  const target = path.join(clone, file), original = fs.readFileSync(target);
+  assert.ok(original.toString('utf8').includes(text), 'Expected calibrated instruction');
+  try { fs.writeFileSync(target, original.toString('utf8').replace(text, '')); validate(finding); }
+  finally { fs.writeFileSync(target, original); }
+}
 validate();
+removeText('runtime/session-baseline.md', 'An explicitly requested handoff or DevBrain workflow command still selects its task-map module, even for a small task.', 'Explicit workflow routing survives small-task shortcut');
+removeText('workflows/ui-task.md', 'do not move them to external TEMP directories', 'Denied UI cleanup preserves workspace boundary');
 mutateYaml('prompts/commands.yaml', v => { v.commands.handoff.mode = 'analyze_then_implement'; }, 'Handoff remains read-only and selective');
 mutateYaml('prompts/commands.yaml', v => { v.commands['resume-task'].approval = 'none'; }, 'Resume preserves task authorization and selective routing');
 mutateYaml('prompts/commands.yaml', v => { v.commands.handoff.modules.push('workflows/context-reconciliation.md'); }, 'Handoff remains read-only and selective');
@@ -64,6 +72,8 @@ mutateYaml('devbrain.yaml', v => { v.always_load.push('workflows/session-continu
 mutateYaml('evaluation/smoke-suite.yaml', v => { v.cases[0].scenario_id = 'missing'; }, 'Smoke scenario reference: missing');
 mutateYaml('evaluation/smoke-suite.yaml', v => { v.hosts = ['codex']; }, 'Smoke host targets');
 mutateYaml('evaluation/scorecard-contract.yaml', v => { v.dimensions.pop(); }, 'Canonical scoring dimensions');
+mutateYaml('evaluation/scorecard-contract.yaml', v => { v.execution_stages = ['session']; }, 'Explicit evaluation execution stages');
+mutateYaml('evaluation/failure-taxonomy.yaml', v => { v.calibration.require_observed_behavior = false; }, 'Evidence-driven calibration');
 validate();
-console.log('PASS: ' + assertions + ' content regression assertions; nine intentional regressions rejected.');
+console.log('PASS: ' + assertions + ' content regression assertions; thirteen intentional regressions rejected.');
 console.log('All fixture writes stayed in local/. Clone retained; no Git history or real host configuration changed.');
