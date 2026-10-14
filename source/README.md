@@ -15,4 +15,4 @@ The stable v2 filename covers minor releases. This revision describes project di
 
 The original v0.1 document remains accessible in earlier Git commits. Replacing it in the current tree does not remove it from Git history.
 
-Operational DevBrain is now v2.5. This source document retains the v2.2 revision and hash above. [The v2.5 guide](../docs/v2.5-behavioral-reliability.md) describes maintenance evaluation and evidence scoring; the full suite remains at 54 scenarios. Markdown/YAML remains authoritative. A source-document revision requires an explicit request.
+The checkout prepares v2.6.0-rc.1 with native validation pending; v2.5 remains the latest completed stable release. This document retains the v2.2 revision/hash above. [The candidate guide](../docs/v2.6-native-validation.md) describes maintenance preflight/provenance; the full suite remains at 54 scenarios. Markdown/YAML remains authoritative. A source-document revision requires an explicit request.

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.6.0-rc.1 — 2026-10-14 (native validation pending)
+
+- Added explicit preflight/session stages, fresh native provenance and classified failure reasons to scorecard schema version 2.
+- Added repository-local environment receipt recording, overwrite protection and stage-aware native comparison.
+- Added failure taxonomy and calibration guidance; preflight blocks cannot be scored as model behavior.
+- Added separately authorized manual Codex capture with sanitized traces, file hashes, profile-drift rejection and bounded subprocess handling.
+- Observed repeated handoff routing failures, clarified explicit workflow selection and verified both affected cases in fresh sessions.
+- Added UI browser/cleanup boundaries and fixture-local tool temporary settings after observed scope failures. An external generated cache was removed with specific user authorization; native rechecking and Claude runtime authorization remain pending.
+- Preserved original failing/interrupted evidence; stable promotion and host parity remain unclaimed.
+
 ## 2.5.0 — 2026-10-08
 
 - Selected 12 core behavior cases from the existing 54 scenarios and added paired synthetic fixtures for Codex/Claude evaluation.

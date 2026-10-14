@@ -1,6 +1,6 @@
-# DevBrain v2.5 Documentation
+# DevBrain v2.6 Candidate Documentation
 
-The current release is 2.5.0. Markdown/YAML defines operational behavior. The generalized DOCX remains a v2.2 conceptual reference, excluded from startup. Read these documents for maintenance or onboarding.
+The checkout prepares 2.6.0-rc.1 with native validation pending; v2.5 is the latest completed stable release. Markdown/YAML defines operational behavior. The generalized DOCX remains a v2.2 conceptual reference, excluded from startup. Read these documents for maintenance or onboarding.
 
 | Reader need | Current document |
 |---|---|
@@ -12,7 +12,8 @@ The current release is 2.5.0. Markdown/YAML defines operational behavior. The ge
 | Context reconciliation and conflicting evidence | [V2.3 adoption guide](v2.3-context-reconciliation.md) |
 | Handoff and interrupted-task recovery | [V2.4 adoption guide](v2.4-session-continuity.md) |
 | Repeatable behavior evaluation and evidence scoring | [V2.5 adoption guide](v2.5-behavioral-reliability.md) |
-| Actual validation and its limits | [V2.5 validation report](v2.5-validation.md) |
+| Native preflight, provenance and calibration | [V2.6 candidate guide](v2.6-native-validation.md) |
+| Current validation and its limits | [V2.6 candidate evidence](v2.6-validation.md) |
 | Evaluation procedure and scenario definitions | [Evaluation guide](../evaluation/README.md) and [scenario overview](evaluation-scenarios.md) |
 | Source specification and mapping | [Source reference](../source/README.md) and [source mapping](source-mapping.md) |
 | Maintaining modules and documentation | [Maintenance](maintenance.md) |
@@ -27,3 +28,5 @@ The current release is 2.5.0. Markdown/YAML defines operational behavior. The ge
 [V2.3 validation](v2.3-validation.md) retains its original dated checks and worktree snapshot. Its context-reconciliation guidance remains applicable.
 
 [V2.4 validation](v2.4-validation.md) retains its original dated checks. Its session-continuity workflow remains applicable; current evaluation uses the v2.5 smoke pack and result contract.
+
+[V2.5 validation](v2.5-validation.md) retains its completed dated evidence. The current candidate uses result schema version 2; old records must not be relabeled as newly observed sessions.

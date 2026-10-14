@@ -1,4 +1,6 @@
-# DevBrain v2.5
+# DevBrain v2.6 Candidate
+
+Current checkout: `2.6.0-rc.1`, native validation pending. The latest completed stable release is v2.5. V2.6 adds fresh-session evidence, failure classification and observed handoff/UI workflow corrections. Native Codex runs have started; unresolved UI scope/renderer limits and pending Claude evaluation prevent stable promotion. See [candidate adoption](docs/v2.6-native-validation.md) and [current evidence](docs/v2.6-validation.md).
 
 DevBrain is Randhu's personal context and developer knowledge layer for Codex and Claude Code. It provides principles, safety, workflows, prompt compression, skills, and bootstrap instructions. It is not an AI model, a new agent, an assistant replacement, a background application, or one large prompt.
 
@@ -15,7 +17,7 @@ Clone the repository wherever you choose, then run PowerShell as a regular user:
 
 One installer sets up the Codex/Claude loader and seven custom skills. It detects the repository and user home. Review the preview before applying changes; personal instructions outside the managed block are preserved. Update with `install/update-bootstrap.ps1`. Options include `-Tool Codex|Claude|Both`, `-SkipSkills`, and path parameters for a custom profile. See the [installation guide](install/README.md) for backups, legacy skills, and rollback.
 
-For an existing installation, use the updater when the checkout location or installed bootstrap/skill payload changes. Preview with `-WhatIf` first. A new session is needed for either host to discover newly installed skills. V2.5 changes maintenance evaluation, so existing installed payload needs no update solely for this release.
+For an existing installation, use the updater when the checkout location or installed bootstrap/skill payload changes. Preview with `-WhatIf` first. A new session is needed to discover newly installed skills. The v2.6 candidate changes repository runtime/workflows and maintenance evaluation; bootstrap/skill payloads are unchanged. Existing loaders read runtime in place, so start a fresh session after updating the checkout; no real-home reinstall is needed solely for these changes.
 
 ## Context strategy
 
@@ -23,7 +25,7 @@ V2.5 adds [behavioral reliability evaluation](docs/v2.5-behavioral-reliability.m
 
 V2.4 adds [session continuity](workflows/session-continuity.md): conversational handoff and evidence-based resume for substantial interrupted work or missing task context. `handoff` summarizes the goal, decisions, file state, actual checks, pending boundaries and next step. `resume-task` reconciles the summary with current instructions, workspace and latest intent, then continues the authorized task. A model switch with sufficient active context needs no extra workflow. See [the adoption guide](docs/v2.4-session-continuity.md). V2.3 [context reconciliation](workflows/context-reconciliation.md) remains available for material contradictions.
 
-The [documentation index](docs/README.md) identifies current guides and historical records. See [the validation report](docs/v2.5-validation.md) for executed checks and remaining live-host evidence.
+The [documentation index](docs/README.md) identifies current guides and historical records. See [candidate validation](docs/v2.6-validation.md) for current checks and remaining native work; [v2.5 validation](docs/v2.5-validation.md) retains that completed release's evidence.
 
 1. Read the [session baseline](runtime/session-baseline.md) once at the start of a coding session.
 2. Read the active project's instructions and only relevant evidence.
