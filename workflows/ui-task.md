@@ -27,3 +27,7 @@ Explore composition and hierarchy creatively toward the outcome. Add relevant su
 Check relevant normal/loading/empty/error/disabled/permission-limited states; relevant desktop/tablet/mobile sizes; overflow; focus/keyboard; touch targets; contrast/readability; console errors; each new visual value's token compliance; and regressions in shared components.
 
 When a browser/runtime is available and the task makes meaningful visual changes, inspect the real page at relevant viewports. Compare it with the design goal and do not infer visual quality from lint/typecheck alone. If the runtime cannot be run, state that visual verification was not performed.
+
+Keep browser profiles, caches and screenshots inside the authorized workspace. Use existing validation tools rather than automatically installing packages. If sandbox restrictions block rendering, report the limitation; do not disable the browser sandbox, expand filesystem access or repeat equivalent failing launches to obtain a screenshot.
+
+Clean up only verified generated artifacts within that workspace. If cleanup is denied, report the remaining artifacts; do not move them to external TEMP directories or another location to bypass the boundary.

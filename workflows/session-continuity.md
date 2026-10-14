@@ -1,6 +1,6 @@
 # Session Continuity and Recovery
 
-Use when the user requests a handoff, resumes an interrupted substantial task, moves work to another session/host, or material context loss prevents safe continuation. A model switch with sufficient active context needs no handoff or reload by itself. Small understood tasks use the baseline directly. This workflow does not monitor compaction or automatically create memory, task logs, files, or background activity.
+Use when the user requests a handoff, resumes an interrupted substantial task, moves work to another session/host, or material context loss prevents safe continuation. A model switch with sufficient active context needs no handoff or reload by itself. Small understood tasks use the baseline directly unless the user explicitly requests a handoff or workflow command. This workflow does not monitor compaction or automatically create memory, task logs, files, or background activity.
 
 ## Prepare a handoff
 
