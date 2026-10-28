@@ -1,6 +1,6 @@
-# DevBrain v2.7 — CLI Compatibility Candidate
+# DevBrain v2.8 — Project Context Architecture
 
-V2.7.0-rc.1 focuses on reliable bootstrap discovery, session lifecycle, skill loading, and permission boundaries in Codex CLI and Claude Code CLI. V2.6 remains `2.6.0-rc.1` overall: its Codex CLI non-UI scope is stable across nine reviewed native PASS results, while UI scenarios 18, 19 and 41 were deferred and Claude native evaluation remains pending. See the [v2.7 candidate](docs/v2.7-cli-compatibility.md), [host test matrix](evaluation/cli-host-matrix.yaml), and [v2.6 evidence](docs/v2.6-validation.md).
+V2.8.0 is stable for project-context architecture: it clarifies fact ownership and selective loading across Codex and Claude, adds concise project templates, an explicit setup/maintenance workflow, and five context-routing evaluation scenarios without expanding the always-loaded runtime. The separate native CLI compatibility matrix remains pending beyond its partial captures; v2.8 does not claim full live-host parity. See the [v2.8 release record](docs/v2.8-project-context.md), [v2.7 CLI record](docs/v2.7-cli-compatibility.md), and [host test matrix](evaluation/cli-host-matrix.yaml).
 
 DevBrain is Randhu's personal context and developer knowledge layer for Codex and Claude Code. It provides principles, safety, workflows, prompt compression, skills, and bootstrap instructions. It is not an AI model, a new agent, an assistant replacement, a background application, or one large prompt.
 
@@ -17,15 +17,15 @@ Clone the repository wherever you choose, then run PowerShell as a regular user:
 
 One installer sets up the Codex/Claude loader and seven custom skills. It detects the repository and user home. Review the preview before applying changes; personal instructions outside the managed block are preserved. Update with `install/update-bootstrap.ps1`. Options include `-Tool Codex|Claude|Both`, `-SkipSkills`, and path parameters for a custom profile. See the [installation guide](install/README.md) for backups, legacy skills, and rollback.
 
-For an existing installation, use the updater when the checkout location or installed bootstrap/skill payload changes. Preview with `-WhatIf` first. A new session is needed to discover newly installed skills. The v2.7 candidate adds a selective CLI compatibility workflow and host evaluation contract; it does not change installer destinations or require global host settings. Existing loaders read runtime in place, so start a fresh session after updating the checkout; do not reinstall solely for repository-only evaluation changes.
+For an existing installation, use the updater when the checkout location or installed bootstrap/skill payload changes. Preview with `-WhatIf` first. A new session is needed to discover newly installed skills. V2.8 changes project-context guidance and evaluation only; it does not change installer destinations, bootstrap payloads, or require global host settings. Existing loaders read runtime in place, so start a fresh session after updating the checkout; do not reinstall solely for repository-only content changes.
 
 ## Context strategy
 
-V2.5 adds [behavioral reliability evaluation](docs/v2.5-behavioral-reliability.md): 12 representative cases from the existing 54-scenario suite, identical synthetic fixture pairs, six-dimensional scorecards and evidence/input checks. Evaluations run only on request; they add no normal startup context. A structured scorecard does not prove the truth of its evidence or universal Codex/Claude parity.
+V2.8 adds a project-context ownership and progressive-disclosure contract: `AGENTS.md` owns instructions/commands/safety, `PROJECT-CONTEXT.md` provides a factual index, and optional Visual DNA/API Contract files own their domains. Five new scenarios bring the behavior suite to 59. V2.5's [behavioral reliability evaluation](docs/v2.5-behavioral-reliability.md) still selects 12 representative cases, uses identical synthetic fixture pairs, and scores six dimensions; evaluations run only on request and add no normal startup context. A structural or scorecard pass does not prove universal Codex/Claude behavior.
 
 V2.4 adds [session continuity](workflows/session-continuity.md): conversational handoff and evidence-based resume for substantial interrupted work or missing task context. `handoff` summarizes the goal, decisions, file state, actual checks, pending boundaries and next step. `resume-task` reconciles the summary with current instructions, workspace and latest intent, then continues the authorized task. A model switch with sufficient active context needs no extra workflow. See [the adoption guide](docs/v2.4-session-continuity.md). V2.3 [context reconciliation](workflows/context-reconciliation.md) remains available for material contradictions.
 
-The [documentation index](docs/README.md) identifies current guides and historical records. See the [v2.7 CLI compatibility candidate](docs/v2.7-cli-compatibility.md) for current host checks and the [v2.6 record](docs/v2.6-validation.md) for its scoped evidence; [v2.5 validation](docs/v2.5-validation.md) retains that completed release's results.
+The [documentation index](docs/README.md) identifies current guides and historical records. See the [v2.8 project-context release](docs/v2.8-project-context.md), [v2.7 CLI compatibility record](docs/v2.7-cli-compatibility.md), and [v2.6 record](docs/v2.6-validation.md) for their scoped evidence; [v2.5 validation](docs/v2.5-validation.md) retains that completed release's results.
 
 1. Read the [session baseline](runtime/session-baseline.md) once at the start of a coding session.
 2. Read the active project's instructions and only relevant evidence.
@@ -45,7 +45,7 @@ Do not load the full skills directory, source DOCX, changelog, adapter docs, pro
 | prompts | Short commands with intent, mode, routing, and approval boundaries |
 | skills | Seven portable, task-specific skills with progressive disclosure |
 | adapters | Codex/Claude bootstrap templates and discovery notes |
-| project-templates | Project facts, Visual DNA, and API contracts |
+| project-templates | Optional project context templates, ownership rules, and selective domain references |
 | install | User-level PowerShell installer/updater |
 | docs | Architecture, maintenance, audit, and upgrade report |
 | evaluation | Behavior scenarios and validation/installer tests |

@@ -1,6 +1,6 @@
 schema: devbrain-cli-host-compatibility
 version: 1
-release: 2.7.0-rc.1
+release: 2.8.0
 purpose: Verify host-specific instruction discovery, skill loading, session lifecycle, and permission boundaries without treating static checks as live behavior.
 hosts:
   - id: codex_cli

@@ -1,11 +1,15 @@
 schema: devbrain-manifest
-version: 2.7.0-rc.1
+version: 2.8.0
 owner: Randhu Paksi
-status: native_validation_pending
+status: stable
 updated_on: 2026-10-28
 language: en
 purpose: Personal developer knowledge layer for AI coding assistants
 scoped_validation:
+  project_context_architecture:
+    status: stable
+    scope: templates_and_selective_context_workflow
+    evidence: [repository_content_validation, content_regressions, node_harness_tests, installer_integration, smoke_fixture_preparation]
   codex_cli_non_ui:
     status: stable
     interface: Codex CLI 0.164.0
@@ -53,7 +57,7 @@ skills:
   - accessibility-audit
   - testing-strategy
 
-project_context_candidates: [AGENTS.md, CLAUDE.md, PROJECT-CONTEXT.md, README.md]
+project_context_candidates: [AGENTS.md, CLAUDE.md, PROJECT-CONTEXT.md, PROJECT-VISUAL-DNA.md, PROJECT-API-CONTRACT.md, README.md]
 evaluation:
   scenarios: evaluation/scenarios.yaml
   guide: evaluation/README.md

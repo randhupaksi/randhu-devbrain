@@ -21,6 +21,7 @@ Project instructions are the source of technical, business, and visual facts. Co
 | Portable skills | Each skill under `skills/` |
 | Installed bootstrap | Adapter templates rendered by the installer |
 | Project facts | The project's `AGENTS.md`/`CLAUDE.md` |
+| Project context setup and ownership | `workflows/project-context-setup.md` and optional templates under `project-templates/` |
 | Conceptual reference and provenance | Generalized v2 source DOCX and `docs/source-mapping.md` |
 | Acceptance and regression | `evaluation/` |
 
@@ -35,6 +36,8 @@ V2.2 adds discovery, debugging, and completion; v2.3 adds context reconciliation
 The v2.6 candidate extends maintenance evaluation with explicit preflight/session stages, fresh provenance and failure classification. Preparation, preflight and validators never launch a model; the separate manual Codex capture requires explicit runtime authorization and launch flags. Observed handoff failures justify a small baseline routing clarification; UI verification/cleanup boundaries stay in the selective UI workflow. Stable promotion remains pending the required host evidence and unresolved scope checks.
 
 The v2.7 candidate adds a maintenance-only host compatibility workflow and matrix. It models differences in Codex and Claude instruction discovery, skill catalogs, session modes, Claude auto memory, and host permission controls without adding those details to the always-loaded baseline. A case becomes native evidence only after the host and relevant fresh/resumed mode are actually observed.
+
+V2.8 defines single-owner project context: `AGENTS.md` owns shared instructions, commands, and safety; `PROJECT-CONTEXT.md` is an optional factual index; Visual DNA and API Contract templates own their respective project domains. The project-context setup workflow is opt-in and distinct from read-only discovery. UI/API references are selected by task and do not become extra startup reads. This scoped architecture does not claim completion of the separate native Codex/Claude CLI matrix.
 
 The installer stages and verifies skills before replacing the destination directory. It backs up the previous version, including nested copies or customization, so only one active tree remains without stale references. An identical update does not write files or create another backup. Loaders are managed only inside markers; invalid markers are rejected before mutation.
 

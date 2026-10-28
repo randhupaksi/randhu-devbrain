@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.8.0 — 2026-10-28 (stable project-context scope)
+
+- Defined single-owner boundaries for shared project instructions, the factual project index, Visual DNA, and API/backend context.
+- Reworked project context templates to reduce duplicated UI/API facts and added an adoption guide for optional, task-scoped context files.
+- Added an explicit project-context setup/maintenance workflow while preserving read-only project discovery.
+- Added five behavioral scenarios for setup, UI/API selective routing, evidence-based repair, and privacy boundaries; extended structural and content regression checks.
+- Kept the runtime baseline, bootstrap templates, installer behavior, skills, and source DOCX unchanged. Native Codex/Claude CLI compatibility remains separately pending.
+- Verified 2,481 repository content checks, 22 content-regression assertions (20 intentional regressions rejected), 32 Node harness tests, 35 installer assertions, and preparation of 24 synthetic Codex/Claude smoke projects. No live host behavior is claimed.
+
 ## 2.7.0-rc.1 — 2026-10-28 (native CLI validation in progress)
 
 - Added a selective CLI compatibility workflow for Codex CLI and Claude Code CLI; normal coding sessions do not load it.
