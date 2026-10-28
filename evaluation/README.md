@@ -25,7 +25,7 @@ Fixtures are retained for inspection and ignored by Git. In a sandbox using anot
 
 ## Behavioral evaluation
 
-[`scenarios.yaml`](scenarios.yaml) contains 54 cases: the 21 original cases, three v2 boundaries, six performance/accessibility/testing cases, eight v2.2 discovery/debugging/completion cases, eight v2.3 reconciliation cases, and eight v2.4 continuity cases. Each specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
+[`scenarios.yaml`](scenarios.yaml) contains 59 cases: the 21 original cases, three v2 boundaries, six performance/accessibility/testing cases, eight v2.2 discovery/debugging/completion cases, eight v2.3 reconciliation cases, eight v2.4 continuity cases, and five v2.8 project-context cases. Each specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
 
 1. Create synthetic fixtures under `local/behavior-runs/` with project instructions, target files, contracts, and enough tests. Do not use another project, client data, secrets, or a real database.
 2. Start a new Codex or Claude session with only the baseline, skill metadata, case prompt, and relevant fixture. Do not show the assistant the expected answer.
@@ -39,7 +39,7 @@ The structural validator checks suite completeness and contracts only. It does n
 
 Runtime metrics compare the working-tree baseline with the baseline at HEAD, rather than comparing it with the legacy pointer. Token counts are character-based estimates; selected task modules and references add their own context cost. An unchanged baseline does not imply that every task costs the same amount of context.
 
-See [the v2.7 CLI compatibility candidate](../docs/v2.7-cli-compatibility.md) and [host matrix](cli-host-matrix.yaml) for the current cross-host evaluation contract. [V2.6 candidate evidence](../docs/v2.6-validation.md) remains historical; its scoped Codex results are not reused as v2.7 native evidence. [V2.5 validation](../docs/v2.5-validation.md) retains its completed dated evidence. Existing-session walkthroughs are recorded separately from independent native-host PASS.
+See the [v2.8 stable project-context release](../docs/v2.8-project-context.md), [v2.7 CLI compatibility record](../docs/v2.7-cli-compatibility.md), and [host matrix](cli-host-matrix.yaml) for current context and cross-host evaluation contracts. V2.8's content checks and synthetic regressions do not close the separate v2.7 native host matrix. [V2.6 candidate evidence](../docs/v2.6-validation.md) remains historical; its scoped Codex results are not reused as new host evidence. [V2.5 validation](../docs/v2.5-validation.md) retains its dated results.
 
 Use [the v2.3 behavioral guide](v2.3-behavior-guide.md) for isolated inputs, instruction-conflict setup, hash comparison and evidence scoring. It describes manual evaluation; it does not launch another agent, install a host, or call a model API.
 
@@ -47,7 +47,7 @@ Use [the v2.4 guide](v2.4-behavior-guide.md) for two-phase handoff/resume evalua
 
 ## V2.5 core smoke pack
 
-[smoke-suite.yaml](smoke-suite.yaml) selects 12 existing scenarios; it does not expand the full suite beyond 54. [scorecard-contract.yaml](scorecard-contract.yaml) defines six scoring dimensions and explicit result/evidence categories. Preparation requires Node.js 18+, Git 2.28+ and the existing YAML parser. These are maintenance prerequisites, not installer dependencies.
+[smoke-suite.yaml](smoke-suite.yaml) selects 12 existing scenarios; it does not expand the full suite beyond 59. [scorecard-contract.yaml](scorecard-contract.yaml) defines six scoring dimensions and explicit result/evidence categories. Preparation requires Node.js 18+, Git 2.28+ and the existing YAML parser. These are maintenance prerequisites, not installer dependencies.
 
 ```powershell
 node evaluation/prepare-smoke.cjs

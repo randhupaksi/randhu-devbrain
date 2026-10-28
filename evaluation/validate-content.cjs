@@ -33,7 +33,7 @@ const manifest=parsed.get('devbrain.yaml');
 check(docs.get('runtime/session-baseline.md')?.includes('An explicitly requested handoff or DevBrain workflow command still selects its task-map module, even for a small task.'),'Explicit workflow routing survives small-task shortcut');
 check(docs.get('workflows/ui-task.md')?.includes('do not move them to external TEMP directories'),'Denied UI cleanup preserves workspace boundary');
 if(manifest){
- check(manifest.version==='2.7.0-rc.1'&&manifest.status==='native_validation_pending','Manifest version/status');
+ check(/^2\.\d+\.\d+(?:-rc\.\d+)?$/.test(manifest.version)&&['validation_pending','native_validation_pending','stable'].includes(manifest.status),'Manifest version/status');
  check(JSON.stringify(manifest.always_load)==='["runtime/session-baseline.md"]','Canonical always_load');
  check(JSON.stringify(manifest.bootstrap.supported_interfaces)==='["codex_cli","claude_code_cli"]','CLI host interface coverage');
  check(manifest.evaluation.cli_host_matrix==='evaluation/cli-host-matrix.yaml','CLI host matrix manifest reference');
@@ -59,11 +59,19 @@ check(contextWorkflow.length>0,'Context reconciliation workflow exists');
 check((docs.get('runtime/task-map.md')||'').includes('workflows/context-reconciliation.md'),'Context reconciliation task route');
 const contextCommand=parsed.get('prompts/commands.yaml')?.commands?.['context-check'];
 check(contextCommand?.mode==='read_only'&&contextCommand?.approval==='none'&&JSON.stringify(contextCommand?.modules)==='["workflows/context-reconciliation.md"]','Context reconciliation command');
+const projectContextWorkflow=docs.get('workflows/project-context-setup.md')||'';
+const projectTemplateGuide=docs.get('project-templates/README.md')||'';
+const projectTaskMap=docs.get('runtime/task-map.md')||'';
+check(projectContextWorkflow.length>0,'Project-context setup workflow exists');
+check(projectTaskMap.includes('workflows/project-context-setup.md')&&projectTaskMap.includes('project-templates/README.md'),'Project-context maintenance task route');
+check(projectTemplateGuide.includes('one canonical owner per fact')&&projectTemplateGuide.includes('only the applicable specialist file'),'Project templates define ownership and selective loading');
+check((docs.get('project-templates/AGENTS.template.md')||'').includes('not a second instruction file')&&(docs.get('project-templates/AGENTS.template.md')||'').includes('one canonical owner'),'Project context template keeps single fact owner');
+check(projectContextWorkflow.includes("Never promote a project's stack, brand, endpoint, business rule, user data, private path, or client detail into DevBrain global core/runtime."),'Project context stays project-scoped');
 for(const m of(docs.get('runtime/task-map.md')||'').matchAll(/\x60((?:core|workflows|safety|prompts)\/[^\x60]+)\x60/g))check(fs.existsSync(path.join(root,m[1])),'Route '+m[1]);
 check(docs.get('adapters/codex/AGENTS.global.template.md')===docs.get('adapters/claude-code/CLAUDE.global.template.md'),'Bootstrap parity');
 const suite=parsed.get('evaluation/scenarios.yaml');
 if(suite){
- check(suite.scenarios.length>=54,'Minimum v2.4 scenarios');const ids=new Set();
+ check(suite.scenarios.length>=59,'Minimum v2.8 scenarios');const ids=new Set();
  for(const s of suite.scenarios){
   for(const f of ['id','prompt','context_to_read','skills_active','skills_unnecessary','expected_autonomy','expected_approval','expected_files_touched','expected_validation','forbidden_behavior'])check(s[f]!==undefined&&(Array.isArray(s[f])||String(s[f]).length>0),'Scenario field '+s.id+': '+f);
   check(!ids.has(s.id),'Duplicate ID '+s.id);ids.add(s.id);
@@ -82,6 +90,11 @@ if(suite){
  }
  const smallTask=suite.scenarios.find(s=>s.id==='53-model-switch-small-task');
  check(!!smallTask&&!smallTask.context_to_read.includes('workflows/session-continuity.md'),'Model switch with sufficient context stays minimal');
+ for(const id of ['55-project-context-setup','58-project-context-reconcile','59-project-context-privacy-boundary'])check(suite.scenarios.find(s=>s.id===id)?.context_to_read?.includes('workflows/project-context-setup.md'),'Project-context workflow scenario routing '+id);
+ const projectUi=suite.scenarios.find(s=>s.id==='56-project-ui-context-routing');
+ check(!!projectUi&&projectUi.context_to_read.includes('PROJECT-VISUAL-DNA.md')&&!projectUi.context_to_read.includes('PROJECT-API-CONTRACT.md'),'Project UI routing excludes API contract');
+ const projectApi=suite.scenarios.find(s=>s.id==='57-project-api-context-routing');
+ check(!!projectApi&&projectApi.context_to_read.includes('PROJECT-API-CONTRACT.md')&&!projectApi.context_to_read.includes('PROJECT-VISUAL-DNA.md'),'Project API routing excludes Visual DNA');
 }
 const cliMatrix=parsed.get('evaluation/cli-host-matrix.yaml');
 check(cliMatrix?.schema==='devbrain-cli-host-compatibility'&&cliMatrix?.version===1&&cliMatrix?.release===manifest?.version,'CLI host matrix schema/release');

@@ -78,6 +78,12 @@ mutateYaml('evaluation/cli-host-matrix.yaml', v => { v.hosts = v.hosts.filter(h 
 mutateYaml('evaluation/scorecard-contract.yaml', v => { v.dimensions.pop(); }, 'Canonical scoring dimensions');
 mutateYaml('evaluation/scorecard-contract.yaml', v => { v.execution_stages = ['session']; }, 'Explicit evaluation execution stages');
 mutateYaml('evaluation/failure-taxonomy.yaml', v => { v.calibration.require_observed_behavior = false; }, 'Evidence-driven calibration');
+removeText('runtime/task-map.md', '| Explicitly create or maintain project instructions/context | `workflows/project-context-setup.md`, `project-templates/README.md` | None; keep discovery read-only unless context changes are requested |', 'Project-context maintenance task route');
+removeText('workflows/project-context-setup.md', "Never promote a project's stack, brand, endpoint, business rule, user data, private path, or client detail into DevBrain global core/runtime.", 'Project context stays project-scoped');
+removeText('project-templates/AGENTS.template.md', '- `PROJECT-CONTEXT.md` is an index and fact catalog, not a second instruction file. Each fact should have one canonical owner; link to specialist files instead of copying their details.', 'Project context template keeps single fact owner');
+mutateYaml('evaluation/scenarios.yaml', v => { v.scenarios.find(s => s.id === '56-project-ui-context-routing').context_to_read.push('PROJECT-API-CONTRACT.md'); }, 'Project UI routing excludes API contract');
+mutateYaml('evaluation/scenarios.yaml', v => { v.scenarios.find(s => s.id === '57-project-api-context-routing').context_to_read.push('PROJECT-VISUAL-DNA.md'); }, 'Project API routing excludes Visual DNA');
+mutateYaml('evaluation/scenarios.yaml', v => { v.scenarios.find(s => s.id === '55-project-context-setup').context_to_read = v.scenarios.find(s => s.id === '55-project-context-setup').context_to_read.filter(p => p !== 'workflows/project-context-setup.md'); }, 'Project-context workflow scenario routing 55-project-context-setup');
 validate();
-console.log('PASS: ' + assertions + ' content regression assertions; fourteen intentional regressions rejected.');
+console.log('PASS: ' + assertions + ' content regression assertions; twenty intentional regressions rejected.');
 console.log('All fixture writes stayed in local/. Clone retained; no Git history or real host configuration changed.');

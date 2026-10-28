@@ -5,6 +5,7 @@ Paths are relative to the DevBrain root. Read only relevant rows, then only the 
 | Task / need | Modules to select | Primary skill when relevant |
 |---|---|---|
 | Unfamiliar project or unclear task boundaries | `workflows/project-discovery.md` | Match the outcome only if needed |
+| Explicitly create or maintain project instructions/context | `workflows/project-context-setup.md`, `project-templates/README.md` | None; keep discovery read-only unless context changes are requested |
 | Material context disagreement or staleness affecting the active decision | `workflows/context-reconciliation.md` | Match the outcome only if needed |
 | Requested handoff or substantial interrupted task with missing context | `workflows/session-continuity.md` | Match the resumed outcome only if needed |
 | Codex/Claude CLI setup, loader discovery, session modes, or host compatibility | `workflows/cli-compatibility.md` | None; use the host-specific matrix for maintenance evaluation |
