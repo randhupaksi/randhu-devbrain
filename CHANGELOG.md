@@ -9,6 +9,7 @@
 - Observed repeated handoff routing failures, clarified explicit workflow selection and verified both affected cases in fresh sessions.
 - Added UI browser/cleanup boundaries and fixture-local tool temporary settings after observed scope failures. An external generated cache was removed with specific user authorization; native rechecking and Claude runtime authorization remain pending.
 - Preserved original failing/interrupted evidence; stable promotion and host parity remain unclaimed.
+- Scoped Codex CLI non-UI evaluation is stable across nine reviewed PASS cases; UI cases 18, 19 and 41 are deferred to v2.7 by user decision. Claude and the overall release remain pending.
 
 ## 2.5.0 — 2026-10-08
 

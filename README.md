@@ -1,6 +1,6 @@
-# DevBrain v2.6 Candidate
+# DevBrain v2.6 — Codex Scoped Status
 
-Current checkout: `2.6.0-rc.1`, native validation pending. The latest completed stable release is v2.5. V2.6 adds fresh-session evidence, failure classification and observed handoff/UI workflow corrections. Native Codex runs have started; unresolved UI scope/renderer limits and pending Claude evaluation prevent stable promotion. See [candidate adoption](docs/v2.6-native-validation.md) and [current evidence](docs/v2.6-validation.md).
+Codex CLI non-UI scope is stable based on nine reviewed native PASS results. UI scenarios 18, 19 and 41 are excluded from that scope by user decision; UI review is deferred to v2.7. The overall checkout remains `2.6.0-rc.1` because UI evidence and Claude evaluation are outside this scoped result. V2.6 adds fresh-session evidence, failure classification and observed handoff/UI workflow corrections. See [candidate adoption](docs/v2.6-native-validation.md) and [current evidence](docs/v2.6-validation.md).
 
 DevBrain is Randhu's personal context and developer knowledge layer for Codex and Claude Code. It provides principles, safety, workflows, prompt compression, skills, and bootstrap instructions. It is not an AI model, a new agent, an assistant replacement, a background application, or one large prompt.
 

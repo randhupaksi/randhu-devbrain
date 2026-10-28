@@ -1,5 +1,5 @@
 const test = require('node:test'), assert = require('node:assert/strict');
-const { sanitize, snapshotChanges, runCase } = require('./run-codex-case.cjs');
+const { sanitize, sanitizeArtifact, snapshotChanges, runCase } = require('./run-codex-case.cjs');
 const { privateText } = require('./results-contract.cjs');
 test('native launch scopes tool temporary files to the fixture without home overrides', () => {
   const path = require('node:path'), { nativeArguments } = require('./run-codex-case.cjs');
@@ -43,6 +43,13 @@ test('path redaction retains known fixture/source names without personal roots',
   const output = sanitize({ command: 'Read ' + prefix + '/runtime/session-baseline.md', other: prefix + '/local/project/test.cjs' }, [[prefix + '/local/project', '<PROJECT>'], [prefix, '<DEVBRAIN_ROOT>']]);
   assert.equal(output.command, 'Read <DEVBRAIN_ROOT>/runtime/session-baseline.md');
   assert.equal(output.other, '<PROJECT>/test.cjs'); assert.equal(privateText(JSON.stringify(output)), false);
+});
+test('serialized multiline tool transcripts redact escaped Windows paths before writing', () => {
+  const slash = String.fromCharCode(92), syntheticPath = ['C:', 'Users', 'Synthetic', 'AppData', 'Local', 'tool.exe'].join(slash);
+  const artifact = sanitizeArtifact({ events: [{ output: 'command failed\nFINDSTR: Cannot open /' + syntheticPath + ' "Density"\nnext line' }] });
+  assert.doesNotThrow(() => JSON.parse(artifact));
+  assert.equal(privateText(artifact), false);
+  assert.match(artifact, /<HOST_PATH>/);
 });
 test('auth-shaped values and bearer strings are removed before persistence', () => {
   const output = sanitize({ authorization: 'synthetic bearer', nested: { refresh_token: 'synthetic-private' }, message: 'Authorization: Bearer synthetic-value' });

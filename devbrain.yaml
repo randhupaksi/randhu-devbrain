@@ -5,6 +5,15 @@ status: native_validation_pending
 updated_on: 2026-10-14
 language: en
 purpose: Personal developer knowledge layer for AI coding assistants
+scoped_validation:
+  codex_cli_non_ui:
+    status: stable
+    interface: Codex CLI 0.164.0
+    requested_model: gpt-5.6-sol
+    reviewed_pass_count: 9
+    excluded_ui_cases: [18-enterprise-routing, 19-marketing-routing, 41-context-latest-user-decision]
+    ui_follow_up: v2.7
+    claude_validation: pending
 
 always_load:
   - runtime/session-baseline.md

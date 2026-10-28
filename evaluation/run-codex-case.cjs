@@ -12,8 +12,14 @@ function sanitize(value, substitutions = []) {
   let text = value;
   for (const [source, replacement] of [...substitutions].sort((a, b) => b[0].length - a[0].length)) if (source) for (const variant of [source, source.replaceAll('\\', '/'), source.replaceAll('/', '\\')]) text = text.split(variant).join(replacement);
   text = text.replace(/(?<![A-Za-z0-9])[A-Za-z]:[\\/][^\r\n"'`<>]*/g, '<HOST_PATH>').replace(/(?:\/Users\/|\/home\/)[A-Za-z0-9_-]+[^\r\n"'`<>]*/g, '<HOST_PATH>');
+  if (text.includes('\n') || text.includes('\r')) text = text.split(/(\r\n|\n|\r)/).map(part => part === '\r' || part === '\n' || part === '\r\n' ? part : sanitize(part, substitutions)).join('');
   text = text.replace(/Bearer\s+\S+/gi, 'Bearer <REDACTED>').replace(/sk-[A-Za-z0-9]{24,}|gh[pousr]_[A-Za-z0-9]{30,}|AKIA[A-Z0-9]{16}/g, '<REDACTED>');
   return privateText(text) ? '<REDACTED SENSITIVE STRING>' : text;
+}
+function sanitizeArtifact(value, substitutions = []) {
+  const sanitized = JSON.stringify(sanitize(value, substitutions), null, 2);
+  if (privateText(sanitized)) throw new Error('Sanitized evidence still contains a sensitive path or key candidate');
+  return sanitized;
 }
 function fileSnapshot(project) {
   const rows = [];
@@ -102,7 +108,7 @@ async function runCase(directory, scenarioId, options) {
   const completed = events.some(event => event.type === 'turn.completed');
   const substitutions = [[project, '<PROJECT>'], [root, '<DEVBRAIN_ROOT>'], [os.homedir(), '<USER_PROFILE>']];
   const after = fileSnapshot(project), changes = snapshotChanges(before, after), sourceChanges = snapshotChanges(sourceBefore, repositorySnapshot()), evidence = { requested_model: options.model, reasoning_effort: options.effort || 'medium', sandbox, native_session_started: sessionStarted, turn_completed: completed, exit_code: captured.exitCode, timed_out: captured.timedOut, before, after, repository_source_changes: sourceChanges, events: sanitize(events, substitutions), stderr: sanitize(captured.stderr, substitutions), unparsed_stdout: sanitize(unparsed, substitutions), startup_error: captured.error };
-  fs.writeFileSync(path.join(caseEvidence, 'trace.json'), JSON.stringify(evidence, null, 2));
+  fs.writeFileSync(path.join(caseEvidence, 'trace.json'), sanitizeArtifact(evidence, substitutions));
   const artifact = 'evidence/codex-' + scenarioId + '/trace.json';
   Object.assign(card, { attempted: true, status: 'BLOCKED', execution_stage: sessionStarted ? 'session' : 'preflight', fresh_session: sessionStarted ? true : null, interface: 'Codex CLI' + (options.cliVersion ? ' ' + options.cliVersion : ' (version not captured)') + '; ephemeral fresh exec; user config excluded', model: sessionStarted ? options.model + ' (requested CLI model)' : null, observed_on: options.observedOn, failure_categories: ['host_limitation'], reason: completed ? 'Native response captured; semantic grading is pending.' : sessionStarted ? 'Native session initialized but no completed model response was captured.' : 'Native CLI did not initialize a model session.' });
   card.observations = [{ id: 'native-attempt', kind: 'environment', summary: sessionStarted ? 'Fresh Codex exec initialized; sanitized trace and file hashes captured; task scores pending review.' : 'CLI startup attempted without a confirmed model session; sanitized environment evidence captured.', artifact }];
@@ -118,4 +124,4 @@ if (require.main === module) {
 function assertProfileFingerprint(recorded, current) {
   if (recorded !== current) throw new Error('Operational profile changed; prepare a fresh batch');
 }
-module.exports = { sanitize, fileSnapshot, snapshotChanges, captureSession, runCase, assertProfileFingerprint, nativeArguments };
+module.exports = { sanitize, sanitizeArtifact, fileSnapshot, snapshotChanges, captureSession, runCase, assertProfileFingerprint, nativeArguments };
