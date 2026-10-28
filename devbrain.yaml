@@ -1,8 +1,8 @@
 schema: devbrain-manifest
-version: 2.6.0-rc.1
+version: 2.7.0-rc.1
 owner: Randhu Paksi
 status: native_validation_pending
-updated_on: 2026-10-14
+updated_on: 2026-10-28
 language: en
 purpose: Personal developer knowledge layer for AI coding assistants
 scoped_validation:
@@ -14,6 +14,10 @@ scoped_validation:
     excluded_ui_cases: [18-enterprise-routing, 19-marketing-routing, 41-context-latest-user-decision]
     ui_follow_up: v2.7
     claude_validation: pending
+  cli_compatibility_candidate:
+    status: pending
+    codex_cli: [fresh_bootstrap, one_shot, project_scope, skill_disclosure, permission_boundary]
+    claude_code_cli: [fresh_bootstrap, one_shot_resume, instruction_family, auto_memory, skill_disclosure, permission_boundary]
 
 always_load:
   - runtime/session-baseline.md
@@ -32,6 +36,7 @@ bootstrap:
   installer: install/install-bootstrap.ps1
   updater: install/update-bootstrap.ps1
   supported_tools: [codex, claude]
+  supported_interfaces: [codex_cli, claude_code_cli]
   path_strategy: repository_root_and_user_home_detection
   preserve_outside_managed_block: true
   backup_before_update: true
@@ -64,6 +69,11 @@ evaluation:
   host_preflight: evaluation/host-preflight.cjs
   codex_native_capture: evaluation/run-codex-case.cjs
   native_capture_tests: evaluation/test-native-capture.cjs
+  cli_host_matrix: evaluation/cli-host-matrix.yaml
+  codex_bootstrap_capture: evaluation/run-codex-bootstrap-check.cjs
+  codex_bootstrap_tests: evaluation/test-codex-bootstrap-check.cjs
+  claude_bootstrap_capture: evaluation/run-claude-bootstrap-check.cjs
+  claude_bootstrap_tests: evaluation/test-claude-bootstrap-check.cjs
 
 deferred_capabilities: [cli, exe, daemon, database, notification_system, task_logs, daily_summary, gui]
 source_specification:
