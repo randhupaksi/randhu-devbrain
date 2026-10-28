@@ -1,42 +1,30 @@
 # Project Visual DNA
 
-> Record this project's visual facts and decisions here. This file supplements `AGENTS.md`; do not copy global DevBrain rules into it. Remove unknown placeholders or mark them `Unknown`.
+> UI-specific decisions for this project. Product purpose and user groups live in `PROJECT-CONTEXT.md`; project instructions and validation live in `AGENTS.md`. Read this file only for a UI task. Remove unknown placeholders or label them `Unknown`.
 
-## Product feel
+## Visual direction
 
-- Target users and usage context:
-- Primary task that should feel easiest:
-- Product personality (e.g., calm, fast, formal, warm, technical, data-dense):
-- Visual anti-patterns to avoid:
-- Screens/features that provide visual precedent:
+- Product personality and visual character:
+- Existing screens that provide a useful precedent:
+- Visual anti-patterns specific to this product:
+- Theme mode and brand direction:
 
 ## Foundations
 
-- Theme mode and brand direction:
 - Typography source and hierarchy:
-- Color/token source of truth:
-- Spacing/density rules:
-- Radius, border, and elevation rules:
-- Icon library/style:
-- Motion/interaction rules:
+- Color and token source of truth:
+- Spacing and density:
+- Radius, borders, and elevation:
+- Icon style/library:
+- Motion and interaction feedback:
 - Responsive breakpoints and priorities:
 
-## Component architecture
+## UI architecture
 
-- Existing UI library/primitives:
-- Shared component directory:
-- Canonical Button variants and states:
-- Form/Input pattern:
-- Table/list/filter/toolbar pattern:
-- Card/stat/summary pattern:
-- Modal/drawer/confirmation pattern:
-- Empty/loading/error/permission-state pattern:
-- Components or APIs that must not change without impact review:
-
-## Implementation rules
-
-- Allowed styling approach:
-- Token policy (including whether arbitrary values are forbidden):
-- When to create a shared primitive or pattern:
-- When a component should remain feature-local:
+- UI library and primitive/pattern locations:
+- Existing components to reuse:
+- Canonical Button, form, table/filter, modal/drawer patterns:
+- Loading, empty, error, success, and permission states:
+- Rules for shared patterns versus feature-local components:
+- UI surfaces or contracts that need impact review:
 - Required visual verification:

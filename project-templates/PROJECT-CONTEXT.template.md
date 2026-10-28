@@ -1,80 +1,25 @@
 # Project Context
 
-> Record project facts here. Do not copy all of DevBrain into this file. Remove unknown placeholders or mark them `Unknown`.
+> Factual index for this repository. Keep instructions, commands, approval rules, and validation requirements in `AGENTS.md`. Keep exact UI decisions in `PROJECT-VISUAL-DNA.md` and API/data contracts in `PROJECT-API-CONTRACT.md`. Remove unknown placeholders or label them `Unknown`; do not duplicate specialist details here.
 
-## Product
+## Product map
 
 - Product purpose:
-- Target users:
-- Primary user journeys:
-- Business-critical behavior:
+- Main user groups:
+- Primary workflows:
+- Critical behavior or constraints:
 
-## Technical context
+## Technical map
 
-- Stack and important versions:
-- Package manager:
-- Entry points:
-- Important folder structure:
-- Existing patterns to follow:
-- Designated source of truth when instructions, docs, and code disagree:
-- Known stale or conflicting context:
+- Broad stack and package manager:
+- Main entry points:
+- Important repository areas:
+- Existing architectural patterns to follow:
+- Source-of-truth map (topic → file/spec/code owner):
+- Known stale or conflicting project facts:
 
-## Commands
+## Specialist context
 
-- Install:
-- Development:
-- Lint:
-- Typecheck:
-- Test:
-- Build:
-
-## UI/UX direction
-
-- Brand/visual character:
-- Project Visual DNA file/reference:
-- Design system/component library:
-- Typography/color/token source:
-- Styling approach and arbitrary-value policy:
-- Density and responsive priorities:
-- UI patterns preferred/avoided for this project:
-- Shared component directory and existing primitives/patterns:
-- Canonical Button/form/table/filter/modal/empty/loading/error patterns:
-- Screens to use as visual precedent:
-- Rules for shared components versus feature-local composition:
-
-## Data and API
-
-- API documentation/contract location:
-- Project API/Backend Contract file/reference:
-- Canonical source for public API compatibility when documentation and implementation differ:
-- Backend stack/framework/ORM/database and module conventions:
-- Route registration and handler/service/repository/domain patterns:
-- Request validation, DTO/schema, and error-envelope conventions:
-- Authentication and roles:
-- Tenant/client isolation, ownership, and authorization rules:
-- Sensitive flows:
-- Pagination/filter/sort/date-time/idempotency conventions:
-- External integrations, webhooks, timeout/retry conventions:
-- Transaction/concurrency/data-access conventions:
-- Logging/tracing/error-reporting and PII/secret-redaction rules:
-- Environment requirements without secret values:
-- Environment map (local/dev/staging/production):
-- Data classification per environment:
-- Safe dummy/anonymized test-data procedure:
-- Migration tool/location, compatibility window, rollback/dry-run expectations:
-- Migration and client-data execution restrictions:
-
-## Safety boundaries
-
-- Files/areas that must not change without approval:
-- Allowed scope:
-- Deployment/migration restrictions:
-- Project-specific risk escalation:
-- Git branch/remote conventions and command-listing restrictions:
-
-## Definition of done
-
-- Required automated checks:
-- Required manual checks:
-- Required API/integration/contract checks:
-- Reporting expectations:
+- UI / visual context: `PROJECT-VISUAL-DNA.md` (optional; load only for UI work).
+- API / backend context: `PROJECT-API-CONTRACT.md` (optional; load only for API, data, or backend work).
+- Other scoped context and when to read it:
