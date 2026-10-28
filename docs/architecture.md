@@ -34,6 +34,8 @@ V2.2 adds discovery, debugging, and completion; v2.3 adds context reconciliation
 
 The v2.6 candidate extends maintenance evaluation with explicit preflight/session stages, fresh provenance and failure classification. Preparation, preflight and validators never launch a model; the separate manual Codex capture requires explicit runtime authorization and launch flags. Observed handoff failures justify a small baseline routing clarification; UI verification/cleanup boundaries stay in the selective UI workflow. Stable promotion remains pending the required host evidence and unresolved scope checks.
 
+The v2.7 candidate adds a maintenance-only host compatibility workflow and matrix. It models differences in Codex and Claude instruction discovery, skill catalogs, session modes, Claude auto memory, and host permission controls without adding those details to the always-loaded baseline. A case becomes native evidence only after the host and relevant fresh/resumed mode are actually observed.
+
 The installer stages and verifies skills before replacing the destination directory. It backs up the previous version, including nested copies or customization, so only one active tree remains without stale references. An identical update does not write files or create another backup. Loaders are managed only inside markers; invalid markers are rejected before mutation.
 
 There is no daemon, model binding, database, or product CLI. Validators are manually run maintenance scripts, not assistant runtime dependencies.

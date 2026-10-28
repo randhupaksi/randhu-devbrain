@@ -7,3 +7,5 @@ The bootstrap requests a one-time read of `session-baseline.md`, followed by sel
 New skill installs use `UserHome/.agents/skills` according to the [official skill locations](https://learn.chatgpt.com/docs/build-skills). For legacy DevBrain installs with custom skills under `CodexHome/skills`, the updater preserves that location rather than creating a second discovery copy. `CodexSkillsPath` can specify a location when the host differs. The legacy location was verified in this audit; support is not guaranteed for every host version.
 
 The installer does not disable other skills or edit `config.toml`. If both discovery locations already contain the custom skills, review duplicates separately; do not silently remove user instructions or skills.
+
+V2.7 separates the global instruction entry from project instructions and tests fresh, one-shot, and resumed CLI contexts independently. Use the [CLI host matrix](../../evaluation/cli-host-matrix.yaml); an explicitly injected baseline does not count as automatic loader-discovery evidence.

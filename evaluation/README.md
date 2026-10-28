@@ -39,7 +39,7 @@ The structural validator checks suite completeness and contracts only. It does n
 
 Runtime metrics compare the working-tree baseline with the baseline at HEAD, rather than comparing it with the legacy pointer. Token counts are character-based estimates; selected task modules and references add their own context cost. An unchanged baseline does not imply that every task costs the same amount of context.
 
-See [the v2.6 candidate report](../docs/v2.6-validation.md) for current results and native-run prerequisites. [V2.5 validation](../docs/v2.5-validation.md) retains its completed dated evidence. Existing-session walkthroughs are recorded separately from independent native-host PASS.
+See [the v2.7 CLI compatibility candidate](../docs/v2.7-cli-compatibility.md) and [host matrix](cli-host-matrix.yaml) for the current cross-host evaluation contract. [V2.6 candidate evidence](../docs/v2.6-validation.md) remains historical; its scoped Codex results are not reused as v2.7 native evidence. [V2.5 validation](../docs/v2.5-validation.md) retains its completed dated evidence. Existing-session walkthroughs are recorded separately from independent native-host PASS.
 
 Use [the v2.3 behavioral guide](v2.3-behavior-guide.md) for isolated inputs, instruction-conflict setup, hash comparison and evidence scoring. It describes manual evaluation; it does not launch another agent, install a host, or call a model API.
 
@@ -69,7 +69,7 @@ node evaluation/validate-results.cjs ./local/behavior-runs/<batch>/evaluator
 
 The validator requires one scorecard per case/host and checks artifact existence, scope and heuristic path/key candidates. It checks structure, not the truth or adequacy of a human's scoring. A valid batch of NOT_RUN cards has zero observed native comparisons. Existing-session records cannot count toward native comparison. Fingerprints are reproducibility aids, not evidence signatures. A `both_pass` flag concerns only that matched observed pair, not universal host parity. Review the source evidence before making a reliability claim.
 
-## V2.6 candidate: preflight and fresh provenance
+## V2.6 historical candidate: preflight and fresh provenance
 
 Result schema version 2 distinguishes unattempted, preflight and actual session stages. A fresh native session must record `execution_stage: session` and `fresh_session: true`; an existing-session walkthrough uses false. Preflight uses null and environment-only BLOCKED evidence, never PASS/FAIL task dimensions. Incomplete/failed records require a [failure category](failure-taxonomy.yaml) and reason. Old version 1 scorecards remain historical; prepare new version 2 batches rather than inventing their freshness metadata.
 
@@ -85,6 +85,34 @@ The recorder validates all inputs/artifacts before writing cards and refuses to 
 For actual sessions, record supporting observations and classify routing/context/precedence/scope/safety/evidence/host limitations. Correct reproducible fixture/harness defects directly. Calibrate the narrowest policy owner from observed repeated behavior, then rerun relevant native cases; an environment block supplies no basis for a new global coding rule. See [the candidate guide](../docs/v2.6-native-validation.md) for release completion and current constraints.
 
 Select full-suite cases matching a changed skill or boundary beyond the smoke set. Add a new scenario only for an observed failure or a supported missing requirement. Retain dated reports rather than rewriting earlier results. See [the v2.5 guide](../docs/v2.5-behavioral-reliability.md) for adoption and limits.
+
+## V2.7 native CLI compatibility
+
+The [CLI host matrix](cli-host-matrix.yaml) separates Codex CLI and Claude Code CLI instruction discovery, project-file precedence, skill disclosure, fresh/one-shot/resumed sessions, Claude auto memory, and permission boundaries. Its entries are test contracts, not results. On 2026-10-28, Codex CLI 0.165.0 and Claude Code CLI 2.1.312.0 were available to the maintenance session; Claude was resolved from its active process because it was not on PATH. A read-only auth-status command succeeded. Do not install a missing host or change user settings automatically.
+
+Run host cases with fresh, isolated synthetic projects under ignored local/. Do not paste the baseline or expected answer into a prompt when testing automatic discovery. Use host-visible instruction/context evidence or a controlled marker, and record the launch mode and actual sources read. If the host cannot expose discovery, classify the result as behavioral evidence or BLOCKED rather than claiming an exact loader trace. Test Claude's AGENTS/CLAUDE family setting without changing real user settings. Host permission controls remain enabled; high-risk behavior uses synthetic requests and stops before side effects.
+
+Static content checks and installer fixtures verify matrix structure and target layout only. They do not establish that Codex or Claude loaded a bootstrap in a live session. An unresolved CLI leaves its native cases NOT_RUN; do not relabel installer parity as cross-host behavior.
+
+The Codex and Claude global-loader discovery captures create fresh empty Git fixtures under ignored local/, do not inject the baseline, disable tools, and store sanitized receipts. The Codex run is ephemeral and read-only; the Claude run uses plan mode, disables session persistence and built-in/MCP tools, and uses the requested per-session model/effort. Both require the existing host profile and explicit runtime authorization. A completed response is initially unscored and requires human review. Host startup/runtime caches may still be updated by the CLI itself.
+
+Run the capture contract tests:
+
+    node --test evaluation/test-codex-bootstrap-check.cjs
+
+Run the authorized native Codex bootstrap check with the actual model label, observation date, and CLI version:
+
+    node evaluation/run-codex-bootstrap-check.cjs --run --allow-profile-runtime <model> <YYYY-MM-DD> <cli-version>
+
+This run may write normal Codex runtime/cache files outside the repository; it does not change global configuration. Fixture and sanitized receipt writes stay in local/. The script never grades PASS.
+
+Run the Claude capture with Sonnet 5 and medium effort. If `claude` is not on PATH, pass an executable path as a transient command-line value; the path is never written into repository files or the receipt:
+
+```powershell
+node evaluation/run-claude-bootstrap-check.cjs --run --allow-profile-runtime claude-sonnet-5 medium <YYYY-MM-DD> <cli-version> --executable <host-path>
+```
+
+The Claude capture supplies an empty local MCP configuration and denies MCP tool names for the session. It does not edit Claude settings. Its one-shot result is unscored until a reviewer checks the receipt and confirms that the prompt did not leak expected policy.
 
 ## Explicit native Codex capture
 
