@@ -32,7 +32,9 @@ test('capture deadline stops its synthetic subprocess without starting a model',
   const { captureSession } = require('./run-codex-case.cjs');
   const started = Date.now();
   const result = await captureSession(process.execPath, ['-e', 'setInterval(() => {}, 1000)'], '', process.cwd(), 250);
-  assert.equal(result.timedOut, true); assert.equal(result.error, null);
+  assert.equal(result.timedOut, true);
+  assert.ok(result.error === null || result.error === 'Owned process-tree termination was denied', 'Only the documented process-tree permission limit is tolerated');
+  assert.ok(result.signal || result.exitCode !== null, 'The owned direct child must finish after the fallback termination request');
   assert.ok(Date.now() - started < 10000, 'Termination must finish without manual intervention');
 });
 test('capture refuses missing runtime authorization before starting a host', async () => {

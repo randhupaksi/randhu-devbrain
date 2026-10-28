@@ -103,8 +103,10 @@ foreach ($badText in @($oldBlock + $oldBlock,'<!-- DEVBRAIN-BOOTSTRAP:END --><!-
 
 # Actual local clone, then overlay current uncommitted source for testing v2.
 $clone = Join-Path $testRoot 'Clone at different location'
-& git -c "safe.directory=$root" -c "safe.directory=$(Join-Path $root '.git')" clone --quiet --no-hardlinks -- $root $clone
-if ($LASTEXITCODE -ne 0) { throw 'Local clone failed' }
+New-Item -ItemType Directory -Path $clone -Force | Out-Null
+$sourceGit = Join-Path $root '.git'
+if (-not (Test-Path -LiteralPath $sourceGit -PathType Container)) { throw 'A directory-based repository is required for the disposable mirror' }
+Copy-Item -LiteralPath $sourceGit -Destination (Join-Path $clone '.git') -Recurse -Force
 $paths = @(& git -C $root ls-files --cached --others --exclude-standard)
 foreach ($relative in $paths) {
     $source = Join-Path $root $relative

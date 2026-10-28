@@ -17,7 +17,10 @@ const testRoot = path.join(localRoot, 'content-regressions-' + crypto.randomUUID
 const clone = path.join(testRoot, 'Relocated Source');
 assert.ok(path.relative(localRoot, clone) && !path.relative(localRoot, clone).startsWith('..') && !path.isAbsolute(path.relative(localRoot, clone)));
 fs.mkdirSync(testRoot, { recursive: true });
-cp.execFileSync('git', ['-c', 'safe.directory=' + root, '-c', 'safe.directory=' + path.join(root, '.git'), 'clone', '--quiet', '--no-hardlinks', '--', root, clone]);
+fs.mkdirSync(clone, { recursive: true });
+const sourceGit = path.join(root, '.git');
+assert.ok(fs.statSync(sourceGit).isDirectory(), 'A directory-based repository is required for the disposable mirror');
+fs.cpSync(sourceGit, path.join(clone, '.git'), { recursive: true, errorOnExist: true });
 const files = cp.execFileSync('git', ['-C', root, 'ls-files', '--cached', '--others', '--exclude-standard', '-z'], { encoding: 'utf8' }).split('\0').filter(Boolean);
 for (const file of files) {
   const source = path.join(root, file), target = path.resolve(clone, file);
@@ -71,9 +74,10 @@ mutateYaml('evaluation/scenarios.yaml', v => { v.scenarios.find(s => s.id === '5
 mutateYaml('devbrain.yaml', v => { v.always_load.push('workflows/session-continuity.md'); }, 'Canonical always_load');
 mutateYaml('evaluation/smoke-suite.yaml', v => { v.cases[0].scenario_id = 'missing'; }, 'Smoke scenario reference: missing');
 mutateYaml('evaluation/smoke-suite.yaml', v => { v.hosts = ['codex']; }, 'Smoke host targets');
+mutateYaml('evaluation/cli-host-matrix.yaml', v => { v.hosts = v.hosts.filter(h => h.id !== 'claude_code_cli'); }, 'CLI host matrix coverage');
 mutateYaml('evaluation/scorecard-contract.yaml', v => { v.dimensions.pop(); }, 'Canonical scoring dimensions');
 mutateYaml('evaluation/scorecard-contract.yaml', v => { v.execution_stages = ['session']; }, 'Explicit evaluation execution stages');
 mutateYaml('evaluation/failure-taxonomy.yaml', v => { v.calibration.require_observed_behavior = false; }, 'Evidence-driven calibration');
 validate();
-console.log('PASS: ' + assertions + ' content regression assertions; thirteen intentional regressions rejected.');
+console.log('PASS: ' + assertions + ' content regression assertions; fourteen intentional regressions rejected.');
 console.log('All fixture writes stayed in local/. Clone retained; no Git history or real host configuration changed.');

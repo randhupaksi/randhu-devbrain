@@ -1,6 +1,6 @@
 schema: devbrain-smoke-suite
 version: 1
-release: 2.6.0-rc.1
+release: 2.7.0-rc.1
 hosts: [codex, claude]
 cases:
   - scenario_id: 18-enterprise-routing

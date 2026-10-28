@@ -33,8 +33,10 @@ const manifest=parsed.get('devbrain.yaml');
 check(docs.get('runtime/session-baseline.md')?.includes('An explicitly requested handoff or DevBrain workflow command still selects its task-map module, even for a small task.'),'Explicit workflow routing survives small-task shortcut');
 check(docs.get('workflows/ui-task.md')?.includes('do not move them to external TEMP directories'),'Denied UI cleanup preserves workspace boundary');
 if(manifest){
- check(manifest.version==='2.6.0-rc.1'&&manifest.status==='native_validation_pending','Manifest version/status');
+ check(manifest.version==='2.7.0-rc.1'&&manifest.status==='native_validation_pending','Manifest version/status');
  check(JSON.stringify(manifest.always_load)==='["runtime/session-baseline.md"]','Canonical always_load');
+ check(JSON.stringify(manifest.bootstrap.supported_interfaces)==='["codex_cli","claude_code_cli"]','CLI host interface coverage');
+ check(manifest.evaluation.cli_host_matrix==='evaluation/cli-host-matrix.yaml','CLI host matrix manifest reference');
  for(const ref of [manifest.task_router,...manifest.always_load,...Object.values(manifest.evaluation),manifest.bootstrap.installer,manifest.bootstrap.updater,manifest.bootstrap.codex_template,manifest.bootstrap.claude_template,manifest.source_specification.file])check(fs.existsSync(path.join(root,ref)),'Missing manifest ref '+ref);
  for(const n of manifest.skills){
   const m=parsed.get('skills/'+n+'/agents/openai.yaml');check(!!m?.interface?.display_name,'Display metadata '+n);
@@ -80,6 +82,27 @@ if(suite){
  }
  const smallTask=suite.scenarios.find(s=>s.id==='53-model-switch-small-task');
  check(!!smallTask&&!smallTask.context_to_read.includes('workflows/session-continuity.md'),'Model switch with sufficient context stays minimal');
+}
+const cliMatrix=parsed.get('evaluation/cli-host-matrix.yaml');
+check(cliMatrix?.schema==='devbrain-cli-host-compatibility'&&cliMatrix?.version===1&&cliMatrix?.release===manifest?.version,'CLI host matrix schema/release');
+check(JSON.stringify(cliMatrix?.hosts?.map(h=>h.id))==='["codex_cli","claude_code_cli"]','CLI host matrix coverage');
+if(Array.isArray(cliMatrix?.hosts))for(const host of cliMatrix.hosts){
+ check(Array.isArray(host.session_modes)&&host.session_modes.length>=2,'CLI session modes '+host.id);
+ check(typeof host.instruction_entry==='string'&&typeof host.user_skill_location==='string','CLI host paths '+host.id);
+ check(['available','unavailable','not_resolved','unknown'].includes(host.availability_observed),'CLI host availability '+host.id);
+ check(['not_run','blocked','partial','complete'].includes(host.native_status),'CLI native status '+host.id);
+}
+if(Array.isArray(cliMatrix?.cases)){
+ const cliIds=new Set();
+ for(const c of cliMatrix.cases){
+  check(typeof c.id==='string'&&/^[a-z0-9-]+$/.test(c.id),'CLI case ID');
+  check(!cliIds.has(c.id),'Duplicate CLI case '+c.id);cliIds.add(c.id);
+  check(['codex_cli','claude_code_cli','both'].includes(c.host),'CLI case host '+c.id);
+  check(typeof c.mode==='string'&&typeof c.expected==='string','CLI case contract '+c.id);
+  check(Array.isArray(c.required_evidence)&&c.required_evidence.length>0,'CLI case evidence '+c.id);
+  check(Array.isArray(c.forbidden)&&c.forbidden.length>0,'CLI case forbidden behavior '+c.id);
+ }
+ for(const id of ['codex-fresh-bootstrap','codex-one-shot-bootstrap','claude-fresh-bootstrap','claude-one-shot-and-resume','claude-instruction-family','cross-host-skill-disclosure','claude-memory-precedence','cross-host-permission-boundary'])check(cliIds.has(id),'Required CLI case '+id);
 }
 const paras=new Map();
 const smoke=parsed.get('evaluation/smoke-suite.yaml'),resultContract=parsed.get('evaluation/scorecard-contract.yaml');
