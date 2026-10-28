@@ -1,6 +1,6 @@
-# DevBrain v2.6 Candidate Documentation
+# DevBrain v2.7 Candidate Documentation
 
-The checkout prepares 2.6.0-rc.1 with native validation pending; v2.5 is the latest completed stable release. Markdown/YAML defines operational behavior. The generalized DOCX remains a v2.2 conceptual reference, excluded from startup. Read these documents for maintenance or onboarding.
+The checkout prepares 2.7.0-rc.1 with partial fresh Codex and Claude bootstrap captures; broader native CLI validation remains pending. V2.5 is the latest completed stable release, and v2.6's scoped Codex non-UI result remains documented separately. Markdown/YAML defines operational behavior. The generalized DOCX remains a v2.2 conceptual reference, excluded from startup. Read these documents for maintenance or onboarding.
 
 | Reader need | Current document |
 |---|---|
@@ -13,7 +13,8 @@ The checkout prepares 2.6.0-rc.1 with native validation pending; v2.5 is the lat
 | Handoff and interrupted-task recovery | [V2.4 adoption guide](v2.4-session-continuity.md) |
 | Repeatable behavior evaluation and evidence scoring | [V2.5 adoption guide](v2.5-behavioral-reliability.md) |
 | Native preflight, provenance and calibration | [V2.6 candidate guide](v2.6-native-validation.md) |
-| Current validation and its limits | [V2.6 candidate evidence](v2.6-validation.md) |
+| V2.6 scoped validation record | [V2.6 candidate evidence](v2.6-validation.md) |
+| Codex/Claude CLI discovery, sessions, skills, and permissions | [V2.7 CLI compatibility candidate](v2.7-cli-compatibility.md) and [host matrix](../evaluation/cli-host-matrix.yaml) |
 | Evaluation procedure and scenario definitions | [Evaluation guide](../evaluation/README.md) and [scenario overview](evaluation-scenarios.md) |
 | Source specification and mapping | [Source reference](../source/README.md) and [source mapping](source-mapping.md) |
 | Maintaining modules and documentation | [Maintenance](maintenance.md) |

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.7.0-rc.1 — 2026-10-28 (native CLI validation in progress)
+
+- Added a selective CLI compatibility workflow for Codex CLI and Claude Code CLI; normal coding sessions do not load it.
+- Added a host matrix covering automatic instruction discovery, project instruction-family behavior, skill disclosure, one-shot/resume lifecycle, Claude auto memory, and host permission boundaries.
+- Added structural checks for host coverage and required evidence while keeping planned cases distinct from native PASS results.
+- Added sanitized one-shot bootstrap capture runners and unit contracts for Codex CLI and Claude Code CLI; fixtures and receipts stay under ignored local/.
+- Recorded Codex CLI 0.165.0 and Claude Code CLI 2.1.312.0. Claude was resolved from an active process after PATH lookup failed; auth status succeeded. No host installation or persistent settings were changed.
+- Native captures require neutral prompts and human review. Initial biased/blocked attempts are retained as local evidence and are not scored. V2.6 scoped Codex non-UI evidence remains historical and is not reused as v2.7 evidence.
+
 ## 2.6.0-rc.1 — 2026-10-14 (native validation pending)
 
 - Added explicit preflight/session stages, fresh native provenance and classified failure reasons to scorecard schema version 2.

@@ -24,7 +24,7 @@ The current `source/DevBrain_v2_Developer_Context_Specification.docx` is a gener
 | V2.4 task handoff and recovery (operational extension beyond this DOCX revision) | `workflows/session-continuity.md` |
 | V2.5 repeatable behavioral evaluation (maintenance extension beyond this DOCX revision) | `evaluation/smoke-suite.yaml`; `evaluation/scorecard-contract.yaml`; `evaluation/README.md` |
 
-The checkout prepares v2.6.0-rc.1, with native validation pending; v2.5 remains the latest completed stable release. The source DOCX retains its v2.2 revision/date/hash; no source-document revision was explicitly requested. Preflight, fresh provenance and failure classification are maintained in [the candidate guide](v2.6-native-validation.md). The full suite remains at 54 scenarios. Earlier operational extensions remain described by their own guides.
+The checkout prepares v2.7.0-rc.1 with partial fresh bootstrap captures for both CLI hosts; broader host validation remains pending, and v2.5 remains the latest completed stable release. The source DOCX retains its v2.2 revision/date/hash; no source-document revision was explicitly requested. V2.6 preflight, fresh provenance and failure classification remain documented in [its candidate guide](v2.6-native-validation.md). The task behavior suite remains at 54 scenarios; the separate [v2.7 host matrix](../evaluation/cli-host-matrix.yaml) does not change that count. Earlier operational extensions remain described by their own guides.
 
 ## V2 decisions on gaps in the original source
 
