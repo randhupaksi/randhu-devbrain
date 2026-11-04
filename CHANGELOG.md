@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Added project-documentation for evidence-based Markdown creation and maintenance, with one combined expected format covering 15 document roles and selective cross-document navigation.
+- Connected documentation routing, project-context workflow, optional templates, and future installation of the eighth skill. Real-home installation is deferred; historical release evidence remains unchanged.
+
 ## 2.8.0 — 2026-10-28 (stable project-context scope)
 
 - Defined single-owner boundaries for shared project instructions, the factual project index, Visual DNA, and API/backend context.

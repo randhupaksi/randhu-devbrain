@@ -25,7 +25,7 @@ Fixtures are retained for inspection and ignored by Git. In a sandbox using anot
 
 ## Behavioral evaluation
 
-[`scenarios.yaml`](scenarios.yaml) contains 59 cases: the 21 original cases, three v2 boundaries, six performance/accessibility/testing cases, eight v2.2 discovery/debugging/completion cases, eight v2.3 reconciliation cases, eight v2.4 continuity cases, and five v2.8 project-context cases. Each specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
+[`scenarios.yaml`](scenarios.yaml) contains 63 cases: the 21 original cases, three v2 boundaries, six performance/accessibility/testing cases, eight v2.2 discovery/debugging/completion cases, eight v2.3 reconciliation cases, eight v2.4 continuity cases, five v2.8 project-context cases, and four project-documentation cases. Each specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
 
 1. Create synthetic fixtures under `local/behavior-runs/` with project instructions, target files, contracts, and enough tests. Do not use another project, client data, secrets, or a real database.
 2. Start a new Codex or Claude session with only the baseline, skill metadata, case prompt, and relevant fixture. Do not show the assistant the expected answer.
@@ -47,7 +47,7 @@ Use [the v2.4 guide](v2.4-behavior-guide.md) for two-phase handoff/resume evalua
 
 ## V2.5 core smoke pack
 
-[smoke-suite.yaml](smoke-suite.yaml) selects 12 existing scenarios; it does not expand the full suite beyond 59. [scorecard-contract.yaml](scorecard-contract.yaml) defines six scoring dimensions and explicit result/evidence categories. Preparation requires Node.js 18+, Git 2.28+ and the existing YAML parser. These are maintenance prerequisites, not installer dependencies.
+[smoke-suite.yaml](smoke-suite.yaml) selects 12 existing scenarios; it selects from the full 63-case suite. [scorecard-contract.yaml](scorecard-contract.yaml) defines six scoring dimensions and explicit result/evidence categories. Preparation requires Node.js 18+, Git 2.28+ and the existing YAML parser. These are maintenance prerequisites, not installer dependencies.
 
 ```powershell
 node evaluation/prepare-smoke.cjs
@@ -127,6 +127,6 @@ Capture rejects missing authorization, drifted inputs/profiles and prior attempt
 
 Tool TEMP/TMP/TMPDIR are configured inside fixture `.native-temp`; extra temporary-root exclusions are requested. Configuration regression tests and a focused Windows native probe observed these named paths inside the fixture and a local marker round trip. That probe timed out before its final response; it does not establish arbitrary outside-write isolation or behavioral PASS. Codex startup/authentication profile remains outside and needs separate authorization. Instructions and hashes are not OS security boundaries. Stop and record scope violations rather than concealing them through cleanup.
 
-Windows deadlines terminate only the capture's own process tree. Denied termination is reported and waiting is bounded. Run subprocess tests as the ordinary process owner if an outer sandbox denies termination; no administrator privileges. Seven skill payloads and global settings remain untouched.
+Windows deadlines terminate only the capture's own process tree. Denied termination is reported and waiting is bounded. Run subprocess tests as the ordinary process owner if an outer sandbox denies termination; no administrator privileges. Installed skill payloads and global settings remain untouched.
 
 Only the Git-list fixture has its own empty Git repository. Other ignored fixtures inherit parent Git metadata: empty `git diff` is not change evidence. Before/after hashes and direct reads establish fixture changes. Main repository source hashes detect source drift, not arbitrary outside effects.

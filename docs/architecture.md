@@ -29,7 +29,7 @@ The baseline carries safety rules that must always be available; safety modules 
 
 ## Compatibility and portability
 
-V2.2 adds discovery, debugging, and completion; v2.3 adds context reconciliation; v2.4 adds conversational handoff and current-state resume through session continuity. The task map/commands select them only when relevant without changing the baseline. V2.5 adds maintenance-only paired fixtures and evidence scorecards, with no normal coding route. Existing loaders read repository modules in place, and the seven standalone skills retain their scope. The conceptual DOCX remains a v2.2 reference; maintained Markdown/YAML governs current operational behavior. Handoffs remain task context rather than automatic global/project memory.
+V2.2 adds discovery, debugging, and completion; v2.3 adds context reconciliation; v2.4 adds conversational handoff and current-state resume through session continuity. The task map/commands select them only when relevant without changing the baseline. V2.5 adds maintenance-only paired fixtures and evidence scorecards, with no normal coding route. Existing loaders read repository modules in place, and the original seven standalone skills retain their scope. The conceptual DOCX remains a v2.2 reference; maintained Markdown/YAML governs current operational behavior. Handoffs remain task context rather than automatic global/project memory.
 
 `runtime/full-context.md` and `runtime/core-compact.md` point to the baseline so legacy loaders remain usable. There is no generated monolith to rebuild. The installer uses the same template for both tools and injects a concrete local root only into the installed result.
 
@@ -42,3 +42,5 @@ V2.8 defines single-owner project context: `AGENTS.md` owns shared instructions,
 The installer stages and verifies skills before replacing the destination directory. It backs up the previous version, including nested copies or customization, so only one active tree remains without stale references. An identical update does not write files or create another backup. Loaders are managed only inside markers; invalid markers are rejected before mutation.
 
 There is no daemon, model binding, database, or product CLI. Validators are manually run maintenance scripts, not assistant runtime dependencies.
+
+The unreleased eighth skill, [project-documentation](project-documentation.md), handles project Markdown creation and maintenance. It selects one combined expected-format reference and uses the project-context workflow for instruction files. It changes selective routing and future installer payloads without expanding the baseline.

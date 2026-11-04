@@ -19,7 +19,7 @@ if (-not $CodexHome) {
 }
 $CodexHome = [IO.Path]::GetFullPath($CodexHome)
 $claudeHome = Join-Path $resolvedHome '.claude'
-$names = @('enterprise-ui-ux', 'marketing-portfolio-ui-ux', 'design-system-architect', 'architecture-refactor', 'frontend-performance', 'accessibility-audit', 'testing-strategy')
+$names = @('enterprise-ui-ux', 'marketing-portfolio-ui-ux', 'design-system-architect', 'architecture-refactor', 'frontend-performance', 'accessibility-audit', 'testing-strategy', 'project-documentation')
 $markerStart = '<!-- DEVBRAIN-BOOTSTRAP:START -->'
 $markerEnd = '<!-- DEVBRAIN-BOOTSTRAP:END -->'
 $runId = (Get-Date -Format 'yyyyMMdd-HHmmss-fff') + '-' + [guid]::NewGuid().ToString('N').Substring(0,8)

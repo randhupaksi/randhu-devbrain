@@ -2,7 +2,7 @@ schema: devbrain-manifest
 version: 2.8.0
 owner: Randhu Paksi
 status: stable
-updated_on: 2026-10-28
+updated_on: 2026-11-04
 language: en
 purpose: Personal developer knowledge layer for AI coding assistants
 scoped_validation:
@@ -56,6 +56,7 @@ skills:
   - frontend-performance
   - accessibility-audit
   - testing-strategy
+  - project-documentation
 
 project_context_candidates: [AGENTS.md, CLAUDE.md, PROJECT-CONTEXT.md, PROJECT-VISUAL-DNA.md, PROJECT-API-CONTRACT.md, README.md]
 evaluation:

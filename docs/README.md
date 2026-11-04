@@ -4,6 +4,7 @@ V2.8.0 is stable for its project-context architecture after repository, regressi
 
 | Reader need | Current document |
 |---|---|
+| Project Markdown creation and document relationships | [Project documentation skill](project-documentation.md) |
 | Product overview and quick start | [Repository README](../README.md) |
 | Architecture and canonical ownership | [Architecture](architecture.md) |
 | Instruction priority | [Context precedence](context-precedence.md) |
