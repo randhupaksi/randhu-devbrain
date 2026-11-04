@@ -2,6 +2,8 @@
 
 Use only when the user explicitly asks to create, improve, or maintain project instructions/context. This workflow can produce edits within that authorized task. It does not change the read-only behavior of [project discovery](project-discovery.md), and it does not authorize changes to product behavior or protected boundaries.
 
+For a broader documentation outcome, use [project-documentation](../skills/project-documentation/SKILL.md) as the primary skill. This workflow owns the instruction/context subset; the skill's [combined format](../skills/project-documentation/references/expected-documentation-format.md) covers README, architecture, design, domain, testing, and historical documents. Reuse active context instead of rereading both procedures. Existing ARCHITECTURE/DESIGN/API guides can fulfill optional context-file roles; link to the existing owner rather than creating duplicate PROJECT-* files.
+
 ## Inspect proportionately
 
 1. Confirm the repository root, applicable `AGENTS.md`/`CLAUDE.md`, current worktree state, and requested outcome. Preserve staged and unstaged user changes.

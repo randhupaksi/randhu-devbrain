@@ -2,6 +2,8 @@
 
 Use these as optional starting points when a project needs clearer AI-facing context. They are examples, not files that every repository must adopt. Keep existing project instructions and customizations; add only the pieces that solve a real discovery or duplication problem.
 
+For complete project Markdown documentation, use [project-documentation](../skills/project-documentation/SKILL.md) and its [combined expected format](../skills/project-documentation/references/expected-documentation-format.md). These templates cover only the instruction/context subset. Existing architecture, design, and API topic guides can own the same facts; prefer links to those guides over parallel copies.
+
 ## File ownership
 
 | File | Owns | Load when |
