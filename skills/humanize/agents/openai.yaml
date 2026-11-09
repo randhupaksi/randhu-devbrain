@@ -1,0 +1,7 @@
+interface:
+  display_name: "Humanize"
+  short_description: "Deeply refine natural prose, voice, and UI text"
+  default_prompt: "Use $humanize to improve this text for its reader while preserving facts, meaning, and technical details."
+
+policy:
+  allow_implicit_invocation: true
