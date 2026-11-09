@@ -46,3 +46,7 @@ Report files created/updated, canonical ownership and navigation improvements, e
 ## Example of the expected result
 
 The linked [expected documentation format](references/expected-documentation-format.md) concludes with a synthetic connected output excerpt. It covers shared files once and retains specialist files as conditional examples. Adapt its content and relationships from repository evidence rather than copying its fictional behavior.
+
+## Prose quality
+
+Write direct, specific documentation for its actual reader. Explain current behavior with familiar verbs, consistent technical terms, and enough context to act. Preserve required detail, factual uncertainty, commands, paths, citations, and examples. Adapt language and register to the requested document; avoid stock introductions, inflated claims, and repetitive closers. Routine prose quality needs no additional skill. A separately available humanize skill can support an explicitly requested deep editorial or voice pass without changing this skill's evidence and scope boundaries.
