@@ -11,6 +11,7 @@ Paths are relative to the DevBrain root. Read only relevant rows, then only the 
 | Codex/Claude CLI setup, loader discovery, session modes, or host compatibility | `workflows/cli-compatibility.md` | None; use the host-specific matrix for maintenance evaluation |
 | Bug diagnosis or correction | `workflows/debugging.md` | No extra skill for routine debugging |
 | Substantial task completion/coverage review | `workflows/definition-of-done.md`, `workflows/verification-reporting.md` | None unless a specialized subtask requires it |
+| Explicit or substantial humanization, voice matching, prose or UI copy editing | `core/ai-collaboration.md`; select only relevant skill references | `humanize`; ordinary responses and routine UI text use baseline defaults |
 | Deeper identity/requirement interpretation | `core/developer-profile.md`, `core/ai-collaboration.md` | None needed |
 | Engineering, abstraction, maintainability | `core/engineering-principles.md` | Not needed for small cleanup |
 | Product UI, dashboard, CRUD | `core/ui-ux-principles.md`, `workflows/ui-task.md` | `enterprise-ui-ux` |
