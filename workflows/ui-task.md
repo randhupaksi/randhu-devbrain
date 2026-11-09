@@ -22,6 +22,8 @@ Use substantial creative freedom while staying consistent with the project's des
 
 Explore composition and hierarchy creatively toward the outcome. Add relevant supporting UI, responsive adaptation, and state feedback. Run a foundation pass only when needed. Do not add business features, endpoints, fields, or backend flows to a redesign that did not request them.
 
+Review user-facing strings with their actual states and actions. Keep terminology, product voice, localization variables, accessible labels, and consequences consistent. Natural copy must accurately describe what the implementation supports. Dedicated copy or voice work can select humanize; ordinary UI work uses the default language principles.
+
 ## Verify
 
 Check relevant normal/loading/empty/error/disabled/permission-limited states; relevant desktop/tablet/mobile sizes; overflow; focus/keyboard; touch targets; contrast/readability; console errors; each new visual value's token compliance; and regressions in shared components.

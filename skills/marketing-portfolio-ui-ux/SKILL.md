@@ -64,3 +64,7 @@ Read this skill only when its scope matches the task. References are optional de
 For relevant low-risk work, proceed; for medium-risk work, map impact and consumers, then implement without an extra approval gate. Creative composition, supporting states, accessibility, naming, and maintainability improvements are welcome within the requested outcome. Do not invent business capabilities, API fields/endpoints, data semantics, or workflows. Do not rewrite merely to match a preferred architecture.
 
 Ask only when unresolved ambiguity changes the business outcome or a high-risk boundary. Before changing auth/permission/security, breaking API contracts, destructive migrations/data rewrites, client/production data, payment, deployment, secrets, or Git history/remote state, require specific authorization for that action and scope. Do not ask again when that authorization is already explicit. Continue independent safe work.
+
+## Interface and page language
+
+Apply DevBrain's natural-writing default within the project's voice. Write specific action labels and useful state messages, preserving real capabilities, consequences, localization variables, and accessible names. Keep factual proof and technical precision. Ordinary UI copy is part of this skill; select a separately available humanize skill only for a dedicated or substantial editorial/voice task. This skill remains usable without it.

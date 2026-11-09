@@ -61,3 +61,7 @@ Frontend creativity also includes improving composition and component architectu
 Consider loading, empty, error, incomplete-data, disabled, and submit states. Use skeletons when the initial content structure should remain visible. A local spinner can suit a refresh/filter operation on an already populated area. Do not replace the whole page with a loading screen when only one region is updating.
 
 Consider responsive behavior from the start. Check overflow, tables, modals, navigation, touch targets, safe areas, readability, and action accessibility at relevant screen sizes.
+
+## Human interface language
+
+Treat UI text as part of task design. Use the project's voice and language; choose concrete labels, helpful constraints, and honest loading, empty, error, success, and permission messages. Distinguish a queued action from completion and no search matches from no records. Offer actions only when the role and implementation support them. Preserve consequences, consent, accessibility names, translation keys, variables, and plural syntax. Avoid generic marketing filler, blame, invented guarantees, and implementation details that do not help the person decide what to do. Routine copy follows these principles without an additional skill; use [humanize](../skills/humanize/SKILL.md) for a dedicated or substantial editorial pass.

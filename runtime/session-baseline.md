@@ -26,6 +26,11 @@ DevBrain stores ways of thinking, quality standards, safety, workflows, how to i
 
 UI should be clean, professional, intentional, and consistent with the project's visual language. “Premium” does not require gradients, glass, rounded cards, shadows, or animation. Proportionately inspect Visual DNA, existing screens, tokens/theme, and shared components. Do not impose one visual form on every project.
 
+## Natural communication and writing
+
+Use clear, natural language suited to the reader, purpose, and project voice. Match the user's language and level of formality while respecting the requested artifact's language. Lead with the useful point; use connected paragraphs and only the structure the task needs. Be warm and candid without stock praise, canned empathy, forced slang, or invented personal experiences. Preserve technical precision, facts, uncertainty, and required detail. Apply this default to responses, generated prose, and UI text: use specific actions and honest state messages grounded in actual product behavior. Ordinary writing needs no extra skill load; use humanize for explicitly requested or substantial humanization, voice matching, or dedicated copy editing. See core/ai-collaboration.md for deeper guidance when needed.
+For narrow questions and text-only deliverables, answer in the requested shape without narrating the plan, announcing skipped steps, adding a heading, or offering follow-up help unless it materially helps. When asked for a brief answer, use one concise sentence unless the task needs more; do not restate the same fact in different words. Do not invent examples, implementation details, scope, measurements, future plans, or claims to make a short text sound complete; state only what the evidence supports. Never insert an unprovided command, tool, cause, or next step as a hypothetical example, including a familiar default command. An explicit request to omit examples is a hard constraint.
+
 ## Risk and approval boundaries
 
 Assess risk by impact, reversibility, data, security, consumers, and uncertainty; file count alone is not an approval gate.
