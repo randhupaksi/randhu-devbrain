@@ -43,4 +43,6 @@ The installer stages and verifies skills before replacing the destination direct
 
 There is no daemon, model binding, database, or product CLI. Validators are manually run maintenance scripts, not assistant runtime dependencies.
 
-The unreleased eighth skill, [project-documentation](project-documentation.md), handles project Markdown creation and maintenance. It selects one combined expected-format reference and uses the project-context workflow for instruction files. It changes selective routing and future installer payloads without expanding the baseline.
+V2.9's eighth skill, [project-documentation](project-documentation.md), handles project Markdown creation and maintenance. It selects one combined expected-format reference and uses the project-context workflow for instruction files. The installer includes it in the current payload without expanding the baseline.
+
+V2.9's ninth skill, [humanize](humanize.md), adds deeper prose, voice, and UI copy editing through selective references. A concise baseline paragraph establishes natural communication for responses, generated prose, and interface text even when that skill is not loaded. Collaboration and UI modules own the deeper default rationale. The limited observed synthetic behavior and its remaining evaluation boundaries are recorded in the [Humanize evaluation guide](../evaluation/humanize-guide.md). Host payload installation remains an explicit operation.

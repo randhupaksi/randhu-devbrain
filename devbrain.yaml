@@ -1,11 +1,17 @@
 schema: devbrain-manifest
-version: 2.8.0
+version: 2.9.0
 owner: Randhu Paksi
 status: stable
-updated_on: 2026-11-04
+updated_on: 2026-11-09
 language: en
 purpose: Personal developer knowledge layer for AI coding assistants
 scoped_validation:
+  humanize_upgrade:
+    status: behavioral_validation_observed_limited
+    scope: default_responses_generated_prose_ui_text_and_deep_editing_skill
+    native_codex: pass_synthetic_cases_64_71
+    native_claude: pass_synthetic_cases_64_71
+    limitation: single_observed_run_per_case_no_before_after_comparison
   project_context_architecture:
     status: stable
     scope: templates_and_selective_context_workflow
@@ -57,6 +63,7 @@ skills:
   - accessibility-audit
   - testing-strategy
   - project-documentation
+  - humanize
 
 project_context_candidates: [AGENTS.md, CLAUDE.md, PROJECT-CONTEXT.md, PROJECT-VISUAL-DNA.md, PROJECT-API-CONTRACT.md, README.md]
 evaluation:

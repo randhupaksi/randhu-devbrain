@@ -1,14 +1,16 @@
-# DevBrain v2.8 Documentation
+# DevBrain v2.9 Documentation
 
-V2.8.0 is stable for its project-context architecture after repository, regression, harness, installer, and smoke-fixture checks. The scoped v2.7 native CLI matrix remains incomplete: Codex and Claude have partial bootstrap captures, not full host parity evidence. Markdown/YAML defines operational behavior. The generalized DOCX remains a v2.2 conceptual reference, excluded from startup. Read these documents for maintenance or onboarding.
+V2.9.0 is stable for natural communication defaults, the Humanize skill, and project-documentation guidance after repository, content regression, installer, and scoped synthetic native checks. Humanize scenarios 64–71 were observed on Codex and Claude; this does not close the separate v2.7 native CLI compatibility matrix or establish universal host parity. Markdown/YAML defines operational behavior. The generalized DOCX remains a v2.2 conceptual reference, excluded from startup. Read these documents for maintenance or onboarding.
 
 | Reader need | Current document |
 |---|---|
+| V2.9 release scope and observed Humanize behavior | [Humanize guide and evidence](humanize.md) and [evaluation results](../evaluation/humanize-guide.md) |
+| Natural responses, generated prose, and deeper UI/text editing | [Humanize](humanize.md) |
 | Project Markdown creation and document relationships | [Project documentation skill](project-documentation.md) |
 | Product overview and quick start | [Repository README](../README.md) |
 | Architecture and canonical ownership | [Architecture](architecture.md) |
 | Instruction priority | [Context precedence](context-precedence.md) |
-| Project context setup and optional template ownership | [V2.8 stable project-context architecture](v2.8-project-context.md) and [template guide](../project-templates/README.md) |
+| Project context setup and optional template ownership | [V2.8 project-context architecture](v2.8-project-context.md) and [template guide](../project-templates/README.md) |
 | Installing, updating, previewing and recovering | [Installation guide](../install/README.md) and [bootstrap notes](bootstrap-installation.md) |
 | Discovery, debugging and completion workflows | [V2.2 adoption guide](v2.2-workflows.md) |
 | Context reconciliation and conflicting evidence | [V2.3 adoption guide](v2.3-context-reconciliation.md) |

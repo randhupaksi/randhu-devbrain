@@ -17,6 +17,8 @@ The current `source/DevBrain_v2_Developer_Context_Specification.docx` is a gener
 | Project facts/Visual DNA/contracts | `project-templates/` |
 | AI-agnostic modularity and adapters | `runtime/task-map.md`; `adapters/`; `install/` |
 | Review/evolution | `docs/maintenance.md`; `evaluation/` |
+| Natural communication and deep prose/UI copy editing (v2.9 operational extension) | `runtime/session-baseline.md`; `core/ai-collaboration.md`; `core/ui-ux-principles.md`; `skills/humanize/` |
+| Evidence-based project Markdown creation/maintenance (v2.9 operational extension) | `skills/project-documentation/`; `docs/project-documentation.md`; `project-templates/` |
 | Scoped project discovery | `workflows/project-discovery.md` |
 | Evidence-based diagnosis and correction | `workflows/debugging.md` |
 | Adaptive completion and verification honesty | `workflows/definition-of-done.md`; `workflows/verification-reporting.md` |
@@ -24,7 +26,7 @@ The current `source/DevBrain_v2_Developer_Context_Specification.docx` is a gener
 | V2.4 task handoff and recovery (operational extension beyond this DOCX revision) | `workflows/session-continuity.md` |
 | V2.5 repeatable behavioral evaluation (maintenance extension beyond this DOCX revision) | `evaluation/smoke-suite.yaml`; `evaluation/scorecard-contract.yaml`; `evaluation/README.md` |
 
-The checkout is DevBrain v2.8.0, stable for project-context architecture after repository validation; the separate native Codex/Claude CLI matrix remains pending beyond partial bootstrap captures. The source DOCX retains its v2.2 revision/date/hash; no source-document revision was requested for v2.8. V2.6 preflight, fresh provenance and failure classification remain documented in [its candidate guide](v2.6-native-validation.md). The task behavior suite contains 59 scenarios; the separate [CLI host matrix](../evaluation/cli-host-matrix.yaml) does not change that count. Earlier operational extensions remain described by their guides.
+The checkout is DevBrain v2.9.0, stable for natural communication defaults, the Humanize skill, and project-documentation guidance after repository validation. Humanize scenarios 64–71 have limited synthetic native observations; the separate Codex/Claude CLI compatibility matrix remains pending beyond partial bootstrap captures. The source DOCX retains its v2.2 revision/date/hash; no source-document revision was requested for v2.9. V2.6 preflight, fresh provenance and failure classification remain documented in [its candidate guide](v2.6-native-validation.md). The task behavior suite contains 71 scenarios; the separate [CLI host matrix](../evaluation/cli-host-matrix.yaml) does not change that count. Earlier operational extensions remain described by their guides.
 
 ## V2 decisions on gaps in the original source
 

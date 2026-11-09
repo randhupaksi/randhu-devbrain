@@ -2,8 +2,17 @@
 
 ## Unreleased
 
+## 2.9.0 — 2026-11-09 (stable natural communication and writing support)
+
+- Added original dependency-free humanize skill for writing, rewriting, auditing, voice matching, and product microcopy with selective editorial, language, and UI references.
+- Added natural language defaults to the session baseline and collaboration/UI guidance; connected routine UI/document prose quality without forcing skill activation on every task.
+- Connected the ninth skill to the task map, manifest, Codex/Claude installer payloads, installation guide, and behavioral evaluation coverage.
+
 - Added project-documentation for evidence-based Markdown creation and maintenance, with one combined expected format covering 15 document roles and selective cross-document navigation.
-- Connected documentation routing, project-context workflow, optional templates, and future installation of the eighth skill. Real-home installation is deferred; historical release evidence remains unchanged.
+- Connected documentation routing, project-context workflow, optional templates, and the eighth skill in the nine-skill installer payload.
+- Added four project-documentation cases and eight humanize/default-writing cases; the maintained scenario suite now contains 71 cases.
+- Observed Humanize scenarios 64–71 on Codex CLI 0.167.0 and Claude Code 2.1.319 using synthetic, isolated, read-only fixtures. Results cover these prompts only and do not establish repeated consistency or full host parity.
+- Validated 2,767 repository checks, 22 content regression assertions, and 39 simulated-home installer assertions. No real host profile or third-party humanizer was installed.
 
 ## 2.8.0 — 2026-10-28 (stable project-context scope)
 
