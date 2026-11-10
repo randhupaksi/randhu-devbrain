@@ -33,3 +33,14 @@ Repeat the relevant measurement under comparable conditions. Check the affected 
 ## Authorization and selective use
 
 Follow system and project instructions and the latest user request. Low-risk fixes can proceed directly; analyze medium-risk shared changes and proceed within scope. Authentication, permission, breaking API, client or production data, destructive migration, deployment, secrets, Git commit/push/history, and hard-to-reverse actions require their own specific authorization. Do not invent business features to solve a performance complaint. Load this skill only when its description matches the task; do not load its reference by default.
+
+## Collaboration by artifact
+
+Separate p95/field evidence from a single local trace; note device, data and cache conditions. Do not describe a bundle-size change as a measured interaction improvement.
+
+Input: Reproducible user journey and browser/network measurements. Output: Measured frontend change with comparable before/after evidence.
+
+- Consider `database-query-optimization` only for a distinct subtask; pass evidenced database bottleneck.
+- Consider `observability-debugging` only for a distinct subtask; pass cross-service latency uncertainty.
+
+Use only available skills when a distinct outcome needs them. Handoff the facts, constraints, changed artifacts and checks actually run; never treat another skill name as permission or automatically load its references. This skill remains usable on its own.
