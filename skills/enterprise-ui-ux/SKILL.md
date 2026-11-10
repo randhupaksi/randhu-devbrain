@@ -59,3 +59,15 @@ Ask only when unresolved ambiguity changes the business outcome or a high-risk b
 ## Interface and page language
 
 Apply DevBrain's natural-writing default within the project's voice. Write specific action labels and useful state messages, preserving real capabilities, consequences, localization variables, and accessible names. Keep factual proof and technical precision. Ordinary UI copy is part of this skill; select a separately available humanize skill only for a dedicated or substantial editorial/voice task. This skill remains usable without it.
+
+## Collaboration by artifact
+
+For bulk actions, distinguish selected visible rows from all matching records; never invent permission or irreversible-action semantics.
+
+Input: User roles, screen evidence, and actual state/action contracts. Output: Working product interface and its state/accessibility checks.
+
+- Consider `forms-validation` only for a distinct subtask; pass complex data/validation behavior.
+- Consider `frontend-state-management` only for a distinct subtask; pass cross-view async state ownership.
+- Consider `design-system-architect` only for a distinct subtask; pass shared visual contract.
+
+Use only available skills when a distinct outcome needs them. Handoff the facts, constraints, changed artifacts and checks actually run; never treat another skill name as permission or automatically load its references. This skill remains usable on its own.

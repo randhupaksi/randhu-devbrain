@@ -71,3 +71,14 @@ Read this skill only when its scope matches the task. References are optional de
 For relevant low-risk work, proceed; for medium-risk work, map impact and consumers, then implement without an extra approval gate. Creative composition, supporting states, accessibility, naming, and maintainability improvements are welcome within the requested outcome. Do not invent business capabilities, API fields/endpoints, data semantics, or workflows. Do not rewrite merely to match a preferred architecture.
 
 Ask only when unresolved ambiguity changes the business outcome or a high-risk boundary. Before changing auth/permission/security, breaking API contracts, destructive migrations/data rewrites, client/production data, payment, deployment, secrets, or Git history/remote state, require specific authorization for that action and scope. Do not ask again when that authorization is already explicit. Continue independent safe work.
+
+## Collaboration by artifact
+
+For token renames and variant removals, migrate every affected consumer and verify theme/contrast states; a primitive snapshot does not prove consumer compatibility.
+
+Input: Token owner, shared primitives, variants and consumer inventory. Output: Compatible visual tokens/components and migrated consumers.
+
+- Consider `accessibility-audit` only for a distinct subtask; pass material shared interaction barrier.
+- Consider `architecture-refactor` only for a distinct subtask; pass domain responsibility issue outside visual contracts.
+
+Use only available skills when a distinct outcome needs them. Handoff the facts, constraints, changed artifacts and checks actually run; never treat another skill name as permission or automatically load its references. This skill remains usable on its own.
