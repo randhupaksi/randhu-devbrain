@@ -40,7 +40,7 @@ The skill's references contain original editorial examples, language/voice guida
 
 ## Installation and verification
 
-The manifest and existing installer now manage nine source skill folders. Follow the [installation guide](../install/README.md) for an explicitly requested installation/update. Maintenance checks use simulated homes inside ignored local/. Editing repository content does not install the new skill into a real host profile. Existing loaders read the default from this checkout after context reload or a new session.
+The manifest and current source installer manage 30 skill folders, including Humanize. Follow the [installation guide](../install/README.md) for an explicitly requested installation/update. Maintenance checks use simulated homes inside ignored local/. Editing repository content does not install the new skill into a real host profile. Existing loaders read the default from this checkout after context reload or a new session.
 
 [Behavioral scenarios](../evaluation/scenarios.yaml) cover default responses, default prose/UI copy without skill loading, deep rewrite fidelity, audit scope, voice samples, and localization integrity. The [humanize evaluation guide](../evaluation/humanize-guide.md) records the observed synthetic Codex/Claude runs and their limits. Content checks, skill metadata validation, and installer fixtures establish repository contracts and packaged payloads. They do not prove universal host parity or consistent results on every prompt. Other behavioral cases remain unrun until evaluated.
 

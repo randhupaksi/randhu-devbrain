@@ -1,9 +1,10 @@
-# DevBrain v2.9 Documentation
+# DevBrain Update 3.0 Documentation
 
-V2.9.0 is stable for natural communication defaults, the Humanize skill, and project-documentation guidance after repository, content regression, installer, and scoped synthetic native checks. Humanize scenarios 64–71 were observed on Codex and Claude; this does not close the separate v2.7 native CLI compatibility matrix or establish universal host parity. Markdown/YAML defines operational behavior. The generalized DOCX remains a v2.2 conceptual reference, excluded from startup. Read these documents for maintenance or onboarding.
+V2.9.0 remains the latest stable release for natural communication defaults, Humanize, and project-documentation guidance. DevBrain Update 3.0 is the unreleased 30-skill expansion; its structural checks and limited/mixed native samples are documented separately and do not establish universal host parity. Humanize scenarios 64–71 were observed on Codex and Claude, but this does not close the v2.7 native CLI compatibility matrix. Markdown/YAML defines operational behavior. The generalized DOCX remains a v2.2 conceptual reference, excluded from startup. Read these documents for maintenance or onboarding.
 
 | Reader need | Current document |
 |---|---|
+| Fullstack skill catalog, boundaries and collaboration | [Skill system](skill-system.md) |
 | V2.9 release scope and observed Humanize behavior | [Humanize guide and evidence](humanize.md) and [evaluation results](../evaluation/humanize-guide.md) |
 | Natural responses, generated prose, and deeper UI/text editing | [Humanize](humanize.md) |
 | Project Markdown creation and document relationships | [Project documentation skill](project-documentation.md) |

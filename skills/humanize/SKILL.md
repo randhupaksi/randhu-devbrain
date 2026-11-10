@@ -44,3 +44,16 @@ Reread against the source and requested outcome. Check factual fidelity, natural
 Return the requested artifact directly. For rewrite-only requests return the revised text without an audit wrapper. Do not announce the skill, describe skipped plans, or add rationale when the user asks for the text itself. For an audit, explain the most consequential issues and fixes; distinguish observable problems from preferences. If an audit also requests a rewrite, preserve only supported substance and mark missing facts instead of inventing a generic feature or benefit. For authorized file edits, provide a concise change report and actual verification. Do not turn every edit into a scored report or a fixed number of findings. Follow the user's request for alternatives or before/after comparison.
 
 Quality is editorial and context-dependent. Do not infer authorship from stylistic patterns, promise detector evasion, add deliberate mistakes, or report a human percentage. Mechanical checks can identify protected-token changes; they cannot establish that prose feels natural.
+
+## Collaboration by artifact
+
+Distinguish localization parser structure from translatable branch text. Preserve exact mandated wording; a friendlier label cannot imply permissions or delivery that do not exist.
+
+Input: Source facts, intended reader, format and voice evidence. Output: Natural text preserving facts, technical literals and required context.
+
+- Consider `project-documentation` only for a distinct subtask; pass source verification and document ownership.
+- Consider `enterprise-ui-ux` only for a distinct subtask; pass product behavior/layout decision.
+
+Use only available skills when a distinct outcome needs them. Handoff the facts, constraints, changed artifacts and checks actually run; never treat another skill name as permission or automatically load its references. This skill remains usable on its own.
+
+For a distinct internationalization-localization task, pass verified message meaning and protected locale structure to an available `internationalization-localization` skill; do not load it for routine supporting work.

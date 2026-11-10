@@ -1,11 +1,21 @@
 schema: devbrain-manifest
 version: 2.9.0
 owner: Randhu Paksi
+# Version/status track the latest published release; scoped_validation records unreleased DevBrain Update 3.0 work.
 status: stable
-updated_on: 2026-11-09
+updated_on: 2026-11-10
 language: en
 purpose: Personal developer knowledge layer for AI coding assistants
 scoped_validation:
+  six_skill_extension:
+    status: structural_validated_native_reasoning_samples_limited
+    scope: realtime_cache_localization_seo_dependencies_local_environment
+    evidence_report: docs/skill-system.md
+  fullstack_skill_system:
+    status: structural_validated_native_samples_mixed
+    scope: 30_skills_21_new_9_reinforced
+    evidence_report: docs/skill-system.md
+    native_scope: synthetic_read_only_design_and_review_not_implementation_or_routing_parity
   humanize_upgrade:
     status: behavioral_validation_observed_limited
     scope: default_responses_generated_prose_ui_text_and_deep_editing_skill
@@ -64,6 +74,27 @@ skills:
   - testing-strategy
   - project-documentation
   - humanize
+  - api-contracts
+  - backend-feature-engineering
+  - database-engineering
+  - database-query-optimization
+  - auth-security
+  - application-security-review
+  - frontend-state-management
+  - forms-validation
+  - external-service-integrations
+  - background-jobs-queues
+  - file-storage-uploads
+  - browser-e2e-testing
+  - code-review
+  - observability-debugging
+  - ci-cd-release-engineering
+  - realtime-systems
+  - server-caching
+  - internationalization-localization
+  - technical-seo
+  - dependency-upgrades
+  - developer-environment
 
 project_context_candidates: [AGENTS.md, CLAUDE.md, PROJECT-CONTEXT.md, PROJECT-VISUAL-DNA.md, PROJECT-API-CONTRACT.md, README.md]
 evaluation:

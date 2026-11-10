@@ -1,0 +1,505 @@
+schema: devbrain-skill-catalog
+version: 1
+policy: Choose one primary owner by requested outcome; collaborate only through a distinct subtask and an explicit artifact.
+skills:
+  - id: api-contracts
+    owns: API shapes, compatibility decisions, and producer-consumer acceptance examples
+    inputs: Current producer schema, strict consumer parsers, compatibility requirements and error/pagination conventions
+    outputs: API shapes, compatibility decisions, and producer-consumer acceptance examples
+    collaborates:
+      - skill: backend-feature-engineering
+        handoff: accepted contract and consumer acceptance cases
+      - skill: external-service-integrations
+        handoff: provider constraints and failure contract
+    positive:
+      prompt: Design an additive optional cursor for an existing list API. An old mobile client rejects unknown fields; account for it.
+      expected: Review compatibility and enumerate affected consumers; do not silently change the existing response or deploy.
+    negative:
+      prompt: Only adjust spacing in an existing dashboard.
+      alternative: enterprise-ui-ux
+  - id: backend-feature-engineering
+    owns: Backend use-case implementation and transaction/side-effect boundaries
+    inputs: Accepted API/use-case contract, existing handler/service boundaries, policy and data invariants
+    outputs: Backend use-case implementation and transaction/side-effect boundaries
+    collaborates:
+      - skill: api-contracts
+        handoff: unresolved wire or semantic compatibility decision
+      - skill: database-engineering
+        handoff: required integrity and transaction invariants
+      - skill: background-jobs-queues
+        handoff: post-commit work and deduplication key
+      - skill: server-caching
+        handoff: authoritative write and invalidation contract
+    positive:
+      prompt: >-
+        Prepare a backend handler that creates a draft order and schedules a confirmation; queue delivery can fail after the
+        database commit.
+      expected: >-
+        Make the transaction/side-effect failure window explicit and design recovery without pretending the external send is
+        transactional.
+    negative:
+      prompt: Extract an oversized service without changing behavior.
+      alternative: architecture-refactor
+  - id: database-engineering
+    owns: Data integrity, schema evolution, and transaction correctness
+    inputs: Engine/version, existing schema, data invariants, concurrent writers and authorized migration scope
+    outputs: Data integrity, schema evolution, and transaction correctness
+    collaborates:
+      - skill: database-query-optimization
+        handoff: schema constraints and representative access patterns
+      - skill: backend-feature-engineering
+        handoff: transaction and uniqueness invariants
+    positive:
+      prompt: >-
+        Plan a unique customer slug migration for a table whose existing rows may contain duplicates. Do not connect to a
+        database.
+      expected: >-
+        Provide staged duplicate handling and integrity verification; do not assume a unique index can be added immediately or
+        execute anything.
+    negative:
+      prompt: Explain an already supplied EXPLAIN plan for a slow query.
+      alternative: database-query-optimization
+  - id: database-query-optimization
+    owns: Database query cost and result-preserving optimization
+    inputs: Redacted query, supplied plan/timings, representative cardinalities, lock evidence and result invariants
+    outputs: Database query cost and result-preserving optimization
+    collaborates:
+      - skill: database-engineering
+        handoff: index migration and lock implications
+      - skill: frontend-performance
+        handoff: measured server contribution to the user journey
+    positive:
+      prompt: >-
+        Analyze this synthetic query timing: scan execution 8 ms, row-lock wait 4900 ms, total 5000 ms. Explain the dominant
+        bottleneck without connecting to a database.
+      expected: Investigate contention and transaction duration; do not prescribe an index as proof of a speedup.
+    negative:
+      prompt: Optimize slow React list rendering after the API response has arrived.
+      alternative: frontend-performance
+  - id: auth-security
+    owns: Identity, session lifecycle, access policy, and tenant isolation
+    inputs: Actor-resource-action requirements, trusted identity/tenant sources, middleware and database enforcement
+    outputs: Identity, session lifecycle, access policy, and tenant isolation
+    collaborates:
+      - skill: application-security-review
+        handoff: identity trust boundaries and suspected exploit path
+      - skill: backend-feature-engineering
+        handoff: approved actor-resource-action matrix
+    positive:
+      prompt: Review a handler that fetches an invoice by ID after checking only that a user is logged in. Return findings only.
+      expected: Trace ownership/tenant enforcement and describe the access failure without editing policy or using real account data.
+    negative:
+      prompt: Review a public search endpoint for SQL injection.
+      alternative: application-security-review
+  - id: application-security-review
+    owns: Evidence-backed vulnerability findings and scoped hardening
+    inputs: Reachable untrusted sources, privileged sinks, control implementations and permitted synthetic evidence
+    outputs: Evidence-backed vulnerability findings and scoped hardening
+    collaborates:
+      - skill: auth-security
+        handoff: identity or tenant-policy finding requiring policy review
+      - skill: file-storage-uploads
+        handoff: reachable file trust-boundary finding
+      - skill: code-review
+        handoff: verified vulnerability with source location and reproduction
+    positive:
+      prompt: Audit an image proxy that accepts arbitrary URLs and follows redirects. Use only source evidence and synthetic examples.
+      expected: >-
+        Trace URL parsing, redirects and internal-network reachability without sending live requests or claiming an unverified
+        exploit.
+    negative:
+      prompt: Implement a normal form label and helper text.
+      alternative: enterprise-ui-ux
+  - id: frontend-state-management
+    owns: State ownership, asynchronous lifecycle, and client cache correctness
+    inputs: Actual state/query ownership, identity boundaries, async lifecycle and reproducible timing symptom
+    outputs: State ownership, asynchronous lifecycle, and client cache correctness
+    collaborates:
+      - skill: forms-validation
+        handoff: submission state and server validation mapping
+      - skill: enterprise-ui-ux
+        handoff: available states and interaction requirements
+      - skill: architecture-refactor
+        handoff: proven structural ownership problem
+      - skill: realtime-systems
+        handoff: snapshot/replay boundary and event ownership
+    positive:
+      prompt: Fix a filtered list where a slow first request overwrites the results of a newer request. Keep the existing query library.
+      expected: Correct response ownership/cancellation and preserve loading/error behavior; do not replace the state stack.
+    negative:
+      prompt: Redesign a dashboard visual hierarchy while preserving behavior.
+      alternative: enterprise-ui-ux
+  - id: forms-validation
+    owns: Form data, validation, submission, and error recovery
+    inputs: Input schema, request/error contract, edit/create semantics, field versions and user-visible constraints
+    outputs: Form data, validation, submission, and error recovery
+    collaborates:
+      - skill: api-contracts
+        handoff: unresolved request semantics or error mapping
+      - skill: frontend-state-management
+        handoff: cross-route draft or server cache lifecycle
+      - skill: accessibility-audit
+        handoff: material focus or announcement barrier
+    positive:
+      prompt: >-
+        Implement server-error mapping for an edit form whose numeric quantity may validly be zero. Preserve entered values on
+        rejection.
+      expected: Keep zero distinct from missing, associate field errors and retain the draft without weakening server validation.
+    negative:
+      prompt: Change only input border radius to match tokens.
+      alternative: design-system-architect
+  - id: external-service-integrations
+    owns: Provider adapters and reliable inbound/outbound integration semantics
+    inputs: Provider contract/version, sandbox/live boundary, existing adapter and uncertain-outcome semantics
+    outputs: Provider adapters and reliable inbound/outbound integration semantics
+    collaborates:
+      - skill: background-jobs-queues
+        handoff: durable accepted event and replay/deduplication contract
+      - skill: api-contracts
+        handoff: provider-to-internal compatibility mapping
+      - skill: observability-debugging
+        handoff: redacted correlation and error taxonomy
+    positive:
+      prompt: >-
+        Design retry handling for a provider create request that timed out after it may have succeeded. Provider supports
+        idempotency keys.
+      expected: Reuse a stable idempotency key and reconcile uncertain outcomes; do not blindly issue another create.
+    negative:
+      prompt: Implement an internal CRUD endpoint against an established contract.
+      alternative: backend-feature-engineering
+  - id: background-jobs-queues
+    owns: Durable work lifecycle, duplicate delivery, and failure recovery
+    inputs: Broker delivery/lease semantics, job payload versions, durable operation identity and effect boundaries
+    outputs: Durable work lifecycle, duplicate delivery, and failure recovery
+    collaborates:
+      - skill: backend-feature-engineering
+        handoff: durable job state and post-commit boundary
+      - skill: external-service-integrations
+        handoff: external idempotency and uncertain-outcome handling
+      - skill: observability-debugging
+        handoff: queue lag retries and failure signals
+    positive:
+      prompt: A worker sends an external request successfully and crashes before acknowledging. Explain a safe recovery design.
+      expected: >-
+        Treat redelivery as possible and protect/reconcile the external effect; do not claim broker acknowledgement provides
+        exactly-once effects.
+    negative:
+      prompt: Extract a synchronous handler into a service without changing behavior.
+      alternative: architecture-refactor
+  - id: file-storage-uploads
+    owns: File validation, ownership, storage lifecycle, and protected delivery
+    inputs: Object ownership, upload/process/download lifecycle, provider controls and content/retention constraints
+    outputs: File validation, ownership, storage lifecycle, and protected delivery
+    collaborates:
+      - skill: auth-security
+        handoff: object ownership and download authorization policy
+      - skill: application-security-review
+        handoff: untrusted active-content processing path
+      - skill: background-jobs-queues
+        handoff: file processing state and durable retry identity
+    positive:
+      prompt: Review a download route that signs any client-supplied storage key after login, without checking object ownership.
+      expected: >-
+        Identify the object access boundary and prepare an authorized policy change; do not expose real objects or assume signed
+        URLs enforce tenant ownership.
+    negative:
+      prompt: Optimize public hero-image layout and cropping.
+      alternative: marketing-portfolio-ui-ux
+  - id: browser-e2e-testing
+    owns: Browser journey evidence and maintainable end-to-end checks
+    inputs: Existing browser runner, permitted startup contract, deterministic fixtures and critical user journey
+    outputs: Browser journey evidence and maintainable end-to-end checks
+    collaborates:
+      - skill: testing-strategy
+        handoff: browser evidence and remaining lower-layer coverage gap
+      - skill: accessibility-audit
+        handoff: demonstrated keyboard or naming barrier
+      - skill: frontend-state-management
+        handoff: reproducible asynchronous state failure
+    positive:
+      prompt: >-
+        Repair this synthetic browser test: await page.waitForTimeout(2000); await page.getByRole("button",
+        {name:"Submit"}).click(). The UI exposes a Loading status and enables Submit after its response. Propose a robust wait and
+        outcome assertion.
+      expected: Wait for the meaningful ready state and verify the submission outcome without increasing a fixed sleep or masking failure.
+    negative:
+      prompt: Choose whether a pure tax-calculation function needs unit or integration tests.
+      alternative: testing-strategy
+  - id: code-review
+    owns: Actionable findings on a bounded change and its consumers
+    inputs: Bounded diff, relevant callers/contracts, intended behavior and available reproduction evidence
+    outputs: Actionable findings on a bounded change and its consumers
+    collaborates:
+      - skill: application-security-review
+        handoff: reachable suspected vulnerability needing focused threat analysis
+      - skill: testing-strategy
+        handoff: concrete missing regression scenario
+      - skill: project-documentation
+        handoff: verified stale public contract documentation
+    positive:
+      prompt: Review a diff changing if (quantity == null) to if (!quantity); zero is a valid quantity. Return findings only.
+      expected: Identify zero being rejected with trigger and location; keep the review read-only and avoid unrelated style findings.
+    negative:
+      prompt: Implement a requested feature rather than review an existing diff.
+      alternative: backend-feature-engineering
+  - id: observability-debugging
+    owns: Cross-boundary diagnosis and useful operational telemetry
+    inputs: Affected journey/time window, redacted correlated telemetry, service boundaries and evidence gaps
+    outputs: Cross-boundary diagnosis and useful operational telemetry
+    collaborates:
+      - skill: database-query-optimization
+        handoff: database timing and supplied redacted query plan
+      - skill: external-service-integrations
+        handoff: provider uncertainty and retry evidence
+      - skill: background-jobs-queues
+        handoff: lag failure and lease evidence
+    positive:
+      prompt: >-
+        Investigate a slow export from supplied traces: HTTP acknowledgement is fast, queue wait dominates, and worker execution
+        is short.
+      expected: >-
+        Locate the queue-wait contribution and propose bounded telemetry or capacity investigation rather than claiming a database
+        or frontend fix.
+    negative:
+      prompt: Fix a reproducible local syntax error with a clear compiler diagnostic.
+      alternative: null
+  - id: ci-cd-release-engineering
+    owns: Reproducible pipeline artifacts, rollout readiness, and recovery plans
+    inputs: Pipeline source, trust/environment boundaries, artifact/build contract and authorized execution scope
+    outputs: Reproducible pipeline artifacts, rollout readiness, and recovery plans
+    collaborates:
+      - skill: database-engineering
+        handoff: schema compatibility and irreversible recovery limits
+      - skill: browser-e2e-testing
+        handoff: permitted preview smoke journey
+      - skill: observability-debugging
+        handoff: rollout health and failure signals
+      - skill: dependency-upgrades
+        handoff: runtime and package compatibility migration scope
+    positive:
+      prompt: >-
+        Review a pipeline that exposes deployment credentials to a pull-request job running untrusted code. Do not change remote
+        settings.
+      expected: >-
+        Identify the trust-boundary exposure and prepare a scoped configuration repair without running the job or revealing
+        credentials.
+    negative:
+      prompt: Write a Git add/commit/push command list.
+      alternative: null
+  - id: enterprise-ui-ux
+    owns: Working product interface and its state/accessibility checks
+    inputs: User roles, screen evidence, and actual state/action contracts
+    outputs: Working product interface and its state/accessibility checks
+    collaborates:
+      - skill: forms-validation
+        handoff: complex data/validation behavior
+      - skill: frontend-state-management
+        handoff: cross-view async state ownership
+      - skill: design-system-architect
+        handoff: shared visual contract
+  - id: marketing-portfolio-ui-ux
+    owns: Responsive narrative interface with authentic claims
+    inputs: Supplied brand, audience, proof, and conversion goal
+    outputs: Responsive narrative interface with authentic claims
+    collaborates:
+      - skill: humanize
+        handoff: dedicated voice or long-form editorial pass
+      - skill: frontend-performance
+        handoff: measured media/loading bottleneck
+      - skill: technical-seo
+        handoff: public route intent and actual crawlable content
+  - id: design-system-architect
+    owns: Compatible visual tokens/components and migrated consumers
+    inputs: Token owner, shared primitives, variants and consumer inventory
+    outputs: Compatible visual tokens/components and migrated consumers
+    collaborates:
+      - skill: accessibility-audit
+        handoff: material shared interaction barrier
+      - skill: architecture-refactor
+        handoff: domain responsibility issue outside visual contracts
+  - id: architecture-refactor
+    owns: Smaller coherent boundaries with regression evidence
+    inputs: Current dependencies, consumers, and preserved behavior
+    outputs: Smaller coherent boundaries with regression evidence
+    collaborates:
+      - skill: frontend-state-management
+        handoff: state correctness problem
+      - skill: backend-feature-engineering
+        handoff: explicit new use case
+      - skill: design-system-architect
+        handoff: visual shared-contract change
+  - id: frontend-performance
+    owns: Measured frontend change with comparable before/after evidence
+    inputs: Reproducible user journey and browser/network measurements
+    outputs: Measured frontend change with comparable before/after evidence
+    collaborates:
+      - skill: database-query-optimization
+        handoff: evidenced database bottleneck
+      - skill: observability-debugging
+        handoff: cross-service latency uncertainty
+  - id: accessibility-audit
+    owns: Verified barriers and repairs with manual/automated evidence
+    inputs: Scoped user journey, relevant states and accessibility target
+    outputs: Verified barriers and repairs with manual/automated evidence
+    collaborates:
+      - skill: forms-validation
+        handoff: validation/data correctness subtask
+      - skill: design-system-architect
+        handoff: shared primitive correction
+  - id: testing-strategy
+    owns: Focused test implementation or a requested test plan
+    inputs: Behavior change, risk, existing tooling and coverage
+    outputs: Focused test implementation or a requested test plan
+    collaborates:
+      - skill: browser-e2e-testing
+        handoff: browser journey implementation
+      - skill: code-review
+        handoff: independent defect review
+  - id: project-documentation
+    owns: Connected accurate project Markdown with historical evidence preserved
+    inputs: Current implementation, maintained document owners and actual evidence
+    outputs: Connected accurate project Markdown with historical evidence preserved
+    collaborates:
+      - skill: api-contracts
+        handoff: unresolved public contract semantics
+      - skill: humanize
+        handoff: dedicated editorial voice pass
+      - skill: developer-environment
+        handoff: verified local setup command and readiness gap
+  - id: humanize
+    owns: Natural text preserving facts, technical literals and required context
+    inputs: Source facts, intended reader, format and voice evidence
+    outputs: Natural text preserving facts, technical literals and required context
+    collaborates:
+      - skill: project-documentation
+        handoff: source verification and document ownership
+      - skill: enterprise-ui-ux
+        handoff: product behavior/layout decision
+      - skill: internationalization-localization
+        handoff: verified message meaning and protected locale structure
+  - id: realtime-systems
+    owns: Live subscription lifecycle and loss/duplicate recovery
+    inputs: Transport and event schemas, snapshot/version model, session lifecycle, reconnect and ordering guarantees
+    outputs: Live subscription lifecycle and loss/duplicate recovery
+    collaborates:
+      - skill: frontend-state-management
+        handoff: snapshot/version and subscription state ownership
+      - skill: auth-security
+        handoff: subscription actor-resource policy and revocation boundary
+      - skill: observability-debugging
+        handoff: connection gaps lag and bounded recovery evidence
+    positive:
+      prompt: >-
+        Design recovery for a live order list: the client fetched snapshot version 40, missed events 41–43 during disconnect, and
+        the server replay window has expired. No live connections or code edits.
+      expected: >-
+        Mark local state stale and obtain an authoritative snapshot with a consistent subscribe boundary; reconnect alone must not
+        be called recovered.
+    negative:
+      prompt: Implement a durable server job with retries and no client subscription.
+      alternative: background-jobs-queues
+  - id: server-caching
+    owns: Backend cache keys, freshness and consistency boundaries
+    inputs: Authoritative data/read contract, identity dimensions, cache topology, workload evidence and acceptable staleness
+    outputs: Backend cache keys, freshness and consistency boundaries
+    collaborates:
+      - skill: backend-feature-engineering
+        handoff: write/read semantics and invalidation ownership
+      - skill: database-query-optimization
+        handoff: measured authoritative-store cost
+      - skill: auth-security
+        handoff: cache identity dimensions and revocation requirements
+    positive:
+      prompt: >-
+        Review this design: tenant A and B request /invoice/42, authorization runs before lookup, but the shared cache key is
+        invoice:42 and contains tenant-specific response fields. Findings only.
+      expected: >-
+        Identify response isolation risk even though authorization ran first; include identity scope or cache only proven shared
+        data and test cross-tenant behavior.
+    negative:
+      prompt: Fix stale query data in a React component after a local mutation.
+      alternative: frontend-state-management
+  - id: internationalization-localization
+    owns: Locale selection, translation resources and internationalized application behavior
+    inputs: Supported locales, routing/product rules, message tooling, formatting and accessibility constraints
+    outputs: Locale selection, translation resources and internationalized application behavior
+    collaborates:
+      - skill: humanize
+        handoff: verified message meaning and target register for editorial review
+      - skill: technical-seo
+        handoff: localized public URL and alternate-language policy
+      - skill: accessibility-audit
+        handoff: observed directionality naming or reading-order barrier
+    positive:
+      prompt: >-
+        Design an Indonesian/English price formatter: the UI language changes, but the stored amount is 125000 and currency
+        remains IDR. Explain formatting and fallback without changing business values.
+      expected: >-
+        Keep amount/currency unchanged; use locale-specific display only and distinguish locale from timezone or currency
+        selection.
+    negative:
+      prompt: Rewrite one English announcement to sound more natural without changing locale infrastructure.
+      alternative: humanize
+  - id: technical-seo
+    owns: Public URL discovery, rendering and indexing-signal consistency
+    inputs: Public route inventory, intended indexability, rendering evidence, canonical and locale policies
+    outputs: Public URL discovery, rendering and indexing-signal consistency
+    collaborates:
+      - skill: marketing-portfolio-ui-ux
+        handoff: verified public content hierarchy and crawlable navigation needs
+      - skill: internationalization-localization
+        handoff: supported localized route and alternate policy
+      - skill: frontend-performance
+        handoff: measured rendering/loading barrier affecting the public journey
+    positive:
+      prompt: >-
+        Review a plan to protect private invoices with robots.txt Disallow while leaving routes anonymously accessible. Explain
+        whether this protects data; no network requests.
+      expected: >-
+        Identify robots as crawler guidance rather than authorization; require server-side access policy and avoid claiming
+        Disallow secures invoices.
+    negative:
+      prompt: Redesign the hero typography and spacing without changing metadata or routes.
+      alternative: marketing-portfolio-ui-ux
+  - id: dependency-upgrades
+    owns: Dependency compatibility transition and reproducible resolution
+    inputs: Package manager/runtime constraints, current lockfile, dependency graph, consumers and target-version requirements
+    outputs: Dependency compatibility transition and reproducible resolution
+    collaborates:
+      - skill: code-review
+        handoff: bounded migration diff and compatibility risks
+      - skill: ci-cd-release-engineering
+        handoff: new runtime/package-manager constraints and verified artifact checks
+      - skill: application-security-review
+        handoff: reachable advisory needing focused risk assessment
+    positive:
+      prompt: >-
+        An upgrade installs and typechecks, but a peer plugin supports only the previous framework major. Propose a transition
+        without force-installing or deleting the lockfile.
+      expected: >-
+        Check an officially compatible plugin/upgrade path or defer the incompatible major; validate runtime consumers rather than
+        declaring typecheck sufficient.
+    negative:
+      prompt: Implement a normal endpoint using the existing compatible dependencies.
+      alternative: backend-feature-engineering
+  - id: developer-environment
+    owns: Reproducible local setup, service readiness and owned resource lifecycle
+    inputs: Project runtime/lockfiles, local startup contracts, configuration examples and existing service topology
+    outputs: Reproducible local setup, service readiness and owned resource lifecycle
+    collaborates:
+      - skill: ci-cd-release-engineering
+        handoff: verified local toolchain and service readiness contract
+      - skill: project-documentation
+        handoff: working cold-start commands and known environment limits
+      - skill: database-engineering
+        handoff: disposable schema initialization and data boundary
+    positive:
+      prompt: >-
+        Local startup fails because port 5432 belongs to an unknown process and a developer suggests docker compose down -v.
+        Propose recovery without deleting data or stopping unrelated processes.
+      expected: >-
+        Identify ownership and preserve volumes; use an authorized free port or compatible existing service and check readiness
+        before initialization.
+    negative:
+      prompt: Prepare deployment approval gates and hosted artifact promotion.
+      alternative: ci-cd-release-engineering

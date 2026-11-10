@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+### DevBrain Update 3.0
+
+- Added 21 fullstack specialists to the original nine skills, bringing the source catalog to 30. The six latest cover realtime systems, server caching, localization, technical SEO, dependency upgrades, and developer environments.
+- Strengthened the original nine skills with domain-specific failure checks and artifact handoffs; added selective ownership routing and a relationship catalog.
+- Added 42 positive/boundary scenarios for the 21 new skills, structural package/relationship checks, and limited native reasoning samples. Mixed outcomes and validation scope are recorded in [the skill-system report](docs/skill-system.md).
+
 ## 2.9.0 — 2026-11-09 (stable natural communication and writing support)
 
 - Added original dependency-free humanize skill for writing, rewriting, auditing, voice matching, and product microcopy with selective editorial, language, and UI references.

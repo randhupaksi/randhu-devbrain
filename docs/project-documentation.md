@@ -18,7 +18,7 @@ README or AGENTS leads to the documentation index; the index routes to maintaine
 
 ## Installation and validation scope
 
-The v2.9 manifest and installer include this eighth skill in the nine-skill payload. Repository maintenance does not install it to a real home. Installer integration uses simulated homes inside ignored `local/` and checks identical source, Codex, and Claude payloads. Its four behavior scenarios remain contracts; the observed Humanize runs do not constitute native evaluation of this documentation skill.
+V2.9 introduced this as the eighth skill; DevBrain Update 3.0 includes it in the expanded 30-skill source payload. Repository maintenance does not install it to a real home. Installer integration uses simulated homes inside ignored `local/` and checks identical source, Codex, and Claude payloads. Its four behavior scenarios remain contracts; the observed Humanize runs do not constitute native evaluation of this documentation skill.
 
 The [evaluation suite](../evaluation/scenarios.yaml) includes documentation creation, audit-only behavior, preservation of historical evidence, and minimal-project selection. These are behavior contracts, not completed live runs. Follow the [evaluation guide](../evaluation/README.md) for actual evidence collection.
 

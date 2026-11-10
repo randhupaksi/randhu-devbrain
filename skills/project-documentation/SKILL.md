@@ -50,3 +50,16 @@ The linked [expected documentation format](references/expected-documentation-for
 ## Prose quality
 
 Write direct, specific documentation for its actual reader. Explain current behavior with familiar verbs, consistent technical terms, and enough context to act. Preserve required detail, factual uncertainty, commands, paths, citations, and examples. Adapt language and register to the requested document; avoid stock introductions, inflated claims, and repetitive closers. Routine prose quality needs no additional skill. A separately available humanize skill can support an explicitly requested deep editorial or voice pass without changing this skill's evidence and scope boundaries.
+
+## Collaboration by artifact
+
+Do not turn proposed interfaces into current behavior. Mark examples as synthetic and separate commands available in a manifest from checks actually executed.
+
+Input: Current implementation, maintained document owners and actual evidence. Output: Connected accurate project Markdown with historical evidence preserved.
+
+- Consider `api-contracts` only for a distinct subtask; pass unresolved public contract semantics.
+- Consider `humanize` only for a distinct subtask; pass dedicated editorial voice pass.
+
+Use only available skills when a distinct outcome needs them. Handoff the facts, constraints, changed artifacts and checks actually run; never treat another skill name as permission or automatically load its references. This skill remains usable on its own.
+
+For a distinct developer-environment task, pass verified local setup command and readiness gap to an available `developer-environment` skill; do not load it for routine supporting work.

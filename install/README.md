@@ -15,7 +15,7 @@ V2.5 adds maintenance-only behavioral evaluation to the existing selective workf
 
 V2.7 adds a maintenance-only CLI compatibility workflow and host matrix. It does not change install destinations or host settings. Native Codex/Claude discovery must be observed in each CLI; simulated home installation proves target layout only. See the [v2.7 candidate guide](../docs/v2.7-cli-compatibility.md).
 
-For an existing installation, run the updater with `-WhatIf` first, then run it without `-WhatIf` when the targets are correct. With the default `-Tool Both`, Codex and Claude receive the same nine source skill folders. Start a new coding session afterward so each host can discover the new skill names. The new skills have focused purposes: `frontend-performance` measures and improves slow browser behavior; `accessibility-audit` reviews and fixes interface barriers; `testing-strategy` chooses and implements meaningful tests. A review-only request stays read-only, while a fix request includes implementation.
+For an existing installation, run the updater with `-WhatIf` first, then run it without `-WhatIf` when the targets are correct. V2.9 added Humanize and project documentation, bringing the managed payload to nine skills. DevBrain Update 3.0 adds 21 specialists, bringing the current source payload to 30. With the default `-Tool Both`, Codex and Claude receive the same managed skill folders; start a new coding session afterward so each host can discover newly installed skills. Skills activate by outcome: for example, `frontend-performance` measures browser bottlenecks, `accessibility-audit` reviews and fixes interface barriers, and `testing-strategy` selects meaningful tests. A review-only request stays read-only, while a fix request includes implementation.
 
 ## Parameters and targets
 
@@ -31,7 +31,7 @@ Claude loaders/skills use `UserHome/.claude`. Concrete paths appear only in loca
 
 ## Update guarantees
 
-Preflight checks source, markers, and linked/reparse paths before writing. Only the nine named DevBrain skills are managed: `enterprise-ui-ux`, `marketing-portfolio-ui-ux`, `design-system-architect`, `architecture-refactor`, `frontend-performance`, `accessibility-audit`, `testing-strategy`, `project-documentation`, and `humanize`. Adapter templates are the loader source, preventing template/installer drift. Text outside a managed block is preserved exactly; loader backups retain original bytes.
+Preflight checks source, markers, and linked/reparse paths before writing. Only the 30 skills listed in the [manifest](../devbrain.yaml) and [catalog](../skills/catalog.yaml) are managed. Adapter templates are the loader source, preventing template/installer drift. Text outside a managed block is preserved exactly; loader backups retain original bytes.
 
 Skills are copied to staging and verified by hash/tree, then the old directory is moved to `devbrain-backups` and staging becomes active. This fixes the v1 nested-copy bug and removes stale discovered references without losing customization: the complete old tree remains in backup. If moving staging fails, the installer attempts to restore the old directory. Backups use a timestamp and unique suffix. An identical update makes no writes and creates no backup.
 
