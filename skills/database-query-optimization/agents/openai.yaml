@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Database Query Optimization'
+  short_description: 'Database Query Optimization for project-specific work'
+  default_prompt: 'Use $database-query-optimization to address this task: database query cost and result-preserving optimization. Follow the existing project contracts and verify the outcome.'
+policy:
+  allow_implicit_invocation: true

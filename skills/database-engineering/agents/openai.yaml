@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Database Engineering'
+  short_description: 'Database Engineering for project-specific work'
+  default_prompt: 'Use $database-engineering to address this task: data integrity, schema evolution, and transaction correctness. Follow the existing project contracts and verify the outcome.'
+policy:
+  allow_implicit_invocation: true
