@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Background Jobs and Queues'
+  short_description: 'Background Jobs and Queues for project-specific work'
+  default_prompt: 'Use $background-jobs-queues to address this task: durable work lifecycle, duplicate delivery, and failure recovery. Follow the existing project contracts and verify the outcome.'
+policy:
+  allow_implicit_invocation: true

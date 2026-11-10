@@ -1,0 +1,6 @@
+interface:
+  display_name: 'External Service Integrations'
+  short_description: 'External Service Integrations for project-specific work'
+  default_prompt: 'Use $external-service-integrations to address this task: provider adapters and reliable inbound/outbound integration semantics. Follow the existing project contracts and verify the outcome.'
+policy:
+  allow_implicit_invocation: true
