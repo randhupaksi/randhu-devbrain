@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Internationalization and Localization'
+  short_description: 'Locale routing, messages, formatting and RTL behavior'
+  default_prompt: 'Use $internationalization-localization to address locale selection, translation resources and internationalized application behavior using project evidence and verify the requested outcome.'
+policy:
+  allow_implicit_invocation: true

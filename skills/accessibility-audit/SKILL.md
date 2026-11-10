@@ -33,3 +33,14 @@ Recheck the affected keyboard path, focus restoration, labels, error feedback, a
 ## Authorization and selective use
 
 Follow system and project instructions and the latest user request. Implement low-risk fixes directly; map consumers for medium-risk shared components. Authentication, permission, breaking API, client or production data, destructive migration, deployment, secrets, Git commit/push/history, and hard-to-reverse actions require specific authorization. Do not load enterprise and marketing skills solely to run this audit; add another skill only for a distinct design task.
+
+## Collaboration by artifact
+
+Check focus and announcements after asynchronous errors and dynamic content removal. Avoid announcing every keystroke or moving focus merely to satisfy an automated rule.
+
+Input: Scoped user journey, relevant states and accessibility target. Output: Verified barriers and repairs with manual/automated evidence.
+
+- Consider `forms-validation` only for a distinct subtask; pass validation/data correctness subtask.
+- Consider `design-system-architect` only for a distinct subtask; pass shared primitive correction.
+
+Use only available skills when a distinct outcome needs them. Handoff the facts, constraints, changed artifacts and checks actually run; never treat another skill name as permission or automatically load its references. This skill remains usable on its own.
