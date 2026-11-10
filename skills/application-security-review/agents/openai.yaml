@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Application Security Review'
+  short_description: 'Application Security Review for project-specific work'
+  default_prompt: 'Use $application-security-review to address this task: evidence-backed vulnerability findings and scoped hardening. Follow the existing project contracts and verify the outcome.'
+policy:
+  allow_implicit_invocation: true
