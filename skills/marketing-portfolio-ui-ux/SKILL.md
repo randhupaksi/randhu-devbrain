@@ -68,3 +68,16 @@ Ask only when unresolved ambiguity changes the business outcome or a high-risk b
 ## Interface and page language
 
 Apply DevBrain's natural-writing default within the project's voice. Write specific action labels and useful state messages, preserving real capabilities, consequences, localization variables, and accessible names. Keep factual proof and technical precision. Ordinary UI copy is part of this skill; select a separately available humanize skill only for a dedicated or substantial editorial/voice task. This skill remains usable without it.
+
+## Collaboration by artifact
+
+Verify CTA destinations and form outcomes against real routes. Never fabricate testimonials, clients, metrics or a successful conversion.
+
+Input: Supplied brand, audience, proof, and conversion goal. Output: Responsive narrative interface with authentic claims.
+
+- Consider `humanize` only for a distinct subtask; pass dedicated voice or long-form editorial pass.
+- Consider `frontend-performance` only for a distinct subtask; pass measured media/loading bottleneck.
+
+Use only available skills when a distinct outcome needs them. Handoff the facts, constraints, changed artifacts and checks actually run; never treat another skill name as permission or automatically load its references. This skill remains usable on its own.
+
+For a distinct technical-seo task, pass public route intent and actual crawlable content to an available `technical-seo` skill; do not load it for routine supporting work.

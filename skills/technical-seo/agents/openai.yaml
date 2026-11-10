@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Technical SEO'
+  short_description: 'Technical SEO for existing project workflows'
+  default_prompt: 'Use $technical-seo to address public url discovery, rendering and indexing-signal consistency using project evidence and verify the requested outcome.'
+policy:
+  allow_implicit_invocation: true
