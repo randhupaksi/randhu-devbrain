@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Dependency Upgrades'
+  short_description: 'Dependency Upgrades for existing project workflows'
+  default_prompt: 'Use $dependency-upgrades to address dependency compatibility transition and reproducible resolution using project evidence and verify the requested outcome.'
+policy:
+  allow_implicit_invocation: true

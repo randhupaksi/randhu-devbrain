@@ -1,0 +1,6 @@
+interface:
+  display_name: 'CI/CD Release Engineering'
+  short_description: 'CI/CD Release Engineering for project-specific work'
+  default_prompt: 'Use $ci-cd-release-engineering to address this task: reproducible pipeline artifacts, rollout readiness, and recovery plans. Follow the existing project contracts and verify the outcome.'
+policy:
+  allow_implicit_invocation: true
