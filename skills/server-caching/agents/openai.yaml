@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Server Caching'
+  short_description: 'Server Caching for existing project workflows'
+  default_prompt: 'Use $server-caching to address backend cache keys, freshness and consistency boundaries using project evidence and verify the requested outcome.'
+policy:
+  allow_implicit_invocation: true

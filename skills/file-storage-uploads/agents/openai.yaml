@@ -1,0 +1,6 @@
+interface:
+  display_name: 'File Storage and Uploads'
+  short_description: 'File Storage and Uploads for project-specific work'
+  default_prompt: 'Use $file-storage-uploads to address this task: file validation, ownership, storage lifecycle, and protected delivery. Follow the existing project contracts and verify the outcome.'
+policy:
+  allow_implicit_invocation: true
