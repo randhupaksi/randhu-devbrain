@@ -25,7 +25,7 @@ Fixtures are retained for inspection and ignored by Git. In a sandbox using anot
 
 ## Behavioral evaluation
 
-[`scenarios.yaml`](scenarios.yaml) contains 71 cases: the 21 original cases, three v2 boundaries, six performance/accessibility/testing cases, eight v2.2 discovery/debugging/completion cases, eight v2.3 reconciliation cases, eight v2.4 continuity cases, five v2.8 project-context cases, four project-documentation cases, and eight humanize/default-writing cases. Each specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
+[`scenarios.yaml`](scenarios.yaml) contains 113 cases: the 21 original cases, three v2 boundaries, six performance/accessibility/testing cases, eight v2.2 discovery/debugging/completion cases, eight v2.3 reconciliation cases, eight v2.4 continuity cases, five v2.8 project-context cases, four project-documentation cases, eight humanize/default-writing cases, and 42 fullstack skill activation/boundary cases. Each specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
 
 1. Create synthetic fixtures under `local/behavior-runs/` with project instructions, target files, contracts, and enough tests. Do not use another project, client data, secrets, or a real database.
 2. Start a new Codex or Claude session with only the baseline, skill metadata, case prompt, and relevant fixture. Do not show the assistant the expected answer.
@@ -39,7 +39,7 @@ The structural validator checks suite completeness and contracts only. It does n
 
 Runtime metrics compare the working-tree baseline with the baseline at HEAD, rather than comparing it with the legacy pointer. Token counts are character-based estimates; selected task modules and references add their own context cost. An unchanged baseline does not imply that every task costs the same amount of context.
 
-See the [v2.9 Humanize evaluation results](humanize-guide.md), [v2.8 project-context release](../docs/v2.8-project-context.md), [v2.7 CLI compatibility record](../docs/v2.7-cli-compatibility.md), and [host matrix](cli-host-matrix.yaml) for current context and evidence. V2.9 records limited native synthetic results for Humanize scenarios 64–71; they do not close the separate v2.7 native host matrix. The four project-documentation behavior scenarios remain unrun natively. [V2.6 candidate evidence](../docs/v2.6-validation.md) remains historical; its scoped Codex results are not reused as new host evidence. [V2.5 validation](../docs/v2.5-validation.md) retains its dated results.
+See the [DevBrain Update 3.0 skill-system report](../docs/skill-system.md), [v2.9 Humanize evaluation results](humanize-guide.md), [v2.8 project-context release](../docs/v2.8-project-context.md), [v2.7 CLI compatibility record](../docs/v2.7-cli-compatibility.md), and [host matrix](cli-host-matrix.yaml) for current context and evidence. V2.9 records limited native synthetic results for Humanize scenarios 64–71; they do not close the separate v2.7 native host matrix. The four project-documentation behavior scenarios remain unrun natively. [V2.6 candidate evidence](../docs/v2.6-validation.md) remains historical; its scoped Codex results are not reused as new host evidence. [V2.5 validation](../docs/v2.5-validation.md) retains its dated results.
 
 Use [the v2.3 behavioral guide](v2.3-behavior-guide.md) for isolated inputs, instruction-conflict setup, hash comparison and evidence scoring. It describes manual evaluation; it does not launch another agent, install a host, or call a model API.
 
@@ -47,7 +47,7 @@ Use [the v2.4 guide](v2.4-behavior-guide.md) for two-phase handoff/resume evalua
 
 ## V2.5 core smoke pack
 
-[smoke-suite.yaml](smoke-suite.yaml) selects 12 existing scenarios; it selects from the full 71-case suite. [scorecard-contract.yaml](scorecard-contract.yaml) defines six scoring dimensions and explicit result/evidence categories. Preparation requires Node.js 18+, Git 2.28+ and the existing YAML parser. These are maintenance prerequisites, not installer dependencies.
+[smoke-suite.yaml](smoke-suite.yaml) selects 12 existing scenarios; it selects from the full 113-case suite. [scorecard-contract.yaml](scorecard-contract.yaml) defines six scoring dimensions and explicit result/evidence categories. Preparation requires Node.js 18+, Git 2.28+ and the existing YAML parser. These are maintenance prerequisites, not installer dependencies.
 
 ```powershell
 node evaluation/prepare-smoke.cjs
@@ -132,3 +132,9 @@ Windows deadlines terminate only the capture's own process tree. Denied terminat
 Only the Git-list fixture has its own empty Git repository. Other ignored fixtures inherit parent Git metadata: empty `git diff` is not change evidence. Before/after hashes and direct reads establish fixture changes. Main repository source hashes detect source drift, not arbitrary outside effects.
 
 For natural-writing defaults and the deep editing skill, use the [Humanize evaluation guide](humanize-guide.md), which records the observed synthetic results for scenarios 64–71. The four project-documentation behavior scenarios still need native host runs.
+
+## Fullstack skill-system checks
+
+Run `node evaluation/test-skill-system.cjs` with the existing YAML prerequisite to check source/manifest/installer parity, ownership relationships, metadata, and scenario coverage. This is a structural check and does not launch models. Cases 72–113 are DevBrain Update 3.0 synthetic behavior contracts; their native execution status is recorded in [the skill-system report](../docs/skill-system.md).
+
+Run `node evaluation/test-skill-system-regressions.cjs` to prove the relationship/package validator rejects five intentional defects in workspace-local fixtures. These negative checks do not establish model behavior.

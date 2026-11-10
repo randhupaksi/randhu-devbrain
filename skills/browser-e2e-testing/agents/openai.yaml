@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Browser End-to-End Testing'
+  short_description: 'Browser End-to-End Testing for project-specific work'
+  default_prompt: 'Use $browser-e2e-testing to address this task: browser journey evidence and maintainable end-to-end checks. Follow the existing project contracts and verify the outcome.'
+policy:
+  allow_implicit_invocation: true

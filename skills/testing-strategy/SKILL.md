@@ -31,3 +31,14 @@ Follow the repository's established test style and run the focused checks availa
 ## Authorization and selective use
 
 Follow system and project instructions and the latest user request. Low-risk test additions can proceed directly; analyze medium-risk harness or shared fixture changes before implementation. Tests do not authorize authentication or permission changes, breaking APIs, client or production data mutations, destructive migrations, deployment, secrets, Git commit/push/history, or other hard-to-reverse actions. Keep this skill selective; routine lint, build, or test execution alone does not trigger it.
+
+## Collaboration by artifact
+
+Choose deterministic coordination for concurrency tests rather than arbitrary delays. Separate a true failure reproduction from tests that only assert implementation details.
+
+Input: Behavior change, risk, existing tooling and coverage. Output: Focused test implementation or a requested test plan.
+
+- Consider `browser-e2e-testing` only for a distinct subtask; pass browser journey implementation.
+- Consider `code-review` only for a distinct subtask; pass independent defect review.
+
+Use only available skills when a distinct outcome needs them. Handoff the facts, constraints, changed artifacts and checks actually run; never treat another skill name as permission or automatically load its references. This skill remains usable on its own.
