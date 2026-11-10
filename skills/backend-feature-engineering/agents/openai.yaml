@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Backend Feature Engineering'
+  short_description: 'Backend Feature Engineering for project-specific work'
+  default_prompt: 'Use $backend-feature-engineering to address this task: backend use-case implementation and transaction/side-effect boundaries. Follow the existing project contracts and verify the outcome.'
+policy:
+  allow_implicit_invocation: true
