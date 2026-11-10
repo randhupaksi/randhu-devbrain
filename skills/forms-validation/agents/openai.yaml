@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Forms and Validation'
+  short_description: 'Forms and Validation for project-specific work'
+  default_prompt: 'Use $forms-validation to address this task: form data, validation, submission, and error recovery. Follow the existing project contracts and verify the outcome.'
+policy:
+  allow_implicit_invocation: true

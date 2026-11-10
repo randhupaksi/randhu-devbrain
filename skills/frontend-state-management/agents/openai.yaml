@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Frontend State Management'
+  short_description: 'Frontend State Management for project-specific work'
+  default_prompt: 'Use $frontend-state-management to address this task: state ownership, asynchronous lifecycle, and client cache correctness. Follow the existing project contracts and verify the outcome.'
+policy:
+  allow_implicit_invocation: true
