@@ -63,3 +63,15 @@ Read this skill only when its scope matches the task. References are optional de
 For relevant low-risk work, proceed; for medium-risk work, map impact and consumers, then implement without an extra approval gate. Creative composition, supporting states, accessibility, naming, and maintainability improvements are welcome within the requested outcome. Do not invent business capabilities, API fields/endpoints, data semantics, or workflows. Do not rewrite merely to match a preferred architecture.
 
 Ask only when unresolved ambiguity changes the business outcome or a high-risk boundary. Before changing auth/permission/security, breaking API contracts, destructive migrations/data rewrites, client/production data, payment, deployment, secrets, or Git history/remote state, require specific authorization for that action and scope. Do not ask again when that authorization is already explicit. Continue independent safe work.
+
+## Collaboration by artifact
+
+Preserve side-effect timing and transaction boundaries during extraction. A function moved to a service is not equivalent if calls now occur before authorization or outside a transaction.
+
+Input: Current dependencies, consumers, and preserved behavior. Output: Smaller coherent boundaries with regression evidence.
+
+- Consider `frontend-state-management` only for a distinct subtask; pass state correctness problem.
+- Consider `backend-feature-engineering` only for a distinct subtask; pass explicit new use case.
+- Consider `design-system-architect` only for a distinct subtask; pass visual shared-contract change.
+
+Use only available skills when a distinct outcome needs them. Handoff the facts, constraints, changed artifacts and checks actually run; never treat another skill name as permission or automatically load its references. This skill remains usable on its own.
