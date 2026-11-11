@@ -1,11 +1,11 @@
 ---
 name: marketing-portfolio-ui-ux
-description: Design, implement, or review clean, premium marketing websites, landing pages, portfolios, and case studies. Use for narrative and conversion surfaces, not data-heavy product UI.
+description: Design, implement, or review marketing websites, landing pages, portfolios, and case studies with brand-led art direction, clear narrative, authentic proof, and responsive behavior. Use for persuasive surfaces, not data-heavy product UI.
 ---
 
 # Marketing & Portfolio UI/UX
 
-Build marketing and portfolio interfaces that feel intentional, clean, minimal, interactive, and memorable. Optimize for a visitor understanding the value, trusting the proof, and taking the next relevant action—not for operational data density.
+Build marketing and portfolio interfaces that make the message clear, give the work an identity, and invite the next relevant action. Let the supplied brand, audience, and story determine whether the result is quiet, vivid, editorial, technical, playful, or something else; do not make minimalism or a premium look the default. Optimize for visitor understanding and credible proof, not operational data density.
 
 ## Scope and priority
 
@@ -25,10 +25,15 @@ For new pages or meaningful redesigns, establish proportionately:
 
 Use composition, typography, contrast, spacing, imagery, and interaction to make the story clear. Do not copy a familiar landing-page structure unless it supports the message and audience.
 
-## Clean, premium, interactive direction
+For a new or substantially changed visual direction, connect the brand, content, audience, and page goal to a specific page concept. Treat the product category as a clue, not a style recipe. Briefly state the design thesis and the composition, type, color, imagery, density, or motion decisions that express it. Keep the direction flexible when new product evidence appears.
+
+Use brand tokens and supplied visual assets as the palette and imagery source. When those are absent, propose a small set of semantic color roles and concrete values that support the story; do not choose colors from an industry stereotype. Prefer the product's own screens and user-provided references. Use public examples only when research is allowed, and translate the principle rather than copying a layout, copy, or asset.
+
+## Visual direction and interaction
 
 - Minimal means low visual noise, not empty space or missing information. Give each section a distinct job and visual reason to exist.
 - Build hierarchy through type scale, alignment, grouping, rhythm, and contrast before reaching for gradients, cards, shadows, or decorative effects.
+- Choose an attention sequence that fits the story: visitors need orientation, the main proposition or work, its supporting evidence, and an appropriate next action. This sequence can be quiet or highly expressive; do not make every section equally loud or make essential meaning depend on scrolling motion.
 - Use the brand and project design system as the source of truth. If the project has no usable foundation, create only the small, reusable foundation needed by the active outcome.
 - Make interaction feel responsive and purposeful: clear hover/focus states, restrained transitions, and motion that supports orientation or emphasis. Respect reduced-motion preferences.
 - Reuse a primitive or section pattern when its structure and behavior are genuinely shared. Keep one-off editorial composition local to the page or feature.

@@ -20,7 +20,7 @@ Prefer the smallest coherent system over a quick page with arbitrary values or a
 
 ## 3. Define implementation
 
-- Set visual direction from the product, not global preference.
+- Use `core/ui-design-intelligence.md` to set direction from the product, users, page goal, and existing evidence when the visual direction is new or unclear. Rank task content before styling and keep visual style, composition, and theme distinct. Select `core/ui-product-contexts.md`, `core/ui-direction-library.md`, `core/data-visualization.md`, or `core/ui-platform-adaptation.md` only for a decision those modules own. Record a short direction that guides implementation; avoid loading the entire library or adding an approval gate unless an unresolved choice materially changes the outcome.
 - Plan hierarchy, density, responsive behavior, states, action feedback, and accessibility.
 - Map every new visual value to the applicable token/source of truth.
 - For shared components, identify consumers, contract/variants, behavior invariants, and migration impact.

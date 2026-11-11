@@ -22,15 +22,21 @@ For new UI or a meaningful redesign, establish proportionately:
 3. normal, loading, empty, error, disabled, permission-limited, and destructive-action states that matter;
 4. the project's tokens, shared primitives, existing screen precedents, responsive behavior, and accessibility conventions.
 
+When the page needs a new visual direction, connect the user's task and real product evidence to specific layout and visual choices. Treat “dashboard,” “enterprise,” and other category labels as clues, not style recipes. For a substantial change, briefly state the design intent, evidence, visible decisions, and behavior/accessibility constraints. For a review, cite the actual screen, state, or code and explain its user impact before recommending a fix.
+
+Use the existing semantic color tokens. If none fit, define only the palette roles the screen needs—surfaces, text, actions, focus, status, and data colors when relevant—then select values that fit the product and check contrast. Use existing product screens first as UI references; adapt useful interaction or hierarchy ideas without copying their brand or layout.
+
 Start with task flow and information architecture. Choose a table, form, card, modal, drawer, toolbar, or page composition because it supports that task—not because it is fashionable.
 
 ## Enterprise interface principles
 
 - Be minimal, not empty: preserve useful density while keeping grouping, spacing, and scanning comfortable.
 - Use typography, alignment, spacing, grouping, contrast, borders, and layout for hierarchy before adding shadows, color, or containers.
+- Rank information around the operational question; orient users and prioritize the relevant record, exception, decision, and action in the order the workflow needs. Several peers may share emphasis when comparison is the task; avoid making every metric or section equally prominent by default.
 - Make action hierarchy explicit: primary, secondary, tertiary, and destructive actions must not compete.
 - Treat tables as first-class interfaces when users compare, filter, scan, sort, or act on many records. Do not convert them to cards by default.
 - Use color semantically for status, priority, interaction, and brand. Neutral surfaces should carry most structure; avoid rainbow KPI treatments.
+- Choose a chart only when it answers a real comparison, trend, distribution, relationship, or spatial question. Prefer a table or labeled value for exact lookup. Show units, time range, denominator, and freshness; supply an accessible summary or data equivalent for complex charts.
 - Use motion only as subtle feedback or continuity. Preserve focus states and support reduced motion.
 - Reuse project primitives and extract a shared pattern only when reuse or a stable UI contract is evident. Keep one-off composition feature-local.
 

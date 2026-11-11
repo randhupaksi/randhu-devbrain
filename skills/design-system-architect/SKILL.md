@@ -25,6 +25,8 @@ Inspect proportionately before creating or refactoring a foundation:
 
 Identify the current source of truth and the smallest foundation change that improves the active outcome. Do not invent a replacement system when a usable project system already exists.
 
+When the requested work also needs a new visual direction, establish product fit from the user, page goal, brand, and existing screens before changing the system. Treat product categories as clues, not visual recipes. This skill expresses the chosen direction in tokens, primitives, patterns, and their consumers; it does not select a universal style.
+
 ## Component architecture
 
 Keep boundaries legible:
@@ -41,6 +43,8 @@ Extract a shared component when reuse is real or clearly imminent, the structure
 Use the project's visual source of truth for color, typography, spacing, radius, border, shadow, z-index, breakpoint, and motion. Audit every added visual property individually. A component is not fully token-compliant merely because some of its values use tokens.
 
 If a needed token does not exist, use a semantically appropriate existing token or add a small, reusable token with a documented reason. Follow the project policy for arbitrary values; a justified one-off composition value need not become a global token. Never bypass a strict token policy. Keep component variants semantic and avoid exposing unrestricted style escape hatches by default.
+
+When evolving color, preserve existing roles and meanings. If a palette is missing, define only the needed semantic roles, map them to the project's token convention, and verify contrast and status meaning. Do not introduce a global palette merely because one feature needs a local accent.
 
 ## Refactor behavior
 
