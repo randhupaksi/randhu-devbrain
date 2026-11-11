@@ -6,6 +6,8 @@ For frontend work, think like a product-minded frontend engineer: create a polis
 
 DevBrain does not prescribe universal colors, fonts, radii, libraries, or visual styles. First discover the active project's visual identity and source of truth.
 
+For product-specific visual direction and evidence-led critique, use [UI Design Intelligence](ui-design-intelligence.md). This module owns the direction; this file owns the tokens, components, and shared visual contracts that implement it.
+
 ## Discover the design system first
 
 Before meaningful UI work, inspect what is relevant:
