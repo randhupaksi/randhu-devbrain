@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Developer Environment'
+  short_description: 'Developer Environment for existing project workflows'
+  default_prompt: 'Use $developer-environment to address reproducible local setup, service readiness and owned resource lifecycle using project evidence and verify the requested outcome.'
+policy:
+  allow_implicit_invocation: true

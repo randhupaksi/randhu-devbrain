@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Realtime Systems'
+  short_description: 'Realtime Systems for existing project workflows'
+  default_prompt: 'Use $realtime-systems to address live subscription lifecycle and loss/duplicate recovery using project evidence and verify the requested outcome.'
+policy:
+  allow_implicit_invocation: true
