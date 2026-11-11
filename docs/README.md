@@ -5,6 +5,7 @@ V2.9.0 remains the latest stable release for natural communication defaults, Hum
 | Reader need | Current document |
 |---|---|
 | Fullstack skill catalog, boundaries and collaboration | [Skill system](skill-system.md) |
+| Human-centred UI/UX principles, task-ranked visual hierarchy, composition/style guidance, and chart/platform adaptation | [Core index](../core/00-index.md) and the relevant UI modules |
 | V2.9 release scope and observed Humanize behavior | [Humanize guide and evidence](humanize.md) and [evaluation results](../evaluation/humanize-guide.md) |
 | Natural responses, generated prose, and deeper UI/text editing | [Humanize](humanize.md) |
 | Project Markdown creation and document relationships | [Project documentation skill](project-documentation.md) |

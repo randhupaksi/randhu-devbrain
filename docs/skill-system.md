@@ -25,6 +25,8 @@ For a slow dashboard, frontend-performance first locates the dominant cost. A su
 
 Each existing skill retains its established references and purpose. Its collaboration section now states a concrete input, output, optional handoff, and a failure check particular to its domain: selection semantics for product UI; authentic claims and CTA outcomes for marketing; theme/consumer compatibility for design systems; side-effect timing during refactors; comparable performance measurements; async focus/announcements; deterministic concurrency tests; proposed-versus-current documentation; and localization structure versus translatable copy.
 
+Shared experience quality remains in `core/ui-ux-principles.md`; task-ranked visual hierarchy, direction, and critique live in `core/ui-design-intelligence.md`; composition/style vocabulary and product-context lenses load only when relevant. Chart and platform decisions route to their dedicated modules. These canonical core modules provide the operating guidance and trust boundaries. This deepens the three existing UI skills without adding a thirty-first skill or third-party runtime.
+
 Project instructions and active user intent still determine the stack, product semantics, and authorization. Skills use established tooling and explain unavailable checks. Reviews stay read-only; implementation requests proceed within their existing scope. Preparing a migration or pipeline does not authorize running it against a real environment.
 
 ## Packaging and evaluation

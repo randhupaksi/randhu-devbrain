@@ -1,6 +1,7 @@
 # Local and generated machine artifacts
 *.bak.*
 *.tmp
+node_modules/
 .DS_Store
 Thumbs.db
 
@@ -13,7 +14,8 @@ Thumbs.db
 *.pfx
 *.p12
 
-# Local task logs or private overrides
+# Keep unpublished research/scratch notes and local evaluation output outside the repo.
+# Put them under local/; keep reviewed operating guidance in core/, skills/, or workflows/.
 logs/
 local/
 private/

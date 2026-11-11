@@ -6,6 +6,9 @@
 
 - Added 21 fullstack specialists to the original nine skills, bringing the source catalog to 30. The six latest cover realtime systems, server caching, localization, technical SEO, dependency upgrades, and developer environments.
 - Strengthened the original nine skills with domain-specific failure checks and artifact handoffs; added selective ownership routing and a relationship catalog.
+- Added a shared UI design-intelligence framework for task-scaled direction, concrete semantic palette records, UI reference provenance, evidence-led critique, staged refinement, and honest visual QA; connected it to product UI, marketing, design-system, and UI task routing without adding a skill or external runtime.
+- Expanded the UI/UX foundation with a human-centred quality hierarchy, task-ranked visual-hierarchy method, separate composition and style vocabularies, product/surface context lenses, an original palette/type/motion library, chart-selection guidance, platform/stack adaptation, and explicit handling of untrusted design references; no external package or host integration was added.
+- Added a controlled A/B evaluation protocol for comparing DevBrain and baseline UI results. It is a proposed method only; no new UI behavior cases or native comparison runs are claimed.
 - Added 42 positive/boundary scenarios for the 21 new skills, structural package/relationship checks, and limited native reasoning samples. Mixed outcomes and validation scope are recorded in [the skill-system report](docs/skill-system.md).
 
 ## 2.9.0 — 2026-11-09 (stable natural communication and writing support)

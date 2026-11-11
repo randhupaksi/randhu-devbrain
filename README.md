@@ -6,7 +6,7 @@ DevBrain is Randhu's personal context and developer knowledge layer for Codex an
 
 Engineering quality and ways of thinking stay consistent; each project keeps its own visual identity. Stack, theme, specific colors/fonts/tokens, target users, endpoints/payloads, business rules, permissions, deployment, and validation commands belong in the project's `AGENTS.md`, `CLAUDE.md`, or other project context.
 
-DevBrain Update 3.0 is the unreleased fullstack expansion: it adds 21 skills and reinforces the existing nine, bringing the source to 30 skills and 113 scenario contracts. See the [skill system](docs/skill-system.md) for ownership, collaboration, and observed validation limits.
+DevBrain Update 3.0 is the unreleased fullstack expansion: it adds 21 skills and reinforces the existing nine, bringing the source to 30 skills and 113 scenario contracts. It also connects existing UI/UX skills through a human-centred quality hierarchy, task-ranked visual hierarchy, flexible composition patterns, product/surface lenses, an original style library, concrete palette and reference records, chart-selection guidance, platform adaptation, evidence-led critique, and visual QA; see the [Core index](core/00-index.md) for module ownership and [skill system](docs/skill-system.md) for validation limits.
 
 ## Get started
 
