@@ -14,10 +14,12 @@ Paths are relative to the DevBrain root. Read only relevant rows, then only the 
 | Explicit or substantial humanization, voice matching, prose or UI copy editing | `core/ai-collaboration.md`; select only relevant skill references | `humanize`; ordinary responses and routine UI text use baseline defaults |
 | Deeper identity/requirement interpretation | `core/developer-profile.md`, `core/ai-collaboration.md` | None needed |
 | Engineering, abstraction, maintainability | `core/engineering-principles.md` | Not needed for small cleanup |
-| Product UI, dashboard, CRUD | `core/ui-ux-principles.md`, `workflows/ui-task.md` | `enterprise-ui-ux` |
-| Landing page, portfolio, case study | `core/ui-ux-principles.md`, `workflows/ui-task.md` | `marketing-portfolio-ui-ux` |
+| Product UI, dashboard, CRUD | `core/ui-ux-principles.md`, `workflows/ui-task.md`; add `core/ui-design-intelligence.md` for a new surface, substantial redesign, or visual-hierarchy critique, `core/ui-product-contexts.md` for a relevant user/task lens, `core/ui-direction-library.md` for material style/composition choices, and `core/data-visualization.md` for analytical charts | `enterprise-ui-ux` |
+| Landing page, portfolio, case study | `core/ui-ux-principles.md`, `workflows/ui-task.md`; add `core/ui-design-intelligence.md` for a new surface, substantial redesign, or visual-hierarchy critique, `core/ui-product-contexts.md` for a relevant user/task lens, and `core/ui-direction-library.md` for material style/composition choices | `marketing-portfolio-ui-ux` |
+| Platform-specific UI behavior or framework integration | `core/ui-platform-adaptation.md` plus the project's installed framework/platform documentation | Match the affected UI surface; use an engineering skill only for a distinct code or behavior outcome |
+| Chart or analytical visualization choice | `core/data-visualization.md`, `core/ui-ux-principles.md`, and `workflows/ui-task.md` | `enterprise-ui-ux` |
 | Dedicated accessibility audit or fix | `core/ui-ux-principles.md`, `workflows/verification-reporting.md` | `accessibility-audit` |
-| Tokens, primitives, shared patterns, design-system migration | `core/design-system-intelligence.md`, `workflows/ui-foundation-pass.md` | `design-system-architect` |
+| Tokens, primitives, shared patterns, design-system migration | `core/design-system-intelligence.md`, `core/ui-design-intelligence.md` when direction is part of the outcome, `workflows/ui-foundation-pass.md` | `design-system-architect` |
 | Frontend state/query correctness | `core/frontend-and-fullstack.md` | `frontend-state-management`; structural extraction uses `architecture-refactor` |
 | Giant file, responsibility, dependency refactoring | `core/engineering-principles.md`, `workflows/safe-refactor.md` | `architecture-refactor` |
 | Requested backend/API feature | `core/api-backend-intelligence.md`, `workflows/api-feature.md`, `safety/data-and-api-protection.md` | `backend-feature-engineering`; external provider boundaries use `external-service-integrations` |

@@ -8,6 +8,11 @@ Core describes how Randhu thinks and works as a developer. It does not define a 
 - `engineering-principles.md`: clean code, maintainability, refactoring, abstraction, and edge cases.
 - `ai-collaboration.md`: intent, requirement interpretation, evidence, autonomy, and communication.
 - `ui-ux-principles.md`: global UI quality standards and decision framework.
+- `ui-design-intelligence.md`: task-priority visual hierarchy, composition reasoning, task-scaled direction, semantic palette records, reference provenance, and evidence-led critique.
+- `ui-product-contexts.md`: user-task and consequence lenses for common product surfaces.
+- `ui-direction-library.md`: visual-style vocabulary, composition patterns, palette architectures, typography pairings, motion, imagery, and anti-generic design trade-offs.
+- `data-visualization.md`: chart choice, data encoding, dashboard composition, and accessible equivalents.
+- `ui-platform-adaptation.md`: platform and stack discovery, design adaptation, and version-aware implementation boundaries.
 - `design-system-intelligence.md`: design-system discovery, Visual DNA, tokens, component architecture, and frontend quality gates.
 - `frontend-and-fullstack.md`: frontend structure, state, data fetching, API, and backend boundaries.
 - `api-backend-intelligence.md`: contract-first API work, backend architecture, data integrity, authorization, resilience, and testing.
