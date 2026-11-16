@@ -1,6 +1,6 @@
-# DevBrain Update 3.0 — Fullstack Skill System
+# DevBrain v3.0 Stable Skill System
 
-DevBrain Update 3.0 is the unreleased expansion on the stable v2.9 base. It contains 30 source skills: 21 new fullstack specialists and nine reinforced existing skills. It is a portable instruction system for the host model, not additional training. No third-party skill package or service is required. New operational guidance can improve the decisions and checks an agent makes, but a package validation result cannot establish a general quality gain.
+DevBrain v3.0.0 is the stable release dated 2026-11-12. It contains 30 source skills: 21 new fullstack specialists and nine reinforced existing skills. It is a portable instruction system for the host model, not additional training. No third-party skill package or service is required. New operational guidance can improve the decisions and checks an agent makes, but package validation does not establish a general quality gain.
 
 ## Ownership and collaboration
 
@@ -31,7 +31,7 @@ Project instructions and active user intent still determine the stack, product s
 
 ## Packaging and evaluation
 
-The manifest and source installer enumerate all 30 skills. Simulated-home installer tests check exact source/Codex/Claude payload parity, updates, idempotency and preservation of user instructions. Repository changes do not install into real host profiles. The published manifest version remains 2.9.0; Update 3.0 stays unreleased until its release status is explicitly changed.
+The manifest and source installer enumerate all 30 skills. Simulated-home installer checks cover source/Codex/Claude payload parity, updates, idempotency, and preservation of user instructions. Repository changes do not install into real host profiles. The release status does not convert scenario contracts into observed model behavior; the evidence below remains bounded by its recorded fixtures and runs.
 
 Cases 72–101 add one positive task and one boundary task for each new skill, bringing the suite at that stage to 101 cases. They are evaluation contracts, with expectations outside agent context. Two boundary cases intentionally need no skill: a routine syntax fix uses debugging guidance, and a Git command list uses the text-only Git workflow.
 

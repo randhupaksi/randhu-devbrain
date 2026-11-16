@@ -1,9 +1,9 @@
 schema: devbrain-manifest
-version: 2.9.0
+version: 3.0.0
 owner: Randhu Paksi
-# Version/status track the latest published release; scoped_validation records unreleased DevBrain Update 3.0 work.
+# Version/status track the latest published release; scoped_validation records the evidence and limits for its capabilities.
 status: stable
-updated_on: 2026-11-10
+updated_on: 2026-11-12
 language: en
 purpose: Personal developer knowledge layer for AI coding assistants
 scoped_validation:

@@ -1,12 +1,12 @@
-# DevBrain Update 3.0 — Connected Fullstack Skills
+# DevBrain v3.0 Stable
 
-V2.9.0 remains the latest stable release for natural communication defaults, deep Humanize editing, and evidence-based project documentation. It adds two portable skills and updates the installer to nine skills. Synthetic Humanize scenarios 64–71 were observed on Codex and Claude; the broader native CLI compatibility matrix remains incomplete, and these runs do not establish full host parity. See the [Humanize guide and evidence](docs/humanize.md), [project-documentation skill](docs/project-documentation.md), [v2.8 project-context release](docs/v2.8-project-context.md), and [v2.7 CLI record](docs/v2.7-cli-compatibility.md).
+DevBrain v3.0.0 is the stable release dated 2026-11-12. It brings 30 portable skills and 113 behavior-scenario contracts to the current source and installer payload. “Stable” describes the released files and their maintained contracts; it does not promise identical behavior across every model or host. Structural validation and native samples are documented with their limits in the [skill-system report](docs/skill-system.md).
 
 DevBrain is Randhu's personal context and developer knowledge layer for Codex and Claude Code. It provides principles, safety, workflows, prompt compression, skills, and bootstrap instructions. It is not an AI model, a new agent, an assistant replacement, a background application, or one large prompt.
 
 Engineering quality and ways of thinking stay consistent; each project keeps its own visual identity. Stack, theme, specific colors/fonts/tokens, target users, endpoints/payloads, business rules, permissions, deployment, and validation commands belong in the project's `AGENTS.md`, `CLAUDE.md`, or other project context.
 
-DevBrain Update 3.0 is the unreleased fullstack expansion: it adds 21 skills and reinforces the existing nine, bringing the source to 30 skills and 113 scenario contracts. It also connects existing UI/UX skills through a human-centred quality hierarchy, task-ranked visual hierarchy, flexible composition patterns, product/surface lenses, an original style library, concrete palette and reference records, chart-selection guidance, platform adaptation, evidence-led critique, and visual QA; see the [Core index](core/00-index.md) for module ownership and [skill system](docs/skill-system.md) for validation limits.
+Version 3.0 adds 21 skills and strengthens the original nine. Its UI/UX guidance connects task-based hierarchy, flexible composition, product and surface context, original visual-direction vocabulary, semantic palette decisions, chart selection, platform adaptation, evidence-led critique, and visual QA. These are decision frameworks, not a fixed collection of ready-made palettes or copied designs. See the [Core index](core/00-index.md) for module ownership and the [skill-system report](docs/skill-system.md) for validation limits.
 
 ## Get started
 
@@ -19,7 +19,7 @@ Clone the repository wherever you choose, then run PowerShell as a regular user:
 
 The current source installer sets up the Codex/Claude loader and 30 custom skills. It detects the repository and user home. Review the preview before applying changes; personal instructions outside the managed block are preserved. Update with `install/update-bootstrap.ps1`. Options include `-Tool Codex|Claude|Both`, `-SkipSkills`, and path parameters for a custom profile. See the [installation guide](install/README.md) for backups, legacy skills, and rollback.
 
-For an existing installation, use the updater when the checkout location or installed bootstrap/skill payload changes. Preview with `-WhatIf` first. A new session is needed to discover newly installed skills. V2.8 changed guidance without changing installer payloads; v2.9 brought the managed skill set to nine with Humanize and project documentation. DevBrain Update 3.0 adds 21 more skills, so an explicit updater run is needed to copy the current 30-skill payload to an existing profile. Existing loaders read runtime guidance in place; start a fresh session after updating the checkout, and do not reinstall solely for repository-only content changes.
+For an existing installation, use the updater when the checkout location or installed bootstrap/skill payload changes. Preview with `-WhatIf` first. A new session is needed to discover newly installed skills. The v3.0 payload contains 30 skills, including Humanize and project documentation; run the updater to copy that payload to an existing profile. Existing loaders read runtime guidance in place, so a fresh session is enough after repository-only guidance changes.
 
 ## Context strategy
 
