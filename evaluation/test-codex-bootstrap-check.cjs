@@ -9,7 +9,7 @@ test('fresh Codex bootstrap check keeps context discovery native and actions rea
   assert.ok(args.includes('--sandbox') && args.includes('read-only'));
   assert.ok(args.includes('model_reasoning_effort="low"'));
   assert.ok(!args.includes('--dangerously-bypass-approvals-and-sandbox'));
-  assert.ok(!args.some(value => value.includes('session-baseline.md')));
+  assert.ok(!args.some((value) => value.includes('session-baseline.md')));
   assert.ok(!prompt.includes('session-baseline.md'));
   assert.ok(!prompt.includes('read once at the start'));
   assert.ok(!prompt.includes('automatically loaded at session startup'));
@@ -18,9 +18,14 @@ test('fresh Codex bootstrap check keeps context discovery native and actions rea
 test('event summarizer captures a response without grading it', () => {
   const events = [
     { type: 'thread.started' },
-    { type: 'item.completed', item: { type: 'agent_message', text: 'Read once at session start.' } },
-    { type: 'turn.completed' }
-  ].map(value => JSON.stringify(value)).join('\n');
+    {
+      type: 'item.completed',
+      item: { type: 'agent_message', text: 'Read once at session start.' },
+    },
+    { type: 'turn.completed' },
+  ]
+    .map((value) => JSON.stringify(value))
+    .join('\n');
   const summary = summarizeEvents(events);
   assert.equal(summary.turn_completed, true);
   assert.deepEqual(summary.messages, ['Read once at session start.']);

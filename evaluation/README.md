@@ -2,6 +2,10 @@
 
 The suite separates structural validation, installer integration, and behavioral evaluation. Passing a parser is not evidence that a model always follows policy.
 
+## JavaScript formatting
+
+The private root `package.json` pins Prettier for repository maintenance only; it is not part of the DevBrain runtime or installer. Install the locked tool with `npm ci --ignore-scripts`, then run `npm run format` to format top-level `evaluation/*.cjs` scripts or `npm run format:check` to check them without edits. Evaluation fixtures are intentionally excluded because their source text is controlled input. Formatting checks do not validate JavaScript behavior or replace the evaluation suite.
+
 ## Structural checks
 
 Node.js, PowerShell, Git, and the `js-yaml` parser are needed only for maintenance. DevBrain installation itself does not require these dependencies. If the parser is unavailable, install it in an ignored local folder:

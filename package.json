@@ -1,0 +1,12 @@
+{
+  "name": "devbrain-maintenance-tools",
+  "private": true,
+  "description": "Maintenance-only tooling for the DevBrain repository",
+  "scripts": {
+    "format": "prettier --write \"evaluation/*.cjs\"",
+    "format:check": "prettier --check \"evaluation/*.cjs\""
+  },
+  "devDependencies": {
+    "prettier": "3.10.1"
+  }
+}

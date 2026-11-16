@@ -1,0 +1,9 @@
+# Local dependency installs and generated evaluation data
+node_modules/
+local/
+
+# Controlled inputs: formatting these would change evaluation fixtures
+evaluation/fixtures/
+
+# Historical source documents are not formatter targets
+*.docx
