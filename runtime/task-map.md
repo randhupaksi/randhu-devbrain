@@ -30,6 +30,7 @@ Paths are relative to the DevBrain root. Read only relevant rows, then only the 
 | Action risk/approval analysis | `safety/policy.md`, `safety/risk-model.md`, `safety/data-and-api-protection.md` | None needed; application vulnerability review uses `application-security-review`, identity/access policy uses `auth-security` |
 | Git command listing | `workflows/git-command-listing.md` | None needed |
 | Compressed prompt command | `prompts/commands.yaml`, `prompts/README.md` | Match the outcome |
+| New fullstack project from a brief, including plan-only delivery requests | `workflows/greenfield-fullstack-delivery.md` | Match the current deliverable; use product discovery when requirements remain open |
 | Complex task coordination | `workflows/standard-task.md` | Match the outcome |
 
 Read skill references only when a specific decision requires them. Do not load enterprise and marketing skills together for one surface; use both only for distinct product/marketing subtasks. Design-system work owns visual/shared-UI contracts; architecture-refactor owns responsibility/data/dependency boundaries. Frontend performance, accessibility audit, and testing strategy are primary only when those outcomes are requested or a concrete blocker makes them material. Routine UI polish and validation do not load all three.
@@ -40,6 +41,10 @@ For a mixed task, use [skill selection](skill-selection.md) to resolve ownership
 
 | Requested outcome | Primary skill |
 |---|---|
+| Version-specific technical investigation and option comparison | `technical-research` |
+| Scope an ambiguous product brief and define acceptance criteria | `product-discovery` |
+| Connect an existing frontend route, interactions, and established API into a working feature | `frontend-feature-engineering` |
+| Model-dependent features, retrieval, and output quality | `ai-application-engineering` |
 | API shapes, compatibility decisions, and producer-consumer acceptance examples | `api-contracts` |
 | Database query cost and result-preserving optimization | `database-query-optimization` |
 | Identity, session lifecycle, access policy, and tenant isolation | `auth-security` |

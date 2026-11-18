@@ -22,8 +22,12 @@ For an ambiguous request, identify the deliverable the user will review and the 
 | Localization vs prose | internationalization-localization owns locale infrastructure and formatting; humanize owns editorial voice |
 | SEO vs marketing | technical-seo owns crawl/index/render signals; marketing-portfolio-ui-ux owns visual narrative and conversion |
 | Upgrade vs release | dependency-upgrades owns version/consumer compatibility; ci-cd-release-engineering owns pipeline/artifact rollout |
+| Research vs transition | technical-research compares options and evidence; dependency-upgrades applies a chosen dependency transition |
+| Discovery vs documentation | product-discovery defines what should be built; project-documentation describes verified behavior and owns the document structure |
+| Frontend feature vs UI and state | frontend-feature-engineering connects the journey; UI skills own visual direction and frontend-state-management owns dedicated state correctness work |
+| Model behavior vs provider transport | ai-application-engineering owns model output and fallback; external-service-integrations owns distinct transport and provider reliability work |
 | Local vs hosted setup | developer-environment owns reproducible local services; ci-cd-release-engineering owns hosted delivery |
 
 For an order flow, an accepted API contract can feed backend implementation; schema invariants feed persistence; a durable post-commit event feeds a worker. Load each owner only if that deliverable is actually part of the task. Do not turn the example into a mandatory multi-skill pipeline.
 
-The maintenance-only [catalog](../skills/catalog.yaml) records all 30 owners, output artifacts and conditional handoffs. Skills remain independently portable: collaboration names are optional, not required file imports.
+The maintenance-only [catalog](../skills/catalog.yaml) records all skill owners, output artifacts and conditional handoffs. Skills remain independently portable: collaboration names are optional, not required file imports.

@@ -1,0 +1,6 @@
+interface:
+  display_name: 'AI Application Engineering'
+  short_description: 'Build verifiable model-powered features'
+  default_prompt: 'Use $ai-application-engineering to design the model response, fallback, and verification for this feature.'
+policy:
+  allow_implicit_invocation: true

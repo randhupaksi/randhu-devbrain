@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Technical Research'
+  short_description: 'Evidence for technical decisions'
+  default_prompt: 'Use $technical-research to compare the viable approaches against this project’s installed versions.'
+policy:
+  allow_implicit_invocation: true

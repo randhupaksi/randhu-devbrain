@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Frontend Feature Engineering'
+  short_description: 'Connect an end-to-end frontend feature'
+  default_prompt: 'Use $frontend-feature-engineering to implement this feature using the existing routes and API contract.'
+policy:
+  allow_implicit_invocation: true

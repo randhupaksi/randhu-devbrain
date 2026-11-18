@@ -1,0 +1,6 @@
+interface:
+  display_name: 'Product Discovery'
+  short_description: 'User flows and observable acceptance criteria'
+  default_prompt: 'Use $product-discovery to turn this brief into a scoped flow and acceptance criteria.'
+policy:
+  allow_implicit_invocation: true
