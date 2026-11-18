@@ -11,11 +11,13 @@ Run from the repository with PowerShell 5.1+ or PowerShell 7 as a regular user. 
 
 The installer runs only when explicitly requested by the user. An agent editing DevBrain does not install it to the real home automatically.
 
+The installer takes its payload from the current checkout. See the [3.1 reliability guide](../docs/v3.1-reliability.md) for release verification.
+
 V2.5 adds maintenance-only behavioral evaluation to the existing selective workflows. Managed loaders reference this checkout's baseline/task map; the baseline, installed skills and bootstrap payload are unchanged. Start a new session or explicitly reload DevBrain after updating to refresh active context. A moved/new checkout or changes to bootstrap/skill files still require the installer/update procedure. See [the v2.5 adoption guide](../docs/v2.5-behavioral-reliability.md). Evaluation preparation does not install or start a host.
 
 V2.7 adds a maintenance-only CLI compatibility workflow and host matrix. It does not change install destinations or host settings. Native Codex/Claude discovery must be observed in each CLI; simulated home installation proves target layout only. See the [v2.7 candidate guide](../docs/v2.7-cli-compatibility.md).
 
-For an existing installation, run the updater with `-WhatIf` first, then run it without `-WhatIf` when the targets are correct. DevBrain v3.0.0 is the stable release; its managed payload contains 30 skills, including Humanize and project documentation. With the default `-Tool Both`, Codex and Claude receive the same managed skill folders; start a new coding session afterward so each host can discover newly installed skills. Skills activate by outcome: for example, `frontend-performance` measures browser bottlenecks, `accessibility-audit` reviews and fixes interface barriers, and `testing-strategy` selects meaningful tests. A review-only request stays read-only, while a fix request includes implementation.
+For an existing installation, run the updater with `-WhatIf` first, then run it without `-WhatIf` when the targets are correct. DevBrain v3.1.0 ships 30 managed skills, including Humanize and project documentation. With the default `-Tool Both`, the installer copies the same skill folders to Codex and Claude. Start a new coding session afterward so each host can discover the managed skills. If the v3.0 loader already points at this checkout and its payload is current, a fresh session picks up the revised runtime guidance.
 
 ## Parameters and targets
 

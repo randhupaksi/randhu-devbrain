@@ -1,9 +1,12 @@
-# DevBrain Update 3.0 Documentation
+# DevBrain Documentation
 
-V2.9.0 remains the latest stable release for natural communication defaults, Humanize, and project-documentation guidance. DevBrain Update 3.0 is the unreleased 30-skill expansion; its structural checks and limited/mixed native samples are documented separately and do not establish universal host parity. Humanize scenarios 64–71 were observed on Codex and Claude, but this does not close the v2.7 native CLI compatibility matrix. Markdown/YAML defines operational behavior. The generalized DOCX remains a v2.2 conceptual reference, excluded from startup. Read these documents for maintenance or onboarding.
+The [3.1 reliability guide](v3.1-reliability.md) describes the stable package, local verification, and native evaluation.
+
+DevBrain v3.1.0 contains 30 skills and 113 behavior-scenario contracts. Markdown and YAML define operational behavior. The generalized source DOCX remains a v2.2 conceptual reference and is excluded from startup. Use these documents for onboarding and maintenance.
 
 | Reader need | Current document |
 |---|---|
+| Optional v3.0 product guides | `DevBrain-Guide-ID.docx` (Bahasa Indonesia) and `DevBrain-Guide-EN.docx` (English), when included beside this index |
 | Fullstack skill catalog, boundaries and collaboration | [Skill system](skill-system.md) |
 | Human-centred UI/UX principles, task-ranked visual hierarchy, composition/style guidance, and chart/platform adaptation | [Core index](../core/00-index.md) and the relevant UI modules |
 | V2.9 release scope and observed Humanize behavior | [Humanize guide and evidence](humanize.md) and [evaluation results](../evaluation/humanize-guide.md) |

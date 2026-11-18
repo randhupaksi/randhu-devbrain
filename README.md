@@ -1,6 +1,6 @@
-# DevBrain v3.0 Stable
+# DevBrain v3.1 Stable
 
-DevBrain v3.0.0 is the stable release dated 2026-11-12. It brings 30 portable skills and 113 behavior-scenario contracts to the current source and installer payload. “Stable” describes the released files and their maintained contracts; it does not promise identical behavior across every model or host. Structural validation and native samples are documented with their limits in the [skill-system report](docs/skill-system.md).
+DevBrain v3.1.0 is the stable package with 30 portable skills and 113 behavior-scenario contracts. It improves selective routing, verification, and UI review, and introduces a benchmark for both CLI hosts. Package verification covers the source, installer, and evaluation tools. Native model behavior and comparative results have separate evidence status in the [3.1 reliability guide](docs/v3.1-reliability.md).
 
 DevBrain is Randhu's personal context and developer knowledge layer for Codex and Claude Code. It provides principles, safety, workflows, prompt compression, skills, and bootstrap instructions. It is not an AI model, a new agent, an assistant replacement, a background application, or one large prompt.
 
@@ -19,7 +19,7 @@ Clone the repository wherever you choose, then run PowerShell as a regular user:
 
 The current source installer sets up the Codex/Claude loader and 30 custom skills. It detects the repository and user home. Review the preview before applying changes; personal instructions outside the managed block are preserved. Update with `install/update-bootstrap.ps1`. Options include `-Tool Codex|Claude|Both`, `-SkipSkills`, and path parameters for a custom profile. See the [installation guide](install/README.md) for backups, legacy skills, and rollback.
 
-For an existing installation, use the updater when the checkout location or installed bootstrap/skill payload changes. Preview with `-WhatIf` first. A new session is needed to discover newly installed skills. The v3.0 payload contains 30 skills, including Humanize and project documentation; run the updater to copy that payload to an existing profile. Existing loaders read runtime guidance in place, so a fresh session is enough after repository-only guidance changes.
+For an existing installation, use the updater when the checkout location or installed bootstrap/skill payload changes. Preview with `-WhatIf` first. The v3.1 payload includes all 30 skills. Existing v3.0 loaders that already point to this checkout and have the current skill payload read v3.1 runtime guidance in a fresh session.
 
 ## Context strategy
 
