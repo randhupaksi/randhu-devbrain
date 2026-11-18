@@ -29,9 +29,9 @@ Fixtures are retained for inspection and ignored by Git. In a sandbox using anot
 
 ## Behavioral evaluation
 
-For matched native, v3.0 reference, and current candidate comparisons, use the [3.1 benchmark procedure](../docs/v3.1-reliability.md). The 113 scenarios below are task contracts and remain separate from the eight benchmark cases.
+For 3.2 comparisons, use the [3.2 benchmark procedure](../docs/v3.2-delivery.md#benchmark). The 123 task contracts below are maintained separately from the 13 benchmark cases.
 
-[`scenarios.yaml`](scenarios.yaml) contains 113 cases: the 21 original cases, three v2 boundaries, six performance/accessibility/testing cases, eight v2.2 discovery/debugging/completion cases, eight v2.3 reconciliation cases, eight v2.4 continuity cases, five v2.8 project-context cases, four project-documentation cases, eight humanize/default-writing cases, and 42 fullstack skill activation/boundary cases. Each specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
+[`scenarios.yaml`](scenarios.yaml) contains 123 cases, including the 21 original cases, three v2 boundaries, six performance/accessibility/testing cases, eight v2.2 discovery/debugging/completion cases, eight v2.3 reconciliation cases, eight v2.4 continuity cases, five v2.8 project-context cases, four project-documentation cases, eight humanize/default-writing cases, 42 fullstack skill activation/boundary cases, and ten 3.2 cases for new skill routing and greenfield delivery. Each specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
 
 1. Create synthetic fixtures under `local/behavior-runs/` with project instructions, target files, contracts, and enough tests. Do not use another project, client data, secrets, or a real database.
 2. Start a new Codex or Claude session with only the baseline, skill metadata, case prompt, and relevant fixture. Do not show the assistant the expected answer.
@@ -53,7 +53,7 @@ Use [the v2.4 guide](v2.4-behavior-guide.md) for two-phase handoff/resume evalua
 
 ## V2.5 core smoke pack
 
-[smoke-suite.yaml](smoke-suite.yaml) selects 12 existing scenarios; it selects from the full 113-case suite. [scorecard-contract.yaml](scorecard-contract.yaml) defines six scoring dimensions and explicit result/evidence categories. Preparation requires Node.js 18+, Git 2.28+ and the existing YAML parser. These are maintenance prerequisites, not installer dependencies.
+[smoke-suite.yaml](smoke-suite.yaml) selects 12 existing scenarios; it selects from the full scenario suite. [scorecard-contract.yaml](scorecard-contract.yaml) defines six scoring dimensions and explicit result/evidence categories. Preparation requires Node.js 18+, Git 2.28+ and the existing YAML parser. These are maintenance prerequisites, not installer dependencies.
 
 ```powershell
 node evaluation/prepare-smoke.cjs

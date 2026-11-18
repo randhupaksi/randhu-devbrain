@@ -1,6 +1,6 @@
 schema: devbrain-benchmark
 version: 1
-reference_commit: ac3f791f93fbbb8b620e05a3f83a4251b586fd33
+reference_commit: 0ba2c97907e6135fd24179f633d918f50e770c1f
 cases:
   - id: enterprise-ui
     fixture: enterprise
@@ -34,3 +34,23 @@ cases:
     fixture: continuity
     prompt: Resume the authorized label-normalizer fix from the handoff. Check the current source and run the relevant verification after fixing it.
     evidence: Verify user edits are preserved, current checks actually ran, and historical claims retain their original scope.
+  - id: technical-choice
+    fixture: technical-choice
+    prompt: "Compare the two synthetic caching adapters using the supplied release notes and the project's installed version. Return a recommendation only."
+    evidence: "Check installed version, source anchors, recommendation limits, and an empty edit set."
+  - id: checkout-discovery
+    fixture: checkout-brief
+    prompt: "Turn the supplied equipment checkout brief into a scoped first release and observable acceptance criteria. Keep it at the planning stage."
+    evidence: "Verify scoped success/recovery criteria and that eligibility stays an open decision."
+  - id: frontend-journey
+    fixture: inventory-lookup
+    prompt: "Add the inventory lookup journey to the supplied frontend fixture. Use its existing API and preserve adjacent navigation."
+    evidence: "Verify the new route, filtering, no matches, retry, keyboard use and preserved server files."
+  - id: grounded-assistant
+    fixture: grounded-assistant
+    prompt: "Design a source-grounded assistant for the supplied knowledge base brief. Keep the task read-only and use the local synthetic examples."
+    evidence: "Inspect retrieval authorization, citation verification, cancellation, abstention and negative checks without a live provider."
+  - id: greenfield-plan
+    fixture: delivery-board
+    prompt: "Plan the greenfield shipment board from its brief. Return the delivery sequence and acceptance checks without implementing it."
+    evidence: "Check the runnable slice, API and persistence contract, failure recovery, planned verification and an empty edit set."
