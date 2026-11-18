@@ -1,6 +1,11 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const { buildArguments, summarizeOutput, prompt } = require('./run-claude-bootstrap-check.cjs');
+const {
+  buildArguments,
+  summarizeOutput,
+  captureStatus,
+  prompt,
+} = require('./run-claude-bootstrap-check.cjs');
 
 test('fresh Claude bootstrap check uses a one-shot read-only host configuration', () => {
   const args = buildArguments('local/fixture/project', 'claude-sonnet-5', 'medium');
@@ -44,4 +49,15 @@ test('malformed output is summarized without preserving content', () => {
   assert.equal(summary.parsed, false);
   assert.equal(Object.hasOwn(summary, 'response'), true);
   assert.equal(JSON.stringify(summary).includes('private error details'), false);
+});
+
+test('parseable output still needs a response and a clean process exit', () => {
+  const changes = { changed: [], removed: [] };
+  const clean = { exitCode: 0, timedOut: false, error: null };
+  const summary = summarizeOutput('{"result":"The startup rule was present."}');
+  assert.equal(captureStatus(clean, summary, changes), 'needs_human_review');
+  assert.equal(captureStatus({ ...clean, exitCode: 1 }, summary, changes), 'blocked');
+  assert.equal(captureStatus({ ...clean, error: 'host error' }, summary, changes), 'blocked');
+  assert.equal(captureStatus(clean, { ...summary, response: ' ' }, changes), 'blocked');
+  assert.equal(captureStatus(clean, summary, { ...changes, removed: ['file'] }), 'blocked');
 });

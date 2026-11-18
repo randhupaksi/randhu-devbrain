@@ -1,0 +1,36 @@
+schema: devbrain-benchmark
+version: 1
+reference_commit: ac3f791f93fbbb8b620e05a3f83a4251b586fd33
+cases:
+  - id: enterprise-ui
+    fixture: enterprise
+    prompt: Improve the operations table so the primary task and filtered results are clear on desktop and mobile. Implement the changes in the fixture.
+    evidence: Compare task priority, keyboard and selection behavior, responsive layout, and the empty filter state with browser evidence.
+  - id: portfolio-ui
+    fixture: marketing
+    prompt: Build the portfolio described in the fixture, with a visual direction that makes the project work easy to understand.
+    evidence: Inspect hierarchy, typography, mobile reflow, and fidelity to the supplied work and outcomes.
+  - id: creative-ui
+    fixture: creative-editor
+    prompt: Build a small working caption editor using the supplied brief and content. Keep the preview central and make cancellation and recovery clear.
+    evidence: Check editing, cancel, confirmation, recovery, keyboard use, narrow layout, and reduced motion if motion is present.
+  - id: copy-default
+    fixture: product-copy
+    prompt: Write the interface messages requested by the brief. Return the requested labels and copy.
+    evidence: Check state meaning, the user's next step, required placeholders, and natural concise language.
+  - id: copy-editorial
+    fixture: product-copy
+    prompt: Deeply edit the draft messages in the brief for an approachable product voice. Return the requested labels and copy.
+    evidence: Check substantive editorial improvements, accuracy, placeholders, and voice fidelity.
+  - id: fullstack-implementation
+    fixture: delivery-board
+    prompt: Implement the shipment board described in the fixture, including the browser UI and local backend. Verify the key behavior using the available project tools.
+    evidence: Exercise both endpoints, rejected input, persisted status after refresh within the server process, and client loading, error and empty states.
+  - id: contract-boundary
+    fixture: api-contract
+    prompt: Review the feasibility of renaming the public name field to displayName. Use the existing implementation and consumers to explain the impact and suggest a migration. Keep the fixture read-only.
+    evidence: Verify reachable consumer effects, compatibility option, calibrated uncertainty, and an empty edit set.
+  - id: resume-and-verify
+    fixture: continuity
+    prompt: Resume the authorized label-normalizer fix from the handoff. Check the current source and run the relevant verification after fixing it.
+    evidence: Verify user edits are preserved, current checks actually ran, and historical claims retain their original scope.

@@ -1,12 +1,17 @@
 schema: devbrain-manifest
-version: 3.0.0
+version: 3.1.0
 owner: Randhu Paksi
-# Version/status track the latest published release; scoped_validation records the evidence and limits for its capabilities.
+# Version/status describe this checkout. Historical evidence retains its original scope.
 status: stable
-updated_on: 2026-11-12
+updated_on: 2026-11-18
 language: en
 purpose: Personal developer knowledge layer for AI coding assistants
 scoped_validation:
+  v3_1_reliability:
+    status: native_validation_pending
+    package_scope: runtime_guidance_install_update_and_local_evaluation_tools
+    scope: selective_routing_verification_ui_review_and_paired_benchmark
+    evidence_report: docs/v3.1-reliability.md
   six_skill_extension:
     status: structural_validated_native_reasoning_samples_limited
     scope: realtime_cache_localization_seo_dependencies_local_environment
@@ -117,6 +122,9 @@ evaluation:
   codex_bootstrap_tests: evaluation/test-codex-bootstrap-check.cjs
   claude_bootstrap_capture: evaluation/run-claude-bootstrap-check.cjs
   claude_bootstrap_tests: evaluation/test-claude-bootstrap-check.cjs
+  benchmark_suite: evaluation/benchmark-suite.yaml
+  benchmark_tool: evaluation/benchmark.cjs
+  benchmark_tests: evaluation/test-benchmark.cjs
 
 deferred_capabilities: [cli, exe, daemon, database, notification_system, task_logs, daily_summary, gui]
 source_specification:

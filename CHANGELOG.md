@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## 3.1.0 — 2026-11-18 (stable package)
+
+- Clarified when to reassess skill ownership, how to qualify an unverified finding, and what evidence supports UI and interface-copy decisions.
+- Added eight synthetic benchmark cases with matching prompts and fixture inputs for native Claude/Codex, the v3.0 reference, and the v3.1 package. The maintenance tool prepares runs and compares scores with matching provenance.
+- Updated the smoke and CLI host contracts, fixed the validator's v2-only constraint, and added release and benchmark regression coverage.
+- Bootstrap captures record release provenance and block incomplete or failed runs. Native model tests have separate status in the [3.1 reliability guide](docs/v3.1-reliability.md).
+
 ## 3.0.0 — 2026-11-12 (stable connected fullstack guidance)
 
 - Added 21 fullstack specialists to the original nine skills, bringing the source catalog to 30. The six latest cover realtime systems, server caching, localization, technical SEO, dependency upgrades, and developer environments.

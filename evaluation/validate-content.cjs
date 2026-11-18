@@ -106,8 +106,10 @@ check(
 );
 if (manifest) {
   check(
-    /^2\.\d+\.\d+(?:-rc\.\d+)?$/.test(manifest.version) &&
-      ['validation_pending', 'native_validation_pending', 'stable'].includes(manifest.status),
+    typeof manifest.version === 'string' &&
+      /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-rc\.[1-9]\d*)?$/.test(manifest.version) &&
+      ['validation_pending', 'native_validation_pending', 'stable'].includes(manifest.status) &&
+      !(manifest.version.includes('-rc.') && manifest.status === 'stable'),
     'Manifest version/status',
   );
   check(
@@ -345,6 +347,13 @@ if (Array.isArray(cliMatrix?.hosts))
       ['not_run', 'blocked', 'partial', 'complete'].includes(host.native_status),
       'CLI native status ' + host.id,
     );
+    check(
+      host.availability_observed !== 'available' ||
+        (typeof host.version_observed === 'string' &&
+          typeof host.availability_observed_on === 'string' &&
+          /^\d{4}-\d{2}-\d{2}$/.test(host.availability_observed_on)),
+      'CLI availability observation provenance ' + host.id,
+    );
   }
 if (Array.isArray(cliMatrix?.cases)) {
   const cliIds = new Set();
@@ -379,6 +388,12 @@ if (Array.isArray(cliMatrix?.cases)) {
     check(cliIds.has(id), 'Required CLI case ' + id);
 }
 const paras = new Map();
+try {
+  require('./benchmark.cjs').validateSuite(parsed.get('evaluation/benchmark-suite.yaml'));
+  check(true, 'Benchmark suite and fixtures');
+} catch {
+  check(false, 'Benchmark suite and fixtures');
+}
 const smoke = parsed.get('evaluation/smoke-suite.yaml'),
   resultContract = parsed.get('evaluation/scorecard-contract.yaml');
 check(

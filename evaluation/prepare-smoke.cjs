@@ -12,6 +12,7 @@ function loadInputs(yamlModule) {
   const read = (file) => yaml.load(fs.readFileSync(path.join(root, file), 'utf8'));
   return {
     yaml,
+    release: read('devbrain.yaml').version,
     suite: read('evaluation/smoke-suite.yaml'),
     contract: read('evaluation/scorecard-contract.yaml'),
     scenarios: read('evaluation/scenarios.yaml').scenarios,
@@ -75,6 +76,11 @@ function profileFingerprint() {
   for (const directory of ['core', 'runtime', 'safety', 'workflows', 'prompts', 'skills'])
     digest.update(directory + '\0' + fingerprintTree(path.join(root, directory)));
   return digest.digest('hex');
+}
+function bootstrapReceiptContext() {
+  const { release, suite } = loadInputs();
+  if (release !== suite.release) throw new Error('Manifest and smoke release differ');
+  return { candidate: release, checkout_profile_fingerprint: profileFingerprint() };
 }
 function preparePack(inputs, name = 'smoke-' + crypto.randomUUID(), options = {}) {
   if (!/^smoke-[a-zA-Z0-9-]+$/.test(name)) throw new Error('Invalid fixture batch name');
@@ -186,4 +192,6 @@ module.exports = {
   fingerprintTree,
   profileFingerprint,
   ensureLocalDirectory,
+  sourceFiles,
+  bootstrapReceiptContext,
 };

@@ -1,6 +1,6 @@
 schema: devbrain-cli-host-compatibility
 version: 1
-release: 2.9.0
+release: 3.1.0
 purpose: Verify host-specific instruction discovery, skill loading, session lifecycle, and permission boundaries without treating static checks as live behavior.
 hosts:
   - id: codex_cli
@@ -9,21 +9,21 @@ hosts:
     user_skill_location: "$HOME/.agents/skills"
     session_modes: [interactive_fresh, one_shot, resume]
     availability_observed: available
-    version_observed: "0.165.0"
-    requested_model: gpt-5.6-sol
-    effort: low
-    native_status: partial
+    availability_observed_on: '2026-11-18'
+    version_observed: "0.169.0"
+    native_status: blocked
+    native_limitation: Isolated preflight found no authenticated session. Model cases remain unrun.
   - id: claude_code_cli
     instruction_entry: "$HOME/.claude/CLAUDE.md"
     project_instruction_family: [CLAUDE.md, CLAUDE.local.md, AGENTS.md]
     project_instruction_note: "AGENTS.md discovery depends on Claude Code version and Project instructions setting; in the default mode, project CLAUDE.md files can select the CLAUDE family instead."
     user_skill_location: "$HOME/.claude/skills"
     session_modes: [interactive_fresh, one_shot, continue, resume]
-    requested_model: claude-sonnet-5
-    effort: medium
     availability_observed: available
-    version_observed: "2.1.312.0"
-    native_status: partial
+    availability_observed_on: '2026-11-18'
+    version_observed: "2.1.325"
+    native_status: blocked
+    native_limitation: Isolated preflight found no authenticated session. Model cases remain unrun.
 cases:
   - id: codex-fresh-bootstrap
     host: codex_cli

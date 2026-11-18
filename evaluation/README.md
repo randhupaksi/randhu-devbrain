@@ -29,6 +29,8 @@ Fixtures are retained for inspection and ignored by Git. In a sandbox using anot
 
 ## Behavioral evaluation
 
+For matched native, v3.0 reference, and current candidate comparisons, use the [3.1 benchmark procedure](../docs/v3.1-reliability.md). The 113 scenarios below are task contracts and remain separate from the eight benchmark cases.
+
 [`scenarios.yaml`](scenarios.yaml) contains 113 cases: the 21 original cases, three v2 boundaries, six performance/accessibility/testing cases, eight v2.2 discovery/debugging/completion cases, eight v2.3 reconciliation cases, eight v2.4 continuity cases, five v2.8 project-context cases, four project-documentation cases, eight humanize/default-writing cases, and 42 fullstack skill activation/boundary cases. Each specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
 
 1. Create synthetic fixtures under `local/behavior-runs/` with project instructions, target files, contracts, and enough tests. Do not use another project, client data, secrets, or a real database.

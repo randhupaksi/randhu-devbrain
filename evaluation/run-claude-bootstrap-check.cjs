@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const cp = require('node:child_process');
 const os = require('node:os');
-const crypto = require('node:crypto');
+const { bootstrapReceiptContext, ensureLocalDirectory } = require('./prepare-smoke.cjs');
 const {
   captureSession,
   fileSnapshot,
@@ -83,6 +83,19 @@ function summarizeOutput(stdout) {
   }
 }
 
+function captureStatus(captured, summary, changes) {
+  return captured.exitCode === 0 &&
+    !captured.timedOut &&
+    !captured.error &&
+    summary.parsed &&
+    !summary.is_error &&
+    summary.response?.trim() &&
+    changes.changed.length === 0 &&
+    changes.removed.length === 0
+    ? 'needs_human_review'
+    : 'blocked';
+}
+
 async function run(options) {
   if (options?.allowProfileRuntime !== true)
     throw new Error('Claude profile/runtime use requires explicit authorization');
@@ -100,15 +113,15 @@ async function run(options) {
   if (!/^[0-9.]+$/.test(options.cliVersion || ''))
     throw new Error('Provide the observed Claude Code CLI version');
 
-  const local = ensureLocalRoot();
-  const runRoot = path.join(
-    local,
-    'cli-host-runs',
-    'claude-bootstrap-' + Date.now() + '-' + crypto.randomBytes(4).toString('hex'),
-  );
+  const context = bootstrapReceiptContext();
+  const local = ensureLocalDirectory('local/cli-host-runs');
+  const runRoot = fs.mkdtempSync(path.join(local, 'claude-bootstrap-'));
   const project = path.join(runRoot, 'project');
-  fs.mkdirSync(project, { recursive: true });
-  cp.execFileSync('git', ['-C', project, 'init', '--quiet'], { cwd: root, stdio: 'ignore' });
+  fs.mkdirSync(project);
+  cp.execFileSync('git', ['-C', project, 'init', '--quiet', '--template='], {
+    cwd: root,
+    stdio: 'ignore',
+  });
   fs.writeFileSync(path.join(project, '.mcp-config.json'), JSON.stringify({ mcpServers: {} }), {
     flag: 'wx',
   });
@@ -132,7 +145,7 @@ async function run(options) {
   const receipt = {
     schema: 'devbrain-cli-bootstrap-check',
     version: 1,
-    candidate: '2.7.0-rc.1',
+    ...context,
     host: 'Claude Code CLI',
     cli_version: options.cliVersion,
     requested_model: options.model,
@@ -150,14 +163,7 @@ async function run(options) {
     changed_files: changes.changed,
     removed_files: changes.removed,
     response: summary.response,
-    status:
-      summary.parsed &&
-      !summary.is_error &&
-      typeof summary.response === 'string' &&
-      changes.changed.length === 0 &&
-      changes.removed.length === 0
-        ? 'needs_human_review'
-        : 'blocked',
+    status: captureStatus(captured, summary, changes),
     scoring_note:
       'A captured response is not an automatic PASS. Review whether the user-level bootstrap supplied the rule without project-file reads or evaluator injection.',
   };
@@ -196,4 +202,4 @@ if (require.main === module) {
     });
 }
 
-module.exports = { ensureLocalRoot, buildArguments, summarizeOutput, prompt, run };
+module.exports = { ensureLocalRoot, buildArguments, summarizeOutput, captureStatus, prompt, run };

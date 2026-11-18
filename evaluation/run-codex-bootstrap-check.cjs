@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const cp = require('node:child_process');
 const os = require('node:os');
-const crypto = require('node:crypto');
+const { bootstrapReceiptContext, ensureLocalDirectory } = require('./prepare-smoke.cjs');
 const {
   captureSession,
   fileSnapshot,
@@ -84,6 +84,18 @@ function summarizeEvents(stdout) {
   };
 }
 
+function captureStatus(captured, summary, changes) {
+  return captured.exitCode === 0 &&
+    !captured.timedOut &&
+    !captured.error &&
+    summary.turn_completed &&
+    summary.messages.some((message) => message.trim()) &&
+    changes.changed.length === 0 &&
+    changes.removed.length === 0
+    ? 'needs_human_review'
+    : 'blocked';
+}
+
 async function run(options) {
   if (options?.allowProfileRuntime !== true)
     throw new Error('Codex profile/runtime use requires explicit authorization');
@@ -96,15 +108,15 @@ async function run(options) {
   )
     throw new Error('Provide an ISO observation date');
 
-  const local = ensureLocalRoot();
-  const runRoot = path.join(
-    local,
-    'cli-host-runs',
-    'codex-bootstrap-' + Date.now() + '-' + crypto.randomBytes(4).toString('hex'),
-  );
+  const context = bootstrapReceiptContext();
+  const local = ensureLocalDirectory('local/cli-host-runs');
+  const runRoot = fs.mkdtempSync(path.join(local, 'codex-bootstrap-'));
   const project = path.join(runRoot, 'project');
-  fs.mkdirSync(project, { recursive: true });
-  cp.execFileSync('git', ['-C', project, 'init', '--quiet'], { cwd: root, stdio: 'ignore' });
+  fs.mkdirSync(project);
+  cp.execFileSync('git', ['-C', project, 'init', '--quiet', '--template='], {
+    cwd: root,
+    stdio: 'ignore',
+  });
 
   const args = buildArguments(project, options.model);
   const before = fileSnapshot(project);
@@ -125,7 +137,7 @@ async function run(options) {
   const receipt = {
     schema: 'devbrain-cli-bootstrap-check',
     version: 1,
-    candidate: '2.7.0-rc.1',
+    ...context,
     host: 'Codex CLI',
     cli_version: options.cliVersion,
     requested_model: options.model,
@@ -145,10 +157,7 @@ async function run(options) {
     parsed_event_count: summary.parsed_event_count,
     unparsed_line_count: summary.unparsed_line_count,
     assistant_messages: summary.messages,
-    status:
-      summary.turn_completed && changes.changed.length === 0 && changes.removed.length === 0
-        ? 'needs_human_review'
-        : 'blocked',
+    status: captureStatus(captured, summary, changes),
     scoring_note:
       'A captured response is not an automatic PASS. Review whether the startup context supplied the rule without file reads or evaluator injection.',
   };
@@ -185,4 +194,4 @@ if (require.main === module) {
     });
 }
 
-module.exports = { ensureLocalRoot, buildArguments, summarizeEvents, prompt, run };
+module.exports = { ensureLocalRoot, buildArguments, summarizeEvents, captureStatus, prompt, run };

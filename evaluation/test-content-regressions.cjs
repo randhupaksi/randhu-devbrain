@@ -58,6 +58,7 @@ for (const file of files) {
   fs.copyFileSync(source, target);
 }
 let assertions = 0;
+let rejected = 0;
 function validate(expectedFinding) {
   const result = cp.spawnSync(
     process.execPath,
@@ -72,6 +73,7 @@ function validate(expectedFinding) {
       report.errors.includes(expectedFinding),
       'Expected finding missing: ' + expectedFinding,
     );
+    rejected++;
   } else {
     assert.equal(result.status, 0, 'Fixture should validate: ' + report.errors.join(', '));
     assert.deepEqual(report.errors, []);
@@ -102,6 +104,42 @@ function removeText(file, text, finding) {
   }
 }
 validate();
+mutateYaml(
+  'devbrain.yaml',
+  (v) => {
+    v.version = '03.1.0';
+  },
+  'Manifest version/status',
+);
+mutateYaml(
+  'devbrain.yaml',
+  (v) => {
+    v.version = '3.1.0-rc.1';
+    v.status = 'stable';
+  },
+  'Manifest version/status',
+);
+mutateYaml(
+  'evaluation/cli-host-matrix.yaml',
+  (v) => {
+    v.release = '2.9.0';
+  },
+  'CLI host matrix schema/release',
+);
+mutateYaml(
+  'evaluation/smoke-suite.yaml',
+  (v) => {
+    v.release = '2.9.0';
+  },
+  'Smoke suite schema/release',
+);
+mutateYaml(
+  'evaluation/benchmark-suite.yaml',
+  (v) => {
+    v.cases[1].id = v.cases[0].id;
+  },
+  'Benchmark suite and fixtures',
+);
 removeText(
   'runtime/session-baseline.md',
   'An explicitly requested handoff or DevBrain workflow command still selects its task-map module, even for a small task.',
@@ -243,9 +281,7 @@ mutateYaml(
 );
 validate();
 console.log(
-  'PASS: ' +
-    assertions +
-    ' content regression assertions; twenty intentional regressions rejected.',
+  `PASS: ${assertions} content regression assertions; ${rejected} intentional regressions rejected.`,
 );
 console.log(
   'All fixture writes stayed in local/. Clone retained; no Git history or real host configuration changed.',
