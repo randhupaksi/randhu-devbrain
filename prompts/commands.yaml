@@ -15,6 +15,13 @@ commands:
     forbidden: [invented_task, unverified_approval_transfer, automatic_context_file]
     output: "Current task action/result, differences from handoff, actual validation, and remaining limits."
 
+  fullstack-from-brief:
+    intent: "Plan or build a new fullstack project from the supplied brief, following the requested task mode and verifying a runnable journey when implementing."
+    mode: follow_requested_task_mode
+    approval: high_risk_boundary_only
+    modules: [workflows/greenfield-fullstack-delivery.md]
+    output: "A scoped delivery plan or a working project with startup and verification evidence."
+
   project-scan:
     intent: "Understand the project, stack, instructions, scripts, structure, and key risks."
     mode: read_only

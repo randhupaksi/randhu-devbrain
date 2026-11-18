@@ -9,6 +9,8 @@ For nontrivial tasks. Small tasks use the basic workflow in the [baseline](../ru
 5. **Verify:** Review the diff and run relevant project commands. Check consumers/state/runtime according to impact. Use [definition of done](definition-of-done.md) when completion criteria need a fuller review. Do not mix unrelated fixes in just to make checks pass.
 6. **Report:** Describe outcome, changed files, behavior, actual validation, assumptions, and remaining risks. Distinguish prepared code from side effects actually executed.
 
+For a new fullstack project from a brief, use [greenfield fullstack delivery](greenfield-fullstack-delivery.md) to connect the first runnable user journey.
+
 A plan is not an automatic approval gate; file count or a requested redesign is not a reason to stop low- or medium-risk work.
 
 Use [session continuity](session-continuity.md) when a handoff is requested or substantial interrupted work cannot continue safely from active context. Verify the relevant current state before resuming; a model switch alone does not require this workflow or a new context file.

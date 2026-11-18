@@ -1,0 +1,11 @@
+# Greenfield Fullstack Delivery
+
+Use for an authorized new fullstack project or a request to plan one from a brief. Establish where the project lives, who uses it, the desired outcome, and the stack and constraints supplied by the user. A planning request produces a delivery plan and acceptance checks. An implementation request proceeds through a working slice inside the authorized workspace.
+
+1. **Resolve the brief.** Extract explicit requirements and acceptance criteria first. Use product-discovery for decisions the brief leaves open and technical-research for material version or approach questions. Record assumptions and identify decisions that need the user's input. Proceed on independent work.
+2. **Plan one runnable journey.** Choose a representative flow and map its entry point, screen, API, server operation, data ownership, response, and recovery. Decide the repository layout and local startup contract. Respect the chosen stack and keep frontend and backend in one repository when requested.
+3. **Connect the implementation.** Define the minimal shared contract from the accepted brief, then connect backend and frontend around it. Keep business invariants on the server and map failures into actionable UI states. Add necessary slices once the first one works. Route distinct design, data, AI, or compatibility decisions to a specialist only when the project needs that artifact.
+4. **Verify the system.** Run relevant project checks. Verify the startup path, one successful journey and meaningful failure/recovery with synthetic data. Where persistence is required, check the duration promised by the brief. Inspect UI interactions and responsive behavior when a browser is available.
+5. **Leave a usable project.** Document startup, environment placeholders, required services, validation commands, and meaningful limitations in the project. Report the actual checks and any open requirement. Keep deployments, real credentials, and external side effects within the user's authorized scope.
+
+When an existing application only needs a feature, use the normal project workflow and its relevant specialists. The project brief supplies the domain and architecture constraints for this workflow.
