@@ -1,8 +1,8 @@
 # DevBrain Documentation
 
-The [3.1 reliability guide](v3.1-reliability.md) describes the stable package, local verification, and native evaluation.
+The [3.2 delivery guide](v3.2-delivery.md) explains the new skills and project workflow. The [3.1 reliability guide](v3.1-reliability.md) records the prior release and its evaluation evidence.
 
-DevBrain v3.1.0 contains 30 skills and 113 behavior-scenario contracts. Markdown and YAML define operational behavior. The generalized source DOCX remains a v2.2 conceptual reference and is excluded from startup. Use these documents for onboarding and maintenance.
+DevBrain v3.2.0 contains 34 skills and 123 behavior scenarios. Markdown and YAML define operational behavior. The generalized source DOCX remains a v2.2 conceptual reference and is excluded from startup. Use these documents for onboarding and maintenance.
 
 | Reader need | Current document |
 |---|---|

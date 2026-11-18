@@ -1,6 +1,6 @@
 # DevBrain v3.0 Stable Skill System
 
-DevBrain v3.0.0 shipped on 2026-11-12. The [v3.1 release](v3.1-reliability.md) carries the catalog and routing forward. It contains 30 source skills: 21 new fullstack specialists and nine reinforced existing skills. It is a portable instruction system for the host model, not additional training. No third-party skill package or service is required. New operational guidance can improve the decisions and checks an agent makes, but package validation does not establish a general quality gain.
+DevBrain v3.0.0 shipped on 2026-11-12. The [v3.2 release](v3.2-delivery.md) extends the 30-skill foundation to 34 source skills. It is a portable instruction system for the host model, not additional training. No third-party skill package or service is required. New operational guidance can improve the decisions and checks an agent makes, but package validation does not establish a general quality gain.
 
 ## Ownership and collaboration
 
@@ -13,6 +13,7 @@ The [catalog](../skills/catalog.yaml) is the maintenance owner of each skill's r
 | Contracts and data | api-contracts, database-engineering, database-query-optimization, server-caching |
 | Trust boundaries | auth-security, application-security-review |
 | External and asynchronous work | external-service-integrations, background-jobs-queues, file-storage-uploads |
+| Requirements and feature delivery | technical-research, product-discovery, frontend-feature-engineering, ai-application-engineering |
 | Evidence and delivery | frontend-performance, testing-strategy, browser-e2e-testing, code-review, observability-debugging, ci-cd-release-engineering, project-documentation |
 | Localization and public discovery | internationalization-localization, technical-seo |
 | Toolchain and local readiness | dependency-upgrades, developer-environment |
@@ -31,7 +32,7 @@ Project instructions and active user intent still determine the stack, product s
 
 ## Packaging and evaluation
 
-The manifest and source installer enumerate all 30 skills. Simulated-home installer checks cover source/Codex/Claude payload parity, updates, idempotency, and preservation of user instructions. Repository changes do not install into real host profiles. The release status does not convert scenario contracts into observed model behavior; the evidence below remains bounded by its recorded fixtures and runs.
+The manifest and source installer enumerate all 34 skills. Simulated-home installer checks cover source/Codex/Claude payload parity, updates, idempotency, and preservation of user instructions. Repository changes do not install into real host profiles. The release status does not convert scenario contracts into observed model behavior; the evidence below remains bounded by its recorded fixtures and runs.
 
 Cases 72–101 add one positive task and one boundary task for each new skill, bringing the suite at that stage to 101 cases. They are evaluation contracts, with expectations outside agent context. Two boundary cases intentionally need no skill: a routine syntax fix uses debugging guidance, and a Git command list uses the text-only Git workflow.
 
@@ -65,7 +66,7 @@ Raw native results are retained in ignored local/fullstack-native-1794323642290/
 
 ## Six-skill extension — 2026-11-10
 
-The six additional owners are realtime-systems, server-caching, internationalization-localization, technical-seo, dependency-upgrades and developer-environment. Cases 102–113 add six positive and six boundary tasks, bringing the current suite to 113. Their input/output and conditional relationships are in the catalog. Existing state, backend, copy, marketing, CI and documentation owners now provide an incoming handoff where needed.
+The six additional owners are realtime-systems, server-caching, internationalization-localization, technical-seo, dependency-upgrades and developer-environment. Cases 102–113 add six positive and six boundary tasks, bringing the suite for that release to 113. Their input/output and conditional relationships are in the catalog. Existing state, backend, copy, marketing, CI and documentation owners now provide an incoming handoff where needed.
 
 The key failure checks are replay-window expiry and snapshot races; tenant-scoped cache keys and stale refill; currency versus display locale; robots versus authorization; unsupported peer dependencies despite passing typecheck; and local resource ownership before cleanup. This extension adds no baseline startup content or runtime service.
 

@@ -1,6 +1,6 @@
-# DevBrain v3.1 Stable
+# DevBrain v3.2
 
-DevBrain v3.1.0 is the stable package with 30 portable skills and 113 behavior-scenario contracts. It improves selective routing, verification, and UI review, and introduces a benchmark for both CLI hosts. Package verification covers the source, installer, and evaluation tools. Native model behavior and comparative results have separate evidence status in the [3.1 reliability guide](docs/v3.1-reliability.md).
+DevBrain v3.2.0 provides 34 portable skills and 123 behavior scenarios. It adds technical research, product discovery, frontend feature engineering, and AI application engineering. The [3.2 delivery guide](docs/v3.2-delivery.md) shows how to use them and how to build a new fullstack project from a brief.
 
 DevBrain is Randhu's personal context and developer knowledge layer for Codex and Claude Code. It provides principles, safety, workflows, prompt compression, skills, and bootstrap instructions. It is not an AI model, a new agent, an assistant replacement, a background application, or one large prompt.
 
@@ -17,13 +17,13 @@ Clone the repository wherever you choose, then run PowerShell as a regular user:
 .\install\install-bootstrap.ps1
 ```
 
-The current source installer sets up the Codex/Claude loader and 30 custom skills. It detects the repository and user home. Review the preview before applying changes; personal instructions outside the managed block are preserved. Update with `install/update-bootstrap.ps1`. Options include `-Tool Codex|Claude|Both`, `-SkipSkills`, and path parameters for a custom profile. See the [installation guide](install/README.md) for backups, legacy skills, and rollback.
+The current source installer sets up the Codex/Claude loader and 34 custom skills. It detects the repository and user home. Review the preview before applying changes; personal instructions outside the managed block are preserved. Update with `install/update-bootstrap.ps1`. Options include `-Tool Codex|Claude|Both`, `-SkipSkills`, and path parameters for a custom profile. See the [installation guide](install/README.md) for backups, legacy skills, and rollback.
 
-For an existing installation, use the updater when the checkout location or installed bootstrap/skill payload changes. Preview with `-WhatIf` first. The v3.1 payload includes all 30 skills. Existing v3.0 loaders that already point to this checkout and have the current skill payload read v3.1 runtime guidance in a fresh session.
+For an existing installation, use the updater when the checkout location or installed bootstrap/skill payload changes. Preview with `-WhatIf` first. To make the four new skills discoverable on an existing installation, update the installed skill payload and start a fresh session. An existing loader targeting this checkout reads updated runtime guidance at the next session.
 
 ## Context strategy
 
-V2.8 adds a project-context ownership and progressive-disclosure contract: `AGENTS.md` owns instructions/commands/safety, `PROJECT-CONTEXT.md` provides a factual index, and optional Visual DNA/API Contract files own their domains. Five v2.8 scenarios extended the original suite; documentation, humanize, and fullstack skill additions bring the current suite to 113 cases. V2.5's [behavioral reliability evaluation](docs/v2.5-behavioral-reliability.md) still selects 12 representative cases, uses identical synthetic fixture pairs, and scores six dimensions; evaluations run only on request and add no normal startup context. A structural or scorecard pass does not prove universal Codex/Claude behavior.
+V2.8 adds a project-context ownership and progressive-disclosure contract: `AGENTS.md` owns instructions/commands/safety, `PROJECT-CONTEXT.md` provides a factual index, and optional Visual DNA/API Contract files own their domains. Five v2.8 scenarios extended the original suite; documentation, humanize, and fullstack skill additions brought the 3.1 suite to 113 cases. V2.5's [behavioral reliability evaluation](docs/v2.5-behavioral-reliability.md) still selects 12 representative cases, uses identical synthetic fixture pairs, and scores six dimensions; evaluations run only on request and add no normal startup context. A structural or scorecard pass does not prove universal Codex/Claude behavior.
 
 V2.4 adds [session continuity](workflows/session-continuity.md): conversational handoff and evidence-based resume for substantial interrupted work or missing task context. `handoff` summarizes the goal, decisions, file state, actual checks, pending boundaries and next step. `resume-task` reconciles the summary with current instructions, workspace and latest intent, then continues the authorized task. A model switch with sufficient active context needs no extra workflow. See [the adoption guide](docs/v2.4-session-continuity.md). V2.3 [context reconciliation](workflows/context-reconciliation.md) remains available for material contradictions.
 
@@ -45,7 +45,7 @@ Do not load the full skills directory, source DOCX, changelog, adapter docs, pro
 | safety | Policy and deeper risk/data/security analysis |
 | workflows | Task procedures loaded when relevant |
 | prompts | Short commands with intent, mode, routing, and approval boundaries |
-| skills | 30 portable skills selected by outcome, with artifact-based collaboration |
+| skills | 34 portable skills selected by outcome, with artifact-based collaboration |
 | adapters | Codex/Claude bootstrap templates and discovery notes |
 | project-templates | Optional project context templates, ownership rules, and selective domain references |
 | install | User-level PowerShell installer/updater |
@@ -53,7 +53,7 @@ Do not load the full skills directory, source DOCX, changelog, adapter docs, pro
 | evaluation | Behavior scenarios and validation/installer tests |
 | source | Generalized v2 conceptual DOCX; excluded from normal startup context |
 
-The original nine task-specific skills cover product UI, marketing UI, design systems, refactoring, frontend performance, accessibility, testing, project documentation, and deep humanization. The current source adds 21 fullstack specialists, for 30 skills total. See the [skill-system guide](docs/skill-system.md) for ownership and handoffs, and the [catalog](skills/catalog.yaml) for the complete list. Skills activate only when their outcome is relevant; an audit-only request remains read-only.
+The original nine task-specific skills cover product UI, marketing UI, design systems, refactoring, frontend performance, accessibility, testing, project documentation, and deep humanization. Version 3.0 added 21 fullstack specialists. Version 3.2 adds four owners for research, requirement discovery, frontend journeys, and AI features. See the [skill-system guide](docs/skill-system.md) for ownership and handoffs, and the [catalog](skills/catalog.yaml) for the complete list. Skills activate only when their outcome is relevant; an audit-only request remains read-only.
 
 V2.9's [Humanize system](docs/humanize.md) adds natural language defaults for responses, prose, and UI text, plus a focused editing skill. It requires no external humanizer service or runtime dependency. Its observed synthetic behavior is limited to the scenarios and host versions recorded in the evaluation guide.
 

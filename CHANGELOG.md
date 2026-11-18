@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 3.2.0 — 2026-11-18
+
+- Added technical research, product discovery, frontend feature engineering, and AI application engineering to the 34-skill catalog.
+- Added a workflow and prompt shorthand for planning or building a new fullstack project from a brief.
+- Added ten behavior scenarios and five matched benchmark cases. The benchmark now compares against the pinned 3.1.0 checkout.
+
 ## 3.1.0 — 2026-11-18 (stable package)
 
 - Clarified when to reassess skill ownership, how to qualify an unverified finding, and what evidence supports UI and interface-copy decisions.
