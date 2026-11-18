@@ -4,6 +4,8 @@ Select by the requested result and the current bottleneck, not by every technolo
 
 Use an adjacent skill only when its distinct deliverable is needed. Pass the accepted facts, implementation locations, contracts that must survive, open decisions, artifact produced, and verification actually performed. A handoff does not expand execution authorization. Ordinary supporting work does not require a new skill.
 
+For an ambiguous request, identify the deliverable the user will review and the decision currently blocking it. Select its owner first. Reassess after reading the actual project evidence if the problem turns out to have a different owner. For example, a request to improve a dashboard may stay with the UI workflow when the API is already sufficient, or expose a distinct contract decision when required data is missing. Report load or verification only when observed. A suggested collaborator is a routing hint, and an implementation or validation claim needs its own evidence.
+
 | Boundary | Owner decision |
 |---|---|
 | API contract vs implementation | api-contracts owns wire/semantic decisions; backend-feature-engineering implements the accepted use case |

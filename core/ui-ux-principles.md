@@ -132,4 +132,6 @@ Consider responsive behavior from the start. Check overflow, tables, modals, nav
 
 ## Human interface language
 
+When reviewing related states, read them as a sequence. A person should be able to tell what happened, whether the action is still in progress, and what they can do next from the facts available in each state. Keep wording consistent across the sequence and clear about partial completion or recovery.
+
 Treat UI text as part of task design. Use the project's voice and language; choose concrete labels, helpful constraints, and honest loading, empty, error, success, and permission messages. Distinguish a queued action from completion and no search matches from no records. Offer actions only when the role and implementation support them. Preserve consequences, consent, accessibility names, translation keys, variables, and plural syntax. Avoid generic marketing filler, blame, invented guarantees, and implementation details that do not help the person decide what to do. Routine copy follows these principles without an additional skill; use [humanize](../skills/humanize/SKILL.md) for a dedicated or substantial editorial pass.

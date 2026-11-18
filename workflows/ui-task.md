@@ -30,6 +30,8 @@ Check relevant normal/loading/empty/error/disabled/permission-limited states; re
 
 When a browser/runtime is available and the task makes meaningful visual changes, inspect the real page at relevant wide and narrow viewports. Compare it with the design goal and do not infer visual quality from lint/typecheck or an anti-slop detector alone. If the runtime cannot be run, state that visual verification was not performed.
 
+Use the same representative content across viewport checks so layout differences can be compared. For interactive work, exercise the primary task and one relevant failure or recovery state. If a shared primitive was changed, include a representative existing consumer that should preserve its behavior. Use screenshots to assess composition and browser interactions to assess controls and state.
+
 Keep browser profiles, caches and screenshots inside the authorized workspace. Use existing validation tools rather than automatically installing packages. If sandbox restrictions block rendering, report the limitation; do not disable the browser sandbox, expand filesystem access or repeat equivalent failing launches to obtain a screenshot.
 
 Clean up only verified generated artifacts within that workspace. If cleanup is denied, report the remaining artifacts; do not move them to external TEMP directories or another location to bypass the boundary.

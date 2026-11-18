@@ -36,6 +36,8 @@ Read-only means no mutation. Relevant diagnostic inspection—reading files, sea
 
 Do not claim a validation that was not run. Record failed commands and distinguish existing failures from regressions.
 
+Tie each consequential claim to its evidence and scope. Record which command or interaction ran, what it exercised, and the observed result. Treat evidence from a handoff, an earlier revision, or a different viewport/environment as historical unless it covers the current change. If a finding depends on a branch, caller, or environment you could not see, state the condition explicitly and leave the consequence or severity open where the missing fact changes it.
+
 ## Final report
 
 Adapt reporting to the task. A small task needs only the outcome, changed files, and validation. A complex/high-risk task should include behavior, evidence, assumptions, risk, and remaining manual checks. Do not make a report long just to appear thorough.
