@@ -49,7 +49,7 @@ All skills retain progressive disclosure, project sources of truth, behavior pre
 
 The available external historical DOCX matched the repository snapshot by SHA-256. Its OOXML paragraph/table text was read without modification; it was not rendered or exported as a new prompt.
 
-Precision, context, maintainability, UI quality, data safety, project/global separation, and AI-agnostic modularity were represented. The DOCX requested broader approval for redesign/API/multi-file changes; the latest upgrade prompt explicitly replaced that with low/medium-risk autonomy. A later operational version allowed adjacent business expansion too broadly; v2 corrected that without restricting visual creativity. See [source mapping](source-mapping.md).
+Precision, context, maintainability, UI quality, data safety, project/global separation, and AI-agnostic modularity were represented. The DOCX requested broader approval for redesign/API/multi-file changes; the latest upgrade prompt explicitly replaced that with low/medium-risk autonomy. A later operational version allowed adjacent business expansion too broadly; v2 corrected that without restricting visual creativity. See the current [module ownership map](module-ownership.md) for maintained source boundaries.
 
 ## Codex and Claude differences
 

@@ -132,7 +132,6 @@ if (manifest) {
     manifest.bootstrap.updater,
     manifest.bootstrap.codex_template,
     manifest.bootstrap.claude_template,
-    manifest.source_specification.file,
   ])
     check(fs.existsSync(path.join(root, ref)), 'Missing manifest ref ' + ref);
   for (const n of manifest.skills) {
@@ -220,7 +219,7 @@ check(
 );
 const suite = parsed.get('evaluation/scenarios.yaml');
 if (suite) {
-  check(suite.scenarios.length >= 59, 'Minimum v2.8 scenarios');
+  check(suite.scenarios.length >= 59, 'Minimum maintained scenario coverage');
   const ids = new Set();
   for (const s of suite.scenarios) {
     for (const f of [

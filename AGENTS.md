@@ -4,7 +4,7 @@ This repository contains a personal developer knowledge layer, not a product app
 
 - Keep all changes within this repository. Preserve user changes.
 - Do not commit, push, reset, rebase, amend, change Git history, run admin/registry operations, or touch data/production without specific instructions; active user prohibitions still apply.
-- Do not change the historical source DOCX unless the user specifically requests source revision.
+- Current operational guidance lives in Markdown/YAML; do not restore obsolete DOCX artifacts as active policy.
 - Do not put machine paths, credentials, secrets, client data, or project-specific identity in runtime/core.
 - Markdown/YAML are the canonical source. The baseline is not a combination of every module. Adapter templates are the installer's loader source.
 - Editing UI skill documents does not by itself require running a UI design workflow.

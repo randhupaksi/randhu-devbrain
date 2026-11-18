@@ -1,6 +1,6 @@
 # Humanize: Defaults and Deep Editing
 
-DevBrain v2.9 introduces original guidance for natural responses, generated prose, and UI text, plus a ninth portable skill for deeper editorial work. It uses the existing host model. The feature has no third-party humanizer package, remote service, model download, or training step. Existing maintenance tooling still has its documented prerequisites.
+Humanize is one of DevBrain's 34 portable skills. Concise defaults in the session baseline, collaboration principles, and UI guidance encourage natural, specific language in ordinary responses, generated prose, and interface text. The dedicated skill provides a deeper pass for writing, rewriting, auditing, voice matching, and product microcopy. It uses the host model and adds no third-party package, remote service, model download, or training step.
 
 ## Ownership and activation
 
@@ -40,7 +40,7 @@ The skill's references contain original editorial examples, language/voice guida
 
 ## Installation and verification
 
-The manifest and current source installer manage 30 skill folders, including Humanize. Follow the [installation guide](../install/README.md) for an explicitly requested installation/update. Maintenance checks use simulated homes inside ignored local/. Editing repository content does not install the new skill into a real host profile. Existing loaders read the default from this checkout after context reload or a new session.
+The manifest and source installer manage all 34 skill folders, including Humanize. Follow the [installation guide](../install/README.md) for an explicitly requested installation/update. Maintenance checks use simulated homes inside ignored local/. Editing repository content does not install the skill into a real host profile. Existing loaders read the default from this checkout after context reload or a new session.
 
 [Behavioral scenarios](../evaluation/scenarios.yaml) cover default responses, default prose/UI copy without skill loading, deep rewrite fidelity, audit scope, voice samples, and localization integrity. The [humanize evaluation guide](../evaluation/humanize-guide.md) records the observed synthetic Codex/Claude runs and their limits. Content checks, skill metadata validation, and installer fixtures establish repository contracts and packaged payloads. They do not prove universal host parity or consistent results on every prompt. Other behavioral cases remain unrun until evaluated.
 

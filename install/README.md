@@ -1,6 +1,6 @@
 # DevBrain Installation
 
-Run from the repository with PowerShell 5.1+ or PowerShell 7 as a regular user. Installation does not require Python, Node.js, or a YAML package.
+Run the source installer from this repository with PowerShell 5.1+ or PowerShell 7 as a regular user. It requires no Python, Node.js, or YAML package.
 
 ```powershell
 .\install\install-bootstrap.ps1 -WhatIf
@@ -9,50 +9,38 @@ Run from the repository with PowerShell 5.1+ or PowerShell 7 as a regular user. 
 .\install\update-bootstrap.ps1
 ```
 
-The installer runs only when explicitly requested by the user. An agent editing DevBrain does not install it to the real home automatically.
+Installation only runs when explicitly requested. An agent maintaining the repository does not install to a real home automatically. The installer reads the current checkout; see the [3.2 delivery guide](../docs/v3.2-delivery.md) for package scope and validation limits.
 
-The installer takes its payload from the current checkout. See the [3.2 delivery guide](../docs/v3.2-delivery.md) for release verification.
+## Install and update
 
-V2.5 adds maintenance-only behavioral evaluation to the existing selective workflows. Managed loaders reference this checkout's baseline/task map; the baseline, installed skills and bootstrap payload are unchanged. Start a new session or explicitly reload DevBrain after updating to refresh active context. A moved/new checkout or changes to bootstrap/skill files still require the installer/update procedure. See [the v2.5 adoption guide](../docs/v2.5-behavioral-reliability.md). Evaluation preparation does not install or start a host.
+Preview with `-WhatIf`, inspect the targets, then run the command without `-WhatIf` to apply it. For an existing installation, use the updater. The default `-Tool Both` writes the Codex and Claude Code integrations and copies all 34 managed skills. Start a fresh session afterward so each host can discover the updated loader and skill payload.
 
-V2.7 adds a maintenance-only CLI compatibility workflow and host matrix. It does not change install destinations or host settings. Native Codex/Claude discovery must be observed in each CLI; simulated home installation proves target layout only. See the [v2.7 candidate guide](../docs/v2.7-cli-compatibility.md).
-
-For an existing installation, run the updater with `-WhatIf` first, then run it without `-WhatIf` when the targets are correct. DevBrain v3.2.0 ships 34 managed skills. With the default `-Tool Both`, the installer copies the same skill folders to Codex and Claude. Start a new coding session afterward so each host can discover the managed skills. An existing loader targeting this checkout picks up revised runtime guidance in a fresh session. Update the skill payload to install and discover the four new skills.
+An existing loader points to this checkout and reads revised runtime guidance in a fresh session. Updating the installed skill payload is necessary when skills are added, removed, or changed. A checkout moved to a different location also requires updating the loader.
 
 ## Parameters and targets
 
 - `DevBrainRoot`: defaults to the parent of `PSScriptRoot`.
-- `UserHome`: defaults to `HOME`; can point to a test fixture home.
-- `Tool`: Codex, Claude, or Both (default).
-- `SkipSkills`: install/update only the bootstrap; also supported by the updater.
+- `UserHome`: defaults to `HOME`; may point to a test fixture home.
+- `Tool`: `Codex`, `Claude`, or `Both` (default).
+- `SkipSkills`: install/update only the bootstrap.
 - `CodexHome`: explicit Codex profile; defaults to configured `CODEX_HOME` when present and `UserHome` is not overridden, otherwise `UserHome/.codex`.
 - `CodexSkillsPath`: explicit skill location. New installs default to `UserHome/.agents/skills`; an existing DevBrain legacy install under `CodexHome/skills` is updated there.
-- `WhatIf`/`Confirm`: PowerShell `ShouldProcess` for each change; `WhatIf` creates no folders or backups.
+- `WhatIf` and `Confirm`: PowerShell `ShouldProcess` behavior for each change. `WhatIf` creates no folders or backups.
 
-Claude loaders/skills use `UserHome/.claude`. Concrete paths appear only in local installed output, not repository source. Account name, drive, and clone location are unrestricted; no DevBrain-specific environment variable is required.
+Claude Code loaders and skills use `UserHome/.claude`. Concrete machine paths belong only in local installed output, not repository source.
 
 ## Update guarantees
 
-Preflight checks source, markers, and linked/reparse paths before writing. Only the 34 skills listed in the [manifest](../devbrain.yaml) and [catalog](../skills/catalog.yaml) are managed. Adapter templates are the loader source, preventing template/installer drift. Text outside a managed block is preserved exactly; loader backups retain original bytes.
+Preflight checks source files, managed markers, and linked/reparse paths before writing. The manifest and skill catalog identify the 34 managed skill folders. Adapter templates are the loader source, reducing template/installer drift. Text outside a managed block is preserved; loader backups retain original bytes.
 
-Skills are copied to staging and verified by hash/tree, then the old directory is moved to `devbrain-backups` and staging becomes active. This fixes the v1 nested-copy bug and removes stale discovered references without losing customization: the complete old tree remains in backup. If moving staging fails, the installer attempts to restore the old directory. Backups use a timestamp and unique suffix. An identical update makes no writes and creates no backup.
+Skills are copied to staging and verified by hash/tree. The previous skill directory is backed up before staging becomes active. If activating staging fails, the installer attempts to restore the prior directory. An identical update makes no writes and creates no backup.
 
-The installer shows targets through `ShouldProcess`/operation results. It does not change Git, registry, PATH, services, startup, `settings.json`, `config.toml`, `AGENTS.override.md`, or another project. Duplicate/damaged markers and symlinks are rejected rather than guessed or overwritten.
+The installer does not change Git, registry, PATH, services, startup configuration, Codex `settings.json`, Claude configuration, `AGENTS.override.md`, or another project. Damaged or duplicate managed markers and symlinks are rejected rather than guessed or overwritten.
 
 ## Limits and recovery
 
-Backup/swap operations are per file/skill, not one transaction for the full installation. If I/O fails partway through, earlier parts may already be updated; inspect operation results and backups, then rerun after resolving the cause.
+Backup/swap operations are per file or skill, not one transaction for the entire installation. If I/O fails partway through, earlier components may already be updated. Inspect operation results and backups, then rerun after resolving the cause.
 
-An old loader that places DevBrain text outside the managed block remains intact. V2 provides a compatibility entry so legacy instructions to `full-context.md` still reach the baseline. Review cleanup of text outside the block separately to avoid deleting personal instructions.
+If old skills exist in two discovery locations, the installer does not silently delete either. Choose the intended location and review duplicates/backups separately. To roll back, restore a selected loader backup after checking for newer personal instructions, or remove only the managed block. For skills, move the active version into a new backup and restore the selected old directory. Do not delete unrelated skill folders.
 
-If old skills exist in two discovery locations, the installer does not silently delete either. Select a location explicitly and review duplicates/backups separately.
-
-To roll back, restore a selected loader backup after checking for newer personal instructions, or remove only the managed block. For skills, move the active version into a new backup and restore the selected old directory. Do not empty the whole loader or delete other skill folders.
-
-Test installation, update, alternate clone, simulated username, backup, parity, and `WhatIf` using the [evaluation guide](../evaluation/README.md).
-
-To check an existing installation without running the updater again, compare each managed skill folder's files with the corresponding `skills/<name>/` folder in the repository. The installer uses exact source copies and skips an identical update. Check the Codex and Claude loader files separately: their managed blocks point to the same DevBrain baseline, while personal text outside the blocks is preserved.
-
-The [project-documentation skill](../docs/project-documentation.md) creates and maintains connected Markdown guides. Its repository source is available for the next authorized update; maintenance does not install it to the real home automatically.
-
-The [humanize upgrade](../docs/humanize.md) adds a ninth managed skill. Its source and supporting references are copied together to both selected hosts. Runtime defaults are read from this checkout after the normal context reload/new-session boundary. Adding the skill to a real profile requires an explicitly requested installer/updater run; repository maintenance and fixture checks do not install it.
+Repository installer tests use simulated homes under ignored `local/`; they do not write to real host profiles. See the [evaluation guide](../evaluation/README.md). Successful copying proves file layout and integrity, not native host discovery or model behavior. The [CLI compatibility matrix](../evaluation/cli-host-matrix.yaml) tracks those observations separately.

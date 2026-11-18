@@ -1,68 +1,51 @@
-# DevBrain v3.2
+# DevBrain 3.2
 
-DevBrain v3.2.0 provides 34 portable skills and 123 behavior scenarios. It adds technical research, product discovery, frontend feature engineering, and AI application engineering. The [3.2 delivery guide](docs/v3.2-delivery.md) shows how to use them and how to build a new fullstack project from a brief.
+DevBrain 3.2.0 is a portable knowledge layer for Codex and Claude Code: it routes an agent to the relevant principles, workflow, safety guidance, or specialist skill for the requested outcome. It is not a model, agent runtime, or product application.
 
-DevBrain is Randhu's personal context and developer knowledge layer for Codex and Claude Code. It provides principles, safety, workflows, prompt compression, skills, and bootstrap instructions. It is not an AI model, a new agent, an assistant replacement, a background application, or one large prompt.
+The current package contains 34 skills and 123 behavior scenarios. Version 3.2 adds technical research, product discovery, frontend feature engineering, AI application engineering, and a greenfield fullstack delivery workflow. The [3.2 delivery guide](docs/v3.2-delivery.md) describes these additions and the bounded evaluation plan.
 
-Engineering quality and ways of thinking stay consistent; each project keeps its own visual identity. Stack, theme, specific colors/fonts/tokens, target users, endpoints/payloads, business rules, permissions, deployment, and validation commands belong in the project's `AGENTS.md`, `CLAUDE.md`, or other project context.
+## Start here
 
-Version 3.0 adds 21 skills and strengthens the original nine. Its UI/UX guidance connects task-based hierarchy, flexible composition, product and surface context, original visual-direction vocabulary, semantic palette decisions, chart selection, platform adaptation, evidence-led critique, and visual QA. These are decision frameworks, not a fixed collection of ready-made palettes or copied designs. See the [Core index](core/00-index.md) for module ownership and the [skill-system report](docs/skill-system.md) for validation limits.
+Read the [session baseline](runtime/session-baseline.md) once at the start of a coding session. Read the active project's `AGENTS.md` or `CLAUDE.md`, then use the [task map](runtime/task-map.md) to load only the modules and skills relevant to the task. Project instructions own stack, product behavior, visual identity, APIs, business rules, permissions, deployment, and validation commands.
 
-## Get started
-
-Clone the repository wherever you choose, then run PowerShell as a regular user:
+To connect Codex and/or Claude Code to this checkout, preview and then run the installer from PowerShell:
 
 ```powershell
 .\install\install-bootstrap.ps1 -WhatIf
 .\install\install-bootstrap.ps1
 ```
 
-The current source installer sets up the Codex/Claude loader and 34 custom skills. It detects the repository and user home. Review the preview before applying changes; personal instructions outside the managed block are preserved. Update with `install/update-bootstrap.ps1`. Options include `-Tool Codex|Claude|Both`, `-SkipSkills`, and path parameters for a custom profile. See the [installation guide](install/README.md) for backups, legacy skills, and rollback.
+Use `install/update-bootstrap.ps1` to update an existing installation. Review [installation and recovery](install/README.md) before applying changes. Repository maintenance does not install to a real host profile.
 
-For an existing installation, use the updater when the checkout location or installed bootstrap/skill payload changes. Preview with `-WhatIf` first. To make the four new skills discoverable on an existing installation, update the installed skill payload and start a fresh session. An existing loader targeting this checkout reads updated runtime guidance at the next session.
+## How the system is organized
 
-## Context strategy
-
-V2.8 adds a project-context ownership and progressive-disclosure contract: `AGENTS.md` owns instructions/commands/safety, `PROJECT-CONTEXT.md` provides a factual index, and optional Visual DNA/API Contract files own their domains. Five v2.8 scenarios extended the original suite; documentation, humanize, and fullstack skill additions brought the 3.1 suite to 113 cases. V2.5's [behavioral reliability evaluation](docs/v2.5-behavioral-reliability.md) still selects 12 representative cases, uses identical synthetic fixture pairs, and scores six dimensions; evaluations run only on request and add no normal startup context. A structural or scorecard pass does not prove universal Codex/Claude behavior.
-
-V2.4 adds [session continuity](workflows/session-continuity.md): conversational handoff and evidence-based resume for substantial interrupted work or missing task context. `handoff` summarizes the goal, decisions, file state, actual checks, pending boundaries and next step. `resume-task` reconciles the summary with current instructions, workspace and latest intent, then continues the authorized task. A model switch with sufficient active context needs no extra workflow. See [the adoption guide](docs/v2.4-session-continuity.md). V2.3 [context reconciliation](workflows/context-reconciliation.md) remains available for material contradictions.
-
-The [documentation index](docs/README.md) identifies current guides and historical records. See the [v2.8 project-context release](docs/v2.8-project-context.md), [v2.7 CLI compatibility record](docs/v2.7-cli-compatibility.md), and [v2.6 record](docs/v2.6-validation.md) for their scoped evidence; [v2.5 validation](docs/v2.5-validation.md) retains that completed release's results.
-
-1. Read the [session baseline](runtime/session-baseline.md) once at the start of a coding session.
-2. Read the active project's instructions and only relevant evidence.
-3. Use the [task map](runtime/task-map.md) to select modules and skills when needed.
-4. Read skill references only when the decision requires their detail.
-
-Do not load the full skills directory, source DOCX, changelog, adapter docs, project templates, evaluation, or maintenance docs during normal coding. Reload only at a context lifecycle boundary, after material context loss, a DevBrain update, or a user request. The v1 runtime path remains as a compatibility pointer.
-
-## Structure
-
-| Folder | Responsibility |
+| Area | Responsibility |
 |---|---|
-| core | Global identity and domain decision frameworks |
-| runtime | Baseline, task routing, and compatibility entry points |
-| safety | Policy and deeper risk/data/security analysis |
-| workflows | Task procedures loaded when relevant |
-| prompts | Short commands with intent, mode, routing, and approval boundaries |
-| skills | 34 portable skills selected by outcome, with artifact-based collaboration |
-| adapters | Codex/Claude bootstrap templates and discovery notes |
-| project-templates | Optional project context templates, ownership rules, and selective domain references |
-| install | User-level PowerShell installer/updater |
-| docs | Architecture, maintenance, audit, and upgrade report |
-| evaluation | Behavior scenarios and validation/installer tests |
-| source | Generalized v2 conceptual DOCX; excluded from normal startup context |
+| `runtime/` | Session baseline, selective task routing, compatibility entry points |
+| `core/` | Global engineering, collaboration, and UI/UX decision frameworks |
+| `safety/` | Cross-cutting safeguards and deeper risk analysis |
+| `workflows/` | Task procedures, handoffs, debugging, project context, and delivery |
+| `prompts/` | Short commands with intent, mode, and routing |
+| `skills/` | 34 portable specialists selected by outcome |
+| `adapters/` and `install/` | Codex/Claude loader templates and explicit installer/updater |
+| `project-templates/` | Optional project context documents with clear ownership |
+| `evaluation/` | Behavior contracts, package checks, and maintenance-only evaluation tools |
+| `docs/` | Current usage guides, architecture, release evidence, and history |
 
-The original nine task-specific skills cover product UI, marketing UI, design systems, refactoring, frontend performance, accessibility, testing, project documentation, and deep humanization. Version 3.0 added 21 fullstack specialists. Version 3.2 adds four owners for research, requirement discovery, frontend journeys, and AI features. See the [skill-system guide](docs/skill-system.md) for ownership and handoffs, and the [catalog](skills/catalog.yaml) for the complete list. Skills activate only when their outcome is relevant; an audit-only request remains read-only.
+The skill system is organized around ownership and handoffs, not a mandatory chain. The [skill catalog](skills/catalog.yaml) defines inputs, outputs, and conditional collaborators; the [skill-system guide](docs/skill-system.md) explains how to route mixed work. Skills are portable, and no third-party skill package or humanizer service is required.
 
-V2.9's [Humanize system](docs/humanize.md) adds natural language defaults for responses, prose, and UI text, plus a focused editing skill. It requires no external humanizer service or runtime dependency. Its observed synthetic behavior is limited to the scenarios and host versions recorded in the evaluation guide.
+## Current guidance and evidence
 
-V2.9's [project-documentation skill](docs/project-documentation.md) adds one combined expected format for 15 document roles without expanding the session baseline. Updating this checkout does not install skills to an existing host profile; use the installer for an explicitly requested profile update.
+- [Documentation index](docs/README.md): current guides and clearly identified historical records.
+- [Architecture](docs/architecture.md) and [module ownership](docs/module-ownership.md): canonical sources and boundaries.
+- [3.2 delivery guide](docs/v3.2-delivery.md): new capabilities, benchmark method, and validation limits.
+- [Evaluation procedure](evaluation/README.md): package validation and optional behavior evaluation.
+- [Changelog](CHANGELOG.md): dated release history.
 
-## Key boundaries
+Older release reports preserve the scope and results observed at their original dates. They are historical evidence, not current setup instructions or proof of present-day host behavior. Native Codex/Claude behavior must be evaluated separately; structural checks cannot establish universal model quality or host parity.
 
-The latest prompt takes precedence over global preferences. Work on low-risk tasks directly; proceed on medium-risk tasks after impact analysis. Pause for specific confirmation only at an unapproved high-risk boundary. Overdelivery improves the requested outcome; it does not invent business features or contracts. Git command listings are text-only; Git operation permissions are separate.
+## Operating boundaries
 
-There is no product CLI, executable, daemon, database, GUI, or notification system. Evaluation scripts are manual maintenance tools. The [evaluation guide](evaluation/README.md), [v2 audit](docs/v2-audit.md), and [upgrade report](docs/v2-upgrade-report.md) document evidence and verification limits.
+The latest user instruction takes precedence over DevBrain preferences after platform and safety requirements. Low-risk work proceeds directly; medium-risk work proceeds after impact analysis; specific confirmation is needed only at an unapproved high-risk boundary. Improve the requested outcome without inventing product requirements or contracts. Git command listings are text only; they do not authorize Git operations.
 
-Maintained DevBrain documentation, operational content, and the current conceptual DOCX use English. The original v0.1 DOCX remains in earlier Git history and is not loaded during normal coding.
+Markdown and YAML are the maintained operational source of truth. No source DOCX or optional product-guide DOCX is maintained in this release. The historical DOCX records remain available only in earlier Git history.

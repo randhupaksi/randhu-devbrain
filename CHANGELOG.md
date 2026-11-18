@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Consolidated current documentation around v3.2, marked older reports as historical evidence, and removed obsolete DOCX guides and conceptual source material.
+
 ## 3.2.0 — 2026-11-18
 
 - Added technical research, product discovery, frontend feature engineering, and AI application engineering to the 34-skill catalog.

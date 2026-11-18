@@ -1,6 +1,6 @@
-# DevBrain v3.0 Stable Skill System
+# DevBrain Skill System
 
-DevBrain v3.0.0 shipped on 2026-11-12. The [v3.2 release](v3.2-delivery.md) extends the 30-skill foundation to 34 source skills. It is a portable instruction system for the host model, not additional training. No third-party skill package or service is required. New operational guidance can improve the decisions and checks an agent makes, but package validation does not establish a general quality gain.
+DevBrain 3.2.0 contains 34 source skills. The first 30 skills shipped as the stable v3.0 package on 2026-11-12; v3.2 adds four specialists and a greenfield workflow. This guide explains current ownership and collaboration, followed by dated evidence from earlier expansions. DevBrain is a portable instruction system for the host model, not additional training. No third-party skill package or service is required. New operational guidance can improve the decisions and checks an agent makes, but package validation does not establish a general quality gain.
 
 ## Ownership and collaboration
 

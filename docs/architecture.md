@@ -1,50 +1,44 @@
-# DevBrain v2 Architecture
+# DevBrain Architecture
 
-DevBrain is a file-based knowledge system with three loading levels:
+DevBrain is a file-based knowledge system. It keeps always-loaded guidance small and routes deeper guidance by task, so the host can apply relevant context without loading the entire repository.
 
-1. **Session baseline:** concise identity, precedence, global/project boundary, risk/approval, safety, autonomy, context lifecycle, and basic workflow. Read once per session.
-2. **Task modules:** the task map selects core, detailed safety, or workflow content that affects the active decision. Do not load every module when the decision is already clear.
-3. **Skill/reference:** select a skill by outcome and read its references only when needed. Skills are self-contained so Codex/Claude copies work without repository-relative links.
+## Loading model
 
-Project instructions are the source of technical, business, and visual facts. Core contains no client identity, universal theme, endpoint, schema, single-project stack, or laptop path.
+1. **Session baseline:** precedence, collaboration, safety, autonomy, context lifecycle, and basic workflow. Read once per coding session.
+2. **Task modules:** the task map selects the core principles, safety analysis, or workflow needed for the current decision.
+3. **Skill and references:** select a portable skill by the requested outcome and open supporting references only when they affect the work.
+4. **Project context:** the active project's instructions own technical and product facts, including stack, visual identity, contracts, permissions, and verification commands.
+
+This is selective routing, not a required sequence. A focused task should stay focused; a multi-domain task can involve several owners when their outputs connect.
 
 ## Canonical ownership
 
-| Concern | Source |
+| Concern | Canonical owner |
 |---|---|
-| Cross-task rules and precedence | `runtime/session-baseline.md` |
-| Selective routing | `runtime/task-map.md` |
-| Domain principles | `core/` |
-| Deeper risk analysis | `safety/` |
+| Precedence, session loading, global boundaries | `runtime/session-baseline.md` |
+| Task routing | `runtime/task-map.md` |
+| Mixed-skill selection | `runtime/skill-selection.md` and `skills/catalog.yaml` |
+| Engineering, collaboration, and UI/UX principles | `core/` |
+| Cross-cutting safeguards and risk analysis | `safety/` |
 | Task procedures | `workflows/` |
-| Short command intent | `prompts/commands.yaml` |
-| Portable skills | Each skill under `skills/` |
-| Installed bootstrap | Adapter templates rendered by the installer |
-| Project facts | The project's `AGENTS.md`/`CLAUDE.md` |
-| Project context setup and ownership | `workflows/project-context-setup.md` and optional templates under `project-templates/` |
-| Conceptual reference and provenance | Generalized v2 source DOCX and `docs/source-mapping.md` |
-| Acceptance and regression | `evaluation/` |
+| Prompt shorthand | `prompts/commands.yaml` |
+| Specialist behavior and supporting references | `skills/<skill>/` |
+| Host loader content | `adapters/`; rendered by `install/` |
+| Project facts and commands | The active project's `AGENTS.md` or `CLAUDE.md` |
+| Optional project context domains | `project-templates/` and their corresponding project files |
+| Package and behavior evidence | `evaluation/` |
+| Maintainer onboarding and release history | `docs/` and `CHANGELOG.md` |
 
-The baseline carries safety rules that must always be available; safety modules provide case-specific detail. Minimal repetition of boundaries in standalone skills is intentional because each skill is installed independently. Do not copy all principles into skills, loaders, or projects.
+Markdown and YAML are the current operational source of truth. Duplicated safety boundaries in standalone skill files are intentional when needed to keep a skill safe and usable on its own. Other repeated guidance should link to its canonical owner rather than diverge.
 
-## Compatibility and portability
+## Portability and host integration
 
-V2.2 adds discovery, debugging, and completion; v2.3 adds context reconciliation; v2.4 adds conversational handoff and current-state resume through session continuity. The task map/commands select them only when relevant without changing the baseline. V2.5 adds maintenance-only paired fixtures and evidence scorecards, with no normal coding route. Existing loaders read repository modules in place, and the original seven standalone skills retain their scope. The conceptual DOCX remains a v2.2 reference; maintained Markdown/YAML governs current operational behavior. Handoffs remain task context rather than automatic global/project memory.
+Skills are self-contained so their installed copies do not depend on repository-relative links. Codex and Claude Code use separate loader templates with the same operating guidance. The loader points to the checkout's baseline and task map; the installer copies the 34 catalogued skill folders to the selected host profile.
 
-`runtime/full-context.md` and `runtime/core-compact.md` point to the baseline so legacy loaders remain usable. There is no generated monolith to rebuild. The installer uses the same template for both tools and injects a concrete local root only into the installed result.
+The installer uses preflight, staging, integrity checks, backups, and managed text blocks to reduce partial updates and preserve personal instructions. It runs only when explicitly requested. Simulated-home checks validate target layout and preservation; they do not prove native host discovery or model behavior.
 
-The v2.6 candidate extends maintenance evaluation with explicit preflight/session stages, fresh provenance and failure classification. Preparation, preflight and validators never launch a model; the separate manual Codex capture requires explicit runtime authorization and launch flags. Observed handoff failures justify a small baseline routing clarification; UI verification/cleanup boundaries stay in the selective UI workflow. Stable promotion remains pending the required host evidence and unresolved scope checks.
+`runtime/full-context.md` and `runtime/core-compact.md` remain compatibility entry points for older loaders. There is no generated monolithic prompt to rebuild, no model binding, and no background runtime, database, or product CLI. Validators and benchmark tools are manual maintenance utilities.
 
-The v2.7 candidate adds a maintenance-only host compatibility workflow and matrix. It models differences in Codex and Claude instruction discovery, skill catalogs, session modes, Claude auto memory, and host permission controls without adding those details to the always-loaded baseline. A case becomes native evidence only after the host and relevant fresh/resumed mode are actually observed.
+## Quality boundaries
 
-V2.8 defines single-owner project context: `AGENTS.md` owns shared instructions, commands, and safety; `PROJECT-CONTEXT.md` is an optional factual index; Visual DNA and API Contract templates own their respective project domains. The project-context setup workflow is opt-in and distinct from read-only discovery. UI/API references are selected by task and do not become extra startup reads. This scoped architecture does not claim completion of the separate native Codex/Claude CLI matrix.
-
-The installer stages and verifies skills before replacing the destination directory. It backs up the previous version, including nested copies or customization, so only one active tree remains without stale references. An identical update does not write files or create another backup. Loaders are managed only inside markers; invalid markers are rejected before mutation.
-
-There is no daemon, model binding, database, or product CLI. Validators are manually run maintenance scripts, not assistant runtime dependencies.
-
-V2.9's eighth skill, [project-documentation](project-documentation.md), handles project Markdown creation and maintenance. It selects one combined expected-format reference and uses the project-context workflow for instruction files. The installer includes it in the current payload without expanding the baseline.
-
-V2.9's ninth skill, [humanize](humanize.md), adds deeper prose, voice, and UI copy editing through selective references. A concise baseline paragraph establishes natural communication for responses, generated prose, and interface text even when that skill is not loaded. Collaboration and UI modules own the deeper default rationale. The limited observed synthetic behavior and its remaining evaluation boundaries are recorded in the [Humanize evaluation guide](../evaluation/humanize-guide.md). Host payload installation remains an explicit operation.
-
-DevBrain v3.0.0 introduced 30 independently portable skills. The current release is [v3.2.0](v3.2-delivery.md). [Skill selection](../runtime/skill-selection.md) resolves mixed tasks by output ownership; the maintenance-only [catalog](../skills/catalog.yaml) records conditional artifact handoffs. The baseline stays selective. Human-centred UI quality, task-ranked visual hierarchy, composition and style choices, product contexts, chart selection, and platform adaptation are routed through relevant `core/` modules; see the [Core index](../core/00-index.md) and [skill-system report](skill-system.md) for module ownership and evidence limits.
+The baseline remains the single always-loaded DevBrain module. Task routing, skill ownership, and optional references carry specialist detail. Project-specific facts stay in the project context instead of becoming universal DevBrain rules. Historical release evidence stays dated and scoped; current package structure is described by the [module ownership map](module-ownership.md), [skill-system guide](skill-system.md), and [3.2 delivery guide](v3.2-delivery.md).

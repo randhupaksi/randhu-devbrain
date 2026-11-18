@@ -31,7 +31,7 @@ Fixtures are retained for inspection and ignored by Git. In a sandbox using anot
 
 For 3.2 comparisons, use the [3.2 benchmark procedure](../docs/v3.2-delivery.md#benchmark). The 123 task contracts below are maintained separately from the 13 benchmark cases.
 
-[`scenarios.yaml`](scenarios.yaml) contains 123 cases, including the 21 original cases, three v2 boundaries, six performance/accessibility/testing cases, eight v2.2 discovery/debugging/completion cases, eight v2.3 reconciliation cases, eight v2.4 continuity cases, five v2.8 project-context cases, four project-documentation cases, eight humanize/default-writing cases, 42 fullstack skill activation/boundary cases, and ten 3.2 cases for new skill routing and greenfield delivery. Each specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
+[`scenarios.yaml`](scenarios.yaml) contains 123 cases covering instruction precedence, scope and safety, selective discovery, debugging and completion, context reconciliation, session continuity, project context, documentation, natural writing, specialist skill routing and boundaries, and the latest research/discovery/frontend/AI/fullstack delivery additions. Each specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
 
 1. Create synthetic fixtures under `local/behavior-runs/` with project instructions, target files, contracts, and enough tests. Do not use another project, client data, secrets, or a real database.
 2. Start a new Codex or Claude session with only the baseline, skill metadata, case prompt, and relevant fixture. Do not show the assistant the expected answer.
@@ -45,13 +45,13 @@ The structural validator checks suite completeness and contracts only. It does n
 
 Runtime metrics compare the working-tree baseline with the baseline at HEAD, rather than comparing it with the legacy pointer. Token counts are character-based estimates; selected task modules and references add their own context cost. An unchanged baseline does not imply that every task costs the same amount of context.
 
-See the [DevBrain Update 3.0 skill-system report](../docs/skill-system.md), [v2.9 Humanize evaluation results](humanize-guide.md), [v2.8 project-context release](../docs/v2.8-project-context.md), [v2.7 CLI compatibility record](../docs/v2.7-cli-compatibility.md), and [host matrix](cli-host-matrix.yaml) for current context and evidence. V2.9 records limited native synthetic results for Humanize scenarios 64–71; they do not close the separate v2.7 native host matrix. The four project-documentation behavior scenarios remain unrun natively. [V2.6 candidate evidence](../docs/v2.6-validation.md) remains historical; its scoped Codex results are not reused as new host evidence. [V2.5 validation](../docs/v2.5-validation.md) retains its dated results.
+See the [current skill-system guide](../docs/skill-system.md), [Humanize evaluation record](humanize-guide.md), [CLI host matrix](cli-host-matrix.yaml), and [dated release evidence](../docs/README.md). Native observations remain scoped to the cases and host sessions recorded in those reports; they do not establish universal host parity or current behavior outside that evidence.
 
 Use [the v2.3 behavioral guide](v2.3-behavior-guide.md) for isolated inputs, instruction-conflict setup, hash comparison and evidence scoring. It describes manual evaluation; it does not launch another agent, install a host, or call a model API.
 
 Use [the v2.4 guide](v2.4-behavior-guide.md) for two-phase handoff/resume evaluation and workspace-preserving host setup. Run clone-isolated command/routing regressions with `node evaluation/test-content-regressions.cjs`; the existing Node/Git/YAML prerequisites apply. The script writes only to ignored `local/`, retains its fixture, and never runs a coding host or alters Git history. Installers do not require this script.
 
-## V2.5 core smoke pack
+## Repeatable smoke evaluation
 
 [smoke-suite.yaml](smoke-suite.yaml) selects 12 existing scenarios; it selects from the full scenario suite. [scorecard-contract.yaml](scorecard-contract.yaml) defines six scoring dimensions and explicit result/evidence categories. Preparation requires Node.js 18+, Git 2.28+ and the existing YAML parser. These are maintenance prerequisites, not installer dependencies.
 
@@ -75,9 +75,9 @@ node evaluation/validate-results.cjs ./local/behavior-runs/<batch>/evaluator
 
 The validator requires one scorecard per case/host and checks artifact existence, scope and heuristic path/key candidates. It checks structure, not the truth or adequacy of a human's scoring. A valid batch of NOT_RUN cards has zero observed native comparisons. Existing-session records cannot count toward native comparison. Fingerprints are reproducibility aids, not evidence signatures. A `both_pass` flag concerns only that matched observed pair, not universal host parity. Review the source evidence before making a reliability claim.
 
-## V2.6 historical candidate: preflight and fresh provenance
+## Preflight and result provenance
 
-Result schema version 2 distinguishes unattempted, preflight and actual session stages. A fresh native session must record `execution_stage: session` and `fresh_session: true`; an existing-session walkthrough uses false. Preflight uses null and environment-only BLOCKED evidence, never PASS/FAIL task dimensions. Incomplete/failed records require a [failure category](failure-taxonomy.yaml) and reason. Old version 1 scorecards remain historical; prepare new version 2 batches rather than inventing their freshness metadata.
+Result schema version 2 distinguishes unattempted, preflight and actual session stages. A fresh native session must record `execution_stage: session` and `fresh_session: true`; an existing-session walkthrough uses false. Preflight uses null and environment-only BLOCKED evidence, never PASS/FAIL task dimensions. Incomplete/failed records require a [failure category](failure-taxonomy.yaml) and reason. Version 1 scorecards retain their historical meaning; prepare version 2 batches rather than inventing freshness metadata for old runs.
 
 `host-preflight.cjs` records a manually observed receipt, never invokes Codex/Claude and never authorizes broader filesystem access. Receipt fields include schema `devbrain-host-preflight`, candidate release, quoted observation date and one entry per host: host name, interface, boolean/null command availability, workspace-boundary verification, fresh-session setup verification, sanitized summary and evaluator-relative evidence artifact. Do not set verified flags merely because a command exists or exposes an ephemeral option.
 
@@ -88,13 +88,13 @@ node evaluation/validate-results.cjs ./local/behavior-runs/<batch>/evaluator
 
 The recorder validates all inputs/artifacts before writing cards and refuses to replace any existing attempt. A ready preflight leaves cases NOT_RUN until a model session starts; blocked prerequisites produce stage-specific BLOCKED cards and zero native sessions. Use a new batch after correcting prerequisites. Keep receipts and evaluator expectations outside model context.
 
-For actual sessions, record supporting observations and classify routing/context/precedence/scope/safety/evidence/host limitations. Correct reproducible fixture/harness defects directly. Calibrate the narrowest policy owner from observed repeated behavior, then rerun relevant native cases; an environment block supplies no basis for a new global coding rule. See [the candidate guide](../docs/v2.6-native-validation.md) for release completion and current constraints.
+For actual sessions, record supporting observations and classify routing/context/precedence/scope/safety/evidence/host limitations. Correct reproducible fixture/harness defects directly. Calibrate the narrowest policy owner from observed repeated behavior, then rerun relevant native cases; an environment block supplies no basis for a new global coding rule. See the [current evaluation overview](../docs/evaluation-scenarios.md) for behavior-scenario scope.
 
-Select full-suite cases matching a changed skill or boundary beyond the smoke set. Add a new scenario only for an observed failure or a supported missing requirement. Retain dated reports rather than rewriting earlier results. See [the v2.5 guide](../docs/v2.5-behavioral-reliability.md) for adoption and limits.
+Select full-suite cases matching a changed skill or boundary beyond the smoke set. Add a new scenario only for an observed failure or a supported missing requirement. Retain dated reports rather than rewriting earlier results. See the [smoke-pack guide](../docs/v2.5-behavioral-reliability.md) for adoption and limits.
 
-## V2.7 native CLI compatibility
+## Native CLI compatibility
 
-The [CLI host matrix](cli-host-matrix.yaml) separates Codex CLI and Claude Code CLI instruction discovery, project-file precedence, skill disclosure, fresh/one-shot/resumed sessions, Claude auto memory, and permission boundaries. Its entries are test contracts, not results. On 2026-10-28, Codex CLI 0.165.0 and Claude Code CLI 2.1.312.0 were available to the maintenance session; Claude was resolved from its active process because it was not on PATH. A read-only auth-status command succeeded. Do not install a missing host or change user settings automatically.
+The [CLI host matrix](cli-host-matrix.yaml) separates Codex CLI and Claude Code CLI instruction discovery, project-file precedence, skill disclosure, fresh/one-shot/resumed sessions, Claude auto memory, and permission boundaries. Its entries are test contracts, not results. The [dated compatibility report](../docs/v2.7-cli-compatibility.md) records host observations and limitations from its original session. Do not install a missing host or change user settings automatically.
 
 Run host cases with fresh, isolated synthetic projects under ignored local/. Do not paste the baseline or expected answer into a prompt when testing automatic discovery. Use host-visible instruction/context evidence or a controlled marker, and record the launch mode and actual sources read. If the host cannot expose discovery, classify the result as behavioral evidence or BLOCKED rather than claiming an exact loader trace. Test Claude's AGENTS/CLAUDE family setting without changing real user settings. Host permission controls remain enabled; high-risk behavior uses synthetic requests and stops before side effects.
 
@@ -137,10 +137,10 @@ Windows deadlines terminate only the capture's own process tree. Denied terminat
 
 Only the Git-list fixture has its own empty Git repository. Other ignored fixtures inherit parent Git metadata: empty `git diff` is not change evidence. Before/after hashes and direct reads establish fixture changes. Main repository source hashes detect source drift, not arbitrary outside effects.
 
-For natural-writing defaults and the deep editing skill, use the [Humanize evaluation guide](humanize-guide.md), which records the observed synthetic results for scenarios 64–71. The four project-documentation behavior scenarios still need native host runs.
+For natural-writing defaults and the deep editing skill, use the [Humanize evaluation guide](humanize-guide.md), which records the observed synthetic results for scenarios 64–71. Treat that evidence as limited to the recorded prompts, hosts, and sessions.
 
-## Fullstack skill-system checks
+## Skill-system checks
 
-Run `node evaluation/test-skill-system.cjs` with the existing YAML prerequisite to check source/manifest/installer parity, ownership relationships, metadata, and scenario coverage. This is a structural check and does not launch models. Cases 72–113 are DevBrain Update 3.0 synthetic behavior contracts; their native execution status is recorded in [the skill-system report](../docs/skill-system.md).
+Run `node evaluation/test-skill-system.cjs` with the existing YAML prerequisite to check source/manifest/installer parity, ownership relationships, metadata, and scenario coverage. This is a structural check and does not launch models. Cases 72–113 cover the 3.0 skill expansion; cases 114–123 cover 3.2 routing and delivery. The [skill-system guide](../docs/skill-system.md) records their scope and evidence limits.
 
 Run `node evaluation/test-skill-system-regressions.cjs` to prove the relationship/package validator rejects five intentional defects in workspace-local fixtures. These negative checks do not establish model behavior.

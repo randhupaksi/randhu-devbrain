@@ -41,9 +41,9 @@ scoped_validation:
     requested_model: gpt-5.6-sol
     reviewed_pass_count: 9
     excluded_ui_cases: [18-enterprise-routing, 19-marketing-routing, 41-context-latest-user-decision]
-    ui_follow_up: v2.7
+    ui_follow_up: evaluation/cli-host-matrix.yaml
     claude_validation: pending
-  cli_compatibility_candidate:
+  cli_host_compatibility:
     status: pending
     codex_cli: [fresh_bootstrap, one_shot, project_scope, skill_disclosure, permission_boundary]
     claude_code_cli: [fresh_bootstrap, one_shot_resume, instruction_family, auto_memory, skill_disclosure, permission_boundary]
@@ -58,7 +58,7 @@ loading_policy:
   full_tree_scan: forbidden_during_normal_coding
   skill_directory_scan: forbidden_at_startup
   skill_references: only_when_needed
-  excluded_from_normal_coding: [source, adapters, project-templates, docs, evaluation, CHANGELOG.md]
+  excluded_from_normal_coding: [adapters, project-templates, docs, evaluation, CHANGELOG.md]
   maintenance_exception: explicit_audit_or_update_request
 
 bootstrap:
@@ -135,8 +135,3 @@ evaluation:
   benchmark_tests: evaluation/test-benchmark.cjs
 
 deferred_capabilities: [cli, exe, daemon, database, notification_system, task_logs, daily_summary, gui]
-source_specification:
-  file: source/DevBrain_v2_Developer_Context_Specification.docx
-  role: generalized_conceptual_reference_not_active_policy
-  revised_on: 2026-09-28
-  sha256: 26e94fdf03c5fa9b503de40580781bfa610fe544331b56818eedb42c2c406435

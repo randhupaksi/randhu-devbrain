@@ -1,42 +1,36 @@
 # DevBrain Documentation
 
-The [3.2 delivery guide](v3.2-delivery.md) explains the new skills and project workflow. The [3.1 reliability guide](v3.1-reliability.md) records the prior release and its evaluation evidence.
+DevBrain 3.2.0 contains 34 portable skills and 123 task behavior scenarios. Markdown and YAML are the maintained operational sources. This index separates current usage guidance from dated release evidence.
 
-DevBrain v3.2.0 contains 34 skills and 123 behavior scenarios. Markdown and YAML define operational behavior. The generalized source DOCX remains a v2.2 conceptual reference and is excluded from startup. Use these documents for onboarding and maintenance.
+## Current guides
 
-| Reader need | Current document |
+| Need | Guide |
 |---|---|
-| Optional v3.0 product guides | `DevBrain-Guide-ID.docx` (Bahasa Indonesia) and `DevBrain-Guide-EN.docx` (English), when included beside this index |
-| Fullstack skill catalog, boundaries and collaboration | [Skill system](skill-system.md) |
-| Human-centred UI/UX principles, task-ranked visual hierarchy, composition/style guidance, and chart/platform adaptation | [Core index](../core/00-index.md) and the relevant UI modules |
-| V2.9 release scope and observed Humanize behavior | [Humanize guide and evidence](humanize.md) and [evaluation results](../evaluation/humanize-guide.md) |
-| Natural responses, generated prose, and deeper UI/text editing | [Humanize](humanize.md) |
-| Project Markdown creation and document relationships | [Project documentation skill](project-documentation.md) |
-| Product overview and quick start | [Repository README](../README.md) |
-| Architecture and canonical ownership | [Architecture](architecture.md) |
-| Instruction priority | [Context precedence](context-precedence.md) |
-| Project context setup and optional template ownership | [V2.8 project-context architecture](v2.8-project-context.md) and [template guide](../project-templates/README.md) |
-| Installing, updating, previewing and recovering | [Installation guide](../install/README.md) and [bootstrap notes](bootstrap-installation.md) |
-| Discovery, debugging and completion workflows | [V2.2 adoption guide](v2.2-workflows.md) |
-| Context reconciliation and conflicting evidence | [V2.3 adoption guide](v2.3-context-reconciliation.md) |
-| Handoff and interrupted-task recovery | [V2.4 adoption guide](v2.4-session-continuity.md) |
-| Repeatable behavior evaluation and evidence scoring | [V2.5 adoption guide](v2.5-behavioral-reliability.md) |
-| Native preflight, provenance and calibration | [V2.6 candidate guide](v2.6-native-validation.md) |
-| V2.6 scoped validation record | [V2.6 candidate evidence](v2.6-validation.md) |
-| Codex/Claude CLI discovery, sessions, skills, and permissions | [V2.7 CLI compatibility candidate](v2.7-cli-compatibility.md) and [host matrix](../evaluation/cli-host-matrix.yaml) |
-| Evaluation procedure and scenario definitions | [Evaluation guide](../evaluation/README.md) and [scenario overview](evaluation-scenarios.md) |
-| Source specification and mapping | [Source reference](../source/README.md) and [source mapping](source-mapping.md) |
-| Maintaining modules and documentation | [Maintenance](maintenance.md) |
-| Release history | [Changelog](../CHANGELOG.md) |
+| Understand system structure and source ownership | [Architecture](architecture.md) and [module ownership](module-ownership.md) |
+| Route a request across skills and workflows | [Skill system](skill-system.md), [task map](../runtime/task-map.md), and [catalog](../skills/catalog.yaml) |
+| Start or update a project from a fullstack brief | [DevBrain 3.2 delivery](v3.2-delivery.md) and [greenfield workflow](../workflows/greenfield-fullstack-delivery.md) |
+| Apply natural communication or deeply edit prose/UI copy | [Humanize](humanize.md) |
+| Create or maintain connected project documentation | [Project documentation](project-documentation.md) |
+| Resolve instruction priority | [Context precedence](context-precedence.md) |
+| Set up optional project context | [Project-context workflow](../workflows/project-context-setup.md) and [templates](../project-templates/README.md) |
+| Install, update, preview, or recover a host integration | [Installation guide](../install/README.md) |
+| Understand evaluation scenarios and limitations | [Scenario overview](evaluation-scenarios.md) and [evaluation procedure](../evaluation/README.md) |
+| Review release history | [Changelog](../CHANGELOG.md) |
 
-## Historical records
+## Historical evidence and adoption notes
 
-[Original v2 audit](v2-audit.md), [original v2 upgrade report](v2-upgrade-report.md), [English semantic audit](english-semantic-audit.md), and [original Git command snapshot](v2-git-commands.md) describe earlier states. Their counts, validation results and file lists are historical evidence. They do not supersede the current task map, manifest or installation guide. Generate Git command lists from the current worktree.
+These records retain dated scope, design decisions, or results. Counts and validation results are specific to the release and environment stated in each document; they are not current setup instructions or new evidence.
 
-[V2.2 validation](v2.2-validation.md) retains that release's observed results. The v2.2 workflow adoption guide remains applicable to discovery/debugging/completion.
+- **3.2:** [Delivery and benchmark plan](v3.2-delivery.md); native behavior results remain pending as stated in that guide.
+- **3.1:** [Reliability and benchmark evidence](v3.1-reliability.md).
+- **3.0:** [Stable skill-system report](skill-system.md).
+- **2.8:** [Project-context architecture](v2.8-project-context.md).
+- **2.7:** [CLI compatibility candidate](v2.7-cli-compatibility.md).
+- **2.6:** [Candidate validation](v2.6-native-validation.md) and [scoped validation record](v2.6-validation.md).
+- **2.5:** [Behavioral reliability adoption](v2.5-behavioral-reliability.md) and [validation record](v2.5-validation.md).
+- **2.4:** [Session continuity](v2.4-session-continuity.md).
+- **2.3:** [Context reconciliation](v2.3-context-reconciliation.md).
+- **2.2:** [Discovery, debugging, and completion workflows](v2.2-workflows.md) and [validation record](v2.2-validation.md).
+- **Original audit:** [v2 audit](v2-audit.md), [upgrade report](v2-upgrade-report.md), [English semantic audit](english-semantic-audit.md), and [Git command snapshot](v2-git-commands.md).
 
-[V2.3 validation](v2.3-validation.md) retains its original dated checks and worktree snapshot. Its context-reconciliation guidance remains applicable.
-
-[V2.4 validation](v2.4-validation.md) retains its original dated checks. Its session-continuity workflow remains applicable; current evaluation uses the v2.5 smoke pack and result contract.
-
-[V2.5 validation](v2.5-validation.md) retains its completed dated evidence. The current candidate uses result schema version 2; old records must not be relabeled as newly observed sessions.
+Earlier documents can include superseded wording or point-in-time file lists. Use current runtime modules, the manifest, catalog, installation guide, and changelog whenever they differ. Old DOCX product guides and the v2.2 conceptual source specification have been removed from the current tree; they are not required for operation.

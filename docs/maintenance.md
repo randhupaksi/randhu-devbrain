@@ -1,22 +1,27 @@
 # Maintenance and Evolution
 
-The generalized v2 DOCX is a conceptual reference; Markdown/YAML files are the operational source. The latest explicit prompt overrides earlier preferences. Revise the DOCX only for an explicit source-document update, and do not copy it wholesale into runtime. The original v0.1 revision remains in earlier Git history.
+DevBrain's maintained operating rules live in Markdown and YAML. The active project's instructions and latest user request outrank DevBrain preferences, subject to platform rules and safety. This repository is a personal developer knowledge layer; changes should improve reusable agent behavior without embedding one project's private facts.
 
-1. Classify feedback as global principle, safety, workflow, skill, adapter, or project fact.
-2. Audit existing instructions and working-tree state; find the canonical owner.
-3. When an audit is requested, report findings before implementation. An update request authorizes relevant low/medium-risk changes; seek confirmation only for an unapproved high-risk boundary.
-4. Update the owner, routing, and affected callers. Do not merge all core content into runtime.
-5. Run content/frontmatter/link/path validation, the PowerShell parser, installer fixtures when relevant, and a diff review.
-6. Update evaluation scenarios when behavior changes; valid YAML alone does not prove behavior.
-7. Record meaningful changes in the changelog. Preserve provenance and explain when a current source document supersedes an earlier one.
-8. Run the updater against a real home only when the user requests that installation. Repository maintenance does not authorize global configuration changes.
+## Change workflow
 
-Review after repeated interpretation failures, scope drift, generic-feeling UI, excessive approval requests, or boundaries that are too permissive. Avoid adding a universal rule for a project-specific incident.
+1. Classify the request as a principle, safety rule, workflow, skill, adapter, documentation, evaluation contract, or project-specific fact.
+2. Inspect the worktree and identify the canonical owner before editing. Preserve unrelated user changes.
+3. Audit requests are read-only. An explicit maintenance request authorizes relevant low- and medium-risk updates; ask only at an unapproved high-risk boundary.
+4. Update the canonical owner, selective routing, affected callers, and current documentation together. Keep the session baseline concise.
+5. Change evaluation contracts when behavior changes. Add scenarios for supported gaps or observed failures, not to inflate coverage.
+6. Run repository content validation for Markdown/YAML/link or routing changes. Run installer fixtures only when packaging or install behavior changes; all fixture writes stay under ignored `local/`.
+7. Review the final diff, record meaningful changes in the changelog, and label observed results with their date and scope.
+8. Preserve completed release reports as historical evidence. Update current guides when their procedure changes; do not rewrite an old result as though it were rerun.
+9. Run an installer against a real user profile only when specifically requested. Repository maintenance never implies a real-host update.
 
-For v2.6, retain the dated candidate evidence and scoped Codex non-UI result; do not promote it to cross-host stable. For the v2.7 CLI candidate, keep the overall validation pending until the native host matrix is complete. A fresh bootstrap capture provides partial evidence, not proof of exact source discovery or skill/session/permission parity. Preflight is environment evidence, not model behavior. Preserve old schema records and dated reports; use new batches for new evidence. Calibrate from supported repeated observations, not from an unresolved executable or a cache-boundary block.
+## Ownership and evidence
 
-Use the [CLI compatibility workflow](../workflows/cli-compatibility.md) and [host matrix](../evaluation/cli-host-matrix.yaml) when checking Codex/Claude discovery, skill loading, session modes, or permissions. A simulated install can verify target paths and payload parity, but not live CLI behavior.
+Use the [module ownership map](module-ownership.md), [documentation index](README.md), and [architecture guide](architecture.md) to locate current sources. Project facts belong in the project context, not global DevBrain policy. A collaborator skill should activate only when its distinct decision or artifact is needed.
 
-For selective workflow changes, synchronize the canonical workflow, task map, commands, scenarios and current guides. V2.4 adds session continuity to existing discovery/debugging/completion/reconciliation; v2.5 adds maintenance-only paired evaluation. Use the [documentation index](README.md) to distinguish active guidance from historical reports. Record validation counts with date/snapshot; do not rewrite old results as if rerun. Run content regressions after contract/routing changes and evidence-contract tests after scorecard/fixture changes. Keep evaluator expectations outside model context; validate sanitized records and assess the evidence manually. Select full-suite cases matching changed skills and add new cases only for supported gaps. If source revision is authorized, update its version, date and hash after rendering/review. Keep routine startup selective; do not persist handoffs or project memory automatically.
+The [evaluation guide](../evaluation/README.md) separates structural checks, installer integration, behavior contracts, native host observations, and benchmark comparisons. Parsers and fixture checks prove only their stated package contracts. A live host result needs fresh, reviewable evidence; a blocked prerequisite is not a model result. Keep evaluator expectations outside tested prompts and avoid claims broader than the observed scope.
 
-V2.8 adds explicit, opt-in project-context setup/maintenance and single-owner rules for project facts. Keep `AGENTS.md` concise, make Visual DNA/API Contract optional and task-scoped, and preserve project discovery as read-only. Its content/regression checks do not prove live Codex/Claude behavior; keep the v2.7 native matrix status separate.
+The current CLI workflow and [host matrix](../evaluation/cli-host-matrix.yaml) describe compatibility checks. Older reports record earlier Codex/Claude versions and decisions; use them as dated evidence, not as current compatibility claims. Likewise, earlier smoke/result schemas keep their original meaning; prepare a fresh batch for current observations.
+
+## Documentation hygiene
+
+Keep one detailed owner for each fact. Link current docs to that owner, mark historical reports clearly, and remove obsolete guides when no supported workflow depends on them. Do not keep an outdated DOCX as a parallel policy source; Markdown/YAML is canonical. Preserve old evidence when it explains a decision, but do not let it appear as current setup guidance.

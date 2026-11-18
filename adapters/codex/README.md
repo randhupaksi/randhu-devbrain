@@ -8,4 +8,4 @@ New skill installs use `UserHome/.agents/skills` according to the [official skil
 
 The installer does not disable other skills or edit `config.toml`. If both discovery locations already contain the custom skills, review duplicates separately; do not silently remove user instructions or skills.
 
-V2.7 separates the global instruction entry from project instructions and tests fresh, one-shot, and resumed CLI contexts independently. Use the [CLI host matrix](../../evaluation/cli-host-matrix.yaml); an explicitly injected baseline does not count as automatic loader-discovery evidence.
+The global instruction entry and project instructions have separate owners. Use the [CLI host matrix](../../evaluation/cli-host-matrix.yaml) to test fresh, one-shot, and resumed contexts independently; an explicitly injected baseline does not count as automatic loader-discovery evidence.
