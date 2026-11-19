@@ -28,8 +28,8 @@ check(
 );
 check(new Set(manifest.skills).size === manifest.skills.length, 'Manifest has no duplicate skills');
 check(
-  catalog.skills.filter((s) => s.positive && s.negative).length === 25,
-  'Twenty-five additions have positive and boundary use cases',
+  catalog.skills.filter((s) => s.positive && s.negative).length === 27,
+  'Twenty-seven additions have positive and boundary use cases',
 );
 for (const file of ['install/install-bootstrap.ps1', 'evaluation/test-installer.ps1']) {
   const line = read(file).match(/\$names = @\(([^\n]+)\)/)?.[1];

@@ -31,6 +31,8 @@ Paths are relative to the DevBrain root. Read only relevant rows, then only the 
 | Git command listing | `workflows/git-command-listing.md` | None needed |
 | Compressed prompt command | `prompts/commands.yaml`, `prompts/README.md` | Match the outcome |
 | New fullstack project from a brief, including plan-only delivery requests | `workflows/greenfield-fullstack-delivery.md` | Match the current deliverable; use product discovery when requirements remain open |
+| Explicit production readiness or operational release review | `workflows/production-readiness-review.md`; use linked project runtime context when relevant | Match a distinct deliverable if needed |
+| Third-party package, CLI, build plugin or skill trust assessment | `safety/software-supply-chain.md` | `technical-research` for an evidence-based comparison; `dependency-upgrades` for a chosen transition |
 | Complex task coordination | `workflows/standard-task.md` | Match the outcome |
 
 Read skill references only when a specific decision requires them. Do not load enterprise and marketing skills together for one surface; use both only for distinct product/marketing subtasks. Design-system work owns visual/shared-UI contracts; architecture-refactor owns responsibility/data/dependency boundaries. Frontend performance, accessibility audit, and testing strategy are primary only when those outcomes are requested or a concrete blocker makes them material. Routine UI polish and validation do not load all three.
@@ -63,3 +65,6 @@ For a mixed task, use [skill selection](skill-selection.md) to resolve ownership
 | Public URL discovery, rendering and indexing-signal consistency | `technical-seo` |
 | Dependency compatibility transition and reproducible resolution | `dependency-upgrades` |
 | Reproducible local setup, service readiness and owned resource lifecycle | `developer-environment` |
+
+| Hosted topology, resource lifecycle or infrastructure as code | `cloud-infrastructure-engineering` |
+| Service objectives, failure behavior, capacity or recovery design | `reliability-engineering` |

@@ -570,3 +570,37 @@ skills:
     negative:
       prompt: "Connect a parcel status provider that returns deterministic tracking events."
       alternative: external-service-integrations
+
+  - id: cloud-infrastructure-engineering
+    owns: "Hosted runtime topology and infrastructure resource lifecycle"
+    inputs: "Runtime and environment contracts, provider versions, state ownership and redacted plan evidence"
+    outputs: "Infrastructure design or scoped patch with lifecycle and isolation evidence"
+    collaborates:
+      - skill: ci-cd-release-engineering
+        handoff: "runtime artifact contract and deployment boundaries"
+      - skill: reliability-engineering
+        handoff: "failure domains and infrastructure recovery constraints"
+    positive:
+      prompt: "Review a proposed hosted runtime change where a database rename appears as replacement. Return a plan only."
+      expected: "Identify resource identity and data loss risk, preserve the database, and request evidence before any live operation."
+    negative:
+      prompt: "Design a build and staged rollout pipeline for an existing hosted service with fixed infrastructure."
+      alternative: ci-cd-release-engineering
+
+  - id: reliability-engineering
+    owns: "Service objectives, failure behavior, capacity and recovery"
+    inputs: "Critical journey, demand evidence, failure domains and recovery constraints"
+    outputs: "Service indicator and objective with failure and recovery verification plan"
+    collaborates:
+      - skill: cloud-infrastructure-engineering
+        handoff: "failure domain and resource recovery requirements"
+      - skill: observability-debugging
+        handoff: "measurable signals, eligible events and thresholds"
+      - skill: ci-cd-release-engineering
+        handoff: "observed rollout stop and recovery conditions"
+    positive:
+      prompt: "Define a service objective and recovery drill for order confirmation when the mail provider can be unavailable. Return a plan only."
+      expected: "Separate order acceptance from confirmation delivery, specify eligible events and a window, and define isolated recovery evidence."
+    negative:
+      prompt: "Diagnose an ongoing checkout latency spike using supplied correlated traces and logs."
+      alternative: observability-debugging
