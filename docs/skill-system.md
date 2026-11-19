@@ -23,6 +23,22 @@ Choose the owner by the requested result. For a backend use case, an accepted co
 
 For a slow dashboard, frontend-performance first locates the dominant cost. A supplied database plan can justify database-query-optimization; browser rendering evidence can keep the work in frontend-performance. Ordinary debugging does not automatically load observability-debugging. Similarly, code-review reports supported findings without automatically invoking every security/testing skill or editing the reviewed code.
 
+## How skill selection works
+
+Skill discovery begins with its short name and description. The agent identifies the requested deliverable, consults the matching task-map route, and reads the primary skill when it adds task-specific decisions. It loads references only when they answer an active question. This keeps a 36-skill package usable without adding all 36 instructions to every session.
+
+For genuinely mixed work, the catalog's collaborator entry names the artifact to hand off. A useful handoff includes accepted facts, relevant source locations, constraints that must survive, open decisions, the artifact produced, and verification actually performed. The receiving skill owns its distinct result. Skill names do not grant permission, trigger external operations, or require a fixed sequence.
+
+| Example request | Primary owner | Add another owner when... |
+|---|---|---|
+| Change dashboard hierarchy while preserving behavior | `enterprise-ui-ux` | A distinct state/cache defect or shared token contract needs work |
+| Implement an API use case with an accepted contract | `backend-feature-engineering` | Wire compatibility is unresolved, persistence invariants change, or durable external work is required |
+| Diagnose a confirmed cross-service outage | `observability-debugging` | A separate service target, capacity, or recovery design is requested |
+| Review a proposed hosted database rename | `cloud-infrastructure-engineering` | A user-journey target or recovery objective also needs to be defined |
+| Assess a candidate external CLI | `technical-research` with the supply chain guide | A selected package then needs a compatibility transition |
+
+The [skill selection guide](../runtime/skill-selection.md) and [catalog](../skills/catalog.yaml) are the detailed routing owners. This table gives orientation examples and does not override project evidence.
+
 ## Strengthening the original nine
 
 Each existing skill retains its established references and purpose. Its collaboration section now states a concrete input, output, optional handoff, and a failure check particular to its domain: selection semantics for product UI; authentic claims and CTA outcomes for marketing; theme/consumer compatibility for design systems; side-effect timing during refactors; comparable performance measurements; async focus/announcements; deterministic concurrency tests; proposed-versus-current documentation; and localization structure versus translatable copy.
@@ -34,6 +50,18 @@ Project instructions and active user intent still determine the stack, product s
 ## Packaging and evaluation
 
 The manifest and source installer enumerate all 36 skills. Simulated-home installer checks cover source/Codex/Claude payload parity, updates, idempotency, and preservation of user instructions. Repository changes do not install into real host profiles. The release status does not convert scenario contracts into observed model behavior; the evidence below remains bounded by its recorded fixtures and runs.
+
+### Add or change a skill
+
+1. Confirm a recurring outcome has a distinct owner and is not already covered by a skill, core module, workflow, or safety guide.
+2. Define its activation description, responsibility, required inputs, reviewable output, and nearest boundary cases before writing its instructions.
+3. Keep the entrypoint self-contained and portable. Put substantial conditional procedures in a reference linked from the skill. Avoid dependencies on repository-relative files at runtime.
+4. Connect the new or changed owner to `skills/catalog.yaml` and `runtime/task-map.md`. Add conditional handoffs in `runtime/skill-selection.md` only where the artifact boundary helps selection.
+5. Update `devbrain.yaml`, host metadata, source installer and installer tests. Keep the session baseline focused; a new specialist does not automatically belong in `always_load`.
+6. Add positive and boundary evaluation cases with synthetic evidence. Check that an adjacent skill owns the boundary prompt and that unrelated tasks do not activate this skill.
+7. Update the current documentation index, ownership map and release evidence. Run repository, skill-system and simulated installer checks, then record native behavior separately when observed.
+
+The structural suite verifies owner metadata, route and package parity, handoff targets, and scenario links. It does not grade the quality of a model's decisions. Native comparisons need a fresh session, matched inputs, host/model settings where observable, and reviewer evidence.
 
 Cases 72–101 add one positive task and one boundary task for each new skill, bringing the suite at that stage to 101 cases. They are evaluation contracts, with expectations outside agent context. Two boundary cases intentionally need no skill: a routine syntax fix uses debugging guidance, and a Git command list uses the text-only Git workflow.
 

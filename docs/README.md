@@ -1,37 +1,53 @@
 # DevBrain Documentation
 
-DevBrain 3.3.0 contains 36 portable skills and 130 task behavior scenarios. Markdown and YAML are the maintained operational sources. This index separates current usage guidance from dated release evidence.
+DevBrain 3.3.0 contains 36 portable skills and 130 task behavior contracts. Markdown and YAML are the maintained operational sources. This index routes users and maintainers to the current owner for each question and keeps dated evidence attached to the release that produced it.
 
-## Current guides
+## Choose a starting point
 
-| Need | Guide |
+| Need | Start here |
 |---|---|
-| Understand system structure and source ownership | [Architecture](architecture.md) and [module ownership](module-ownership.md) |
-| Route a request across skills and workflows | [Skill system](skill-system.md), [task map](../runtime/task-map.md), and [catalog](../skills/catalog.yaml) |
-| Start or update a project from a fullstack brief | [DevBrain 3.2 delivery](v3.2-delivery.md) and [greenfield workflow](../workflows/greenfield-fullstack-delivery.md) |
-| Prepare hosted runtime, review release readiness, or plan recovery | [3.3 production delivery](v3.3-production-delivery.md) |
-| Apply natural communication or deeply edit prose/UI copy | [Humanize](humanize.md) |
-| Create or maintain connected project documentation | [Project documentation](project-documentation.md) |
-| Resolve instruction priority | [Context precedence](context-precedence.md) |
-| Set up optional project context | [Project-context workflow](../workflows/project-context-setup.md) and [templates](../project-templates/README.md) |
-| Install, update, preview, or recover a host integration | [Installation guide](../install/README.md) |
-| Understand evaluation scenarios and limitations | [Scenario overview](evaluation-scenarios.md) and [evaluation procedure](../evaluation/README.md) |
-| Review release history | [Changelog](../CHANGELOG.md) |
+| Understand DevBrain and begin a coding session | [Repository overview](../README.md), [session baseline](../runtime/session-baseline.md) |
+| Understand loading, host integration, or source ownership | [Architecture](architecture.md), [module ownership](module-ownership.md) |
+| Select or add a specialist skill | [Skill system](skill-system.md), [task map](../runtime/task-map.md), [skill catalog](../skills/catalog.yaml) |
+| Connect Codex or Claude Code to this checkout | [Installation, update, and recovery](../install/README.md) |
+| Start a full-stack project from a brief | [3.2 delivery guide](v3.2-delivery.md), [greenfield workflow](../workflows/greenfield-fullstack-delivery.md) |
+| Review hosted runtime or service recovery | [3.3 production delivery guide](v3.3-production-delivery.md) |
+| Set up project instructions or optional context | [Project context workflow](../workflows/project-context-setup.md), [templates](../project-templates/README.md) |
+| Understand a verification command or behavior evaluation | [Evaluation procedure](../evaluation/README.md), [scenario overview](evaluation-scenarios.md) |
+| Review deep editing or natural UI text | [Humanize guidance](humanize.md) |
+| Maintain project documentation | [Project documentation guidance](project-documentation.md) |
+| Resolve instruction conflicts | [Context precedence](context-precedence.md) |
+| Find a release's scope and historical evidence | [Changelog](../CHANGELOG.md), then the corresponding report below |
 
-## Historical evidence and adoption notes
+## Maintained source and supporting documentation
 
-These records retain dated scope, design decisions, or results. Counts and validation results are specific to the release and environment stated in each document; they are not current setup instructions or new evidence.
+| Question | Canonical source |
+|---|---|
+| What is globally loaded and when should it reload? | `runtime/session-baseline.md` |
+| Which guidance should a task load? | `runtime/task-map.md` and `runtime/skill-selection.md` |
+| What does each skill own and hand off? | `skills/catalog.yaml` |
+| Which skill folders are packaged? | `devbrain.yaml` and the installer source |
+| How do safety and authorization boundaries work? | `runtime/session-baseline.md` and `safety/` |
+| What behavior should the package demonstrate? | `evaluation/scenarios.yaml` and the benchmark suite |
+| What checks actually passed for a release? | Its dated delivery or validation report |
 
-- **3.2:** [Delivery and benchmark plan](v3.2-delivery.md); native behavior results remain pending as stated in that guide.
+The documentation describes operational sources. It does not replace them. When a summary and source differ, use the current manifest, task map, catalog, installer, and evaluation files, then update only the affected summaries.
+
+## Historical release evidence
+
+Historical records preserve their original dates, package scope, and evidence. Their validation counts are specific to those revisions and environments. They are not current command references or proof of behavior in a later host version.
+
+- **3.3:** [Production delivery and package evidence](v3.3-production-delivery.md). Inputs for 204 matched slots are prepared; native Codex and Claude results remain `NOT_RUN`.
+- **3.2:** [Delivery and benchmark plan](v3.2-delivery.md). The 3.2 native comparison remains pending in its original release record.
 - **3.1:** [Reliability and benchmark evidence](v3.1-reliability.md).
-- **3.0:** [Stable skill-system report](skill-system.md).
+- **3.0:** [Skill-system expansion and observed evidence](skill-system.md).
 - **2.8:** [Project-context architecture](v2.8-project-context.md).
 - **2.7:** [CLI compatibility candidate](v2.7-cli-compatibility.md).
-- **2.6:** [Candidate validation](v2.6-native-validation.md) and [scoped validation record](v2.6-validation.md).
+- **2.6:** [Native-validation candidate](v2.6-native-validation.md) and [validation record](v2.6-validation.md).
 - **2.5:** [Behavioral reliability adoption](v2.5-behavioral-reliability.md) and [validation record](v2.5-validation.md).
 - **2.4:** [Session continuity](v2.4-session-continuity.md).
 - **2.3:** [Context reconciliation](v2.3-context-reconciliation.md).
 - **2.2:** [Discovery, debugging, and completion workflows](v2.2-workflows.md) and [validation record](v2.2-validation.md).
 - **Original audit:** [v2 audit](v2-audit.md), [upgrade report](v2-upgrade-report.md), [English semantic audit](english-semantic-audit.md), and [Git command snapshot](v2-git-commands.md).
 
-Earlier documents can include superseded wording or point-in-time file lists. Use current runtime modules, the manifest, catalog, installation guide, and changelog whenever they differ. Old DOCX product guides and the v2.2 conceptual source specification have been removed from the current tree; they are not required for operation.
+The old DOCX product guides and v2.2 conceptual source specification are absent from the current package. Current policy lives in Markdown and YAML.

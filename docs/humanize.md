@@ -1,6 +1,6 @@
 # Humanize: Defaults and Deep Editing
 
-Humanize is one of DevBrain's 34 portable skills. Concise defaults in the session baseline, collaboration principles, and UI guidance encourage natural, specific language in ordinary responses, generated prose, and interface text. The dedicated skill provides a deeper pass for writing, rewriting, auditing, voice matching, and product microcopy. It uses the host model and adds no third-party package, remote service, model download, or training step.
+Humanize is one of DevBrain's 36 portable skills. Concise defaults in the session baseline, collaboration principles, and UI guidance encourage natural, specific language in ordinary responses, generated prose, and interface text. The dedicated skill provides a deeper pass for writing, rewriting, auditing, voice matching, and product microcopy. It uses the host model and adds no third-party package, remote service, model download, or training step.
 
 ## Ownership and activation
 

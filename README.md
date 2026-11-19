@@ -1,12 +1,14 @@
 # DevBrain 3.3
 
-DevBrain 3.3.0 is a portable knowledge layer for Codex and Claude Code: it routes an agent to the relevant principles, workflow, safety guidance, or specialist skill for the requested outcome. It is not a model, agent runtime, or product application.
+DevBrain 3.3.0 is Randhu's portable developer knowledge layer for Codex and Claude Code. It gives an agent project-independent engineering principles, safety boundaries, task workflows, and focused specialist skills. The host model still performs the reasoning and coding. DevBrain supplies context and a routing structure for that work.
 
-The current package contains 36 skills and 130 behavior scenarios. Version 3.3 adds cloud infrastructure and reliability engineering, an optional production readiness review, and guidance for evaluating third-party tooling. See the [3.3 production delivery guide](docs/v3.3-production-delivery.md).
+The package contains 36 portable skills and 130 task behavior contracts. Version 3.3 adds cloud infrastructure and reliability engineering, a release readiness workflow, project runtime operations context, and a focused software supply chain guide. The current release has passed repository, skill contract, Node, and simulated installer checks. Codex and Claude native benchmark results are still `NOT_RUN`. See the [3.3 production delivery guide](docs/v3.3-production-delivery.md) for exact scope and evidence.
 
 ## Start here
 
-Read the [session baseline](runtime/session-baseline.md) once at the start of a coding session. Read the active project's `AGENTS.md` or `CLAUDE.md`, then use the [task map](runtime/task-map.md) to load only the modules and skills relevant to the task. Project instructions own stack, product behavior, visual identity, APIs, business rules, permissions, deployment, and validation commands.
+At the start of a coding session, read the [session baseline](runtime/session-baseline.md) once. Read the active project's `AGENTS.md` or `CLAUDE.md` for its stack, product behavior, visual identity, APIs, business rules, permissions, deployment, and validation commands. Use the [task map](runtime/task-map.md) to select only the DevBrain modules relevant to the requested outcome. Reload the baseline after material context loss, a DevBrain or repository update, or when the active rules are uncertain.
+
+For a mixed request, start with the result the user needs and select one primary owner. Add another skill only when it has a distinct artifact or decision to produce. The [skill catalog](skills/catalog.yaml) records each specialist's inputs, outputs, and conditional handoffs. These handoffs guide responsibility; they do not create a mandatory pipeline or expand authorization.
 
 To connect Codex and/or Claude Code to this checkout, preview and then run the installer from PowerShell:
 
@@ -17,7 +19,25 @@ To connect Codex and/or Claude Code to this checkout, preview and then run the i
 
 Use `install/update-bootstrap.ps1` to update an existing installation. Review [installation and recovery](install/README.md) before applying changes. Repository maintenance does not install to a real host profile.
 
-## How the system is organized
+## How DevBrain works
+
+DevBrain uses progressive context. The baseline carries global precedence, collaboration, safety, autonomy, and communication rules. The task map routes to core principles, safety analysis, or a workflow. A selected skill provides specialist guidance, and its references are opened only when the task needs them. Project instructions remain the source of project-specific facts.
+
+```text
+Host loader → session baseline + project instructions
+                        ↓
+                 task map and outcome
+                        ↓
+            relevant core, safety, workflow
+                        ↓
+        one skill, optional references or handoff
+                        ↓
+             implementation and evidence
+```
+
+This is a decision model, not a requirement to read every module in sequence. A routine task may need only the baseline and project instructions. A high-impact or cross-domain task may need additional owners and evidence. See [architecture](docs/architecture.md) for lifecycle, ownership, and host boundaries.
+
+## How the repository is organized
 
 | Area | Responsibility |
 |---|---|
@@ -26,13 +46,25 @@ Use `install/update-bootstrap.ps1` to update an existing installation. Review [i
 | `safety/` | Cross-cutting safeguards and deeper risk analysis |
 | `workflows/` | Task procedures, handoffs, debugging, project context, and delivery |
 | `prompts/` | Short commands with intent, mode, and routing |
-| `skills/` | 34 portable specialists selected by outcome |
+| `skills/` | 36 portable specialists selected by outcome |
 | `adapters/` and `install/` | Codex/Claude loader templates and explicit installer/updater |
 | `project-templates/` | Optional project context documents with clear ownership |
 | `evaluation/` | Behavior contracts, package checks, and maintenance-only evaluation tools |
 | `docs/` | Current usage guides, architecture, release evidence, and history |
 
-The skill system is organized around ownership and handoffs, not a mandatory chain. The [skill catalog](skills/catalog.yaml) defines inputs, outputs, and conditional collaborators; the [skill-system guide](docs/skill-system.md) explains how to route mixed work. Skills are portable, and no third-party skill package or humanizer service is required.
+The skill system is organized around ownership and handoffs. The [skill catalog](skills/catalog.yaml) defines inputs, outputs, and conditional collaborators; the [skill-system guide](docs/skill-system.md) explains routing, portability, and how to extend the package. Skills are self-contained for installation, and DevBrain does not require a third-party skill package or humanizer service.
+
+## Project context and scope
+
+DevBrain stores reusable methods and engineering judgment. The active repository stores its own technology versions, product rules, API contracts, visual identity, data permissions, file ownership, and verification commands. Optional files under `project-templates/` help organize that context when the project needs them. They are examples to adapt, not required files or global DevBrain rules.
+
+The latest user instruction controls the task after platform and safety requirements. DevBrain does not authorize a deployment, a data migration, a host installation, or an external side effect by itself. The agent checks the requested scope and applicable project instructions before acting.
+
+## Quality and evidence
+
+DevBrain separates package checks from observed model behavior. Repository validation checks source structure and links. Skill tests check catalog, routing, and packaging contracts. Simulated installer tests check target layout and preservation. Scenario files define behavioral cases. Native comparisons require fresh Codex or Claude sessions with matched prompts and recorded evidence. Passing a structural check does not establish that a host loaded the files or that every model response follows them.
+
+The [evaluation guide](evaluation/README.md) explains the validation layers. The current benchmark has 17 cases and 204 prepared slots across three conditions, two hosts, and two repetitions. Those slots remain `NOT_RUN` until actual sessions are observed and reviewed.
 
 ## Current guidance and evidence
 

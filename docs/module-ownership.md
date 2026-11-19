@@ -19,6 +19,20 @@ This map describes the maintained DevBrain 3.3 sources. Markdown and YAML define
 | Host integration | `adapters/` templates; `install/` implementation and documentation |
 | Evaluation contracts and observed evidence | `evaluation/`; dated release reports in `docs/` |
 
+## How the pieces fit
+
+1. The host loader points the session to DevBrain's baseline and applicable project instructions.
+2. The baseline defines global precedence and safety. The task map routes the requested outcome to selective guidance.
+3. Core principles explain reusable reasoning. A workflow explains a task procedure. A skill owns a specialist result and can link to detail that is needed only in that case.
+4. The project's instructions and context own project-specific facts. They can override DevBrain preferences when the change is within platform and safety requirements.
+5. Evaluation separates package structure, installer behavior, scenario expectations, and observed native model sessions.
+
+This is an ownership map, not a required chain of files. A focused task usually needs only a subset.
+
+## Current package facts
+
+The manifest is the package version and skill inventory owner. The current release is 3.3.0 with 36 source skills. The task contract suite contains 130 scenarios. The 17-case benchmark has 204 prepared inputs across three conditions, two hosts, and two repetitions. These are package facts; benchmark slots remain `NOT_RUN` until their host sessions are observed.
+
 ## Relationship model
 
 Skills are selected by the outcome they own. A collaborator is conditional: use it when a distinct decision or artifact belongs to that owner, not merely because two subjects are nearby. For example, implementing a backend use case may consume an accepted API contract and database constraints; redesigning those contracts is separate work unless requested.
