@@ -1,6 +1,6 @@
 # DevBrain Skill System
 
-DevBrain 3.2.0 contains 34 source skills. The first 30 skills shipped as the stable v3.0 package on 2026-11-12; v3.2 adds four specialists and a greenfield workflow. This guide explains current ownership and collaboration, followed by dated evidence from earlier expansions. DevBrain is a portable instruction system for the host model, not additional training. No third-party skill package or service is required. New operational guidance can improve the decisions and checks an agent makes, but package validation does not establish a general quality gain.
+DevBrain 3.3.0 contains 36 source skills. The first 30 skills shipped as the stable v3.0 package on 2026-11-12; v3.2 added four specialists and a greenfield workflow. v3.3 adds two production operations specialists. This guide explains current ownership and collaboration, followed by dated evidence from earlier expansions. DevBrain is a portable instruction system for the host model, not additional training. No third-party skill package or service is required. New operational guidance can improve the decisions and checks an agent makes, but package validation does not establish a general quality gain.
 
 ## Ownership and collaboration
 
@@ -16,6 +16,7 @@ The [catalog](../skills/catalog.yaml) is the maintenance owner of each skill's r
 | Requirements and feature delivery | technical-research, product-discovery, frontend-feature-engineering, ai-application-engineering |
 | Evidence and delivery | frontend-performance, testing-strategy, browser-e2e-testing, code-review, observability-debugging, ci-cd-release-engineering, project-documentation |
 | Localization and public discovery | internationalization-localization, technical-seo |
+| Hosted runtime and reliability | cloud-infrastructure-engineering, reliability-engineering |
 | Toolchain and local readiness | dependency-upgrades, developer-environment |
 
 Choose the owner by the requested result. For a backend use case, an accepted contract and database invariants are inputs to implementation. A distinct contract-design decision can go to api-contracts; a schema change can go to database-engineering. A durable post-commit event can then become the worker's input. These are responsibility boundaries, not a mandatory sequence or permission to expand the task.
@@ -32,7 +33,7 @@ Project instructions and active user intent still determine the stack, product s
 
 ## Packaging and evaluation
 
-The manifest and source installer enumerate all 34 skills. Simulated-home installer checks cover source/Codex/Claude payload parity, updates, idempotency, and preservation of user instructions. Repository changes do not install into real host profiles. The release status does not convert scenario contracts into observed model behavior; the evidence below remains bounded by its recorded fixtures and runs.
+The manifest and source installer enumerate all 36 skills. Simulated-home installer checks cover source/Codex/Claude payload parity, updates, idempotency, and preservation of user instructions. Repository changes do not install into real host profiles. The release status does not convert scenario contracts into observed model behavior; the evidence below remains bounded by its recorded fixtures and runs.
 
 Cases 72–101 add one positive task and one boundary task for each new skill, bringing the suite at that stage to 101 cases. They are evaluation contracts, with expectations outside agent context. Two boundary cases intentionally need no skill: a routine syntax fix uses debugging guidance, and a Git command list uses the text-only Git workflow.
 

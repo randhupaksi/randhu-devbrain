@@ -4,6 +4,12 @@
 
 - Consolidated current documentation around v3.2, marked older reports as historical evidence, and removed obsolete DOCX guides and conceptual source material.
 
+## 3.3.0 — 2026-11-19
+
+- Add cloud infrastructure and reliability engineering skills with selective routing and portable host payloads.
+- Add a production readiness workflow, software supply chain guide, and optional runtime operations template.
+- Add seven scenario contracts and four benchmark cases. Pin 3.2 as the comparison reference and add a rubric for UI outcome evidence.
+
 ## 3.2.0 — 2026-11-18
 
 - Added technical research, product discovery, frontend feature engineering, and AI application engineering to the 34-skill catalog.

@@ -1,12 +1,16 @@
 schema: devbrain-manifest
-version: 3.2.0
+version: 3.3.0
 owner: Randhu Paksi
 # Version/status describe this checkout. Historical evidence retains its original scope.
 status: stable
-updated_on: 2026-11-18
+updated_on: 2026-11-19
 language: en
 purpose: Personal developer knowledge layer for AI coding assistants
 scoped_validation:
+  v3_3_production_delivery:
+    status: native_validation_pending
+    scope: infrastructure_reliability_production_readiness_supply_chain_and_ui_evidence
+    evidence_report: docs/v3.3-production-delivery.md
   v3_2_delivery:
     status: native_validation_pending
     scope: technical_research_product_discovery_frontend_features_ai_applications_and_greenfield_delivery
@@ -108,8 +112,10 @@ skills:
   - product-discovery
   - frontend-feature-engineering
   - ai-application-engineering
+  - cloud-infrastructure-engineering
+  - reliability-engineering
 
-project_context_candidates: [AGENTS.md, CLAUDE.md, PROJECT-CONTEXT.md, PROJECT-VISUAL-DNA.md, PROJECT-API-CONTRACT.md, README.md]
+project_context_candidates: [AGENTS.md, CLAUDE.md, PROJECT-CONTEXT.md, PROJECT-VISUAL-DNA.md, PROJECT-API-CONTRACT.md, PROJECT-RUNTIME-OPERATIONS.md, README.md]
 evaluation:
   scenarios: evaluation/scenarios.yaml
   guide: evaluation/README.md

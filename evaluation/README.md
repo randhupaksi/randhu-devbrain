@@ -29,9 +29,9 @@ Fixtures are retained for inspection and ignored by Git. In a sandbox using anot
 
 ## Behavioral evaluation
 
-For 3.2 comparisons, use the [3.2 benchmark procedure](../docs/v3.2-delivery.md#benchmark). The 123 task contracts below are maintained separately from the 13 benchmark cases.
+Use the [3.3 benchmark procedure](../docs/v3.3-production-delivery.md#benchmark). The 130 task contracts are maintained separately from the 17 benchmark cases. Use the [UI outcome rubric](ui-outcome-rubric.md) for visual and interaction evidence.
 
-[`scenarios.yaml`](scenarios.yaml) contains 123 cases covering instruction precedence, scope and safety, selective discovery, debugging and completion, context reconciliation, session continuity, project context, documentation, natural writing, specialist skill routing and boundaries, and the latest research/discovery/frontend/AI/fullstack delivery additions. Each specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
+[`scenarios.yaml`](scenarios.yaml) contains 130 cases covering instruction precedence, scope and safety, selective discovery, debugging and completion, context reconciliation, session continuity, project context, documentation, natural writing, specialist skill routing and boundaries, and the latest research/discovery/frontend/AI/fullstack delivery additions. Each specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
 
 1. Create synthetic fixtures under `local/behavior-runs/` with project instructions, target files, contracts, and enough tests. Do not use another project, client data, secrets, or a real database.
 2. Start a new Codex or Claude session with only the baseline, skill metadata, case prompt, and relevant fixture. Do not show the assistant the expected answer.
@@ -141,6 +141,6 @@ For natural-writing defaults and the deep editing skill, use the [Humanize evalu
 
 ## Skill-system checks
 
-Run `node evaluation/test-skill-system.cjs` with the existing YAML prerequisite to check source/manifest/installer parity, ownership relationships, metadata, and scenario coverage. This is a structural check and does not launch models. Cases 72–113 cover the 3.0 skill expansion; cases 114–123 cover 3.2 routing and delivery. The [skill-system guide](../docs/skill-system.md) records their scope and evidence limits.
+Run `node evaluation/test-skill-system.cjs` with the existing YAML prerequisite to check source/manifest/installer parity, ownership relationships, metadata, and scenario coverage. This is a structural check and does not launch models. Cases 72–113 cover the 3.0 skill expansion; cases 114–123 cover 3.2 routing and delivery. Cases 124–130 cover 3.3 infrastructure, reliability, supply chain and release readiness. The [skill-system guide](../docs/skill-system.md) records their scope and evidence limits.
 
 Run `node evaluation/test-skill-system-regressions.cjs` to prove the relationship/package validator rejects five intentional defects in workspace-local fixtures. These negative checks do not establish model behavior.

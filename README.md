@@ -1,8 +1,8 @@
-# DevBrain 3.2
+# DevBrain 3.3
 
-DevBrain 3.2.0 is a portable knowledge layer for Codex and Claude Code: it routes an agent to the relevant principles, workflow, safety guidance, or specialist skill for the requested outcome. It is not a model, agent runtime, or product application.
+DevBrain 3.3.0 is a portable knowledge layer for Codex and Claude Code: it routes an agent to the relevant principles, workflow, safety guidance, or specialist skill for the requested outcome. It is not a model, agent runtime, or product application.
 
-The current package contains 34 skills and 123 behavior scenarios. Version 3.2 adds technical research, product discovery, frontend feature engineering, AI application engineering, and a greenfield fullstack delivery workflow. The [3.2 delivery guide](docs/v3.2-delivery.md) describes these additions and the bounded evaluation plan.
+The current package contains 36 skills and 130 behavior scenarios. Version 3.3 adds cloud infrastructure and reliability engineering, an optional production readiness review, and guidance for evaluating third-party tooling. See the [3.3 production delivery guide](docs/v3.3-production-delivery.md).
 
 ## Start here
 
@@ -38,6 +38,7 @@ The skill system is organized around ownership and handoffs, not a mandatory cha
 
 - [Documentation index](docs/README.md): current guides and clearly identified historical records.
 - [Architecture](docs/architecture.md) and [module ownership](docs/module-ownership.md): canonical sources and boundaries.
+- [3.3 production delivery guide](docs/v3.3-production-delivery.md)
 - [3.2 delivery guide](docs/v3.2-delivery.md): new capabilities, benchmark method, and validation limits.
 - [Evaluation procedure](evaluation/README.md): package validation and optional behavior evaluation.
 - [Changelog](CHANGELOG.md): dated release history.

@@ -1,6 +1,6 @@
 # DevBrain Documentation
 
-DevBrain 3.2.0 contains 34 portable skills and 123 task behavior scenarios. Markdown and YAML are the maintained operational sources. This index separates current usage guidance from dated release evidence.
+DevBrain 3.3.0 contains 36 portable skills and 130 task behavior scenarios. Markdown and YAML are the maintained operational sources. This index separates current usage guidance from dated release evidence.
 
 ## Current guides
 
@@ -9,6 +9,7 @@ DevBrain 3.2.0 contains 34 portable skills and 123 task behavior scenarios. Mark
 | Understand system structure and source ownership | [Architecture](architecture.md) and [module ownership](module-ownership.md) |
 | Route a request across skills and workflows | [Skill system](skill-system.md), [task map](../runtime/task-map.md), and [catalog](../skills/catalog.yaml) |
 | Start or update a project from a fullstack brief | [DevBrain 3.2 delivery](v3.2-delivery.md) and [greenfield workflow](../workflows/greenfield-fullstack-delivery.md) |
+| Prepare hosted runtime, review release readiness, or plan recovery | [3.3 production delivery](v3.3-production-delivery.md) |
 | Apply natural communication or deeply edit prose/UI copy | [Humanize](humanize.md) |
 | Create or maintain connected project documentation | [Project documentation](project-documentation.md) |
 | Resolve instruction priority | [Context precedence](context-precedence.md) |

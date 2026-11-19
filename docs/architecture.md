@@ -33,7 +33,7 @@ Markdown and YAML are the current operational source of truth. Duplicated safety
 
 ## Portability and host integration
 
-Skills are self-contained so their installed copies do not depend on repository-relative links. Codex and Claude Code use separate loader templates with the same operating guidance. The loader points to the checkout's baseline and task map; the installer copies the 34 catalogued skill folders to the selected host profile.
+Skills are self-contained so their installed copies do not depend on repository-relative links. Codex and Claude Code use separate loader templates with the same operating guidance. The loader points to the checkout's baseline and task map; the installer copies the 36 catalogued skill folders to the selected host profile.
 
 The installer uses preflight, staging, integrity checks, backups, and managed text blocks to reduce partial updates and preserve personal instructions. It runs only when explicitly requested. Simulated-home checks validate target layout and preservation; they do not prove native host discovery or model behavior.
 
@@ -41,4 +41,4 @@ The installer uses preflight, staging, integrity checks, backups, and managed te
 
 ## Quality boundaries
 
-The baseline remains the single always-loaded DevBrain module. Task routing, skill ownership, and optional references carry specialist detail. Project-specific facts stay in the project context instead of becoming universal DevBrain rules. Historical release evidence stays dated and scoped; current package structure is described by the [module ownership map](module-ownership.md), [skill-system guide](skill-system.md), and [3.2 delivery guide](v3.2-delivery.md).
+The baseline remains the single always-loaded DevBrain module. Task routing, skill ownership, and optional references carry specialist detail. Project-specific facts stay in the project context instead of becoming universal DevBrain rules. Historical release evidence stays dated and scoped; current package structure is described by the [module ownership map](module-ownership.md), [skill-system guide](skill-system.md), and [3.3 production delivery guide](v3.3-production-delivery.md).

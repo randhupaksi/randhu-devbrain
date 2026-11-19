@@ -1,6 +1,6 @@
 # DevBrain Module Ownership
 
-This map describes the maintained DevBrain 3.2 sources. Markdown and YAML define current behavior; no DOCX is needed to interpret or update the system.
+This map describes the maintained DevBrain 3.3 sources. Markdown and YAML define current behavior; no DOCX is needed to interpret or update the system.
 
 | Concern | Current owner |
 |---|---|
@@ -11,6 +11,8 @@ This map describes the maintained DevBrain 3.2 sources. Markdown and YAML define
 | Performance and evidence | `core/performance.md`; `frontend-performance` |
 | Collaboration and natural communication | `core/ai-collaboration.md`; `humanize` for deep writing or voice work |
 | Safety and sensitive data | `safety/` plus concise always-available baseline boundaries |
+| Hosted runtime and production readiness | `cloud-infrastructure-engineering`, `reliability-engineering`, and `workflows/production-readiness-review.md` |
+| Third-party software trust decisions | `safety/software-supply-chain.md` |
 | Product context and project facts | Project `AGENTS.md`/`CLAUDE.md`; optional files under `project-templates/` |
 | Prompt shortcuts and routing | `prompts/commands.yaml`; `runtime/task-map.md` |
 | Specialist ownership, artifacts, and conditional handoffs | `skills/catalog.yaml`; `runtime/skill-selection.md` |

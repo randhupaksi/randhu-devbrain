@@ -9,11 +9,11 @@ Run the source installer from this repository with PowerShell 5.1+ or PowerShell
 .\install\update-bootstrap.ps1
 ```
 
-Installation only runs when explicitly requested. An agent maintaining the repository does not install to a real home automatically. The installer reads the current checkout; see the [3.2 delivery guide](../docs/v3.2-delivery.md) for package scope and validation limits.
+Installation only runs when explicitly requested. An agent maintaining the repository does not install to a real home automatically. The installer reads the current checkout; see the [3.3 production delivery guide](../docs/v3.3-production-delivery.md) for package scope and validation limits.
 
 ## Install and update
 
-Preview with `-WhatIf`, inspect the targets, then run the command without `-WhatIf` to apply it. For an existing installation, use the updater. The default `-Tool Both` writes the Codex and Claude Code integrations and copies all 34 managed skills. Start a fresh session afterward so each host can discover the updated loader and skill payload.
+Preview with `-WhatIf`, inspect the targets, then run the command without `-WhatIf` to apply it. For an existing installation, use the updater. The default `-Tool Both` writes the Codex and Claude Code integrations and copies all 36 managed skills. Start a fresh session afterward so each host can discover the updated loader and skill payload.
 
 An existing loader points to this checkout and reads revised runtime guidance in a fresh session. Updating the installed skill payload is necessary when skills are added, removed, or changed. A checkout moved to a different location also requires updating the loader.
 
@@ -31,7 +31,7 @@ Claude Code loaders and skills use `UserHome/.claude`. Concrete machine paths be
 
 ## Update guarantees
 
-Preflight checks source files, managed markers, and linked/reparse paths before writing. The manifest and skill catalog identify the 34 managed skill folders. Adapter templates are the loader source, reducing template/installer drift. Text outside a managed block is preserved; loader backups retain original bytes.
+Preflight checks source files, managed markers, and linked/reparse paths before writing. The manifest and skill catalog identify the 36 managed skill folders. Adapter templates are the loader source, reducing template/installer drift. Text outside a managed block is preserved; loader backups retain original bytes.
 
 Skills are copied to staging and verified by hash/tree. The previous skill directory is backed up before staging becomes active. If activating staging fails, the installer attempts to restore the prior directory. An identical update makes no writes and creates no backup.
 
