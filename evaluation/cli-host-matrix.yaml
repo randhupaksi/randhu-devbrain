@@ -1,6 +1,6 @@
 schema: devbrain-cli-host-compatibility
 version: 1
-release: 3.2.0
+release: 3.3.0
 purpose: Verify host-specific instruction discovery, skill loading, session lifecycle, and permission boundaries without treating static checks as live behavior.
 hosts:
   - id: codex_cli
@@ -12,7 +12,7 @@ hosts:
     availability_observed_on: '2026-11-18'
     version_observed: "0.169.0"
     native_status: not_run
-    native_limitation: The 3.1 isolated preflight found no authenticated session. Native validation for 3.2 remains pending.
+    native_limitation: The 3.1 isolated preflight found no authenticated session. Native validation for 3.3 remains pending.
   - id: claude_code_cli
     instruction_entry: "$HOME/.claude/CLAUDE.md"
     project_instruction_family: [CLAUDE.md, CLAUDE.local.md, AGENTS.md]
@@ -23,7 +23,7 @@ hosts:
     availability_observed_on: '2026-11-18'
     version_observed: "2.1.325"
     native_status: not_run
-    native_limitation: The 3.1 isolated preflight found no authenticated session. Native validation for 3.2 remains pending.
+    native_limitation: The 3.1 isolated preflight found no authenticated session. Native validation for 3.3 remains pending.
 cases:
   - id: codex-fresh-bootstrap
     host: codex_cli
