@@ -6,6 +6,7 @@ This is the concise, shared instruction entrypoint for Codex and Claude Code. Ke
 
 - Optional project-facts index: if `PROJECT-CONTEXT.md` exists and broader product/architecture context matters, read it; otherwise use existing project instructions and relevant evidence.
 - UI task: read `PROJECT-VISUAL-DNA.md` only when it exists and the task affects UI.
+- Hosted runtime or release readiness task: read `PROJECT-RUNTIME-OPERATIONS.md` when it exists and affects the decision.
 - API/backend task: read `PROJECT-API-CONTRACT.md` only when it exists and the task affects an API, data, or backend boundary.
 - `PROJECT-CONTEXT.md` is an index and fact catalog, not a second instruction file. Each fact should have one canonical owner; link to specialist files instead of copying their details.
 

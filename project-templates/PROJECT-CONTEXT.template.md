@@ -21,5 +21,6 @@
 ## Specialist context
 
 - UI / visual context: `PROJECT-VISUAL-DNA.md` (optional; load only for UI work).
+- Runtime / operations context: `PROJECT-RUNTIME-OPERATIONS.md` (optional; load for relevant hosted runtime, rollout or recovery decisions).
 - API / backend context: `PROJECT-API-CONTRACT.md` (optional; load only for API, data, or backend work).
 - Other scoped context and when to read it:

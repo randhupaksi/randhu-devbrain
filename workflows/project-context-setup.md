@@ -17,6 +17,7 @@ For a broader documentation outcome, use [project-documentation](../skills/proje
 - `CLAUDE.md`: import `AGENTS.md` where supported; add only Claude-specific project behavior. Do not duplicate shared context.
 - `PROJECT-CONTEXT.md`: product and broad technical map, source-of-truth map, and pointers to scoped context. It is factual context, not a second instruction hierarchy.
 - `PROJECT-VISUAL-DNA.md`: UI identity, design-system sources, component conventions, responsive priorities, and visual checks.
+- `PROJECT-RUNTIME-OPERATIONS.md`: hosted runtime ownership, rollout, health, backups, and recovery evidence.
 - `PROJECT-API-CONTRACT.md`: API contracts, consumers, authorization/data boundaries, migrations, and contract checks.
 
 These specialist files are optional. Projects may keep facts in an existing `AGENTS.md`; do not force the template layout when it adds overhead. Avoid maintaining duplicate copies of the same decision. If an existing project convention requires another layout, document its source of truth instead of renaming files mechanically.
