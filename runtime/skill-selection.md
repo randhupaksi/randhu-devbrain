@@ -27,6 +27,8 @@ For an ambiguous request, identify the deliverable the user will review and the 
 | Frontend feature vs UI and state | frontend-feature-engineering connects the journey; UI skills own visual direction and frontend-state-management owns dedicated state correctness work |
 | Model behavior vs provider transport | ai-application-engineering owns model output and fallback; external-service-integrations owns distinct transport and provider reliability work |
 | Local setup vs hosted topology vs rollout | developer-environment owns local services; cloud-infrastructure-engineering owns hosted runtime resources; ci-cd-release-engineering owns artifact promotion and rollout |
+| MCP contract vs integration | mcp-server-engineering owns the agent-facing protocol and tool behavior; external-service-integrations owns upstream provider behavior |
+| Agent evaluation vs implementation | agent-evaluation-engineering owns comparative outcomes and action evidence; ai-application-engineering owns the model feature and fallback behavior |
 | Reliability design vs diagnosis | reliability-engineering owns service targets and recovery design; observability-debugging diagnoses observed problems from telemetry |
 
 For an order flow, an accepted API contract can feed backend implementation; schema invariants feed persistence; a durable post-commit event feeds a worker. Load each owner only if that deliverable is actually part of the task. Do not turn the example into a mandatory multi-skill pipeline.

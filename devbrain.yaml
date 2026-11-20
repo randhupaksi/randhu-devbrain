@@ -1,12 +1,16 @@
 schema: devbrain-manifest
-version: 3.3.0
+version: 3.4.0
 owner: Randhu Paksi
 # Version/status describe this checkout. Historical evidence retains its original scope.
 status: stable
-updated_on: 2026-11-19
+updated_on: 2026-11-21
 language: en
 purpose: Personal developer knowledge layer for AI coding assistants
 scoped_validation:
+  v3_4_agent_engineering:
+    status: native_validation_pending
+    scope: mcp_tool_contracts_agent_evaluation_and_matched_comparison
+    evidence_report: docs/v3.4-agent-engineering.md
   v3_3_production_delivery:
     status: native_validation_pending
     scope: infrastructure_reliability_production_readiness_supply_chain_and_ui_evidence
@@ -114,6 +118,8 @@ skills:
   - ai-application-engineering
   - cloud-infrastructure-engineering
   - reliability-engineering
+  - mcp-server-engineering
+  - agent-evaluation-engineering
 
 project_context_candidates: [AGENTS.md, CLAUDE.md, PROJECT-CONTEXT.md, PROJECT-VISUAL-DNA.md, PROJECT-API-CONTRACT.md, PROJECT-RUNTIME-OPERATIONS.md, README.md]
 evaluation:

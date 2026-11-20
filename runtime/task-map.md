@@ -65,6 +65,7 @@ For a mixed task, use [skill selection](skill-selection.md) to resolve ownership
 | Public URL discovery, rendering and indexing-signal consistency | `technical-seo` |
 | Dependency compatibility transition and reproducible resolution | `dependency-upgrades` |
 | Reproducible local setup, service readiness and owned resource lifecycle | `developer-environment` |
-
+| MCP server capability and tool contract design | `mcp-server-engineering` |
+| Agent evaluation design and comparative behavior evidence | `agent-evaluation-engineering` |
 | Hosted topology, resource lifecycle or infrastructure as code | `cloud-infrastructure-engineering` |
 | Service objectives, failure behavior, capacity or recovery design | `reliability-engineering` |

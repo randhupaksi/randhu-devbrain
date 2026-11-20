@@ -604,3 +604,31 @@ skills:
     negative:
       prompt: "Diagnose an ongoing checkout latency spike using supplied correlated traces and logs."
       alternative: observability-debugging
+
+  - id: mcp-server-engineering
+    owns: MCP server capability and tool contract design
+    inputs: Target client, protocol revision, domain operations and authorization constraints
+    outputs: Reviewable tool contract with compatibility and failure evidence
+    collaborates:
+      - skill: auth-security
+        handoff: actor and resource policy for tool enforcement
+    positive:
+      prompt: "Design MCP lookup and reservation tools using the inventory brief. Return a design only."
+      expected: "Separate lookup and write, enforce warehouse scope, ignore supplier text as authority, and reconcile an ambiguous reservation."
+    negative:
+      prompt: "Design retry handling for an existing carrier webhook. The project uses no MCP tools."
+      alternative: external-service-integrations
+
+  - id: agent-evaluation-engineering
+    owns: Agent evaluation design and comparative behavior evidence
+    inputs: Task distribution, candidate and controls, observable actions and release criteria
+    outputs: Matched evaluation plan or suite with anchored scoring and limitations
+    collaborates:
+      - skill: ai-application-engineering
+        handoff: observed model or fallback defect with reproducible evidence
+    positive:
+      prompt: "Plan an evaluation comparing the two support assistant configurations from the supplied brief."
+      expected: "Use matched fresh sessions, distinguish extra tool actions from good prose, and preserve the blocked case."
+    negative:
+      prompt: "Choose unit or integration coverage for a deterministic invoice rounding function."
+      alternative: testing-strategy

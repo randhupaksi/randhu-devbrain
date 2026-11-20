@@ -1,0 +1,6 @@
+interface:
+  display_name: "MCP Server Engineering"
+  short_description: "Design bounded MCP servers and tool contracts"
+  default_prompt: "Use $mcp-server-engineering to design an inventory tool contract with bounded access."
+policy:
+  allow_implicit_invocation: true
