@@ -1,8 +1,8 @@
-# DevBrain 3.3
+# DevBrain 3.4
 
-DevBrain 3.3.0 is Randhu's portable developer knowledge layer for Codex and Claude Code. It gives an agent project-independent engineering principles, safety boundaries, task workflows, and focused specialist skills. The host model still performs the reasoning and coding. DevBrain supplies context and a routing structure for that work.
+DevBrain 3.4.0 is Randhu's portable developer knowledge layer for Codex and Claude Code. It gives an agent project-independent engineering principles, safety boundaries, task workflows, and focused specialist skills. The host model still performs the reasoning and coding. DevBrain supplies context and a routing structure for that work.
 
-The package contains 36 portable skills and 130 task behavior contracts. Version 3.3 adds cloud infrastructure and reliability engineering, a release readiness workflow, project runtime operations context, and a focused software supply chain guide. The current release has passed repository, skill contract, Node, and simulated installer checks. Codex and Claude native benchmark results are still `NOT_RUN`. See the [3.3 production delivery guide](docs/v3.3-production-delivery.md) for exact scope and evidence.
+The package contains 38 portable skills and 134 task behavior contracts. Version 3.4 adds MCP server engineering and agent evaluation engineering, with matched comparison cases for both. See the [3.4 agent engineering guide](docs/v3.4-agent-engineering.md) for release scope and evidence.
 
 ## Start here
 
@@ -46,7 +46,7 @@ This is a decision model, not a requirement to read every module in sequence. A 
 | `safety/` | Cross-cutting safeguards and deeper risk analysis |
 | `workflows/` | Task procedures, handoffs, debugging, project context, and delivery |
 | `prompts/` | Short commands with intent, mode, and routing |
-| `skills/` | 36 portable specialists selected by outcome |
+| `skills/` | 38 portable specialists selected by outcome |
 | `adapters/` and `install/` | Codex/Claude loader templates and explicit installer/updater |
 | `project-templates/` | Optional project context documents with clear ownership |
 | `evaluation/` | Behavior contracts, package checks, and maintenance-only evaluation tools |
@@ -64,12 +64,13 @@ The latest user instruction controls the task after platform and safety requirem
 
 DevBrain separates package checks from observed model behavior. Repository validation checks source structure and links. Skill tests check catalog, routing, and packaging contracts. Simulated installer tests check target layout and preservation. Scenario files define behavioral cases. Native comparisons require fresh Codex or Claude sessions with matched prompts and recorded evidence. Passing a structural check does not establish that a host loaded the files or that every model response follows them.
 
-The [evaluation guide](evaluation/README.md) explains the validation layers. The current benchmark has 17 cases and 204 prepared slots across three conditions, two hosts, and two repetitions. Those slots remain `NOT_RUN` until actual sessions are observed and reviewed.
+The [evaluation guide](evaluation/README.md) explains the validation layers. The current benchmark has 19 cases and generates 228 slots across three conditions, two hosts, and two repetitions. Prepared slots start as `NOT_RUN`.
 
 ## Current guidance and evidence
 
 - [Documentation index](docs/README.md): current guides and clearly identified historical records.
 - [Architecture](docs/architecture.md) and [module ownership](docs/module-ownership.md): canonical sources and boundaries.
+- [3.4 agent engineering guide](docs/v3.4-agent-engineering.md)
 - [3.3 production delivery guide](docs/v3.3-production-delivery.md)
 - [3.2 delivery guide](docs/v3.2-delivery.md): new capabilities, benchmark method, and validation limits.
 - [Evaluation procedure](evaluation/README.md): package validation and optional behavior evaluation.

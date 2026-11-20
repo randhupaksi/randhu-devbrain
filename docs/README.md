@@ -1,6 +1,6 @@
 # DevBrain Documentation
 
-DevBrain 3.3.0 contains 36 portable skills and 130 task behavior contracts. Markdown and YAML are the maintained operational sources. This index routes users and maintainers to the current owner for each question and keeps dated evidence attached to the release that produced it.
+DevBrain 3.4.0 contains 38 portable skills and 134 task behavior contracts. Markdown and YAML are the maintained operational sources. This index routes users and maintainers to the current owner for each question and keeps dated evidence attached to the release that produced it.
 
 ## Choose a starting point
 
@@ -37,6 +37,7 @@ The documentation describes operational sources. It does not replace them. When 
 
 Historical records preserve their original dates, package scope, and evidence. Their validation counts are specific to those revisions and environments. They are not current command references or proof of behavior in a later host version.
 
+- **3.4:** [Agent engineering and comparison evidence](v3.4-agent-engineering.md).
 - **3.3:** [Production delivery and package evidence](v3.3-production-delivery.md). Inputs for 204 matched slots are prepared; native Codex and Claude results remain `NOT_RUN`.
 - **3.2:** [Delivery and benchmark plan](v3.2-delivery.md). The 3.2 native comparison remains pending in its original release record.
 - **3.1:** [Reliability and benchmark evidence](v3.1-reliability.md).

@@ -4,6 +4,12 @@
 
 - Consolidated current documentation around v3.2, marked older reports as historical evidence, and removed obsolete DOCX guides and conceptual source material.
 
+## 3.4.0 — 2026-11-21
+
+- Add MCP server engineering and agent evaluation engineering, with four routing scenarios and two synthetic comparison cases.
+- Pin the 3.3 checkout as the comparison reference and record comparative evidence by host.
+- Summarize improved, tied, regressed and excluded comparisons by host and control. Compare optional effort metrics when both measurements share a source.
+
 ## 3.3.0 — 2026-11-19
 
 - Add cloud infrastructure and reliability engineering skills with selective routing and portable host payloads.

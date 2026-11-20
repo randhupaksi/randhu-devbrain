@@ -1,6 +1,6 @@
 # DevBrain Skill System
 
-DevBrain 3.3.0 contains 36 source skills. The first 30 skills shipped as the stable v3.0 package on 2026-11-12; v3.2 added four specialists and a greenfield workflow. v3.3 adds two production operations specialists. This guide explains current ownership and collaboration, followed by dated evidence from earlier expansions. DevBrain is a portable instruction system for the host model, not additional training. No third-party skill package or service is required. New operational guidance can improve the decisions and checks an agent makes, but package validation does not establish a general quality gain.
+DevBrain 3.4.0 contains 38 source skills. The first 30 skills shipped as the stable v3.0 package on 2026-11-12; v3.2 added four specialists and a greenfield workflow. v3.3 added two production operations specialists. v3.4 adds MCP server and agent evaluation engineering. This guide explains current ownership and collaboration, followed by dated evidence from earlier expansions. DevBrain is a portable instruction system for the host model, not additional training. No third-party skill package or service is required. New operational guidance can improve the decisions and checks an agent makes, but package validation does not establish a general quality gain.
 
 ## Ownership and collaboration
 
@@ -49,7 +49,7 @@ Project instructions and active user intent still determine the stack, product s
 
 ## Packaging and evaluation
 
-The manifest and source installer enumerate all 36 skills. Simulated-home installer checks cover source/Codex/Claude payload parity, updates, idempotency, and preservation of user instructions. Repository changes do not install into real host profiles. The release status does not convert scenario contracts into observed model behavior; the evidence below remains bounded by its recorded fixtures and runs.
+The manifest and source installer enumerate all 38 skills. Simulated-home installer checks cover source/Codex/Claude payload parity, updates, idempotency, and preservation of user instructions. Repository changes do not install into real host profiles. The release status does not convert scenario contracts into observed model behavior; the evidence below remains bounded by its recorded fixtures and runs.
 
 ### Add or change a skill
 

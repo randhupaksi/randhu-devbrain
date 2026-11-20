@@ -72,7 +72,7 @@ The installer uses preflight, staging, integrity checks, backups, and managed te
 
 `runtime/full-context.md` and `runtime/core-compact.md` remain compatibility entry points for older loaders. There is no generated monolithic prompt to rebuild, no model binding, and no background runtime, database, or product CLI. Validators and benchmark tools are manual maintenance utilities.
 
-The `v2` labels in the compatibility entrypoint and session baseline describe the retained loader/context format. The repository package version is maintained separately in `devbrain.yaml` and is currently 3.3.0. Keep compatibility filenames stable unless a concrete loader migration requires a change.
+The `v2` labels in the compatibility entrypoint and session baseline describe the retained loader/context format. The repository package version is maintained separately in `devbrain.yaml` and is currently 3.4.0. Keep compatibility filenames stable unless a concrete loader migration requires a change.
 
 ## Change propagation
 

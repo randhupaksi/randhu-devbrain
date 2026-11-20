@@ -1,6 +1,6 @@
 # DevBrain Module Ownership
 
-This map describes the maintained DevBrain 3.3 sources. Markdown and YAML define current behavior; no DOCX is needed to interpret or update the system.
+This map describes the maintained DevBrain 3.4 sources. Markdown and YAML define current behavior; no DOCX is needed to interpret or update the system.
 
 | Concern | Current owner |
 |---|---|
@@ -12,6 +12,7 @@ This map describes the maintained DevBrain 3.3 sources. Markdown and YAML define
 | Collaboration and natural communication | `core/ai-collaboration.md`; `humanize` for deep writing or voice work |
 | Safety and sensitive data | `safety/` plus concise always-available baseline boundaries |
 | Hosted runtime and production readiness | `cloud-infrastructure-engineering`, `reliability-engineering`, and `workflows/production-readiness-review.md` |
+| MCP tool contracts and agent comparisons | `mcp-server-engineering` and `agent-evaluation-engineering` |
 | Third-party software trust decisions | `safety/software-supply-chain.md` |
 | Product context and project facts | Project `AGENTS.md`/`CLAUDE.md`; optional files under `project-templates/` |
 | Prompt shortcuts and routing | `prompts/commands.yaml`; `runtime/task-map.md` |
@@ -31,7 +32,7 @@ This is an ownership map, not a required chain of files. A focused task usually 
 
 ## Current package facts
 
-The manifest is the package version and skill inventory owner. The current release is 3.3.0 with 36 source skills. The task contract suite contains 130 scenarios. The 17-case benchmark has 204 prepared inputs across three conditions, two hosts, and two repetitions. These are package facts; benchmark slots remain `NOT_RUN` until their host sessions are observed.
+The manifest is the package version and skill inventory owner. The current release is 3.4.0 with 38 source skills. The task contract suite contains 134 scenarios. Preparing the 19-case benchmark twice creates 228 slots across three conditions, two hosts, and two repetitions. These are package facts; benchmark slots remain `NOT_RUN` until their host sessions are observed.
 
 ## Relationship model
 
