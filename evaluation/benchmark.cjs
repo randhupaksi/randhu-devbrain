@@ -13,6 +13,7 @@ const {
 
 const root = path.resolve(__dirname, '..');
 const dimensions = ['scope', 'correctness', 'completion', 'verification', 'clarity'];
+const effortMetrics = ['tool_calls', 'elapsed_ms', 'input_tokens', 'output_tokens'];
 const conditions = ['native', 'reference', 'candidate'];
 const hosts = ['codex', 'claude'];
 const token = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -176,6 +177,24 @@ function validateScore(score, entry) {
     throw new Error('Invalid benchmark score');
   }
   if (score.status !== 'SCORED') return;
+  if (score.measurements !== undefined) {
+    const measurements = score.measurements;
+    if (
+      !measurements ||
+      Array.isArray(measurements) ||
+      typeof measurements !== 'object' ||
+      !Object.entries(measurements).every(
+        ([key, measurement]) =>
+          effortMetrics.includes(key) &&
+          typeof measurement?.source === 'string' &&
+          measurement.source.trim() &&
+          Number.isSafeInteger(measurement.value) &&
+          measurement.value >= 0,
+      )
+    ) {
+      throw new Error('Invalid benchmark measurements');
+    }
+  }
   const env = score.environment;
   if (
     env?.fresh_session !== true ||
@@ -246,11 +265,42 @@ function summarize(index, readScore) {
         result.delta = Object.fromEntries(
           dimensions.map((key) => [key, candidate.score.ratings[key] - other.score.ratings[key]]),
         );
+        const measurementDelta = {};
+        for (const metric of effortMetrics) {
+          const current = candidate.score.measurements?.[metric];
+          const baseline = other.score.measurements?.[metric];
+          if (current && baseline && current.source === baseline.source) {
+            measurementDelta[metric] = current.value - baseline.value;
+          }
+        }
+        if (Object.keys(measurementDelta).length) result.measurement_delta = measurementDelta;
       }
       comparisons.push(result);
     }
   }
-  return { totals, comparisons };
+  const by_host = {};
+  for (const comparison of comparisons) {
+    const [, host] = comparison.group.split('/');
+    const summary = (by_host[host] ??= {});
+    const control = (summary[comparison.control] ??= {
+      comparable: 0,
+      excluded: {},
+      dimensions: Object.fromEntries(
+        dimensions.map((key) => [key, { improved: 0, tied: 0, regressed: 0 }]),
+      ),
+    });
+    if (!comparison.comparable) {
+      const reason = comparison.reason;
+      control.excluded[reason] = (control.excluded[reason] ?? 0) + 1;
+      continue;
+    }
+    control.comparable++;
+    for (const [dimension, delta] of Object.entries(comparison.delta)) {
+      const outcome = delta > 0 ? 'improved' : delta < 0 ? 'regressed' : 'tied';
+      control.dimensions[dimension][outcome]++;
+    }
+  }
+  return { totals, comparisons, by_host };
 }
 
 function main([command, value, onlyCase, ...rest]) {

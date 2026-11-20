@@ -73,6 +73,32 @@ test('reports unrun, blocked and critical results without turning them into wins
     result.comparisons.map((pair) => pair.reason),
     ['critical finding', 'missing scores'],
   );
+  assert.equal(result.by_host.codex.native.comparable, 0);
+  assert.equal(result.by_host.codex.native.excluded['critical finding'], 1);
+  assert.equal(result.by_host.codex.reference.excluded['missing scores'], 1);
+});
+
+test('reports quality outcomes and compares only measurements from the same source', () => {
+  const { report, slot } = cohort();
+  slot('candidate').ratings.scope = 1;
+  slot('candidate').ratings.verification = 0;
+  slot('candidate').measurements = {
+    tool_calls: { value: 3, source: 'fixture event counter' },
+    input_tokens: { value: 20, source: 'host usage' },
+  };
+  slot('native').measurements = {
+    tool_calls: { value: 5, source: 'fixture event counter' },
+    input_tokens: { value: 40, source: 'reviewer estimate' },
+  };
+  const result = report();
+  assert.deepEqual(result.comparisons[0].measurement_delta, { tool_calls: -2 });
+  assert.equal(result.comparisons[1].measurement_delta, undefined);
+  assert.equal(result.by_host.codex.native.comparable, 1);
+  assert.equal(result.by_host.codex.native.dimensions.scope.tied, 1);
+  assert.equal(result.by_host.codex.native.dimensions.verification.regressed, 1);
+  assert.equal(result.by_host.codex.native.dimensions.correctness.improved, 1);
+  slot('native').measurements.tool_calls.value = -1;
+  assert.throws(report, /Invalid benchmark measurements/);
 });
 
 test('rejects missing conditions, mismatched inputs and scores from resumed sessions', () => {
