@@ -3,6 +3,8 @@
 ## Analyze
 
 - Identify the page goal, target user, primary task, data density, and existing visual language.
+- For a brand-led public experience that crosses routes, map visitor entry, information and decision steps, action, confirmation, and recovery; treat each as a connected page role, not a reason to apply the same composition everywhere.
+- When distinctive art direction or expressive interaction is a central outcome, use Creative UI/UX for that visual work on any surface, including an operational dashboard. Keep the surface's real task, data, and workflow requirements with their owner.
 - For a new page, substantial redesign, or hierarchy critique, use `core/ui-design-intelligence.md` to rank the task content/actions and form a concise, evidence-based direction. A small UI fix does not need a separate design brief.
 - Discover the actual route/component, Project Visual DNA, theme/token source, styling conventions, UI library, shared primitives/patterns, responsive rules, relevant state/API dependencies, affected consumers, and screen precedents.
 - Decide whether reuse is enough, a small foundation extension is needed, a shared component is justified, or the work should remain feature-local.
@@ -10,7 +12,7 @@
 
 ## Define direction
 
-Explain the visual/UX problem, task-priority order, evidence behind the design direction, changed areas, preserved behavior, responsive strategy, and foundation to reuse/extend/create. Keep style, composition, and theme as distinct choices. Derive visual direction from project context, not an AI template. State a defensible assumption and proceed for low- or medium-risk choices; do not add an approval pause unless a material product decision remains unresolved.
+Explain the visual/UX problem, task-priority order, evidence behind the design direction, changed areas, preserved behavior, responsive strategy, and foundation to reuse/extend/create. Keep style, composition, and theme as distinct choices. Derive visual direction from project context, not an AI template. For public page families, connect the creative thesis to real product identity and keep action-page hierarchy appropriate to its task. State a defensible assumption and proceed for low- or medium-risk choices; do not add an approval pause unless a material product decision remains unresolved.
 
 Map every new visual value to project tokens or another source of truth. If a shared component must change, map consumers and preserve its contract.
 

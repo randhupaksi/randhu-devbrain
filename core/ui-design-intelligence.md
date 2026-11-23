@@ -2,7 +2,7 @@
 
 ## Responsibility
 
-This module owns how DevBrain selects and critiques a visual direction and task-ranked hierarchy. `core/ui-ux-principles.md` owns shared experience quality; `core/ui-product-contexts.md` supplies task and domain lenses; `core/ui-direction-library.md` supplies visual-style, composition, theme, and motion vocabulary with trade-offs; `core/data-visualization.md` owns chart selection; `core/ui-platform-adaptation.md` owns platform/stack adaptation; `core/design-system-intelligence.md` owns tokens, components, and their evolution; the UI skills own their specific product surfaces. Load only the companion module needed for the active UI decision.
+This module owns how DevBrain selects and critiques a visual direction and task-ranked hierarchy. `core/ui-ux-principles.md` owns shared experience quality; `core/ui-product-contexts.md` supplies task and domain lenses; `core/ui-direction-library.md` supplies visual-style, composition, theme, and motion vocabulary with trade-offs; `core/data-visualization.md` owns chart selection; `core/ui-platform-adaptation.md` owns platform/stack adaptation; `core/design-system-intelligence.md` owns tokens, components, and their evolution. `creative-ui-ux` owns cross-surface art direction when that is a central outcome; `enterprise-ui-ux` and `marketing-portfolio-ui-ux` own their operational and visitor-journey outcomes. Load only the companion module needed for the active UI decision.
 
 ## Evidence order
 

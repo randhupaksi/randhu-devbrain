@@ -12,6 +12,7 @@ For an ambiguous request, identify the deliverable the user will review and the 
 | Database correctness vs speed | database-engineering owns invariants/evolution; database-query-optimization needs a query bottleneck and preserves results |
 | Auth vs broad security review | auth-security owns identity/access policy; application-security-review traces exploitable trust-boundary paths |
 | UI vs state/forms | UI skills own composition; frontend-state-management owns state/cache lifecycles; forms-validation owns input/submission semantics |
+| Creative direction vs surface workflow | creative-ui-ux owns cross-surface art direction when that is a central outcome; enterprise-ui-ux and marketing-portfolio-ui-ux retain operational and visitor-journey outcomes |
 | Design system vs refactor | design-system-architect owns shared visual contracts; architecture-refactor owns responsibilities/dependency direction |
 | Testing vs browser implementation | testing-strategy selects useful coverage; browser-e2e-testing implements actual browser journeys |
 | Debugging vs telemetry | ordinary bugs use debugging workflow; observability-debugging handles cross-service telemetry/evidence gaps |
