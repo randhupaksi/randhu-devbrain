@@ -1,6 +1,6 @@
 ---
 name: enterprise-ui-ux
-description: Design, implement, or review enterprise application UI for dashboards, admin panels, internal tools, CRUD, and data-heavy products. Use for product interfaces, not marketing or landing-page art direction.
+description: Design, implement, or review task-focused application UI for dashboards, admin panels, internal tools, CRUD, and data-heavy products. Use Creative UI/UX when a distinct cross-surface art direction is a central outcome.
 ---
 
 # Enterprise UI/UX
@@ -9,7 +9,8 @@ Build working software interfaces that feel intentional, efficient, readable, an
 
 ## Scope and priority
 
-- This skill serves web applications, dashboards, admin panels, management systems, SaaS products, operational tools, LMS, and data-heavy workflows. It is not a default style guide for marketing pages or cinematic landing pages.
+- This skill serves web applications, dashboards, admin panels, management systems, SaaS products, operational tools, LMS, and data-heavy workflows. It owns task flow, information density, data meaning, and operational states; it does not limit how expressive the interface may be.
+- When the user makes distinctive visual art direction or expressive interaction a central outcome, use creative-ui-ux for that cross-surface visual work. Keep this skill's task, data, and state requirements active, including when art-directing a dashboard.
 - Follow the active user request first. Preserve the project's visual identity, tokens, component system, conventions, and behavior unless the task explicitly changes them.
 - Do not install libraries or invent a new design system when the project already has a usable one. Do not change API contracts, data semantics, authorization, or business flows merely for UI convenience.
 

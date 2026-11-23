@@ -1,7 +1,7 @@
 interface:
   display_name: "Marketing & Portfolio UI/UX"
-  short_description: "Build brand-led marketing sites and portfolios"
-  default_prompt: "Use $marketing-portfolio-ui-ux to design or review a marketing or portfolio page that fits its brand, audience, and story."
+  short_description: "Build brand-led public sites and visitor journeys"
+  default_prompt: "Use $marketing-portfolio-ui-ux to design or review a brand-led public page or connected visitor journey that fits its audience, product truth, and story."
 
 policy:
   allow_implicit_invocation: true

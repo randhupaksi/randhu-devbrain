@@ -1,15 +1,16 @@
 ---
 name: marketing-portfolio-ui-ux
-description: Design, implement, or review marketing websites, landing pages, portfolios, and case studies with brand-led art direction, clear narrative, authentic proof, and responsive behavior. Use for persuasive surfaces, not data-heavy product UI.
+description: Design, implement, or review brand-led public websites, landing pages and their supporting information or action pages, portfolios, and case studies with clear narrative, authentic proof, and responsive behavior. Use Creative UI/UX when distinct cross-surface art direction is a central outcome.
 ---
 
 # Marketing & Portfolio UI/UX
 
-Build marketing and portfolio interfaces that make the message clear, give the work an identity, and invite the next relevant action. Let the supplied brand, audience, and story determine whether the result is quiet, vivid, editorial, technical, playful, or something else; do not make minimalism or a premium look the default. Optimize for visitor understanding and credible proof, not operational data density.
+Build public-facing marketing and portfolio experiences that make the message clear, give the work an identity, and invite the next relevant action. The scope can include a landing page and related detail, information, enquiry, application, booking, confirmation, or recovery pages. Let the supplied brand, audience, and story determine whether the result is quiet, vivid, editorial, technical, playful, or something else; do not make minimalism or a premium look the default. Optimize for visitor understanding, credible proof, and a coherent route journey, not operational data density.
 
 ## Scope and priority
 
-- Use this skill for product marketing sites, landing pages, personal portfolios, agency sites, showcase pages, and case studies. Use `enterprise-ui-ux` for dashboards, internal tools, CRUD, and data-heavy product workflows.
+- Use this skill for product marketing sites, landing pages, public information and action journeys, personal portfolios, agency sites, showcase pages, and case studies. Use `enterprise-ui-ux` for operational task flow, CRUD, and data-heavy workflows. A public journey may include a form or account step; preserve its real behavior and hand off a distinct validation, state, API, or identity problem to its owner.
+- Use `creative-ui-ux` when distinctive cross-surface art direction or expressive interaction is itself a central outcome. This skill continues to own the public narrative, authentic proof, and visitor journey; creative direction is not limited to a particular page category.
 - Follow the active user request first. Preserve the project's visual identity, tokens, shared components, conventions, content, and behavior unless the task explicitly changes them.
 - Do not invent client logos, testimonials, metrics, awards, customers, project outcomes, or product claims. Use real supplied or existing project content. Omit unsupported claims; ask for material missing facts rather than inventing proof.
 - Do not add dependencies, replace the design system, or change API/auth/business behavior merely to make a page look better.
@@ -21,11 +22,14 @@ For new pages or meaningful redesigns, establish proportionately:
 1. the audience, page goal, primary message, desired action, and credibility needed;
 2. the product, person, project, service, or work being presented and what proof is available;
 3. the project's Visual DNA: tokens, typography, brand, imagery, component patterns, motion language, responsive conventions, and screen precedents;
-4. the content hierarchy: what must be understood immediately, explored next, and acted on last.
+4. the visitor's route: likely entry points, decisions, supporting information, action, confirmation, and recovery paths in the requested scope;
+5. the content hierarchy: what must be understood immediately, explored next, and acted on last.
 
 Use composition, typography, contrast, spacing, imagery, and interaction to make the story clear. Do not copy a familiar landing-page structure unless it supports the message and audience.
 
 For a new or substantially changed visual direction, connect the brand, content, audience, and page goal to a specific page concept. Treat the product category as a clue, not a style recipe. Briefly state the design thesis and the composition, type, color, imagery, density, or motion decisions that express it. Keep the direction flexible when new product evidence appears.
+
+For a public route family, read [Creative Public Experiences](references/creative-public-experiences.md) for visitor roles, narrative, and continuity. When distinct art direction is central, use creative-ui-ux and its playbook to form the cross-surface visual concept; keep this skill's public purpose, proof, and visitor path in view. A recurring motif, transition, or media sequence is optional and must express real product meaning. Do not reuse a reference's identity, section order, assets, copy, palette, or code.
 
 Use brand tokens and supplied visual assets as the palette and imagery source. When those are absent, propose a small set of semantic color roles and concrete values that support the story; do not choose colors from an industry stereotype. Prefer the product's own screens and user-provided references. Use public examples only when research is allowed, and translate the principle rather than copying a layout, copy, or asset.
 
@@ -33,6 +37,8 @@ Use brand tokens and supplied visual assets as the palette and imagery source. W
 
 - Minimal means low visual noise, not empty space or missing information. Give each section a distinct job and visual reason to exist.
 - Build hierarchy through type scale, alignment, grouping, rhythm, and contrast before reaching for gradients, cards, shadows, or decorative effects.
+- Build a recognizable visual grammar from the project's own identity and content. If a motif or transition recurs, define the meaning and role it carries; do not repeat a flourish just to make sections look related.
+- Across supporting routes, carry the product identity through semantic tokens, type roles, voice, and interaction feedback. Let information, action, confirmation, and recovery pages use their own task-first composition instead of repeating the landing page's hero or motion.
 - Choose an attention sequence that fits the story: visitors need orientation, the main proposition or work, its supporting evidence, and an appropriate next action. This sequence can be quiet or highly expressive; do not make every section equally loud or make essential meaning depend on scrolling motion.
 - Use the brand and project design system as the source of truth. If the project has no usable foundation, create only the small, reusable foundation needed by the active outcome.
 - Make interaction feel responsive and purposeful: clear hover/focus states, restrained transitions, and motion that supports orientation or emphasis. Respect reduced-motion preferences.
@@ -53,6 +59,7 @@ Do not default to gradients, glass, blobs, glow, floating cards, stock-like copy
 - Read [references/marketing-patterns.md](references/marketing-patterns.md) for landing pages, product marketing, campaigns, and conversion surfaces.
 - Read [references/portfolio-patterns.md](references/portfolio-patterns.md) for personal portfolios, selected work, and case studies.
 - Read [references/visual-storytelling.md](references/visual-storytelling.md) for a new page or meaningful composition redesign.
+- Read [references/creative-public-experiences.md](references/creative-public-experiences.md) for substantial creative direction, a landing page with supporting routes, or a public journey with information, action, and confirmation states.
 
 ## Implementation and review
 
