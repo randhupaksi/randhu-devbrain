@@ -29,9 +29,9 @@ Fixtures are retained for inspection and ignored by Git. In a sandbox using anot
 
 ## Behavioral evaluation
 
-Use the [3.4 benchmark procedure](../docs/v3.4-agent-engineering.md#benchmark). The 134 task contracts are maintained separately from the 19 benchmark cases. Use the [UI outcome rubric](ui-outcome-rubric.md) for visual and interaction evidence.
+Use the current [3.5 Creative UI/UX guide](../docs/v3.5-creative-ui-ux.md) for cross-surface art direction and connected visitor routes; use the [3.4 benchmark procedure](../docs/v3.4-agent-engineering.md#benchmark) for matched-run mechanics. The 134 task contracts are maintained separately from the 19 benchmark cases. The existing suite does not directly measure the new cross-surface creative skill. Use the [UI outcome rubric](ui-outcome-rubric.md) for visual and interaction evidence.
 
-[`scenarios.yaml`](scenarios.yaml) contains 134 cases covering instruction precedence, scope and safety, selective discovery, debugging and completion, context reconciliation, session continuity, project context, documentation, natural writing, specialist skill routing and boundaries, and the latest research/discovery/frontend/AI/fullstack delivery additions. Each specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
+[`scenarios.yaml`](scenarios.yaml) contains 134 cases covering instruction precedence, scope and safety, selective discovery, debugging and completion, context reconciliation, session continuity, project context, documentation, natural writing, specialist skill routing and boundaries, and research/discovery/frontend/AI/fullstack delivery additions. No dedicated behavior contract currently exercises Creative UI/UX. Each case specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
 
 1. Create synthetic fixtures under `local/behavior-runs/` with project instructions, target files, contracts, and enough tests. Do not use another project, client data, secrets, or a real database.
 2. Start a new Codex or Claude session with only the baseline, skill metadata, case prompt, and relevant fixture. Do not show the assistant the expected answer.

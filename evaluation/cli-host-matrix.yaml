@@ -1,6 +1,6 @@
 schema: devbrain-cli-host-compatibility
 version: 1
-release: 3.4.0
+release: 3.5.0
 purpose: Verify host-specific instruction discovery, skill loading, session lifecycle, and permission boundaries without treating static checks as live behavior.
 hosts:
   - id: codex_cli
@@ -12,7 +12,7 @@ hosts:
     availability_observed_on: '2026-11-21'
     version_observed: "0.171.0"
     native_status: not_run
-    native_limitation: The current check verified CLI availability only. Authenticated isolation and native validation for 3.4 remain pending.
+    native_limitation: The 2026-11-21 capture verified CLI availability only. Authenticated isolation and native behavior validation for the 3.5 cross-surface creative UI/UX guidance remain pending.
   - id: claude_code_cli
     instruction_entry: "$HOME/.claude/CLAUDE.md"
     project_instruction_family: [CLAUDE.md, CLAUDE.local.md, AGENTS.md]
@@ -23,7 +23,7 @@ hosts:
     availability_observed_on: '2026-11-21'
     version_observed: "2.1.328"
     native_status: not_run
-    native_limitation: The current check verified CLI availability only. Authenticated isolation and native validation for 3.4 remain pending.
+    native_limitation: The 2026-11-21 capture verified CLI availability only. Authenticated isolation and native behavior validation for the 3.5 cross-surface creative UI/UX guidance remain pending.
 cases:
   - id: codex-fresh-bootstrap
     host: codex_cli

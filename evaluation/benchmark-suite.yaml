@@ -1,6 +1,6 @@
 schema: devbrain-benchmark
 version: 1
-reference_commit: 57090b624ccaab397f6fe278a9d1ae7e62597e86
+reference_commit: 7c799bff8d6cfe00574385f7209aa67f5bdb6f66
 cases:
   - id: enterprise-ui
     fixture: enterprise
