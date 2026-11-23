@@ -291,23 +291,64 @@ skills:
     inputs: User roles, screen evidence, and actual state/action contracts
     outputs: Working product interface and its state/accessibility checks
     collaborates:
+      - skill: creative-ui-ux
+        handoff: Distinct requested art direction that preserves task, data, and operational state requirements
       - skill: forms-validation
         handoff: complex data/validation behavior
       - skill: frontend-state-management
         handoff: cross-view async state ownership
       - skill: design-system-architect
         handoff: shared visual contract
-  - id: marketing-portfolio-ui-ux
-    owns: Responsive narrative interface with authentic claims
-    inputs: Supplied brand, audience, proof, and conversion goal
-    outputs: Responsive narrative interface with authentic claims
+  - id: creative-ui-ux
+    owns: Cross-surface visual art direction, expressive composition, and interaction when creative direction is a central outcome
+    inputs: User intent, product and audience evidence, actual interface behavior and content, design-system context, and creative scope
+    outputs: A coherent visual thesis and interface whose expressive decisions serve the product, its users, and its actual tasks
     collaborates:
+      - skill: enterprise-ui-ux
+        handoff: Task priorities, data meaning, operational states, and dense-view constraints to preserve
+      - skill: marketing-portfolio-ui-ux
+        handoff: Public narrative, authentic proof, and visitor-action journey to express
+      - skill: design-system-architect
+        handoff: Shared token or component contract when visual language must be codified across consumers
+    positive:
+      prompt: >-
+        Give this operations dashboard a distinctive, expressive visual direction. Preserve the existing metrics, filters,
+        table relationships, permissions, and actions; use only the supplied product identity and fixture data.
+      expected: >-
+        Form a specific visual thesis and grammar, apply it to the real dashboard and its states, keep values and workflows
+        easy to scan, and avoid invented data or decorative chart meaning.
+    negative:
+      prompt: Add a sortable column to an operations table while preserving the product's existing visual direction.
+      alternative: enterprise-ui-ux
+  - id: marketing-portfolio-ui-ux
+    owns: Brand-led public-page narrative, visual direction, and connected visitor-facing routes with authentic claims
+    inputs: Supplied brand, audience, product facts, proof, page goals, and public route scope
+    outputs: A distinctive responsive page or public page family with clear hierarchy, truthful proof, and coherent visitor actions
+    collaborates:
+      - skill: creative-ui-ux
+        handoff: Distinct requested art direction or expressive interaction beyond the visitor narrative outcome
       - skill: humanize
         handoff: dedicated voice or long-form editorial pass
+      - skill: forms-validation
+        handoff: complex field validation, submission error mapping, and form recovery behavior
+      - skill: frontend-state-management
+        handoff: cross-route draft ownership, resume behavior, or asynchronous form state
+      - skill: internationalization-localization
+        handoff: locale routing, message resources, date/number formatting, or RTL behavior
       - skill: frontend-performance
         handoff: measured media/loading bottleneck
       - skill: technical-seo
         handoff: public route intent and actual crawlable content
+    positive:
+      prompt: >-
+        Design a creative landing page with supporting program information, an application form, and a confirmation route.
+        Use the supplied visual reference for narrative pacing only; preserve the project's own palette, copy, facts, and identity.
+      expected: >-
+        Route the public experience to the marketing skill, map page roles and handoffs, keep action pages task-first, and
+        adapt the reference principle without reusing its identity or assets.
+    negative:
+      prompt: Rework the private operations dashboard's dense status table while preserving its filtering behavior.
+      alternative: enterprise-ui-ux
   - id: design-system-architect
     owns: Compatible visual tokens/components and migrated consumers
     inputs: Token owner, shared primitives, variants and consumer inventory

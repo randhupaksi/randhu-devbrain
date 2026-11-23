@@ -1,0 +1,7 @@
+interface:
+  display_name: "Creative UI/UX"
+  short_description: "Art-direct expressive interfaces across product surfaces"
+  default_prompt: "Use $creative-ui-ux to create a distinctive visual direction for this interface while preserving its real user tasks and behavior."
+
+policy:
+  allow_implicit_invocation: true
