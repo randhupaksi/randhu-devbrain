@@ -4,6 +4,13 @@
 
 - Consolidated current documentation around v3.2, marked older reports as historical evidence, and removed obsolete DOCX guides and conceptual source material.
 
+## 3.5.0 — 2026-11-23 (stable source package; native creative validation pending)
+
+- Add the Creative UI/UX skill and playbook for distinctive visual art direction and expressive interaction across public and internal surfaces, including dashboards and data-rich products.
+- Expand the marketing and portfolio guidance for connected landing, information, action, confirmation, and recovery pages with route-specific hierarchy.
+- Connect creative direction to task routing, skill ownership, core UI guidance, the enterprise and marketing skills, and current documentation.
+- Keep 134 existing behavior contracts and the established benchmark suite unchanged. Repository content validation passes; native Codex and Claude behavior remains pending.
+
 ## 3.4.0 — 2026-11-21
 
 - Add MCP server engineering and agent evaluation engineering, with four routing scenarios and two synthetic comparison cases.

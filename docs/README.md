@@ -1,6 +1,6 @@
 # DevBrain Documentation
 
-DevBrain 3.4.0 contains 38 portable skills and 134 task behavior contracts. Markdown and YAML are the maintained operational sources. This index routes users and maintainers to the current owner for each question and keeps dated evidence attached to the release that produced it.
+DevBrain 3.5.0 contains 39 portable skills and 134 task behavior contracts. Markdown and YAML are the maintained operational sources. This index routes users and maintainers to the current owner for each question and keeps dated evidence attached to the release that produced it.
 
 ## Choose a starting point
 
@@ -15,6 +15,8 @@ DevBrain 3.4.0 contains 38 portable skills and 134 task behavior contracts. Mark
 | Set up project instructions or optional context | [Project context workflow](../workflows/project-context-setup.md), [templates](../project-templates/README.md) |
 | Understand a verification command or behavior evaluation | [Evaluation procedure](../evaluation/README.md), [scenario overview](evaluation-scenarios.md) |
 | Review deep editing or natural UI text | [Humanize guidance](humanize.md) |
+| Create distinctive art direction across product surfaces | [Creative UI/UX skill](../skills/creative-ui-ux/SKILL.md), [creative direction playbook](../skills/creative-ui-ux/references/creative-direction-playbook.md), and [3.5 guide](v3.5-creative-ui-ux.md) |
+| Design a creative landing page and its supporting visitor routes | [3.5 Creative UI/UX guide](v3.5-creative-ui-ux.md), [public-experience reference](../skills/marketing-portfolio-ui-ux/references/creative-public-experiences.md), and [marketing and portfolio skill](../skills/marketing-portfolio-ui-ux/SKILL.md) |
 | Maintain project documentation | [Project documentation guidance](project-documentation.md) |
 | Resolve instruction conflicts | [Context precedence](context-precedence.md) |
 | Find a release's scope and historical evidence | [Changelog](../CHANGELOG.md), then the corresponding report below |
@@ -33,10 +35,11 @@ DevBrain 3.4.0 contains 38 portable skills and 134 task behavior contracts. Mark
 
 The documentation describes operational sources. It does not replace them. When a summary and source differ, use the current manifest, task map, catalog, installer, and evaluation files, then update only the affected summaries.
 
-## Historical release evidence
+## Dated release evidence
 
-Historical records preserve their original dates, package scope, and evidence. Their validation counts are specific to those revisions and environments. They are not current command references or proof of behavior in a later host version.
+Release records preserve their original dates, package scope, and evidence. Their validation counts are specific to those revisions and environments. Earlier reports are not current command references or proof of behavior in a later host version.
 
+- **3.5:** [Creative UI/UX guidance](v3.5-creative-ui-ux.md). Native Codex/Claude behavior validation remains pending.
 - **3.4:** [Agent engineering and comparison evidence](v3.4-agent-engineering.md).
 - **3.3:** [Production delivery and package evidence](v3.3-production-delivery.md). Inputs for 204 matched slots are prepared; native Codex and Claude results remain `NOT_RUN`.
 - **3.2:** [Delivery and benchmark plan](v3.2-delivery.md). The 3.2 native comparison remains pending in its original release record.

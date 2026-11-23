@@ -1,11 +1,13 @@
 # DevBrain Module Ownership
 
-This map describes the maintained DevBrain 3.4 sources. Markdown and YAML define current behavior; no DOCX is needed to interpret or update the system.
+This map describes the maintained DevBrain 3.5 sources. Markdown and YAML define current behavior; no DOCX is needed to interpret or update the system.
 
 | Concern | Current owner |
 |---|---|
 | Developer identity and engineering quality | `core/developer-profile.md`; `core/engineering-principles.md` |
 | UI/UX quality, design direction, and visual review | `core/ui-ux-principles.md`; `core/ui-design-intelligence.md`; `workflows/ui-task.md` |
+| Cross-surface creative art direction and expressive interaction | `skills/creative-ui-ux/SKILL.md`; `skills/creative-ui-ux/references/creative-direction-playbook.md` |
+| Creative public landing pages and supporting visitor journeys | `skills/marketing-portfolio-ui-ux/SKILL.md`; `skills/marketing-portfolio-ui-ux/references/creative-public-experiences.md`; `core/ui-product-contexts.md` |
 | Design system and component consistency | `core/design-system-intelligence.md`; `design-system-architect` |
 | Frontend and fullstack boundaries | `core/frontend-and-fullstack.md`; `core/api-backend-intelligence.md` |
 | Performance and evidence | `core/performance.md`; `frontend-performance` |
@@ -32,7 +34,7 @@ This is an ownership map, not a required chain of files. A focused task usually 
 
 ## Current package facts
 
-The manifest is the package version and skill inventory owner. The current release is 3.4.0 with 38 source skills. The task contract suite contains 134 scenarios. Preparing the 19-case benchmark twice creates 228 slots across three conditions, two hosts, and two repetitions. These are package facts; benchmark slots remain `NOT_RUN` until their host sessions are observed.
+The manifest is the package version and skill inventory owner. The current release is 3.5.0 with 39 source skills. The task contract suite contains 134 scenarios and has no dedicated cross-surface creative art-direction case. The existing 19-case benchmark is pinned to the 3.4.0 baseline and creates 228 slots across three conditions, two hosts, and two repetitions. The 3.5 creative UI/UX guidance has no native Codex or Claude behavior result yet; benchmark slots remain `NOT_RUN` until their host sessions are observed.
 
 ## Relationship model
 
