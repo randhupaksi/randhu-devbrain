@@ -31,7 +31,13 @@ function Assert-Fails([scriptblock]$Action, [string]$Message) {
     try { & $Action } catch { $failed = $true }
     Assert $failed $Message
 }
-$names = @('enterprise-ui-ux', 'marketing-portfolio-ui-ux', 'design-system-architect', 'architecture-refactor', 'frontend-performance', 'accessibility-audit', 'testing-strategy', 'project-documentation', 'humanize', 'api-contracts', 'backend-feature-engineering', 'database-engineering', 'database-query-optimization', 'auth-security', 'application-security-review', 'frontend-state-management', 'forms-validation', 'external-service-integrations', 'background-jobs-queues', 'file-storage-uploads', 'browser-e2e-testing', 'code-review', 'observability-debugging', 'ci-cd-release-engineering', 'realtime-systems', 'server-caching', 'internationalization-localization', 'technical-seo', 'dependency-upgrades', 'developer-environment', 'technical-research', 'product-discovery', 'frontend-feature-engineering', 'ai-application-engineering', 'cloud-infrastructure-engineering', 'reliability-engineering', 'mcp-server-engineering', 'agent-evaluation-engineering')
+$names = @(Get-ChildItem -LiteralPath (Join-Path $root 'skills') -Directory | Where-Object { Test-Path -LiteralPath (Join-Path $_.FullName 'SKILL.md') -PathType Leaf } | Select-Object -ExpandProperty Name)
+$reader = Join-Path $root 'install/read-skill-inventory.ps1'
+$syntheticManifest = Join-Path $testRoot 'inventory.yaml'
+foreach ($bad in @("skills: [one]", "skills:`n  - one`n  - one", "skills:`n  - ../other", "skills:`n  - one`nskills:`n  - two")) {
+    [IO.File]::WriteAllText($syntheticManifest, $bad)
+    Assert-Fails { & $reader -Manifest $syntheticManifest } 'Reject malformed or unsafe manifest inventory'
+}
 $fakeHome = Join-Path $testRoot 'Different User'
 & $installer -UserHome $fakeHome -WhatIf 6>$null
 Assert (-not (Test-Path -LiteralPath $fakeHome)) 'WhatIf must not create even the home directory'
@@ -48,6 +54,10 @@ $codexLoader = Join-Path $fakeHome '.codex/AGENTS.md'
 [IO.File]::WriteAllText((Join-Path $fakeHome '.claude/CLAUDE.md'),$personal)
 $beforeLoader = (Get-FileHash -LiteralPath $codexLoader).Hash
 & $installer -UserHome $fakeHome 6>$null
+foreach ($relative in @('.agents/skills', '.claude/skills')) {
+    $installedNames = @(Get-ChildItem -LiteralPath (Join-Path $fakeHome $relative) -Directory | Select-Object -ExpandProperty Name)
+    Assert (@(Compare-Object ($names | Sort-Object) ($installedNames | Sort-Object)).Count -eq 0) "Exact installed skill set: $relative"
+}
 $actual = [IO.File]::ReadAllText($codexLoader)
 Assert ($actual.StartsWith($personal) -and $actual.EndsWith($suffix)) 'Outside managed block remains exact'
 $backup = @(Get-ChildItem -LiteralPath (Join-Path $fakeHome '.codex') -Filter 'AGENTS.md.bak.*')

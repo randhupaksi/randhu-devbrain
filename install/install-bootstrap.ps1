@@ -19,7 +19,6 @@ if (-not $CodexHome) {
 }
 $CodexHome = [IO.Path]::GetFullPath($CodexHome)
 $claudeHome = Join-Path $resolvedHome '.claude'
-$names = @('enterprise-ui-ux', 'marketing-portfolio-ui-ux', 'design-system-architect', 'architecture-refactor', 'frontend-performance', 'accessibility-audit', 'testing-strategy', 'project-documentation', 'humanize', 'api-contracts', 'backend-feature-engineering', 'database-engineering', 'database-query-optimization', 'auth-security', 'application-security-review', 'frontend-state-management', 'forms-validation', 'external-service-integrations', 'background-jobs-queues', 'file-storage-uploads', 'browser-e2e-testing', 'code-review', 'observability-debugging', 'ci-cd-release-engineering', 'realtime-systems', 'server-caching', 'internationalization-localization', 'technical-seo', 'dependency-upgrades', 'developer-environment', 'technical-research', 'product-discovery', 'frontend-feature-engineering', 'ai-application-engineering', 'cloud-infrastructure-engineering', 'reliability-engineering', 'mcp-server-engineering', 'agent-evaluation-engineering')
 $markerStart = '<!-- DEVBRAIN-BOOTSTRAP:START -->'
 $markerEnd = '<!-- DEVBRAIN-BOOTSTRAP:END -->'
 $runId = (Get-Date -Format 'yyyyMMdd-HHmmss-fff') + '-' + [guid]::NewGuid().ToString('N').Substring(0,8)
@@ -85,6 +84,11 @@ $skillPlans = @()
 if ($Tool -in @('Codex','Both')) { $loaderPlans += Get-LoaderPlan 'Codex' (Join-Path $CodexHome 'AGENTS.md') 'adapters/codex/AGENTS.global.template.md' }
 if ($Tool -in @('Claude','Both')) { $loaderPlans += Get-LoaderPlan 'Claude' (Join-Path $claudeHome 'CLAUDE.md') 'adapters/claude-code/CLAUDE.global.template.md' }
 if (-not $SkipSkills) {
+    $manifestPath = Join-Path $resolvedRoot 'devbrain.yaml'
+    $inventoryReader = Join-Path $resolvedRoot 'install/read-skill-inventory.ps1'
+    Assert-NoReparse $manifestPath
+    Assert-NoReparse $inventoryReader
+    $names = @(& $inventoryReader -Manifest $manifestPath)
     if (-not $CodexSkillsPath) {
         $legacy = Join-Path $CodexHome 'skills'
         $hasLegacy = @($names | Where-Object { Test-Path -LiteralPath (Join-Path $legacy $_) }).Count -gt 0
