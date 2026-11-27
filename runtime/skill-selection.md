@@ -23,6 +23,7 @@ For an ambiguous request, identify the deliverable the user will review and the 
 | Localization vs prose | internationalization-localization owns locale infrastructure and formatting; humanize owns editorial voice |
 | SEO vs marketing | technical-seo owns crawl/index/render signals; marketing-portfolio-ui-ux owns visual narrative and conversion |
 | Upgrade vs release | dependency-upgrades owns version/consumer compatibility; ci-cd-release-engineering owns pipeline/artifact rollout |
+| Git command list vs one commit subject | git-command-listing inspects worktree state and drafts feature-split commands; `commit-msg` returns one text-only subject without Git inspection |
 | Research vs transition | technical-research compares options and evidence; dependency-upgrades applies a chosen dependency transition |
 | Discovery vs documentation | product-discovery defines what should be built; project-documentation describes verified behavior and owns the document structure |
 | Frontend feature vs UI and state | frontend-feature-engineering connects the journey; UI skills own visual direction and frontend-state-management owns dedicated state correctness work |

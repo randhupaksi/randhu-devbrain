@@ -285,7 +285,7 @@ skills:
         credentials.
     negative:
       prompt: Write a Git add/commit/push command list.
-      alternative: null
+      alternative: git-command-listing
   - id: enterprise-ui-ux
     owns: Working product interface and its state/accessibility checks
     inputs: User roles, screen evidence, and actual state/action contracts
@@ -673,3 +673,15 @@ skills:
     negative:
       prompt: "Choose unit or integration coverage for a deterministic invoice rounding function."
       alternative: testing-strategy
+
+  - id: git-command-listing
+    owns: Feature-grouped, text-only Git staging, commit, and push command proposals grounded in the current worktree
+    inputs: Repository root, branch/upstream, staged and unstaged diffs, untracked paths, and requested listing scope
+    outputs: Reviewable commit groups with exact paths, English Conventional Commit subjects, and one text-only push command
+    collaborates: []
+    positive:
+      prompt: Write a Git add/commit/push command list.
+      expected: Inspect repository state and group exact paths into coherent feature commits; preserve unrelated work and keep all commands text-only.
+    negative:
+      prompt: Suggest one Conventional Commit message for a single change; do not list Git commands.
+      alternative: null

@@ -402,7 +402,7 @@ check(
   'Smoke suite schema/release',
 );
 check(JSON.stringify(smoke?.hosts) === '["codex","claude"]', 'Smoke host targets');
-check(Array.isArray(smoke?.cases) && smoke.cases.length === 12, 'Twelve core smoke cases');
+check(Array.isArray(smoke?.cases) && smoke.cases.length >= 12, 'Minimum core smoke coverage');
 if (Array.isArray(smoke?.cases)) {
   const smokeIds = new Set();
   for (const item of smoke.cases) {
@@ -426,6 +426,13 @@ if (Array.isArray(smoke?.cases)) {
       'Smoke fixture facts/coverage',
     );
   }
+  for (const id of [
+    '12-git-list',
+    '135-git-command-listing-boundary',
+    '136-creative-ui-ux',
+    '137-creative-ui-ux-boundary',
+  ])
+    check(smokeIds.has(id), 'Required release smoke case: ' + id);
 }
 check(
   resultContract?.schema === 'devbrain-scorecard-contract' && resultContract?.version === 2,

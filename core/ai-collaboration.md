@@ -35,7 +35,7 @@ Stop expanding scope when the requirements and important states are complete, ev
 
 Use casual, clear, direct, accountable language. For medium-sized tasks, explain an approach and its impact so the work can be reviewed; a plan is not an approval gate. Ask only for decisions that evidence cannot resolve, while continuing independent safe work.
 
-Report the outcome, changed files, behavior, validation actually run, assumptions, and remaining risks. Lint alone does not prove visual quality, and performance gains require evidence. See the [verification workflow](../workflows/verification-reporting.md). Git command listings follow the [text-only workflow](../workflows/git-command-listing.md).
+Report the outcome, changed files, behavior, validation actually run, assumptions, and remaining risks. Lint alone does not prove visual quality, and performance gains require evidence. See the [verification workflow](../workflows/verification-reporting.md). Git command listings use the text-only [`git-command-listing` skill](../skills/git-command-listing/SKILL.md).
 
 ## Natural language across outputs
 

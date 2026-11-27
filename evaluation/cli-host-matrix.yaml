@@ -1,6 +1,6 @@
 schema: devbrain-cli-host-compatibility
 version: 1
-release: 3.5.0
+release: 3.7.0
 purpose: Verify host-specific instruction discovery, skill loading, session lifecycle, and permission boundaries without treating static checks as live behavior.
 hosts:
   - id: codex_cli
@@ -9,10 +9,10 @@ hosts:
     user_skill_location: "$HOME/.agents/skills"
     session_modes: [interactive_fresh, one_shot, resume]
     availability_observed: available
-    availability_observed_on: '2026-11-21'
-    version_observed: "0.171.0"
+    availability_observed_on: '2026-11-27'
+    version_observed: "0.172.0"
     native_status: not_run
-    native_limitation: The 2026-11-21 capture verified CLI availability only. Authenticated isolation and native behavior validation for the 3.5 cross-surface creative UI/UX guidance remain pending.
+    native_limitation: The version probe reported access denied when preparing profile-local command aliases. Fresh authenticated isolation and native behavior remain unverified.
   - id: claude_code_cli
     instruction_entry: "$HOME/.claude/CLAUDE.md"
     project_instruction_family: [CLAUDE.md, CLAUDE.local.md, AGENTS.md]
@@ -20,10 +20,10 @@ hosts:
     user_skill_location: "$HOME/.claude/skills"
     session_modes: [interactive_fresh, one_shot, continue, resume]
     availability_observed: available
-    availability_observed_on: '2026-11-21'
-    version_observed: "2.1.328"
+    availability_observed_on: '2026-11-27'
+    version_observed: "2.1.332"
     native_status: not_run
-    native_limitation: The 2026-11-21 capture verified CLI availability only. Authenticated isolation and native behavior validation for the 3.5 cross-surface creative UI/UX guidance remain pending.
+    native_limitation: The version probe verified CLI availability. Fresh authenticated isolation and native behavior remain unverified.
 cases:
   - id: codex-fresh-bootstrap
     host: codex_cli

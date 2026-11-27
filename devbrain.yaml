@@ -1,12 +1,20 @@
 schema: devbrain-manifest
-version: 3.5.0
+version: 3.7.0
 owner: Randhu Paksi
 # Version/status describe this checkout. Historical evidence retains its original scope.
 status: stable
-updated_on: 2026-11-23
+updated_on: 2026-11-27
 language: en
 purpose: Personal developer knowledge layer for AI coding assistants
 scoped_validation:
+  v3_7_evidence:
+    status: native_validation_pending
+    scope: manifest_driven_installation_targeted_benchmark_and_host_coverage
+    evidence_report: docs/v3.7-evaluation.md
+  v3_6_git_command_listing:
+    status: source_validation_pass_installation_verified_native_behavior_pending
+    scope: read_only_worktree_grounded_feature_split_git_command_proposals
+    evidence_report: docs/skill-system.md
   v3_4_agent_engineering:
     status: native_validation_pending
     scope: mcp_tool_contracts_agent_evaluation_and_matched_comparison
@@ -87,6 +95,7 @@ bootstrap:
 
 skills:
   - creative-ui-ux
+  - git-command-listing
   - enterprise-ui-ux
   - marketing-portfolio-ui-ux
   - design-system-architect
@@ -137,6 +146,7 @@ evaluation:
   scorecard_contract: evaluation/scorecard-contract.yaml
   smoke_preparation: evaluation/prepare-smoke.cjs
   result_validator: evaluation/validate-results.cjs
+  skill_coverage: evaluation/skill-coverage.cjs
   result_tests: evaluation/test-behavior-results.cjs
   failure_taxonomy: evaluation/failure-taxonomy.yaml
   host_preflight: evaluation/host-preflight.cjs

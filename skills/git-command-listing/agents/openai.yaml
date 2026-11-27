@@ -1,0 +1,6 @@
+interface:
+  display_name: "Git Command Listing"
+  short_description: "Draft feature-split Git command lists"
+  default_prompt: "Use $git-command-listing to inspect the worktree and draft split Git commands."
+policy:
+  allow_implicit_invocation: true

@@ -1,6 +1,6 @@
 schema: devbrain-smoke-suite
 version: 1
-release: 3.5.0
+release: 3.7.0
 hosts: [codex, claude]
 cases:
   - scenario_id: 18-enterprise-routing
@@ -27,6 +27,18 @@ cases:
     fixture: git-list
     supplement: "This isolated fixture has two untracked source files for two completed changes, no commits and no remote. Give text-only add/commit groups and explain the push prerequisite."
     coverage: [git_text_only, exact_paths, scope]
+  - scenario_id: 135-git-command-listing-boundary
+    fixture: git-list
+    supplement: "Change summary: trim leading and trailing spaces from displayed record labels. Return just the commit subject."
+    coverage: [git_subject_only, skill_boundary]
+  - scenario_id: 136-creative-ui-ux
+    fixture: enterprise
+    supplement: "Use table.html and tokens.css. The synthetic dashboard currently exposes records, filtering and selection only. Keep its behavior and supplied content intact."
+    coverage: [creative_direction, operational_behavior, responsive_ui]
+  - scenario_id: 137-creative-ui-ux-boundary
+    fixture: enterprise
+    supplement: "Make the Record column sortable in table.html. Keep the existing visual direction and preserve filtering, selection and feedback."
+    coverage: [creative_boundary, enterprise_skill, sorting]
   - scenario_id: 41-context-latest-user-decision
     fixture: settings
     supplement: "Use settings.html and tokens.css. Keep the two existing preferences and their labels; the latest grouped-list choice supersedes the older card preference."

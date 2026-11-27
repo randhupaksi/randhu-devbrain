@@ -29,7 +29,7 @@ Paths are relative to the DevBrain root. Read only relevant rows, then only the 
 | Testing strategy, coverage, or test repair as the outcome | `workflows/verification-reporting.md` | `testing-strategy` |
 | Routine validation of another task | `workflows/verification-reporting.md` only when needed | No extra skill |
 | Action risk/approval analysis | `safety/policy.md`, `safety/risk-model.md`, `safety/data-and-api-protection.md` | None needed; application vulnerability review uses `application-security-review`, identity/access policy uses `auth-security` |
-| Git command listing | `workflows/git-command-listing.md` | None needed |
+| Git add/commit/push command listing split by feature or logical change | `safety/policy.md` | `git-command-listing` |
 | Compressed prompt command | `prompts/commands.yaml`, `prompts/README.md` | Match the outcome |
 | New fullstack project from a brief, including plan-only delivery requests | `workflows/greenfield-fullstack-delivery.md` | Match the current deliverable; use product discovery when requirements remain open |
 | Explicit production readiness or operational release review | `workflows/production-readiness-review.md`; use linked project runtime context when relevant | Match a distinct deliverable if needed |

@@ -39,7 +39,7 @@ Do not delete a file merely because it appears unused. Check references and expl
 
 Read-only Git operations such as `status`, `diff`, and relevant logs are allowed. Do not run `git add`, commit, push, force-push, merge, rebase, amend, reset, or change history without an explicit instruction naming that operation. Requests for a commit message or to “list Git commands” produce text only, even if the output includes `git add`, `git commit`, and `git push`.
 
-For Git command listings, group commands by feature/logical change, use `git add --` with specific files, and write English Conventional Commit messages naming the domain/feature and outcome. Do not use `git add .`, group by page section, or use generic messages such as `update dashboard`. Show one `git push` as text after all commit groups. See `workflows/git-command-listing.md`.
+For Git command listings, group commands by feature/logical change, use `git add --` with specific files, and write English Conventional Commit messages naming the domain/feature and outcome. Do not use `git add .`, group by page section, or use generic messages such as `update dashboard`. Show one `git push` as text after all commit groups. See `skills/git-command-listing/SKILL.md`. Listing commands remains text-only and does not authorize Git mutations.
 
 Authorization is per operation: permission to `git add` does not grant permission to commit or push; permission to commit does not grant permission to push. Before executing an authorized operation, inspect the repository, branch, status, staged changes, and file scope to protect unrelated user work.
 

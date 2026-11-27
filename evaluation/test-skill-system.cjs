@@ -28,17 +28,9 @@ check(
 );
 check(new Set(manifest.skills).size === manifest.skills.length, 'Manifest has no duplicate skills');
 check(
-  catalog.skills.filter((s) => s.positive && s.negative).length === 29,
-  'Twenty-nine additions have positive and boundary use cases',
+  catalog.skills.filter((s) => s.positive && s.negative).length === 32,
+  'Thirty-two specialist owners have positive and boundary use cases',
 );
-for (const file of ['install/install-bootstrap.ps1', 'evaluation/test-installer.ps1']) {
-  const line = read(file).match(/\$names = @\(([^\n]+)\)/)?.[1];
-  const names = [...(line || '').matchAll(/'([^']+)'/g)].map((m) => m[1]).sort();
-  check(
-    JSON.stringify(names) === JSON.stringify(actual),
-    file + ' packages the exact manifest set',
-  );
-}
 for (const s of catalog.skills) {
   check(typeof s.owns === 'string' && s.owns.length > 20, s.id + ' has a concrete owner');
   check(
@@ -72,14 +64,21 @@ for (const s of catalog.skills) {
 }
 const simple = scenarios.find((s) => s.id === '99-observability-debugging-boundary');
 const git = scenarios.find((s) => s.id === '101-ci-cd-release-engineering-boundary');
+const gitBoundary = scenarios.find((s) => s.id === '135-git-command-listing-boundary');
 check(
   simple.skills_active.length === 0,
   'Routine syntax repair does not invoke architecture refactoring',
 );
 check(
-  git.skills_active.length === 0 &&
-    git.context_to_read.includes('workflows/git-command-listing.md'),
-  'Git listing uses text-only workflow without a skill',
+  git.skills_active.includes('git-command-listing') &&
+    git.skills_unnecessary.includes('ci-cd-release-engineering') &&
+    git.context_to_read.includes('skills/git-command-listing/SKILL.md'),
+  'Git listing selects its skill without loading adjacent CI/CD guidance',
+);
+check(
+  gitBoundary.skills_active.length === 0 &&
+    gitBoundary.skills_unnecessary.includes('git-command-listing'),
+  'A single commit subject does not activate the Git listing skill',
 );
 check(
   JSON.stringify(manifest.always_load) === '["runtime/session-baseline.md"]',

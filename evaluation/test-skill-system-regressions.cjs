@@ -12,8 +12,6 @@ for (const name of [
   'skills',
   'runtime/task-map.md',
   'evaluation/scenarios.yaml',
-  'evaluation/test-installer.ps1',
-  'install/install-bootstrap.ps1',
 ]) {
   const dest = path.join(fixture, name);
   fs.mkdirSync(path.dirname(dest), { recursive: true });
@@ -48,7 +46,11 @@ corrupt('skills/catalog.yaml', (t) =>
     v.skills[0].collaborates[0].skill = 'missing-owner';
   }),
 );
-corrupt('install/install-bootstrap.ps1', (t) => t.replace("'api-contracts', ", ''));
+corrupt('devbrain.yaml', (t) =>
+  ymut(t, (v) => {
+    v.skills = v.skills.filter((name) => name !== 'api-contracts');
+  }),
+);
 corrupt('runtime/task-map.md', (t) => t.replaceAll('`api-contracts`', 'api-contracts'));
 corrupt('evaluation/scenarios.yaml', (t) =>
   ymut(t, (v) => {

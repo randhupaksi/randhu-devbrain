@@ -178,7 +178,7 @@ commands:
     intent: "Inspect Git read-only, then produce a text-only command list grouped by feature/logical change: specific git add paths, detailed English Conventional Commit messages, and one git push at the end."
     mode: text_only_after_read_only_inspection
     approval: none
-    modules: [workflows/git-command-listing.md, safety/policy.md]
+    modules: [skills/git-command-listing/SKILL.md, safety/policy.md]
     forbidden: [git_add, git_commit, git_push]
     output: "Feature groups, outcome summaries, specific git add paths, detailed commit messages, one text-only git push, and scope/upstream notes when needed."
 

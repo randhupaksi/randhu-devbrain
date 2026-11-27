@@ -183,7 +183,7 @@ test('command discovery alone cannot authorize a native start', () => {
   );
   assert.throws(() => assessHost({ command_available: true }), /explicit boolean/);
 });
-test('blocked preflight records 24 prerequisites and zero model sessions without overwriting prior attempts', () => {
+test('blocked preflight records every prerequisite and zero model sessions without overwriting prior attempts', () => {
   const pack = preparePack(inputs),
     evidenceDirectory = path.join(pack.evaluator, 'evidence');
   fs.mkdirSync(evidenceDirectory);
@@ -207,10 +207,10 @@ test('blocked preflight records 24 prerequisites and zero model sessions without
   };
   const result = recordPreflight(pack.evaluator, inputs, receipt);
   assert.equal(result.native_sessions_started, 0);
-  assert.equal(result.scorecards, 24);
+  assert.equal(result.scorecards, pack.entries.length);
   const report = inspectResults(pack.evaluator, inputs);
   assert.deepEqual(report.errors, []);
-  assert.equal(report.preflight_blocked, 24);
+  assert.equal(report.preflight_blocked, pack.entries.length);
   assert.equal(report.native_sessions_started, 0);
   assert.equal(report.native_both_pass_cases, 0);
   assert.throws(() => recordPreflight(pack.evaluator, inputs, receipt), /overwrite/);
@@ -277,7 +277,7 @@ test('fixture output rejects external/traversing targets', () => {
 });
 test('prepared fixtures are independent, host-equivalent and truthfully unattempted', () => {
   const pack = preparePack(inputs);
-  assert.equal(pack.entries.length, 24);
+  assert.equal(pack.entries.length, inputs.suite.cases.length * inputs.suite.hosts.length);
   const report = inspectResults(pack.evaluator, inputs);
   assert.deepEqual(report.errors, []);
   assert.equal(report.native_both_pass_cases, 0);
