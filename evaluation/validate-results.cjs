@@ -3,7 +3,7 @@ const fs = require('node:fs'),
   path = require('node:path');
 const { loadInputs } = require('./prepare-smoke.cjs');
 const { compareScorecards, privateText, safeRelative } = require('./results-contract.cjs');
-function inspectResults(directory, inputs) {
+function inspectResults(directory, inputs, profileFingerprint) {
   const root = path.resolve(__dirname, '..'),
     requested = path.resolve(directory),
     relativeInput = path.relative(root, requested).replaceAll('\\', '/');
@@ -80,6 +80,20 @@ function inspectResults(directory, inputs) {
     }
   return {
     ...report,
+    ...(profileFingerprint && !report.errors.length
+      ? {
+          current_profile_cards: cards
+            .filter((card) => card.profile_fingerprint === profileFingerprint)
+            .map((card) => ({
+              scenario_id: card.scenario_id,
+              host: card.host,
+              status: card.status,
+              stage: card.execution_stage,
+              fresh_session: card.fresh_session,
+              evidence_kind: card.evidence_kind,
+            })),
+        }
+      : {}),
     scorecards: cards.length,
     native_sessions_started: report.comparisons.reduce(
       (total, item) => total + item.native_sessions_started,
