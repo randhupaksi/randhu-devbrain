@@ -45,11 +45,24 @@ function validateSuite(suite) {
     }
     ids.add(item.id);
   }
+  if (
+    suite.focus_cases !== undefined &&
+    (!Array.isArray(suite.focus_cases) ||
+      !suite.focus_cases.length ||
+      new Set(suite.focus_cases).size !== suite.focus_cases.length ||
+      !suite.focus_cases.every((id) => ids.has(id)))
+  ) {
+    throw new Error('Invalid benchmark focus cases');
+  }
 }
 
 function prepare(suite, release, repeat, onlyCase) {
   validateSuite(suite);
-  const cases = onlyCase ? suite.cases.filter((item) => item.id === onlyCase) : suite.cases;
+  const cases = onlyCase
+    ? suite.cases.filter((item) =>
+        onlyCase === '--focus' ? suite.focus_cases?.includes(item.id) : item.id === onlyCase,
+      )
+    : suite.cases;
   if (!cases.length || !Number.isInteger(repeat) || repeat < 1 || repeat > 5) {
     throw new Error('Choose an existing case and 1–5 repetitions');
   }
@@ -338,7 +351,7 @@ function main([command, value, onlyCase, ...rest]) {
     }
   }
   throw new Error(
-    'Usage: benchmark.cjs prepare [repeats] [case-id] | verify <batch-id> <run-id> | summarize <batch-id>',
+    'Usage: benchmark.cjs prepare [repeats] [case-id|--focus] | verify <batch-id> <run-id> | summarize <batch-id>',
   );
 }
 

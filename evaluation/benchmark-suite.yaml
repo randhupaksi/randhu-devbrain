@@ -1,6 +1,7 @@
 schema: devbrain-benchmark
 version: 1
-reference_commit: 7c799bff8d6cfe00574385f7209aa67f5bdb6f66
+reference_commit: 1061e8ecf35b4c321bf277c2611b745a53de92dd
+focus_cases: [git-command-listing, creative-dashboard, creative-public-journey, copy-default, copy-editorial, fullstack-implementation]
 cases:
   - id: enterprise-ui
     fixture: enterprise
@@ -81,3 +82,16 @@ cases:
     fixture: agent-evaluation
     prompt: "Plan an evaluation comparing the two support assistant configurations from the supplied brief."
     evidence: "Use matched fresh sessions, distinguish extra tool actions from good prose, and preserve the blocked case."
+
+  - id: git-command-listing
+    fixture: git-list
+    prompt: Inspect this worktree and list separate Git add and commit commands per completed change. Include the push step and its prerequisites. Return the commands as text.
+    evidence: Check precise paths, separate behavior scopes, English commit subjects, an honest upstream note, and a trace with no Git mutations.
+  - id: creative-dashboard
+    fixture: enterprise
+    prompt: Give the operations dashboard a distinctive visual identity while preserving its filtering, selection and data. Implement the result for desktop and narrow screens.
+    evidence: Compare the visual concept and hierarchy, screenshot evidence at both widths, keyboard controls, preserved data and predictable selection feedback.
+  - id: creative-public-journey
+    fixture: marketing
+    prompt: Implement a portfolio landing page and a supporting project detail page for Operations desk. Give both a shared visual identity and make navigation between them clear.
+    evidence: Compare visual coherence, role-specific hierarchy, keyboard navigation, narrow reflow, supplied facts and responsive screenshots.
