@@ -18,7 +18,7 @@ README or AGENTS leads to the documentation index; the index routes to maintaine
 
 ## Installation and validation scope
 
-Project documentation is one of the 39 portable DevBrain skills. Repository maintenance does not install it to a real home. Installer integration uses simulated homes inside ignored `local/` and checks identical source, Codex, and Claude payloads. Its behavior scenarios remain contracts; Humanize observations do not constitute native evaluation of this documentation skill.
+Project documentation is one of the 40 portable DevBrain skills. Repository maintenance does not install it to a real home. Installer integration uses simulated homes inside ignored `local/` and checks identical source, Codex, and Claude payloads. Its behavior scenarios remain contracts; Humanize observations do not constitute native evaluation of this documentation skill.
 
 The [evaluation suite](../evaluation/scenarios.yaml) includes documentation creation, audit-only behavior, preservation of historical evidence, and minimal-project selection. These are behavior contracts, not completed live runs. Follow the [evaluation guide](../evaluation/README.md) for actual evidence collection.
 

@@ -1,6 +1,6 @@
 # DevBrain Module Ownership
 
-This map describes the maintained DevBrain 3.5 sources. Markdown and YAML define current behavior; no DOCX is needed to interpret or update the system.
+This map describes the maintained DevBrain 3.7 sources. Markdown and YAML define current behavior; no DOCX is needed to interpret or update the system.
 
 | Concern | Current owner |
 |---|---|
@@ -15,6 +15,7 @@ This map describes the maintained DevBrain 3.5 sources. Markdown and YAML define
 | Safety and sensitive data | `safety/` plus concise always-available baseline boundaries |
 | Hosted runtime and production readiness | `cloud-infrastructure-engineering`, `reliability-engineering`, and `workflows/production-readiness-review.md` |
 | MCP tool contracts and agent comparisons | `mcp-server-engineering` and `agent-evaluation-engineering` |
+| Feature-grouped, text-only Git command proposals | `skills/git-command-listing/SKILL.md`; `safety/policy.md` retains mutation authorization |
 | Third-party software trust decisions | `safety/software-supply-chain.md` |
 | Product context and project facts | Project `AGENTS.md`/`CLAUDE.md`; optional files under `project-templates/` |
 | Prompt shortcuts and routing | `prompts/commands.yaml`; `runtime/task-map.md` |
@@ -34,7 +35,7 @@ This is an ownership map, not a required chain of files. A focused task usually 
 
 ## Current package facts
 
-The manifest is the package version and skill inventory owner. The current release is 3.5.0 with 39 source skills. The task contract suite contains 134 scenarios and has no dedicated cross-surface creative art-direction case. The existing 19-case benchmark is pinned to the 3.4.0 baseline and creates 228 slots across three conditions, two hosts, and two repetitions. The 3.5 creative UI/UX guidance has no native Codex or Claude behavior result yet; benchmark slots remain `NOT_RUN` until their host sessions are observed.
+The manifest owns the package version and 40-skill inventory in v3.7.0. The suite has 139 task contracts and 22 benchmark cases, six of which form the focused 3.7 comparison. See the [3.7 evaluation guide](v3.7-evaluation.md) for the reference revision and evidence status.
 
 ## Relationship model
 

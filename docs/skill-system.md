@@ -1,6 +1,6 @@
 # DevBrain Skill System
 
-DevBrain 3.5.0 contains 39 source skills. The first 30 skills shipped as the stable v3.0 package on 2026-11-12; v3.2 added four specialists and a greenfield workflow. v3.3 added two production operations specialists. v3.4 added MCP server and agent evaluation engineering. v3.5 adds cross-surface Creative UI/UX direction, including expressive product and dashboard work, and deepens marketing and portfolio guidance for connected public-page experiences. This guide explains current ownership and collaboration, followed by dated evidence from earlier expansions. DevBrain is a portable instruction system for the host model, not additional training. No third-party skill package or service is required. New operational guidance can improve the decisions and checks an agent makes, but package validation does not establish a general quality gain.
+DevBrain 3.7.0 contains 40 source skills. The first 30 skills shipped as the stable v3.0 package on 2026-11-12; v3.2 added four specialists and a greenfield workflow. v3.3 added two production operations specialists. v3.4 added MCP server and agent evaluation engineering. v3.5 added cross-surface Creative UI/UX direction, including expressive product and dashboard work, and deepened marketing and portfolio guidance for connected public-page experiences. v3.6 adds a dedicated Git Command Listing skill for feature-grouped, worktree-grounded, text-only staging/commit/push proposals. The previous Git listing workflow now serves as a compatibility route to that portable skill. This guide explains current ownership and collaboration, followed by dated evidence from earlier expansions. DevBrain is a portable instruction system for the host model, not additional training. No third-party skill package or service is required. New operational guidance can improve the decisions and checks an agent makes, but package validation does not establish a general quality gain.
 
 ## Ownership and collaboration
 
@@ -18,6 +18,7 @@ The [catalog](../skills/catalog.yaml) is the maintenance owner of each skill's r
 | Localization and public discovery | internationalization-localization, technical-seo |
 | Hosted runtime and reliability | cloud-infrastructure-engineering, reliability-engineering |
 | Toolchain and local readiness | dependency-upgrades, developer-environment |
+| Git workflow | git-command-listing |
 
 Choose the owner by the requested result. For a backend use case, an accepted contract and database invariants are inputs to implementation. A distinct contract-design decision can go to api-contracts; a schema change can go to database-engineering. A durable post-commit event can then become the worker's input. These are responsibility boundaries, not a mandatory sequence or permission to expand the task.
 
@@ -25,7 +26,7 @@ For a slow dashboard, frontend-performance first locates the dominant cost. A su
 
 ## How skill selection works
 
-Skill discovery begins with its short name and description. The agent identifies the requested deliverable, consults the matching task-map route, and reads the primary skill when it adds task-specific decisions. It loads references only when they answer an active question. This keeps a 38-skill package usable without adding all 38 instructions to every session.
+Skill discovery begins with its short name and description. The agent identifies the requested deliverable, consults the matching task-map route, and reads the primary skill when it adds task-specific decisions. It loads references only when they answer an active question. This keeps a 40-skill package usable without adding all 40 instructions to every session.
 
 For genuinely mixed work, the catalog's collaborator entry names the artifact to hand off. A useful handoff includes accepted facts, relevant source locations, constraints that must survive, open decisions, the artifact produced, and verification actually performed. The receiving skill owns its distinct result. Skill names do not grant permission, trigger external operations, or require a fixed sequence.
 
@@ -49,7 +50,7 @@ Project instructions and active user intent still determine the stack, product s
 
 ## Packaging and evaluation
 
-The manifest and source installer enumerate all 38 skills. Simulated-home installer checks cover source/Codex/Claude payload parity, updates, idempotency, and preservation of user instructions. Repository changes do not install into real host profiles. The release status does not convert scenario contracts into observed model behavior; the evidence below remains bounded by its recorded fixtures and runs.
+The installer reads its 40 managed skill IDs directly from the manifest. Simulated-home installer checks cover source/Codex/Claude payload parity, updates, idempotency, and preservation of user instructions. Repository changes do not install into real host profiles unless the user explicitly requests installation. The release status does not convert scenario contracts into observed model behavior; the evidence below remains bounded by its recorded fixtures and runs.
 
 ### Add or change a skill
 
@@ -57,13 +58,13 @@ The manifest and source installer enumerate all 38 skills. Simulated-home instal
 2. Define its activation description, responsibility, required inputs, reviewable output, and nearest boundary cases before writing its instructions.
 3. Keep the entrypoint self-contained and portable. Put substantial conditional procedures in a reference linked from the skill. Avoid dependencies on repository-relative files at runtime.
 4. Connect the new or changed owner to `skills/catalog.yaml` and `runtime/task-map.md`. Add conditional handoffs in `runtime/skill-selection.md` only where the artifact boundary helps selection.
-5. Update `devbrain.yaml`, host metadata, source installer and installer tests. Keep the session baseline focused; a new specialist does not automatically belong in `always_load`.
+5. Update the manifest and host metadata. Installer tests check the installed trees against source directories. Keep the session baseline focused; a new specialist does not automatically belong in `always_load`.
 6. Add positive and boundary evaluation cases with synthetic evidence. Check that an adjacent skill owns the boundary prompt and that unrelated tasks do not activate this skill.
 7. Update the current documentation index, ownership map and release evidence. Run repository, skill-system and simulated installer checks, then record native behavior separately when observed.
 
 The structural suite verifies owner metadata, route and package parity, handoff targets, and scenario links. It does not grade the quality of a model's decisions. Native comparisons need a fresh session, matched inputs, host/model settings where observable, and reviewer evidence.
 
-Cases 72–101 add one positive task and one boundary task for each new skill, bringing the suite at that stage to 101 cases. They are evaluation contracts, with expectations outside agent context. Two boundary cases intentionally need no skill: a routine syntax fix uses debugging guidance, and a Git command list uses the text-only Git workflow.
+Cases 72–101 add positive and boundary tasks for the then-current specialist owners. Case 101 now routes Git command listing to `git-command-listing` while keeping CI/CD release engineering out of the task. Case 135 keeps a single commit-subject request outside the broader listing skill. These are evaluation contracts, not observed host behavior.
 
 Run `node evaluation/test-skill-system.cjs` with the documented YAML prerequisite for source/manifest/installer/catalog consistency, relationship targets, metadata and coverage. Run the repository validator, content regressions and simulated installer integration using the [evaluation guide](../evaluation/README.md). These checks do not run a model.
 

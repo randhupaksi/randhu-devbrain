@@ -1,6 +1,6 @@
 # Behavior Scenario Overview
 
-The maintained suite lives in [evaluation/scenarios.yaml](../evaluation/scenarios.yaml). Its procedure, scoring rubric, prerequisites, and limitations are documented in the [evaluation guide](../evaluation/README.md). The current suite has 134 scenarios.
+The maintained suite lives in [evaluation/scenarios.yaml](../evaluation/scenarios.yaml). Its procedure, scoring rubric, prerequisites, and limitations are documented in the [evaluation guide](../evaluation/README.md). The current suite has 139 scenarios.
 
 ## What the suite covers
 
@@ -10,10 +10,12 @@ Cases 114–123 extend the 3.2 suite with technical research, product discovery,
 
 Cases 124–130 cover infrastructure and reliability routing, production readiness, software supply chain assessment and rollout handoff. See the [3.3 comparison cases](v3.3-production-delivery.md#benchmark).
 
-Cases 131–134 cover MCP tool design and comparative agent evaluation. The boundary cases route a carrier webhook to external integrations and deterministic invoice rounding to testing strategy. See the [3.4 comparison cases](v3.4-agent-engineering.md#benchmark).
+Cases 131–134 cover MCP tool design and comparative agent evaluation. The boundary cases route a carrier webhook to external integrations and deterministic invoice rounding to testing strategy. Case 135 verifies that a single commit-message suggestion does not activate the broader Git listing skill; Git listing activation is also covered by cases 12 and 101.
+
+Cases 136 and 137 cover creative dashboard direction and a focused table interaction that preserves the existing direction. Cases 138 and 139 cover the connected public journey and its boundary with operational dashboard work.
 
 ## Reading results correctly
 
 Scenario definitions are behavior contracts, not observed model passes. Repository validators check structural consistency and selected regression conditions. Live Codex or Claude Code runs require actual host evidence and should be reported with the host, effective model when observable, mode, prompt, context, and limitations.
 
-The separate CLI host matrix covers loader discovery, instruction families, skill visibility, session modes, and host permissions. Matrix cases do not increase the 134 task-scenario count. A blocked prerequisite is not a successful model result. See the [3.1 reliability report](v3.1-reliability.md) for the benchmark comparison method and the [documentation index](README.md) for dated release records.
+The separate CLI host matrix covers loader discovery, instruction families, skill visibility, session modes, and host permissions. Matrix cases do not increase the 139 task-scenario count. A blocked prerequisite is not a successful model result. See the [3.1 reliability report](v3.1-reliability.md) for the benchmark comparison method and the [documentation index](README.md) for dated release records.

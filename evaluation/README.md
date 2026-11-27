@@ -29,9 +29,9 @@ Fixtures are retained for inspection and ignored by Git. In a sandbox using anot
 
 ## Behavioral evaluation
 
-Use the current [3.5 Creative UI/UX guide](../docs/v3.5-creative-ui-ux.md) for cross-surface art direction and connected visitor routes; use the [3.4 benchmark procedure](../docs/v3.4-agent-engineering.md#benchmark) for matched-run mechanics. The 134 task contracts are maintained separately from the 19 benchmark cases. The existing suite does not directly measure the new cross-surface creative skill. Use the [UI outcome rubric](ui-outcome-rubric.md) for visual and interaction evidence.
+See the [3.7 evaluation guide](../docs/v3.7-evaluation.md) for the focused comparison, per-host coverage, and evidence requirements. The 139 task contracts are maintained separately from the 22 benchmark cases.
 
-[`scenarios.yaml`](scenarios.yaml) contains 134 cases covering instruction precedence, scope and safety, selective discovery, debugging and completion, context reconciliation, session continuity, project context, documentation, natural writing, specialist skill routing and boundaries, and research/discovery/frontend/AI/fullstack delivery additions. No dedicated behavior contract currently exercises Creative UI/UX. Each case specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
+[`scenarios.yaml`](scenarios.yaml) contains 139 cases covering instruction precedence, scope and safety, selective discovery, debugging and completion, context reconciliation, session continuity, project context, documentation, natural writing, specialist skill routing and boundaries, research/discovery/frontend/AI/fullstack delivery additions, and Git command-listing activation/boundaries. Each case specifies prompt, context, skills, autonomy, approval, files, validation and forbidden behavior.
 
 1. Create synthetic fixtures under `local/behavior-runs/` with project instructions, target files, contracts, and enough tests. Do not use another project, client data, secrets, or a real database.
 2. Start a new Codex or Claude session with only the baseline, skill metadata, case prompt, and relevant fixture. Do not show the assistant the expected answer.
@@ -53,7 +53,7 @@ Use [the v2.4 guide](v2.4-behavior-guide.md) for two-phase handoff/resume evalua
 
 ## Repeatable smoke evaluation
 
-[smoke-suite.yaml](smoke-suite.yaml) selects 12 existing scenarios; it selects from the full scenario suite. [scorecard-contract.yaml](scorecard-contract.yaml) defines six scoring dimensions and explicit result/evidence categories. Preparation requires Node.js 18+, Git 2.28+ and the existing YAML parser. These are maintenance prerequisites, not installer dependencies.
+[smoke-suite.yaml](smoke-suite.yaml) selects 15 existing scenarios; it selects from the full scenario suite. [scorecard-contract.yaml](scorecard-contract.yaml) defines six scoring dimensions and explicit result/evidence categories. Preparation requires Node.js 18+, Git 2.28+ and the existing YAML parser. These are maintenance prerequisites, not installer dependencies.
 
 ```powershell
 node evaluation/prepare-smoke.cjs
@@ -61,7 +61,7 @@ node --test evaluation/test-behavior-results.cjs
 node evaluation/test-content-regressions.cjs
 ```
 
-The preparation command prints a repository-relative batch path under `local/behavior-runs/`. It creates 24 separate projects, initial NOT_RUN scorecards and an evaluator index. Each fixture's AGENTS.md and CLAUDE.md match. Git-list fixtures get an empty local Git repository for genuine untracked status, with no stage/commit/push or remote. Repeating preparation creates a new batch and never overwrites an earlier run. The deliberately broken continuity fixture remains broken in the tracked template; generated copies are the edit targets.
+The preparation command prints a repository-relative batch path under `local/behavior-runs/`. It creates 30 separate projects, initial NOT_RUN scorecards and an evaluator index. Each fixture's AGENTS.md and CLAUDE.md match. Git-list fixtures get an empty local Git repository for genuine untracked status, with no stage/commit/push or remote. Repeating preparation creates a new batch and never overwrites an earlier run. The deliberately broken continuity fixture remains broken in the tracked template; generated copies are the edit targets.
 
 1. Open only the selected case's `project/` in the authorized host session and provide its adjacent `prompt.txt`, the current baseline and available skill metadata. Keep `evaluator/`, full scenario expectations and result tests outside assistant context. Preparation and validation never launch a host; the separate manual native capture below requires explicit authorization.
 2. Keep cases independent. Record initial fingerprints from the index; don't replace them with after-edit hashes. Both host runs must use the same initial fixture/prompt and operational profile for comparison. If the profile changed, prepare a new batch.
@@ -141,6 +141,6 @@ For natural-writing defaults and the deep editing skill, use the [Humanize evalu
 
 ## Skill-system checks
 
-Run `node evaluation/test-skill-system.cjs` with the existing YAML prerequisite to check source/manifest/installer parity, ownership relationships, metadata, and scenario coverage. This is a structural check and does not launch models. Cases 72–113 cover the 3.0 skill expansion; cases 114–123 cover 3.2 routing and delivery. Cases 124–130 cover 3.3 infrastructure, reliability, supply chain and release readiness. Cases 131–134 cover MCP and agent evaluation activation and boundary requests. The [skill-system guide](../docs/skill-system.md) records their scope and evidence limits.
+Run `node evaluation/test-skill-system.cjs` with the existing YAML prerequisite to check source/manifest/installer parity, ownership relationships, metadata, and scenario coverage. This is a structural check and does not launch models. Cases 72–113 cover the 3.0 skill expansion; cases 114–123 cover 3.2 routing and delivery. Cases 124–130 cover 3.3 infrastructure, reliability, supply chain and release readiness. Cases 131–134 cover MCP and agent evaluation activation and boundaries; case 135 covers the Git listing skill boundary. The [skill-system guide](../docs/skill-system.md) records their scope and evidence limits.
 
 Run `node evaluation/test-skill-system-regressions.cjs` to prove the relationship/package validator rejects five intentional defects in workspace-local fixtures. These negative checks do not establish model behavior.
