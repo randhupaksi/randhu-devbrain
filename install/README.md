@@ -13,7 +13,7 @@ Installation only runs when explicitly requested. An agent maintaining the repos
 
 ## Install and update
 
-Preview with `-WhatIf`, inspect the targets, then run the command without `-WhatIf` to apply it. For an existing installation, use the updater. The default `-Tool Both` writes the Codex and Claude Code integrations and copies all 36 managed skills. Start a fresh session afterward so each host can discover the updated loader and skill payload.
+Preview with `-WhatIf`, inspect the targets, then run the command without `-WhatIf` to apply it. For an existing installation, use the updater. The default `-Tool Both` writes the Codex and Claude Code integrations and copies all 40 managed skills. Start a fresh session afterward so each host can discover the updated loader and skill payload.
 
 An existing loader points to this checkout and reads revised runtime guidance in a fresh session. Updating the installed skill payload is necessary when skills are added, removed, or changed. A checkout moved to a different location also requires updating the loader.
 
@@ -31,7 +31,7 @@ Claude Code loaders and skills use `UserHome/.claude`. Concrete machine paths be
 
 ## Update guarantees
 
-Preflight checks source files, managed markers, and linked/reparse paths before writing. The manifest and skill catalog identify the 36 managed skill folders. Adapter templates are the loader source, reducing template/installer drift. Text outside a managed block is preserved; loader backups retain original bytes.
+Preflight checks source files, managed markers, and linked/reparse paths before writing. The installer reads the managed inventory from the plain `skills:` block list in `devbrain.yaml`. Keep IDs unquoted, lowercase, and indented as in the manifest. The skill catalog records ownership. Adapter templates are the loader source. Text outside a managed block is preserved; loader backups retain original bytes.
 
 Skills are copied to staging and verified by hash/tree. The previous skill directory is backed up before staging becomes active. If activating staging fails, the installer attempts to restore the prior directory. An identical update makes no writes and creates no backup.
 

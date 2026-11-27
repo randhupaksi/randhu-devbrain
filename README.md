@@ -1,8 +1,8 @@
 # DevBrain 3.5
 
-DevBrain 3.5.0 is Randhu's portable developer knowledge layer for Codex and Claude Code. It gives an agent project-independent engineering principles, safety boundaries, task workflows, and focused specialist skills. The host model still performs the reasoning and coding. DevBrain supplies context and a routing structure for that work.
+DevBrain 3.7.0 is Randhu's portable developer knowledge layer for Codex and Claude Code. It gives an agent project-independent engineering principles, safety boundaries, task workflows, and focused specialist skills. The host model still performs the reasoning and coding. DevBrain supplies context and a routing structure for that work.
 
-The package contains 39 portable skills and 134 task behavior contracts. Version 3.5 adds Creative UI/UX: a cross-surface method for distinctive visual direction and expressive interaction that applies to dashboards as well as public-facing pages. Enterprise UI/UX and Marketing & Portfolio UI/UX continue to own their task and narrative outcomes. See the [3.5 Creative UI/UX guide](docs/v3.5-creative-ui-ux.md) for scope and evidence.
+The package contains 40 portable skills and 139 task behavior contracts. Version 3.7 adds per-host skill coverage, a focused benchmark and manifest-driven installation. Version 3.6 adds a dedicated Git Command Listing skill for worktree-grounded command proposals split by feature or logical change. Version 3.5 added Creative UI/UX: a cross-surface method for distinctive visual direction and expressive interaction that applies to dashboards as well as public-facing pages. Enterprise UI/UX and Marketing & Portfolio UI/UX continue to own their task and narrative outcomes. See the [skill-system guide](docs/skill-system.md) for current skill ownership and evidence.
 
 ## Start here
 
@@ -46,7 +46,7 @@ This is a decision model, not a requirement to read every module in sequence. A 
 | `safety/` | Cross-cutting safeguards and deeper risk analysis |
 | `workflows/` | Task procedures, handoffs, debugging, project context, and delivery |
 | `prompts/` | Short commands with intent, mode, and routing |
-| `skills/` | 39 portable specialists selected by outcome |
+| `skills/` | 40 portable specialists selected by outcome |
 | `adapters/` and `install/` | Codex/Claude loader templates and explicit installer/updater |
 | `project-templates/` | Optional project context documents with clear ownership |
 | `evaluation/` | Behavior contracts, package checks, and maintenance-only evaluation tools |
@@ -64,7 +64,7 @@ The latest user instruction controls the task after platform and safety requirem
 
 DevBrain separates package checks from observed model behavior. Repository validation checks source structure and links. Skill tests check catalog, routing, and packaging contracts. Simulated installer tests check target layout and preservation. Scenario files define behavioral cases. Native comparisons require fresh Codex or Claude sessions with matched prompts and recorded evidence. Passing a structural check does not establish that a host loaded the files or that every model response follows them.
 
-The [evaluation guide](evaluation/README.md) explains the validation layers. The existing 19-case comparison suite remains pinned to the 3.4.0 baseline (7c799bff), producing 228 slots across three conditions, two hosts, and two repetitions. It has no dedicated cross-surface creative direction case. Native behavior for the 3.5 skill remains pending.
+See the [3.7 evaluation guide](docs/v3.7-evaluation.md) for skill coverage and the six-case comparison. The full benchmark contains 22 cases.
 
 ## Current guidance and evidence
 

@@ -4,6 +4,19 @@
 
 - Consolidated current documentation around v3.2, marked older reports as historical evidence, and removed obsolete DOCX guides and conceptual source material.
 
+## 3.7.0 — 2026-11-27
+
+- Read the managed installer skill inventory directly from the manifest.
+- Add per-host skill coverage reporting and creative activation and boundary contracts.
+- Prepare a focused benchmark for Git, creative UI, interface copy, and fullstack work. See the [3.7 evaluation guide](docs/v3.7-evaluation.md) for provenance and evidence scope.
+
+## 3.6.0 — 2026-11-25 (source/package update; native Git-skill behavior pending)
+
+- Add the portable Git Command Listing skill for read-only worktree inspection and text-only Git command proposals grouped by coherent feature or logical change.
+- Improve commit safety by accounting for pre-staged changes, avoiding repeated full-file staging across commit groups, and using partial staging only when distinct hunks need separate commits.
+- Connect the skill to the manifest, catalog, task map, prompt shortcut, safety guidance, Codex/Claude installer payloads, and positive/boundary scenarios.
+- Keep the prior workflow path as a compatibility route. Native Codex and Claude behavior is not claimed from packaging or structural checks.
+
 ## 3.5.0 — 2026-11-23 (stable source package; native creative validation pending)
 
 - Add the Creative UI/UX skill and playbook for distinctive visual art direction and expressive interaction across public and internal surfaces, including dashboards and data-rich products.

@@ -1,6 +1,6 @@
 # DevBrain Documentation
 
-DevBrain 3.5.0 contains 39 portable skills and 134 task behavior contracts. Markdown and YAML are the maintained operational sources. This index routes users and maintainers to the current owner for each question and keeps dated evidence attached to the release that produced it.
+DevBrain 3.7.0 contains 40 portable skills and 139 task behavior contracts. Markdown and YAML are the maintained operational sources. This index routes users and maintainers to the current owner for each question and keeps dated evidence attached to the release that produced it.
 
 ## Choose a starting point
 
@@ -9,6 +9,7 @@ DevBrain 3.5.0 contains 39 portable skills and 134 task behavior contracts. Mark
 | Understand DevBrain and begin a coding session | [Repository overview](../README.md), [session baseline](../runtime/session-baseline.md) |
 | Understand loading, host integration, or source ownership | [Architecture](architecture.md), [module ownership](module-ownership.md) |
 | Select or add a specialist skill | [Skill system](skill-system.md), [task map](../runtime/task-map.md), [skill catalog](../skills/catalog.yaml) |
+| Prepare a feature-split Git command list | [Git Command Listing skill](../skills/git-command-listing/SKILL.md), [Git safety policy](../safety/policy.md) |
 | Connect Codex or Claude Code to this checkout | [Installation, update, and recovery](../install/README.md) |
 | Start a full-stack project from a brief | [3.2 delivery guide](v3.2-delivery.md), [greenfield workflow](../workflows/greenfield-fullstack-delivery.md) |
 | Review hosted runtime or service recovery | [3.3 production delivery guide](v3.3-production-delivery.md) |
@@ -39,6 +40,8 @@ The documentation describes operational sources. It does not replace them. When 
 
 Release records preserve their original dates, package scope, and evidence. Their validation counts are specific to those revisions and environments. Earlier reports are not current command references or proof of behavior in a later host version.
 
+- **3.7:** [Skill coverage, matched comparison, and installation evidence](v3.7-evaluation.md).
+- **3.6:** [Git command listing skill](../skills/git-command-listing/SKILL.md) and its source/package evidence in the [skill-system guide](skill-system.md). Native Codex/Claude behavior validation remains pending.
 - **3.5:** [Creative UI/UX guidance](v3.5-creative-ui-ux.md). Native Codex/Claude behavior validation remains pending.
 - **3.4:** [Agent engineering and comparison evidence](v3.4-agent-engineering.md).
 - **3.3:** [Production delivery and package evidence](v3.3-production-delivery.md). Inputs for 204 matched slots are prepared; native Codex and Claude results remain `NOT_RUN`.
